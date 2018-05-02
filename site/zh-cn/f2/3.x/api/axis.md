@@ -5,6 +5,8 @@ title: Axis 坐标轴
 
 # Axis
 
+---
+
 坐标轴配置。F2 的坐标轴的组成如下：
 
 <img src="https://gw.alipayobjects.com/zos/rmsportal/YhhBplZmzxzwvUBeEvPE.png" style="width: 500px;">
@@ -53,7 +55,7 @@ title: Axis 坐标轴
 | `top`     | Boolean     | 调整图层层级，true 表示展示在最上层图形，false 表示展示在最下层图形 |
 
 
-注意：grid 和 label 为回调函数时，返回值必须是对象。
+**注意：grid 和 label 为回调函数时，返回值必须是对象!**
 
 示例：
 

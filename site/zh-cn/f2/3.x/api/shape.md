@@ -1,12 +1,14 @@
 <!--
-index: 13
-title: Shape 自定义 Shape
+index: 12
+title: 自定义 Shape
 resource:
   jsFiles:
     - ${url.f2}
 -->
 
-# Shape
+# 自定义 Shape
+
+---
 
 **获取方式：`F2.Shape`**
 
