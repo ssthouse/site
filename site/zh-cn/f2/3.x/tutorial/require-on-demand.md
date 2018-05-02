@@ -165,8 +165,7 @@ const Legend = require('@antv/f2/lib/plugin/legend');
 // 第二步：注册插件 Legend
 Chart.plugins.register(Legend); // 这里进行全局注册，也可以给 chart 的实例注册
 ```
-
-## 示例
+## 按需引用示例
 
 假如一个业务场景下仅需要绘制饼图（不带动画）：
 
@@ -176,7 +175,7 @@ require('@antv/f2/lib/geom/interval'); // 引入 interval 几何标记
 require('@antv/f2/lib/coord/polar'); // 引入 极坐标
 ```
 
-## 按需打包工具 
+## 可视化工具 
 
 为了方便用户，我们提供了 UI 化的按需打包工具，帮助用户自由选择所需图表和组件进行打包下载，使用方法如下：
 
