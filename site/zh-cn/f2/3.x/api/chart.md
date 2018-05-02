@@ -144,7 +144,6 @@ const chart = new F2.Chart({
 - 描述：是否关闭 chart 的动画
 - 默认值：null
 
-
 ## 方法
 
 ### `get`

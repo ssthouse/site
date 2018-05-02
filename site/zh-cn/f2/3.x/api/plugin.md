@@ -1,6 +1,6 @@
 <!--
-index: 12
-title: Plugin 插件
+index: 13
+title: Plugin 插件机制
 
 -->
 
@@ -79,3 +79,10 @@ const chart3 = new Chart({});
 
 `Chart.plugins.getAll()`  获取注册的所有插件
 
+## 现有插件
+
+- [Tooltip](./tooltip.md)
+- [Legend](./legend.md)
+- [Guide](./guide.md)
+- [Animation](./animation.md)
+- [Gesture](./gesture.md)

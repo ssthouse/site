@@ -1,12 +1,12 @@
 <!--
-index: 11
-title: Shape 自定义 Shape
+index: 12
+title: 自定义 Shape
 resource:
   jsFiles:
     - ${url.f2}
 -->
 
-# Shape
+# 自定义 Shape
 
 ---
 
