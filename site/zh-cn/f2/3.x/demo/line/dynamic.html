@@ -1,13 +1,39 @@
 <!--
 index: 11
 title: 实时折线
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/McevuIUuSZcUbkBEOGRc.gif
 resource:
   jsFiles:
 -->
 
 <script>
-  const data = [];
+  // 自定义线图变更动画
+  F2.Animate.registerAnimation('lineUpdate', function (updateShape, animateCfg) {
+    const cacheShape = updateShape.get('cacheShape'); // 该动画 shape 的前一个状态
+    const cacheAttrs = cacheShape.attrs; // 上一个 shape 属性
+    const oldPoints = cacheAttrs.points; // 上一个状态的关键点
+    const newPoints = updateShape.attr('points'); // 当前 shape 的关键点
 
+    const oldLength = oldPoints.length;
+    const newLength = newPoints.length;
+    const deltaLength = newLength - oldLength;
+
+    const lastPoint = newPoints[newPoints.length - 1];
+    for (let i = 0; i < deltaLength; i++) {
+      oldPoints.push(lastPoint);
+    }
+
+    updateShape.attr(cacheAttrs);
+    updateShape.animate().to({
+      attrs: {
+        points: newPoints
+      },
+      duration: 800,
+      easing: animateCfg.easing
+    });
+  });
+
+  const data = [];
   // 添加数据，模拟数据，可以指定当前时间的偏移的秒
   function getRecord(offset) {
     offset = offset || 0;
@@ -31,9 +57,8 @@ resource:
   const defs = {
     time: {
       type: 'timeCat',
-      mask: 'hh:mm:ss',
-      tickCount: 3,
-      range: [ 0, 1 ]
+      mask: 'HH:mm:ss',
+      range: [0, 1]
     },
     value: {
       tickCount: 5,
@@ -43,42 +68,34 @@ resource:
   chart.source(data, defs);
   chart.axis('time', {
     label(text, index, total) {
-      const textCfg = {};
+      const textCfg = {
+        text: ''
+      };
       if (index === 0) {
         textCfg.textAlign = 'left';
+        textCfg.text = text;
       }
       if (index === total - 1) {
         textCfg.textAlign = 'right';
+        textCfg.text = text;
       }
       return textCfg;
     }
   });
 
-  chart.guide().html({
-    position(xScale, yScales) {
-      const xValues = xScale.values;
-      const yValues = yScales[0].values;
-      const xMax = xValues[xValues.length - 1];
-      const yMax = yValues[yValues.length - 1];
-      return [ xMax, yMax ];
-    },
-    html: '<div style="border-radius: 100%;border: none;width: 12px;height: 12px;background-color: rgb(24, 144, 255);transition: top 0.35s cubic-bezier(0.23, 1, 0.32, 1);"></div>'
-  });
-  chart.guide().html({
-    position(xScale, yScales) {
-      const xValues = xScale.values;
-      const yValues = yScales[0].values;
-      const xMax = xValues[xValues.length - 1];
-      const yMax = yValues[yValues.length - 1];
-      return [ xMax, yMax ];
-    },
-    html: '<div style="border-radius: 100%;border: none;width: 20px;height: 20px;background-color: rgba(24, 144, 255, 0.5);transition: top 0.35s cubic-bezier(0.23, 1, 0.32, 1);"></div>'
-  });
-  chart.line().position('time*value');
+  chart
+    .line()
+    .position('time*value')
+    .animate({
+      update: {
+        animation: 'lineUpdate'
+      }
+    });
+
   chart.render();
 
-  setInterval(function() {
+  setInterval(function () {
     data.push(getRecord());
     chart.changeData(data);
-  }, 2000);
+  }, 1000);
 </script>

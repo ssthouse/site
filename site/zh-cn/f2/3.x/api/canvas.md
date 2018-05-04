@@ -45,8 +45,9 @@ F2 对图形属性进行了缩写
 
 ## 文本属性
 
-* [`textAlign`](http://www.w3school.com.cn/tags/canvas_textalign.asp) 设置文本内容的当前对齐方式, 支持的属性：center|end|left|right|start；
-* [`textBaseline`](http://www.w3school.com.cn/tags/canvas_textbaseline.asp)  设置在绘制文本时使用的当前文本基线, 支持的属性:top|middle|bottom。
+* [`textAlign`](http://www.w3school.com.cn/tags/canvas_textalign.asp) 设置文本内容的当前对齐方式, 支持的属性：center|end|left|right|start
+* [`textBaseline`](http://www.w3school.com.cn/tags/canvas_textbaseline.asp)  设置在绘制文本时使用的当前文本基线, 支持的属性:top|middle|bottom
+* `rotate`: 设置文本旋转的角度，单位为弧度
 
 **！注意：**
 

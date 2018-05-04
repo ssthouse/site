@@ -5,6 +5,7 @@ resource:
   jsFiles:
     - ${url.lodash}
 -->
+<script src="https://d3js.org/d3-color.v1.min.js"></script>
 
 <script>
   const Shape = F2.Shape;
@@ -22,17 +23,31 @@ resource:
     },
     draw(cfg, group) {
       const points = this.parsePoints(cfg.points); // 将0-1空间的坐标转换为画布坐标
-      const polygon = group.addShape('polygon', {
+      const leftPoints = [
+        { x: points[0].x, y: points[0].y },
+        { x: points[1].x, y: points[1].y },
+        { x: points[1].x, y: points[0].y }
+      ];
+      const rightPoints = [
+        { x: points[1].x, y: points[1].y },
+        { x: points[2].x, y: points[2].y },
+        { x: points[1].x, y: points[0].y }
+      ];
+      const left = group.addShape('polygon', {
         attrs: {
-          points: [
-            { x:points[0].x, y:points[0].y },
-            { x:points[1].x, y:points[1].y },
-            { x:points[2].x, y:points[2].y }
-          ],
+          points: leftPoints,
           fill: cfg.color
         }
       });
-      return polygon; // 将自定义Shape返回
+      const hsl = d3.hsl(cfg.color); // 右侧颜色降低亮度
+      hsl.l -= 0.15;
+      const right = group.addShape('polygon', {
+        attrs: {
+          points: rightPoints,
+          fill: hsl
+        }
+      });
+      return [left, right]; // 将自定义Shape返回
     }
   });
 
@@ -49,18 +64,22 @@ resource:
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
     pixelRatio: window.devicePixelRatio,
-    padding: [ 'auto', 40 ]
+    padding: ['auto', 40]
   });
 
   chart.source(data);
   chart.axis('height', false);
   chart.axis('name', { line: null });
   chart.legend(false);
-  chart.interval().position('name*height').color('name').shape('triangle');
+  chart
+    .interval()
+    .position('name*height')
+    .color('name')
+    .shape('triangle');
 
   data.map(obj => {
     chart.guide().text({
-      position: [ obj.name, obj.height ],
+      position: [obj.name, obj.height],
       content: obj.height + '米',
       style: {
         textAlign: 'center',

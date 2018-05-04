@@ -1,6 +1,7 @@
 <!--
 index: 9
 title: 时序折线图过渡动画
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/IOADbpDGnIBylbawsQtl.gif
 resource:
   jsFiles:
 -->
@@ -179,7 +180,8 @@ canvas {
     chart.source(data.slice(oneMonth), {
       reportDateTimestamp: {
         type: 'timeCat',
-        tickCount: 3
+        tickCount: 3,
+        range: [ 0, 1 ]
       },
       value: {
         alias: '涨幅',

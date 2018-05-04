@@ -24,7 +24,8 @@
     "d3": true,
     "html2canvas": true,
     "React": true,
-    "ReactDOM": true
+    "ReactDOM": true,
+    "Hammer": true
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "parser": "babel-eslint",
