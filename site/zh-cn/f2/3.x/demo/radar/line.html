@@ -77,15 +77,14 @@ relativePlots:
         top: true
       };
     },
-    grid(text) {
-      if (text === '120') {
-        return {
-          lineDash: null
-        };
-      }
-    },
-    line: {
-      top: false
+    grid: {
+      lineDash: null,
+      type: 'arc' // 弧线网格
+    }
+  });
+  chart.axis('item', {
+    grid: {
+      lineDash: null
     }
   });
   chart.line().position('item*score').color('user');
