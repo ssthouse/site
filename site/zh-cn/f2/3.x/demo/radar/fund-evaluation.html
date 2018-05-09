@@ -43,13 +43,13 @@ title: 基金评估
 </style>
 
 <script>
-  $(`<div class="panel">
-      <button class="active" id="one">近一月</button>
-      <button id="three">近三月</button>
-      <button id="six">近六月</button>
-    </div>`).appendTo('.chart-wrapper');
+  $('<div class="panel">'
+    + '<button class="active" id="one">近一月</button>'
+    + '<button id="three">近三月</button>'
+    + '<button id="six">近六月</button>'
+    + '</div>').appendTo('.chart-wrapper');
 
-    const recentOneMonth = [
+    var recentOneMonth = [
       { name: '超大盘能力', value: 6.5 },
       { name: '抗跌能力', value: 9.5 },
       { name: '稳定能力', value: 9 },
@@ -57,7 +57,7 @@ title: 基金评估
       { name: '选证择时能力', value: 6 },
       { name: '风险回报能力', value: 8 }
     ];
-    const recentThreeMonth = [
+    var recentThreeMonth = [
       { name: '超大盘能力', value: 6 },
       { name: '抗跌能力', value: 8.5 },
       { name: '稳定能力', value: 7.5 },
@@ -65,7 +65,7 @@ title: 基金评估
       { name: '选证择时能力', value: 6 },
       { name: '风险回报能力', value: 6 }
     ];
-    const recentSixMonth = [
+    var recentSixMonth = [
       { name: '超大盘能力', value: 6 },
       { name: '抗跌能力', value: 7 },
       { name: '稳定能力', value: 7 },
@@ -74,7 +74,7 @@ title: 基金评估
       { name: '风险回报能力', value: 6 }
     ];
 
-    const chart = new F2.Chart({
+    var chart = new F2.Chart({
       id: 'mountNode',
       width: window.innerWidth,
       height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -129,28 +129,28 @@ title: 基金评估
 
     chart.guide().html({
       position: ['50%', '50%'],
-      html: `<div style="color: #FE5C5B;white-space: nowrap;text-align:center;">
-              <p style="font-size: 12px;margin:0;">诊断分</p>
-              <p style="font-size: 32px;margin:0;font-weight: bold;">73</p>
-            </div>`
+      html: '<div style="color: #FE5C5B;white-space: nowrap;text-align:center;">'
+          + '<p style="font-size: 12px;margin:0;">诊断分</p>'
+          + '<p style="font-size: 32px;margin:0;font-weight: bold;">73</p>'
+          + '</div>'
     });
     chart.render();
 
 
     // button 点击操作
-    $('.panel button').click(e => {
-      const target = $(e.target);
-      const id = target.attr('id');
+    $('.panel button').click(function(e) {
+      var target = $(e.target);
+      var id = target.attr('id');
       if (target.hasClass('active')) {
         return;
       }
 
-      const currentActive = $('.panel').find('button.active');
+      var currentActive = $('.panel').find('button.active');
       currentActive.removeClass('active');
       target.addClass('active');
 
-      let newData;
-      let score;
+      var newData;
+      var score;
       if (id === 'one') {
         newData = recentOneMonth;
         score = 73;
@@ -165,10 +165,10 @@ title: 基金评估
       chart.guide().clear();
       chart.guide().html({
         position: ['50%', '50%'],
-        html: `<div style="color: #FE5C5B;white-space: nowrap;text-align:center;">
-              <p style="font-size: 12px;margin:0;">诊断分</p>
-              <p style="font-size: 32px;margin:0;font-weight: bold;">${score}</p>
-            </div>`
+        html: '<div style="color: #FE5C5B;white-space: nowrap;text-align:center;">'
+            + '<p style="font-size: 12px;margin:0;">诊断分</p>'
+            + '<p style="font-size: 32px;margin:0;font-weight: bold;">' + score + '</p>'
+            + '</div>'
       });
       chart.changeData(newData);
     });

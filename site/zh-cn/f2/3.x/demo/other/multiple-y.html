@@ -6,7 +6,7 @@ resource:
 -->
 
 <script>
-  const data = [
+  var data = [
     { time: '周一', tem: 6.9, rain: 10 },
     { time: '周二', tem: 9.5, rain: 13 },
     { time: '周三', tem: 14.5, rain: 14 },
@@ -15,7 +15,7 @@ resource:
     { time: '周六', tem: 25.2, rain: 16 },
     { time: '周日', tem: 26.5, rain: 13 }
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -53,16 +53,20 @@ resource:
 
   // 绘制辅助线
   chart.guide().line({
-    start(xScale, yScales) {
-      let sum = 0;
-      const yScale = yScales[1];
-      yScale.values.forEach(v => (sum += v));
+    start: function(xScale, yScales) {
+      var sum = 0;
+      var yScale = yScales[1];
+      yScale.values.forEach(function(v) {
+        sum += v;
+      });
       return [ 'min', sum / yScale.values.length ];
     },
-    end(xScale, yScales) {
-      let sum = 0;
-      const yScale = yScales[1];
-      yScale.values.forEach(v => (sum += v));
+    end: function(xScale, yScales) {
+      var sum = 0;
+      var yScale = yScales[1];
+      yScale.values.forEach(function(v) {
+        sum += v;
+      });
 
       return [ 'max', sum / yScale.values.length ];
     },
@@ -73,10 +77,12 @@ resource:
     } // 图形样式配置
   });
   chart.guide().text({
-    position(xScale, yScales) {
-      let sum = 0;
-      const yScale = yScales[1];
-      yScale.values.forEach(v => (sum += v));
+    position: function(xScale, yScales) {
+      var sum = 0;
+      var yScale = yScales[1];
+      yScale.values.forEach(function(v) {
+        sum += v;
+      });
       return [ 'max', sum / yScale.values.length ];
     },
     content: '平均降雨量',

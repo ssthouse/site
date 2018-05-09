@@ -10,7 +10,7 @@ chartDetail: ${base}zh-cn/vis/chart/multi-set-bar.html
 -->
 
 <script>
-  const data =[
+  var data =[
     { name: 'London', 月份: 'Jan.', 月均降雨量: 18.9 },
     { name: 'London', 月份: 'Feb.', 月均降雨量: 28.8 },
     { name: 'London', 月份: 'Mar.', 月均降雨量: 39.3 },
@@ -28,7 +28,7 @@ chartDetail: ${base}zh-cn/vis/chart/multi-set-bar.html
     { name: 'Berlin', 月份: 'Jul.', 月均降雨量: 37.4 },
     { name: 'Berlin', 月份: 'Aug.', 月均降雨量: 42.4 }
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -37,24 +37,25 @@ chartDetail: ${base}zh-cn/vis/chart/multi-set-bar.html
   chart.source(data);
   chart.tooltip({
     custom: true, // 自定义 tooltip 内容框
-    onChange(obj) {
-      const legend = chart.get('legendController').legends.top[0];
-      const tooltipItems = obj.items;
-      const legendItems = legend.items;
-      const map = {};
-      legendItems.map(item => {
+    onChange: function(obj) {
+      var legend = chart.get('legendController').legends.top[0];
+      var tooltipItems = obj.items;
+      var legendItems = legend.items;
+      var map = {};
+      legendItems.map(function(item) {
         map[item.name] = _.clone(item);
       });
-      tooltipItems.map(item => {
-        const { name, value } = item;
+      tooltipItems.map(function(item) {
+        var name = item.name;
+        var value = item.value;
         if (map[name]) {
           map[name].value = value;
         }
       });
-      legend.setItems(Object.values(map));
+      legend.setItems(_.values(map));
     },
-    onHide() {
-      const legend = chart.get('legendController').legends.top[0];
+    onHide: function() {
+      var legend = chart.get('legendController').legends.top[0];
       legend.setItems(chart.getLegendItems().country);
     }
   });

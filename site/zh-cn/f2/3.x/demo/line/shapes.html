@@ -6,7 +6,7 @@ resource:
 -->
 
 <script>
-  const data = [
+  var data = [
     { time: '2016-08-08 00:00:00', value: 10, type: '预期收益率' },
     { time: '2016-08-08 00:10:00', value: 22, type: '预期收益率' },
     { time: '2016-08-08 00:30:00', value: 16, type: '预期收益率' },
@@ -26,7 +26,7 @@ resource:
     { time: '2016-08-10 02:00:00', value: -3, type: '实际收益率' },
     { time: '2016-08-10 02:20:00', value: 11, type: '实际收益率' }
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -41,15 +41,15 @@ resource:
     },
     value: {
       tickCount: 3,
-      formatter(ivalue) {
+      formatter: function(ivalue) {
         return ivalue + '%';
       }
     }
   });
   chart.axis('time', {
     line: null,
-    label(text, index, total) {
-      const textCfg = {};
+    label: function(text, index, total) {
+      var textCfg = {};
       if (index === 0) {
         textCfg.textAlign = 'left';
       }
@@ -60,7 +60,7 @@ resource:
     }
   });
   chart.axis('tem', {
-    grid(text) {
+    grid: function(text) {
       if (text === '0%') {
         return {
           lineDash: null,

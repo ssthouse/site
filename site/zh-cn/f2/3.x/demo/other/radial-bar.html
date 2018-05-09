@@ -10,7 +10,7 @@ title: 玉珏图
 </style>
 
 <script>
-    const data = [
+    var data = [
       { name: 'Samsung', percent: 21.2 },
       { name: 'Apple', percent: 14.6 },
       { name: 'Huawei', percent: 9.5 },
@@ -18,7 +18,7 @@ title: 玉珏图
       { name: 'Vivo', percent: 5.3 },
       { name: 'Others', percent: 42.7 }
     ];
-    const chart = new F2.Chart({
+    var chart = new F2.Chart({
       id: 'mountNode',
       width: window.innerWidth,
       height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,

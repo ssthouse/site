@@ -19,7 +19,7 @@ chartDetail: ${base}zh-cn/vis/chart/stacked-area.html
     return parseInt(value) + '%';
   }
 
-  const data = [
+  var data = [
     { country: 'Asia', year: '1750', value: 502, percent: 0.6511024643320363 },
     { country: 'Africa', year: '1750', value: 106, percent: 0.13748378728923477 },
     { country: 'Europe', year: '1750', value: 163, percent: 0.21141374837872892 },
@@ -42,7 +42,7 @@ chartDetail: ${base}zh-cn/vis/chart/stacked-area.html
     { country: 'Africa', year: '2050', value: 1766, percent: 0.23048812320542938 },
     { country: 'Europe', year: '2050', value: 628, percent: 0.08196293395980161 }
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -54,15 +54,15 @@ chartDetail: ${base}zh-cn/vis/chart/stacked-area.html
       range: [ 0, 1 ]
     },
     'percent': {
-      formatter(val) {
+      formatter: function(val) {
         return formatterPercent(val);
       },
       alias: 'percent(%)'
     }
   });
   chart.axis('year', {
-    label(text, index, total) {
-      const textCfg = {};
+    label: function(text, index, total) {
+      var textCfg = {};
       if (index === 0) {
         textCfg.textAlign = 'left';
       }
@@ -75,24 +75,25 @@ chartDetail: ${base}zh-cn/vis/chart/stacked-area.html
   chart.tooltip({
     showCrosshairs: true,
     custom: true, // 自定义 tooltip 内容框
-    onChange(obj) {
-      const legend = chart.get('legendController').legends.top[0];
-      const tooltipItems = obj.items;
-      const legendItems = legend.items;
-      const map = {};
-      legendItems.map(item => {
+    onChange: function(obj) {
+      var legend = chart.get('legendController').legends.top[0];
+      var tooltipItems = obj.items;
+      var legendItems = legend.items;
+      var map = {};
+      legendItems.map(function(item) {
         map[item.name] = _.clone(item);
       });
-      tooltipItems.map(item => {
-        const { name, value } = item;
+      tooltipItems.map(function(item) {
+        var name = item.name;
+        var value = item.value;
         if (map[name]) {
           map[name].value = value;
         }
       });
-      legend.setItems(Object.values(map));
+      legend.setItems(_.values(map));
     },
-    onHide() {
-      const legend = chart.get('legendController').legends.top[0];
+    onHide: function() {
+      var legend = chart.get('legendController').legends.top[0];
       legend.setItems(chart.getLegendItems().country);
     }
   });

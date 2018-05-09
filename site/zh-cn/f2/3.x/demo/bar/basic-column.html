@@ -6,7 +6,7 @@ plotUsage: 柱状图有别于直方图，柱状图无法显示数据在一个区
 -->
 
 <script>
-  const data = [
+  var data = [
     { year: '1951 年', sales: 38 },
     { year: '1952 年', sales: 52 },
     { year: '1956 年', sales: 61 },
@@ -16,7 +16,7 @@ plotUsage: 柱状图有别于直方图，柱状图无法显示数据在一个区
     { year: '1960 年', sales: 38 },
     { year: '1962 年', sales: 38 },
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -30,8 +30,8 @@ plotUsage: 柱状图有别于直方图，柱状图无法显示数据在一个区
   });
   chart.tooltip({
     showItemMarker: false,
-    onShow(ev) {
-      const { items } = ev;
+    onShow: function(ev) {
+      var items = ev.items;
       items[0].name = null;
       items[0].name = items[0].title;
       items[0].value = '¥ ' + items[0].value;

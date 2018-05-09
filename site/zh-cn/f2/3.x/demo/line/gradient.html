@@ -5,14 +5,14 @@ title: 某国女性结婚年龄走势
 
 <script>
   // 使用 html5 canvas api 创建渐变色对象
-  const canvas = document.getElementById('mountNode');
-  const ctx = canvas.getContext('2d');
-  const gradient = ctx.createLinearGradient(0, 0, window.innerWidth, 0);
+  var canvas = document.getElementById('mountNode');
+  var ctx = canvas.getContext('2d');
+  var gradient = ctx.createLinearGradient(0, 0, window.innerWidth, 0);
   gradient.addColorStop(0., '#F2C587');
   gradient.addColorStop(0.5, '#ED7973');
   gradient.addColorStop(1, '#8659AF');
 
-  const data = [
+  var data = [
     { year: 2000, age: 27.2 },
     { year: 2001, age: 27.5 },
     { year: 2002, age: 27.8 },
@@ -32,13 +32,13 @@ title: 某国女性结婚年龄走势
     { year: 2016, age: 30 },
     { year: 2017, age: 30.12 }
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
     pixelRatio: window.devicePixelRatio
   });
-  const defs = {
+  var defs = {
     year: {
       range: [ 0, 1 ],
       max: 2020
@@ -48,8 +48,8 @@ title: 某国女性结婚年龄走势
     }
   };
   chart.axis('year', {
-    label(text, index, total) {
-      const cfg = {
+    label: function(text, index, total) {
+      var cfg = {
         textAlign: 'center'
       };
       if (index === 0) {

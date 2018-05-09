@@ -8,7 +8,7 @@ relativePlots:
 -->
 
 <script>
-  const data = [
+  var data = [
     { day: '周一', value: 300 },
     { day: '周二', value: 400 },
     { day: '周三', value: 350 },
@@ -17,7 +17,7 @@ relativePlots:
     { day: '周六', value: 600 },
     { day: '周日', value: 900 }
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -36,15 +36,15 @@ relativePlots:
   chart.tooltip({
     showCrosshairs: true,
     showItemMarker: false,
-    onShow(ev) {
-      const { items } = ev;
+    onShow: function(ev) {
+      var items = ev.items;
       items[0].name = null;
       items[0].value = '$ ' + items[0].value;
     }
   });
   chart.axis('day', {
-    label(text, index, total) {
-      const textCfg = {};
+    label: function(text, index, total) {
+      var textCfg = {};
       if (index === 0) {
         textCfg.textAlign = 'left';
       }

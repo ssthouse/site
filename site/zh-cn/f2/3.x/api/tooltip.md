@@ -122,7 +122,7 @@ chart.tooltip({
     chart.source(data);
     chart.tooltip({
       custom: true, // 自定义 tooltip 内容框
-      onChange(obj) {
+      onChange: function(obj) {
         const legend = chart.get('legendController').legends.top[0]; // 获取 legend
         const tooltipItems = obj.items;
         const legendItems = legend.items;

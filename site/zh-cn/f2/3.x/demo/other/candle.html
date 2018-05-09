@@ -14,7 +14,7 @@ resource:
       obj.range = [ obj.start, obj.end, obj.max, obj.min ];
       obj.trend = (obj.start <= obj.end) ? 0 : 1;
     });
-    const chart = new F2.Chart({
+    var chart = new F2.Chart({
       id: 'mountNode',
       width: window.innerWidth,
       height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -22,8 +22,8 @@ resource:
     });
 
     chart.axis('time', {
-      label(text, index, total) {
-        const cfg = {
+      label: function(text, index, total) {
+        var cfg = {
           textAlign: 'center'
         };
         // 第一个点左对齐，最后一个点右对齐，其余居中，只有一个点时左对齐
@@ -59,7 +59,7 @@ resource:
       })
       .shape('candle')
       .style('trend', {
-        stroke(val) {
+        stroke: function(val) {
           if (val === 1) {
             return '#9AC2AB';
           }

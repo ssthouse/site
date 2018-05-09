@@ -6,13 +6,16 @@ resource:
 -->
 
 <script>
-  const { Chart, Animate, Util, G } = F2;
+  var Chart = F2.Chart;
+  var Animate = F2.Animate;
+  var Util = F2.Util;
+  var G = F2.G;
   Animate.registerAnimation('delayScaleInY', function(shape, animateCfg) {
-    const box = shape.getBBox();
-    const origin = shape.get('origin');
-    const points = origin.points; // 获取柱子顶点
-    const centerX = (box.minX + box.maxX) / 2;
-    let centerY;
+    var box = shape.getBBox();
+    var origin = shape.get('origin');
+    var points = origin.points; // 获取柱子顶点
+    var centerX = (box.minX + box.maxX) / 2;
+    var centerY;
     if (points[0].y - points[1].y <= 0) { // 当顶点在零点之下
       centerY = box.maxY;
     } else {
@@ -24,15 +27,15 @@ resource:
       [ 's', 1, 0.1 ],
       [ 't', -centerX, -centerY ]
     ]);
-    const index = shape.get('index');
-    let delay = animateCfg.delay;
+    var index = shape.get('index');
+    var delay = animateCfg.delay;
     if (Util.isFunction(delay)) {
       delay = animateCfg.delay(index);
     }
-    const easing = animateCfg.easing;
+    var easing = animateCfg.easing;
 
-    const matrix = shape.getMatrix();
-    const endMatrix = G.Matrix.transform(matrix, [
+    var matrix = shape.getMatrix();
+    var endMatrix = G.Matrix.transform(matrix, [
       [ 't', centerX, centerY ],
       [ 's', 1, 10 ],
       [ 't', -centerX, -centerY ]
@@ -42,20 +45,20 @@ resource:
       attrs: {
         matrix: endMatrix
       },
-      delay,
-      easing,
+      delay: delay,
+      easing: easing,
       duration: animateCfg.duration
     });
   });
 
-  const data = [];
-  for (let i = 0; i < 50; i++) {
+  var data = [];
+  for (var i = 0; i < 50; i++) {
     data.push({
       x: i,
       y: (Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5
     });
   }
-  const chart = new Chart({
+  var chart = new Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -71,7 +74,7 @@ resource:
       appear: {
         animation: 'delayScaleInY',
         easing: 'elasticOut',
-        delay(index) {
+        delay: function(index) {
           return index * 10;
         }
       }
