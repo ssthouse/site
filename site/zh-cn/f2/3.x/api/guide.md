@@ -304,8 +304,8 @@ textStyle: {
 ```js
 chart.guide().rect({
   top: {Boolean}, // 指定 giude 是否绘制在 canvas 最上层，默认为 false, 即绘制在最下层
-  start: {Function} | {Array}, // 辅助框起始位置(矩形的左上角顶点)，值为原始数据值，支持 callback 
-  end: {Function} | {Array},// 辅助框结束位置(矩形的右下角顶点)，值为原始数据值，支持 callback
+  start: {Function} | {Array}, // 辅助框起始位置，值为原始数据值，支持 callback 
+  end: {Function} | {Array},// 辅助框结束位置，值为原始数据值，支持 callback
   style: {
     lineWidth: 0, // 辅助框的边框宽度
     fill: '#f80', // 辅助框填充的颜色
@@ -323,7 +323,7 @@ chart.guide().rect({
 
 - `start`: Array/Function
 
-指定辅助背景框的起始位置，即背景框的左上角，该值的类型如下：
+指定辅助背景框的起始位置，该值的类型如下：
  
   + Array: 数组来配置位置 [ x, y]，根据数组中的值的存在以下几种形式：
     * x，y 都是原始数据 [ '2010-01-01', 200 ];
@@ -332,7 +332,7 @@ chart.guide().rect({
   + Function: 回调函数，可以动态的确定辅助元素的位置，应用于数据动态更新，辅助元素的位置根据数据变化的场景
 
 ```js
-chart.guide().region({
+chart.guide().rect({
   /**
    * 设置辅助框的起始点
    * @param  {Scale} xScale x 轴对应的度量
@@ -356,7 +356,7 @@ chart.guide().region({
 
 - `end`: Array/Function
 
-指定辅助背景框的结束位置，即背景框的右下角，该属性用法同 start。
+指定辅助背景框的结束位置，该属性用法同 start。
 
 - `style`: Object
 

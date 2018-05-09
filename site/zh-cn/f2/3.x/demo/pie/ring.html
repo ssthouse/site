@@ -7,18 +7,18 @@ chartDetail: ${base}zh-cn/vis/chart/donut.html
 -->
 
 <script>
-  const data = [
+  var data = [
     { name: '股票类', percent: 83.59, a: '1' },
     { name: '债券类', percent: 2.17, a: '1' },
     { name: '现金类', percent: 14.24, a: '1' }
   ];
 
-  const map = {};
-  data.map(obj => {
+  var map = {};
+  data.map(function(obj) {
     map[obj.name] = obj.percent + '%';
   });
 
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -27,7 +27,7 @@ chartDetail: ${base}zh-cn/vis/chart/donut.html
   });
   chart.source(data, {
     percent: {
-      formatter(val) {
+      formatter: function(val) {
         return val + '%';
       }
     }
@@ -35,7 +35,7 @@ chartDetail: ${base}zh-cn/vis/chart/donut.html
   chart.tooltip(false);
   chart.legend({
     position: 'right',
-    itemFormatter(val) {
+    itemFormatter: function(val) {
       return val + '    ' + map[val];
     }
   });
@@ -52,11 +52,10 @@ chartDetail: ${base}zh-cn/vis/chart/donut.html
 
   chart.guide().html({
     position: [ '50%', '45%' ],
-    html: `
-      <div style="width: 250px;height: 40px;text-align: center;">
-        <div style="font-size: 16px">总资产</div>
-        <div style="font-size: 24px">133.08 亿</div>
-      </div>`,
+    html: '<div style="width: 250px;height: 40px;text-align: center;">' +
+          '<div style="font-size: 16px">总资产</div>' +
+          '<div style="font-size: 24px">133.08 亿</>' +
+          '</div>'
   });
   chart.render();
 </script>

@@ -6,15 +6,15 @@ resource:
 -->
 
 <script>
-  const Shape = F2.Shape;
-  const data = [
+  var Shape = F2.Shape;
+  var data = [
     { pointer: '当前收益', value: 5, length: 2, y: 1.05 }
   ];
   //自定义绘制数据的的形状
   Shape.registerShape('point', 'dashBoard', {
     getPoints: function(cfg){
-      const x = cfg.x;
-      const y = cfg.y;
+      var x = cfg.x;
+      var y = cfg.y;
 
       return [
         { x: x, y: y },
@@ -22,12 +22,12 @@ resource:
       ];
     },
     draw: function(cfg, container) {
-      let point1 = cfg.points[0];
-      let point2 = cfg.points[1];
+      var point1 = cfg.points[0];
+      var point2 = cfg.points[1];
       point1 = this.parsePoint(point1);
       point2 = this.parsePoint(point2);
 
-      const line = container.addShape('Polyline', {
+      var line = container.addShape('Polyline', {
         attrs: {
           points: [ point1, point2 ],
           stroke: '#1890FF',
@@ -35,10 +35,10 @@ resource:
         }
       });
 
-      const text = cfg.origin._origin.value.toString();
-      const text1 = container.addShape('Text', {
+      var text = cfg.origin._origin.value.toString();
+      var text1 = container.addShape('Text', {
         attrs: {
-          text: text+'%',
+          text: text + '%',
           x: cfg.center.x,
           y: cfg.center.y,
           fill: '#1890FF',
@@ -47,7 +47,7 @@ resource:
           textBaseline: 'bottom'
         }
       });
-      const text2 = container.addShape('Text', {
+      var text2 = container.addShape('Text', {
         attrs: {
           text: cfg.origin._origin.pointer,
           x: cfg.center.x,
@@ -62,7 +62,7 @@ resource:
     }
   });
 
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id : 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -125,7 +125,7 @@ resource:
     end: [ 15, 1.05 ],
     style: {
       strokeStyle: '#ccc',
-      lineWidth:5,
+      lineWidth: 5,
       lineCap: 'round'
     }
   });

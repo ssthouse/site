@@ -9,15 +9,15 @@ plotUsage: 对比分类数据的数值大小，当分类情况过多时，柱状
 -->
 
 <script>
-  const { Global } = F2;
-  const data = [
+  var Global = F2.Global;
+  var data = [
     { country: '巴西', population: 18203 },
     { country: '印尼', population: 23489 },
     { country: '美国', population: 29034 },
     { country: '印度', population: 104970 },
     { country: '中国', population: 131744 }
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -39,8 +39,8 @@ plotUsage: 对比分类数据的数值大小，当分类情况过多时，柱状
   chart.axis('population', {
     line: null,
     grid: Global._defaultAxis.grid,
-    label(text, index, total) {
-      const textCfg = {};
+    label: function(text, index, total) {
+      var textCfg = {};
       if (index === 0) {
         textCfg.textAlign = 'left';
       }

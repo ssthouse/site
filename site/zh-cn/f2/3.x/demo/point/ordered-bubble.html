@@ -4,26 +4,26 @@ title: 支付平台使用量比对
 -->
 
 <script>
-  const { Shape } = F2;
+  var Shape = F2.Shape;
   Shape.registerShape('point', 'with-text', {
-    draw(cfg, container) {
-      const size = cfg.size;
-      const x = cfg.x;
-      const y = cfg.y;
-      const circle = container.addShape('Circle', {
+    draw: function(cfg, container) {
+      var size = cfg.size;
+      var x = cfg.x;
+      var y = cfg.y;
+      var circle = container.addShape('Circle', {
         className: 'point',
         attrs: {
-          x,
-          y,
+          x: x,
+          y: y,
           r: size,
           fill: cfg.color
         }
       });
-      const origin = cfg.origin._origin;
-      const text = container.addShape('Text', {
+      var origin = cfg.origin._origin;
+      var text = container.addShape('Text', {
         className: 'text',
         attrs: {
-          x,
+          x: x,
           y: y - size - 4,
           fill: '#000',
           text: origin.name + '\n' + '$' + origin.volumes + 'billion',
@@ -35,7 +35,7 @@ title: 支付平台使用量比对
       return [ circle, text ];
     }
   });
-  const data = [
+  var data = [
     { name: 'Stripe', volumes: 1.5, x: 0.8, y: 50 },
     { name: 'Swipely', volumes: 2, x: 2.5, y: 50 },
     { name: 'Square', volumes: 30, x: 4.2, y: 50 },
@@ -43,7 +43,7 @@ title: 支付平台使用量比对
     { name: 'Paypal', volumes: 180, x: 10.5, y: 50 }
 
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,

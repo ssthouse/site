@@ -12,7 +12,7 @@ relativePlots:
 
 <script>
 $.getJSON('/assets/data/f2-area-none.json', function(data) {
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -24,8 +24,8 @@ $.getJSON('/assets/data/f2-area-none.json', function(data) {
     range: [ 0, 1 ]
   });
   chart.axis('year', {
-    label(text, index, total) {
-      const textCfg = {};
+    label: function(text, index, total) {
+      var textCfg = {};
       if (index === 0) {
         textCfg.textAlign = 'left';
       }

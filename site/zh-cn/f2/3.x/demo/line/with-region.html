@@ -8,7 +8,7 @@ resource:
 
 <script>
   $.getJSON('/assets/data/f2-line-with-region.json', function(data) {
-    const chart = new F2.Chart({
+    var chart = new F2.Chart({
       id: 'mountNode',
       width: window.innerWidth,
       height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -22,7 +22,7 @@ resource:
       },
       value: {
         tickCount: 10,
-        formatter(val) {
+        formatter: function(val) {
           return val.toFixed(1) + '%';
         }
       }
@@ -30,24 +30,25 @@ resource:
 
     chart.tooltip({
       custom: true, // 自定义 tooltip 内容框
-      onChange(obj) {
-        const legend = chart.get('legendController').legends.top[0];
-        const tooltipItems = obj.items;
-        const legendItems = legend.items;
-        const map = {};
-        legendItems.map(item => {
+      onChange: function(obj) {
+        var legend = chart.get('legendController').legends.top[0];
+        var tooltipItems = obj.items;
+        var legendItems = legend.items;
+        var map = {};
+        legendItems.map(function(item) {
           map[item.name] = _.clone(item);
         });
-        tooltipItems.map(item => {
-          const { name, value } = item;
+        tooltipItems.map(function(item) {
+          var name = item.name;
+          var value = item.value;
           if (map[name]) {
             map[name].value = value;
           }
         });
-        legend.setItems(Object.values(map));
+        legend.setItems(_.values(map));
       },
-      onHide() {
-        const legend = chart.get('legendController').legends.top[0];
+      onHide: function() {
+        var legend = chart.get('legendController').legends.top[0];
         legend.setItems(chart.getLegendItems().country);
       }
     });
@@ -69,7 +70,7 @@ resource:
       }
     });
 
-    chart.line().position('year*value').color('type', val => {
+    chart.line().position('year*value').color('type', function(val) {
       if (val === 'United States') {
         return '#ccc';
       }

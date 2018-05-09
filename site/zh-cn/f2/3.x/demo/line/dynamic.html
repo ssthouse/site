@@ -8,18 +8,18 @@ resource:
 
 <script>
   // 自定义线图变更动画
-  F2.Animate.registerAnimation('lineUpdate', function (updateShape, animateCfg) {
-    const cacheShape = updateShape.get('cacheShape'); // 该动画 shape 的前一个状态
-    const cacheAttrs = cacheShape.attrs; // 上一个 shape 属性
-    const oldPoints = cacheAttrs.points; // 上一个状态的关键点
-    const newPoints = updateShape.attr('points'); // 当前 shape 的关键点
+  F2.Animate.registerAnimation('lineUpdate', function(updateShape, animateCfg) {
+    var cacheShape = updateShape.get('cacheShape'); // 该动画 shape 的前一个状态
+    var cacheAttrs = cacheShape.attrs; // 上一个 shape 属性
+    var oldPoints = cacheAttrs.points; // 上一个状态的关键点
+    var newPoints = updateShape.attr('points'); // 当前 shape 的关键点
 
-    const oldLength = oldPoints.length;
-    const newLength = newPoints.length;
-    const deltaLength = newLength - oldLength;
+    var oldLength = oldPoints.length;
+    var newLength = newPoints.length;
+    var deltaLength = newLength - oldLength;
 
-    const lastPoint = newPoints[newPoints.length - 1];
-    for (let i = 0; i < deltaLength; i++) {
+    var lastPoint = newPoints[newPoints.length - 1];
+    for (var i = 0; i < deltaLength; i++) {
       oldPoints.push(lastPoint);
     }
 
@@ -33,7 +33,7 @@ resource:
     });
   });
 
-  const data = [];
+  var data = [];
   // 添加数据，模拟数据，可以指定当前时间的偏移的秒
   function getRecord(offset) {
     offset = offset || 0;
@@ -47,14 +47,14 @@ resource:
   data.push(getRecord(-1));
   data.push(getRecord());
 
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
     pixelRatio: window.devicePixelRatio
   });
 
-  const defs = {
+  var defs = {
     time: {
       type: 'timeCat',
       mask: 'HH:mm:ss',
@@ -67,8 +67,8 @@ resource:
   };
   chart.source(data, defs);
   chart.axis('time', {
-    label(text, index, total) {
-      const textCfg = {
+    label: function(text, index, total) {
+      var textCfg = {
         text: ''
       };
       if (index === 0) {
@@ -94,7 +94,7 @@ resource:
 
   chart.render();
 
-  setInterval(function () {
+  setInterval(function() {
     data.push(getRecord());
     chart.changeData(data);
   }, 1000);

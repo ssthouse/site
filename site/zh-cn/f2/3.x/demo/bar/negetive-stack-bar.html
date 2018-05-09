@@ -10,7 +10,7 @@ chartDetail: ${base}zh-cn/vis/chart/stacked-bar.html
 -->
 
 <script>
-  const data = [
+  var data = [
     { gender: 'Male', value: -4.4, cate: '0-10' },
     { gender: 'Male', value: -4.8, cate: '10-19' },
     { gender: 'Male', value: -5.8, cate: '20-29' },
@@ -34,7 +34,7 @@ chartDetail: ${base}zh-cn/vis/chart/stacked-bar.html
     { gender: 'Female', value: 0.7, cate: '90-99' },
     { gender: 'Female', value: 0.1, cate: '100 +' }
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -56,8 +56,8 @@ chartDetail: ${base}zh-cn/vis/chart/stacked-bar.html
   chart.axis('value', {
     line: null,
     grid: F2.Global._defaultAxis.grid,
-    label(text, index, total) {
-      const textCfg = {};
+    label: function(text, index, total) {
+      var textCfg = {};
       if (index === 0) {
         textCfg.textAlign = 'left';
       }

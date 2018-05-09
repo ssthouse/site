@@ -17,7 +17,7 @@ resource:
     ctx.fill();
   }
 
-  const data = [
+  var data = [
     { time: '2016-08-08 00:00:00', tem: 10, city: 'Beijing' },
     { time: '2016-08-08 00:10:00', tem: 22, city: 'Beijing' },
     { time: '2016-08-08 00:30:00', tem: 16, city: 'Beijing' },
@@ -37,7 +37,7 @@ resource:
     { time: '2016-08-10 02:00:00', tem: -3, city: 'Hangzhou' },
     { time: '2016-08-10 02:20:00', tem: 11, city: 'Hangzhou' }
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -52,7 +52,7 @@ resource:
     },
     tem: {
       tickCount: 3,
-      formatter(item) {
+      formatter: function(item) {
         return item + '%';
       }
     }
@@ -61,7 +61,7 @@ resource:
     showCrosshairs: true
   });
 
-  const colors = {
+  var colors = {
     Beijing: '#8E77ED',
     Hangzhou: '#1890FF'
   };

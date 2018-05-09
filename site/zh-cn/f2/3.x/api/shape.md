@@ -146,7 +146,7 @@ Shape.registerShape('interval', 'rect', {
 ```js+
 const Shape = F2.Shape;
 Shape.registerShape('interval', 'triangle', {
-  getPoints(cfg) {
+  getPoints: function(cfg) {
     const x = cfg.x;
     const y = cfg.y;
     const y0 = cfg.y0;
@@ -157,7 +157,7 @@ Shape.registerShape('interval', 'triangle', {
       { x: x + width / 2, y: y0 }
     ]
   },
-  draw(cfg, group) {
+  draw: function(cfg, group) {
     const points = this.parsePoints(cfg.points); // 将0-1空间的坐标转换为画布坐标
     const polygon = group.addShape('polygon', {
       attrs: {

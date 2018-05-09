@@ -7,7 +7,7 @@ title: 各品牌销售量对比
   function numberToMoney(n) {
     return String(Math.floor(n * 100) / 100).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
-  const data = [
+  var data = [
     { brand: 'Kenmore', sales: 103902, const: 100 },
     { brand: 'Craftsman', sales: 112352, const: 100 },
     { brand: 'DieHard', sales: 121823, const: 100 },
@@ -15,12 +15,12 @@ title: 各品牌销售量对比
     { brand: 'Laclyn Smith', sales: 182023, const: 100 },
     { brand: 'Joe Boxer', sales: 263523, const: 100 },
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
     pixelRatio: window.devicePixelRatio,
-    padding: [ 20, 20, 5]
+    padding: [ 20, 20, 5 ]
   });
   chart.source(data);
   chart.coord({
@@ -32,7 +32,7 @@ title: 各品牌销售量对比
   chart.interval().position('brand*sales').size(10);
 
   // 绘制文本
-  data.map(obj => {
+  data.map(function(obj) {
     chart.guide().text({
       position: [ obj.brand, 'min' ],
       content: obj.brand,

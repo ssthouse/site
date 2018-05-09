@@ -7,7 +7,7 @@ resource:
 -->
 
 <script>
- const data = [
+ var data = [
     { date: "2017-06-05", value: 11.6, tag: 0 },
     { date: "2017-06-06", value: 12.9, tag: 0 },
     { date: "2017-06-07", value: 13.5, tag: 0 },
@@ -35,7 +35,7 @@ resource:
     { date: "2017-06-29", value: 8.5, tag: 0 },
     { date: "2017-06-30", value: 7.3, tag: 0 }
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -47,7 +47,7 @@ resource:
     value: {
       tickCount: 5,
       min: 0,
-      formatter(val) {
+      formatter: function(val) {
         return val.toFixed(2) + '%';
       }
     },
@@ -59,8 +59,8 @@ resource:
   });
 
   chart.axis('date', {
-    label(text, index, total) {
-      const textCfg = {};
+    label: function(text, index, total) {
+      var textCfg = {};
       if (index === 0) {
         textCfg.textAlign = 'left';
       }
@@ -71,8 +71,8 @@ resource:
     }
   });
   chart.axis('value', {
-    label(text, index, total) {
-      const textCfg = {};
+    label: function(text, index, total) {
+      var textCfg = {};
       if (index === 0) {
         textCfg.textBaseline = 'bottom';
       }
@@ -92,20 +92,22 @@ resource:
   });
   chart.guide().html({
     position: [ 'min', 'max' ],
-    html: `
-      <div id="tooltipWrapper" style="height: 45px;background-color:#E9F1FF;line-height: 45px;">
-        <div id="tooltipName" style="float:left;font-size:12px;color:#2E2E2E;"></div>
-        <div id="tooltipValue" style="float:right;font-size:12px;color:#2E2E2E;"></div>
-      </div>
-      `,
+    html: '<div id="tooltipWrapper" style="height: 45px;background-color:#E9F1FF;line-height: 45px;">'
+        + '<div id="tooltipName" style="float:left;font-size:12px;color:#2E2E2E;"></div>'
+        + '<div id="tooltipValue" style="float:right;font-size:12px;color:#2E2E2E;"></div>'
+        + '</div>',
     offsetY: -22.5
   });
   chart.tooltip({
     showCrosshairs: true,
     custom: true, // 自定义 tooltip 内容框
-    onChange(obj) {
-      const { items } = obj;
-      const { date, value, tag } = items[0].origin;
+    onChange: function(obj) {
+      var items = obj.items;
+      var originData = items[0].origin;
+      var date = originData.date;
+      var value = originData.value;
+      var tag = originData.tag;
+
       $('#tooltipWrapper').width($('#mountNode').width());
       $('#tooltipWrapper').css('left', 0);
       $('#tooltipName').css('margin-left', 15);
@@ -118,7 +120,7 @@ resource:
       } else {
         $('#tooltipName').text(date);
       }
-      let color;
+      var color;
       if (value >= 0) {
         color = '#FA541C';
       } else {
@@ -128,19 +130,19 @@ resource:
       $('#tooltipValue').html('涨幅：<span style="color:' + color + '">' + items[0].value + '</span>');
       $('#tooltipWrapper').show();
     },
-    onHide() {
-       $('#tooltipWrapper').hide();
+    onHide: function() {
+      $('#tooltipWrapper').hide();
     }
   });
   chart.line()
     .position('date*value')
     .color('#518DFE');
   chart.point().position('date*value')
-    .size('tag', val => {
+    .size('tag', function(val) {
       return val ? 3 : 0;
     })
     .style('tag', {
-      fill(val) {
+      fill: function(val) {
         if (val === 2) {
           return '#518DFE';
         } else if (val === 1) {

@@ -6,8 +6,8 @@ resource:
 -->
 
 <script>
-  $.getJSON('/assets/data/polar-heatmap.json',function (data) {
-    const chart = new F2.Chart({
+  $.getJSON('/assets/data/polar-heatmap.json', function(data) {
+    var chart = new F2.Chart({
       id: 'mountNode',
       width: window.innerWidth,
       height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -38,8 +38,8 @@ resource:
         lineWidth: 1
       });
 
-    const values = [ 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.', 'Sun.'];
-    values.map((val, idx) => {
+    var values = [ 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.', 'Sun.'];
+    values.map(function(val, idx) {
       chart.guide().text({
         top: true,
         position: [ 0, idx ],

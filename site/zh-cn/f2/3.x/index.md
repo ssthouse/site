@@ -102,10 +102,10 @@ resource:
 </div>
 
 ```js-
-const names = ['商品价格 7 年走势对比', '层叠条形图', '饼图'];
+var names = ['商品价格 7 年走势对比', '层叠条形图', '饼图'];
 
 $('.slick').each(function () {
-    const $target = $(this);
+    var $target = $(this);
     $target.slick({
         // dots: !!$target.data('dots'),
         slidesToShow: 1,
@@ -127,7 +127,7 @@ $('.slick').each(function () {
 
 ```js-
   $.getJSON('/assets/data/f2-series-line.json', function(data) {
-    const chart = new F2.Chart({
+    var chart = new F2.Chart({
       id: 'c1',
       pixelRatio: window.devicePixelRatio
     });
@@ -140,9 +140,9 @@ $('.slick').each(function () {
       tickCount: 5
     });
     chart.axis('date', {
-      label(text, index, total) {
+      label: function(text, index, total) {
         // 只显示每一年的第一天
-        const textCfg = {};
+        var textCfg = {};
         if (index === 0) {
           textCfg.textAlign = 'left';
         }
@@ -153,24 +153,25 @@ $('.slick').each(function () {
       }
     });
     chart.tooltip({
-      custom(obj) {
-        const legend = chart.get('legendController').legends.top[0];
-        const tooltipItems = obj.items;
-        const legendItems = legend.items;
-        const map = {};
-        legendItems.map(item => {
+      custom: function(obj) {
+        var legend = chart.get('legendController').legends.top[0];
+        var tooltipItems = obj.items;
+        var legendItems = legend.items;
+        var map = {};
+        legendItems.map(function(item) {
           map[item.name] = _.clone(item);
         });
-        tooltipItems.map(item => {
-          const { name, value } = item;
+        tooltipItems.map(function(item) {
+          var name = item.name;
+          var value = item.value;
           if (map[name]) {
             map[name].value = value;
           }
         });
-        legend.setItems(Object.values(map));
+        legend.setItems(_.values(map));
       },
-      onHide() {
-        const legend = chart.get('legendController').legends.top[0];
+      onHide: function() {
+        var legend = chart.get('legendController').legends.top[0];
         legend.setItems(chart.getLegendItems().country);
       }
     });
@@ -183,7 +184,7 @@ $('.slick').each(function () {
 <!-- chart2 -->
 
 ```js-
-  const data = [
+  var data = [
     { State: 'WY', 年龄段 : '小于5岁', 人口数量: 25635 },
     { State: 'WY', 年龄段 : '5至13岁', 人口数量: 1890 },
     { State: 'WY', 年龄段 : '14至17岁', 人口数量: 9314 },
@@ -200,7 +201,7 @@ $('.slick').each(function () {
     { State: 'AK', 年龄段 : '5至13岁', 人口数量: 85640 },
     { State: 'AK', 年龄段 : '14至17岁', 人口数量: 22153 }
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'c2',
     pixelRatio: window.devicePixelRatio
   });
@@ -220,8 +221,8 @@ $('.slick').each(function () {
   chart.axis('人口数量', {
     line: null,
     grid: F2.Global._defaultAxis.grid,
-    label(text, index, total) {
-      const textCfg = {
+    label: function(text, index, total) {
+      var textCfg = {
         text: text / 1000 + ' k'
       };
       if (index === 0) {
@@ -234,24 +235,25 @@ $('.slick').each(function () {
     }
   });
   chart.tooltip({
-    custom(obj) {
-      const legend = chart.get('legendController').legends.top[0];
-      const tooltipItems = obj.items;
-      const legendItems = legend.items;
-      const map = {};
-      legendItems.map(item => {
+    custom: function(obj) {
+      var legend = chart.get('legendController').legends.top[0];
+      var tooltipItems = obj.items;
+      var legendItems = legend.items;
+      var map = {};
+      legendItems.map(function(item) {
         map[item.name] = _.clone(item);
       });
-      tooltipItems.map(item => {
-        const { name, value } = item;
+      tooltipItems.map(function(item) {
+        var name = item.name;
+        var value = item.value;
         if (map[name]) {
           map[name].value = (value);
         }
       });
-      legend.setItems(Object.values(map));
+      legend.setItems(_.values(map));
     },
-    onHide() {
-      const legend = chart.get('legendController').legends.top[0];
+    onHide: function() {
+      var legend = chart.get('legendController').legends.top[0];
       legend.setItems(chart.getLegendItems().country);
     }
   });
@@ -263,7 +265,7 @@ $('.slick').each(function () {
 <!-- chart3 -->
 
 ```js-
-  const map = {
+  var map = {
     '芳华': '40%',
     '妖猫传': '20%',
     '机器之血': '18%',
@@ -271,7 +273,7 @@ $('.slick').each(function () {
     '寻梦环游记': '5%',
     '其他': '2%',
   };
-  const data = [
+  var data = [
     { name: '芳华', percent: 0.4, a: '1' },
     { name: '妖猫传', percent: 0.2, a: '1' },
     { name: '机器之血', percent: 0.18, a: '1' },
@@ -279,20 +281,20 @@ $('.slick').each(function () {
     { name: '寻梦环游记', percent: 0.05, a: '1' },
     { name: '其他', percent: 0.02, a: '1' }
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'c3',
     pixelRatio: window.devicePixelRatio
   });
   chart.source(data, {
     percent: {
-      formatter(val) {
+      formatter: function(val) {
         return val * 100 + '%';
       }
     }
   });
   chart.legend({
     position: 'right',
-    itemFormatter(val) {
+    itemFormatter: function(val) {
       return val + '  ' + map[val];
     }
   });

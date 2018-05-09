@@ -10,7 +10,7 @@ chartDetail: ${base}zh-cn/vis/chart/rose.html
 -->
 
 <script>
-  const data = [
+  var data = [
     {year: '2001', population: 41.8 },
     {year: '2002', population: 25.8 },
     {year: '2003', population: 31.7 },
@@ -18,7 +18,7 @@ chartDetail: ${base}zh-cn/vis/chart/rose.html
     {year: '2005', population: 28 }
   ];
 
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,

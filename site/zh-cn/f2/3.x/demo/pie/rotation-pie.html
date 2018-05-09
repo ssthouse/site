@@ -6,9 +6,10 @@ screenshot: https://gw.alipayobjects.com/zos/rmsportal/JvQavHjBFOCxccVCrKAL.gif
 <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
 <script>
   // 绘制饼图
-  const { Util, Chart } = F2;
+  var Util = F2.Util;
+  var Chart = F2.Chart;
 
-  const data = [
+  var data = [
     { name: 'A', proportion: 0.8, a: '1' },
     { name: 'B', proportion: 0.5, a: '1' },
     { name: 'C', proportion: 0.45, a: '1' },
@@ -17,7 +18,7 @@ screenshot: https://gw.alipayobjects.com/zos/rmsportal/JvQavHjBFOCxccVCrKAL.gif
     { name: 'F', proportion: 0.1, a: '1' },
     { name: 'G', proportion: 0.03, a: '1' }
   ];
-  const chart = new Chart({
+  var chart = new Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -33,7 +34,7 @@ screenshot: https://gw.alipayobjects.com/zos/rmsportal/JvQavHjBFOCxccVCrKAL.gif
   chart.axis(false);
   chart.tooltip(false);
 
-  const geom = chart.interval()
+  var geom = chart.interval()
     .position('a*proportion')
     .color('name', ['#1890FF', '#41D9C7', '#2FC25B', '#FACC14', '#E6965C', '#223273', '#7564CC', '#8543E0', '#5C8EE6', '#13C2C2', '#5CA3E6'])
     .adjust('stack')
@@ -47,11 +48,11 @@ screenshot: https://gw.alipayobjects.com/zos/rmsportal/JvQavHjBFOCxccVCrKAL.gif
   // 开始交互逻辑
   // 一些辅助工具类函数
 
-  const center = chart.get('coord').center; // 极坐标的圆点
-  const container = geom.get('container');
-  const canvas = chart.get('canvas');
-  const el = canvas.get('el');
-  let animating = false; // 动画状态标识位
+  var center = chart.get('coord').center; // 极坐标的圆点
+  var container = geom.get('container');
+  var canvas = chart.get('canvas');
+  var el = canvas.get('el');
+  var animating = false; // 动画状态标识位
 
   function interpolateNumber(a, b) {
     a = +a;
@@ -62,10 +63,10 @@ screenshot: https://gw.alipayobjects.com/zos/rmsportal/JvQavHjBFOCxccVCrKAL.gif
   }
 
   function findShapeByName(name) {
-    let result;
-    const shapes = geom.get('container').get('children');
-    Util.each(shapes, shape => {
-      const origin = shape.get('origin')._origin;
+    var result;
+    var shapes = geom.get('container').get('children');
+    Util.each(shapes, function(shape) {
+      var origin = shape.get('origin')._origin;
       if (origin.name === name) {
         result = shape;
         return false;
@@ -76,9 +77,9 @@ screenshot: https://gw.alipayobjects.com/zos/rmsportal/JvQavHjBFOCxccVCrKAL.gif
   }
 
   function repaintChart(angle) {
-    const chartCoord = chart.get('coord');
-    const coordStart = chartCoord.startAngle + angle;
-    const coordEnd = chartCoord.endAngle + angle;
+    var chartCoord = chart.get('coord');
+    var coordStart = chartCoord.startAngle + angle;
+    var coordEnd = chartCoord.endAngle + angle;
 
     chart.coord('polar', {
       transposed: true,
@@ -91,12 +92,12 @@ screenshot: https://gw.alipayobjects.com/zos/rmsportal/JvQavHjBFOCxccVCrKAL.gif
   }
 
   function animation(angle, data, animateCfg) {
-    const rotateAngle = Math.PI / 2 - angle;
-    const diff = interpolateNumber(0, rotateAngle);
+    var rotateAngle = Math.PI / 2 - angle;
+    var diff = interpolateNumber(0, rotateAngle);
     if (rotateAngle !== 0) {
-      container.animate().to(animateCfg).onFrame(t => {
+      container.animate().to(animateCfg).onFrame(function(t) {
         animating = true;
-        const frameAngle = diff(t);
+        var frameAngle = diff(t);
 
         container.setTransform([
           ['t', center.x, center.y],
@@ -113,20 +114,20 @@ screenshot: https://gw.alipayobjects.com/zos/rmsportal/JvQavHjBFOCxccVCrKAL.gif
     }
   }
 
-  const hammer = new Hammer(el);
+  var hammer = new Hammer(el);
   // 点击操作
-  hammer.on('tap', e => {
+  hammer.on('tap', function(e) {
     if (animating) return;
-    const currentPoint = e.center;
-    const record = chart.getSnapRecords(currentPoint)[0];
+    var currentPoint = e.center;
+    var record = chart.getSnapRecords(currentPoint)[0];
 
     if (!record) return;
 
-    const shape = findShapeByName(record._origin.name);
+    var shape = findShapeByName(record._origin.name);
     if (shape) {
-      const startAngle = shape.attr('startAngle');
-      const endAngle = shape.attr('endAngle');
-      let middleAngle = (startAngle + endAngle) / 2;
+      var startAngle = shape.attr('startAngle');
+      var endAngle = shape.attr('endAngle');
+      var middleAngle = (startAngle + endAngle) / 2;
 
       if (startAngle > endAngle && endAngle <= 0) {
         middleAngle = (Math.PI * 2 - Math.abs(startAngle - endAngle)) / 2 + startAngle;
@@ -142,18 +143,18 @@ screenshot: https://gw.alipayobjects.com/zos/rmsportal/JvQavHjBFOCxccVCrKAL.gif
     }
   });
 
-  let lastMouseAngle;
-  let totalAngle;
-  hammer.on('panstart panmove panend', e => {
+  var lastMouseAngle;
+  var totalAngle;
+  hammer.on('panstart panmove panend', function(e) {
     if (animating) return;
-    const currentPoint = e.center;
-    const newMouseAngle = Math.atan2(currentPoint.y - center.y, currentPoint.x - center.x) + Math.PI;
+    var currentPoint = e.center;
+    var newMouseAngle = Math.atan2(currentPoint.y - center.y, currentPoint.x - center.x) + Math.PI;
 
     if (e.type === 'panstart') {
       lastMouseAngle = newMouseAngle;
       totalAngle = 0;
     } else if (e.type === 'panmove') {
-      const diffAngle = newMouseAngle - lastMouseAngle;
+      var diffAngle = newMouseAngle - lastMouseAngle;
       totalAngle += diffAngle;
       container.transform([
         ['t', center.x, center.y],
@@ -164,12 +165,12 @@ screenshot: https://gw.alipayobjects.com/zos/rmsportal/JvQavHjBFOCxccVCrKAL.gif
     } else if (e.type === 'panend') {
       repaintChart(totalAngle);
 
-      const shapes = container.get('children');
-      let middleAngle = Math.PI * 0.5;
-      let rotateShape;
-      Util.each(shapes, s => {
-        const startAngle = s.attr('startAngle');
-        const endAngle = s.attr('endAngle');
+      var shapes = container.get('children');
+      var middleAngle = Math.PI * 0.5;
+      var rotateShape;
+      Util.each(shapes, function(s) {
+        var startAngle = s.attr('startAngle');
+        var endAngle = s.attr('endAngle');
 
         if (startAngle <= Math.PI * 0.5 && endAngle >= Math.PI * 0.5) {
           rotateShape = s;

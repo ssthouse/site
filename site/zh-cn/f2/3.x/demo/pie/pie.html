@@ -6,7 +6,7 @@ plotUsage: 饼图广泛得应用在各个领域，用于表示不同分类的占
 -->
 
 <script>
-  const map = {
+  var map = {
     '芳华': '40%',
     '妖猫传': '20%',
     '机器之血': '18%',
@@ -14,7 +14,7 @@ plotUsage: 饼图广泛得应用在各个领域，用于表示不同分类的占
     '寻梦环游记': '5%',
     '其他': '2%',
   };
-  const data = [
+  var data = [
     { name: '芳华', percent: 0.4, a: '1' },
     { name: '妖猫传', percent: 0.2, a: '1' },
     { name: '机器之血', percent: 0.18, a: '1' },
@@ -22,7 +22,7 @@ plotUsage: 饼图广泛得应用在各个领域，用于表示不同分类的占
     { name: '寻梦环游记', percent: 0.05, a: '1' },
     { name: '其他', percent: 0.02, a: '1' }
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -30,14 +30,14 @@ plotUsage: 饼图广泛得应用在各个领域，用于表示不同分类的占
   });
   chart.source(data, {
     percent: {
-      formatter(val) {
+      formatter: function(val) {
         return val * 100 + '%';
       }
     }
   });
   chart.legend({
     position: 'right',
-    itemFormatter(val) {
+    itemFormatter: function(val) {
       return val + '  ' + map[val];
     }
   });

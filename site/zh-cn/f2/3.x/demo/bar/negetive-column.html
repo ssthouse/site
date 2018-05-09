@@ -10,13 +10,13 @@ plotUsage: 柱状图有别于直方图，柱状图无法显示数据在一个区
   function numberToMoney(n) {
     return String(Math.floor(n * 100) / 100).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
-  const data = [
+  var data = [
     { value: -139255.5, season: '第四季' },
     { value: 51926.5, season: '第三季' },
     { value: -49959.4, season: '第二季' },
     { value: -37099.9, season: '第一季' }
   ];
-  const chart = new F2.Chart({
+  var chart = new F2.Chart({
     id: 'mountNode',
     width: window.innerWidth,
     height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
@@ -36,14 +36,14 @@ plotUsage: 柱状图有别于直方图，柱状图无法显示数据在一个区
     itemWidth: null
   });
   chart.interval().position('season*value')
-    .color('value', val => {
+    .color('value', function(val) {
       return val > 0 ? '#FC674D' : '#9AC2AB';
     }).size(80);
 
   // 辅助元素
   data.forEach(function(obj, index) {
     // 文字部分
-    const color = obj.value > 0 ? '#FC674D' : '#9AC2AB';
+    var color = obj.value > 0 ? '#FC674D' : '#9AC2AB';
     chart.guide().text({
       position: [ obj.season, obj.value > 0 ? obj.value : 0 ],
       content: numberToMoney(obj.value),
@@ -54,7 +54,7 @@ plotUsage: 柱状图有别于直方图，柱状图无法显示数据在一个区
       offsetY: -5
     });
     // 背景部分
-    const offset = 0.46;
+    var offset = 0.46;
     chart.guide().rect({
       start: [ index - offset, 'max' ],
       end: [ index + offset, 'min' ],
