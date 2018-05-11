@@ -3,7 +3,6 @@ index: 4
 title: 六边形分箱示意地图
 resource:
   jsFiles:
-    - ${url.d3}
     - ${url.dataSet}
     - ${url.jquery}
 plotDescription: 六边形分箱示意地图，Hexgin Choropleth，根据地图上的点进行分箱统计画示意图
@@ -47,7 +46,7 @@ chartDetail: ${base}zh-cn/vis/chart/bubble-map.html
     const userData = [];
     for (let lon = ranges.lon[0]; lon <= ranges.lon[1]; lon += .5) {
       for (let lat = ranges.lat[0]; lat <= ranges.lat[1]; lat += .5) {
-        if (d3.geoContains(GeoJSON, [lon, lat])) {
+        if (geoDv.geoContains(GeoJSON, [lon, lat])) {
           addPoint(userData, {
             latitude: lat,
             longitude: lon,
