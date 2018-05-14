@@ -1579,6 +1579,43 @@ chart.guide().arc({
 
 * style 的更详细的配置项 [绘图属性](graphic.html)
 
+#### chart.guide().regionFilter(cfg)
+
+辅助区域过滤，将图表中位于矩形选区中的图形元素提取出来，重新着色。
+
+```js
+chart.guide().regionFilter({
+  top: {boolean}, // 指定 giude 是否绘制在 canvas 最上层，默认为 true, 即绘制在最上层
+  start: {object} | {function} | {array}, // 辅助框起始位置，值为原始数据值，支持 callback 
+  end: {object} | {function} | {array},// 辅助框结束位置，值为原始数据值，支持 callback
+  color:'#ccc' //染色色值
+});
+```
+
+##### 参数
+- `top`: boolean
+
+指定 guide 是否绘制在 canvas 最上层，默认为 false, 即绘制在最下层。
+
+- `start`: object | array | function
+
+指定辅助过滤区域的的起始位置，即过滤区域的左上角，该值的类型如下：
+
+  * object: 使用图表 x,y 对应的原始数据例如： { time: '2010-01-01', value: 200 }
+  * array: 数组来配置位置 [ x, y]，根据数组中的值的存在以下几种形式：
+    + x，y 都是原始数据 [ '2010-01-01', 200 ];
+    + x，y 可以使用原始数据的替代字符串 'min', 'max', 'median' , 例如：[ 'median', 200 ]
+    + x, y 都是用百分比的形式，在绘图区域定位，字符串中存在 '%', 例如 [ '50%', '50%' ] 使得辅助元素居中
+  * function: 回调函数，可以动态的确定辅助元素的位置，应用于数据动态更新，辅助元素的位置根据数据变化的场景
+
+- `end`: object | array | function
+
+指定辅助过滤区域的结束位置，即过滤区域的右下角，该属性用法同 `start`。
+
+- `color`: string
+
+指定辅助过滤区域内图形元素重新着色的色值。
+
 ### facet
 
 (type:string, config:object)

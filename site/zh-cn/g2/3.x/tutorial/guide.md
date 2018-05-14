@@ -345,6 +345,76 @@ $.getJSON('/assets/data/diamond.json', function(data) {
 });
 ```
 
+### 辅助 regionFilter
+
+将图表中位于矩形选区中的图形元素提取出来，重新着色，可以用于区域筛选、图表分段着色。
+
+```js
+chart.guide().regionFilter({
+  top: {boolean}, // 指定 giude 是否绘制在 canvas 最上层，默认为 true, 即绘制在最上层
+  start: {object} | {function} | {array}, // 辅助框起始位置，值为原始数据值，支持 callback 
+  end: {object} | {function} | {array},// 辅助框结束位置，值为原始数据值，支持 callback
+  color:'#ccc' //染色色值
+});
+```
+
+<div id="c6"></div>
+
+```js+
+const data = [
+    { year: '1991', value: 15468 },
+    { year: '1992', value: 16100 },
+    { year: '1993', value: 15900 },
+    { year: '1994', value: 17409 },
+    { year: '1995', value: 17000 },
+    { year: '1996', value: 31056 },
+    { year: '1997', value: 31982 },
+    { year: '1998', value: 32040 },
+    { year: '1999', value: 33233 }
+  ];
+  const chart = new G2.Chart({
+    container: 'c6',
+    forceFit: true,
+    height: 450
+  });
+  chart.source(data);
+  chart.scale({
+    value: {
+      min: 10000
+    },
+    year: {
+      range: [ 0, 1 ]
+    }
+  });
+  chart.axis('value', {
+    label: {
+      formatter: val => {
+        return (val / 10000).toFixed(1) + 'k';
+      }
+    }
+  });
+  chart.tooltip({
+    crosshairs: {
+      type: 'line'
+    }
+  });
+
+  chart.line().position('year*value').size(2);
+
+  chart.guide().regionFilter({
+    start: [ '1991', 'min' ],
+    end: [ '1995', 'max' ],
+    color: '#178fff'
+  });
+  chart.guide().regionFilter({
+    start: [ '1995', 'min' ],
+    end: [ '1999', 'max' ],
+    color: '#2ec15a'
+  });
+  chart.render();
+```
+
+
 ### arc 辅助弧线
 
 ```js
@@ -381,7 +451,7 @@ chart.render();
   + xScale, yScale 映射到 x 轴上的字段生成的度量，详情查看 [度量](./scale.html), [api](/zh-cn/g2/3.x/api/scale.html);
   + 分类度量常用的值是 `values` 包含了所有的分类，连续度量常用的是 min, max
 
-<div id="c6"></div>
+<div id="c7"></div>
 
 ```js+
 const data = [];                                                 
@@ -408,7 +478,7 @@ function findMax() {
 }
 
 const chart = new G2.Chart({ // 创建图表
-  container: 'c6',
+  container: 'c7',
   forceFit: true,
   height: 450
 });
