@@ -272,20 +272,16 @@ chart.on('tooltip:change', function(ev) {
   const origin = items[0]; // 将一条数据改成多条数据
   const range = origin.point._origin.range;
   items.splice(0); // 清空
-  items.push({
+  items.push(Object.assign({
     name: '开始值',
-    title: origin.title,
     marker: true,
-    color: origin.color,
     value: range[0]
-  });
-  items.push({
+  }, origin));
+  items.push(Object.assign({
     name: '结束值',
     marker: true,
-    title: origin.title,
-    color: origin.color,
     value: range[1]
-  });
+  }, origin));
 });
 ````
 

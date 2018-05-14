@@ -34,9 +34,8 @@ chartDetail: ${base}zh-cn/vis/chart/bubble-map.html
       // style the tooltip
       chart.tooltip({
         showTitle: false,
-        containerTpl: '<div class="g2-tooltip">'
-          + '<table class="g2-tooltip-list"></table></div>',
-        itemTpl: '<tr data-index={index}><td style="padding: 5px; background-color:#545454">{name}</td><td style="padding: 5px; background-color:#fff;color: #000">{value}</td></tr>',
+        containerTpl: '<div class="g2-tooltip"><table class="g2-tooltip-list"></table></div>',
+        itemTpl: '<tr data-index="{index}"><td style="padding:5px;background-color:#545454;">{name}</td><td style="padding:5px;background-color:#fff;color:#000;">{value}</td></tr>',
         'g2-tooltip': {
           borderRadius: '2px',
           backgroundColor: '#DDDDDD',
