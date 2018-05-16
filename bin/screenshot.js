@@ -96,7 +96,6 @@ getPort().then(function (port) {
                     next();
                     ignore = true;
                     debug('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> skipping file because filter condition not matched......');
-                    return;
                 }
                 var renderedFile = renderFile(resolve(root, stat.name), {
                     template: template,
