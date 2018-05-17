@@ -1,6 +1,6 @@
 <!--
-index: 1
-title: 带负值面积图
+index: 2
+title: 带负值面积图（x 基线不为 0）
 plotDescription: Area Chart with Negative Values，基础面积图（有负值）
 plotUsage: 面积图用于强调数量随时间而变化的程度，也可用于引起人们对总值趋势的注意，常用于表现趋势和关系。
 relativePlots:
@@ -29,15 +29,11 @@ relativePlots:
       range: [ 0, 1 ]
     },
     value: {
-      nice: false,
-      min: -100,
-      max: 100,
       tickCount: 5
     }
   });
 
   chart.axis('month', {
-    line: null,
     label: function(text, index, total) {
       var textCfg = {};
       if (index === 0) {
@@ -45,23 +41,28 @@ relativePlots:
       } else if (index === total - 1) {
         textCfg.textAlign = 'right';
       }
+
       return textCfg;
     }
   });
   chart.axis('value', {
-    grid: function(text) {
-      if (text === '0') {
-        return {
-          lineDash: null,
-          lineWidth: 1
-        };
+    label: function(text) {
+      var textCfg = {};
+      if (text <= 0) {
+        textCfg.fill = '#1CAA3D';
+        textCfg.fontWeight = 'bold';
       }
+
+      return textCfg;
     }
   });
+
   chart.tooltip({
     showCrosshairs: true
   });
-  chart.area().position('month*value');
+  chart.area({
+    startOnZero: false // 配置 x 轴基线不为 0
+  }).position('month*value');
   chart.line().position('month*value');
   chart.render();
 </script>

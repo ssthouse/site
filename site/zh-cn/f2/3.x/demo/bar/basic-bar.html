@@ -43,8 +43,7 @@ plotUsage: 对比分类数据的数值大小，当分类情况过多时，柱状
       var textCfg = {};
       if (index === 0) {
         textCfg.textAlign = 'left';
-      }
-      if (index === total - 1) {
+      } else if (index === total - 1) {
         textCfg.textAlign = 'right';
       }
       return textCfg;
