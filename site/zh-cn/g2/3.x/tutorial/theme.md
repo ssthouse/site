@@ -36,7 +36,7 @@ G2 图表样式的配置项都是设置到全局变量 `G2.Global` 上，可以�
 
 ```js
 G2.Global.animate = false ; // 关闭默认动画
-G2.Global.colors['default'] = [ 'red', 'blue', 'yellow' ]; // 更改默认的颜色
+G2.Global.colors = [ 'red', 'blue', 'yellow' ]; // 更改默认的颜色
 ```
 
 (2) 方式二： 使用 Global.setTheme 方法。推荐使用这种方式，使用方法如下：
