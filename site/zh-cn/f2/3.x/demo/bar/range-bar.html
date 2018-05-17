@@ -41,8 +41,7 @@ plotUsage: 区间条形图可视化后的数据可能看起来非常漂亮，并
       };
       if (index === 0) {
         textCfg.textAlign = 'left';
-      }
-      if (index === total - 1) {
+      } else if (index === total - 1) {
         textCfg.textAlign = 'right';
       }
       return textCfg;

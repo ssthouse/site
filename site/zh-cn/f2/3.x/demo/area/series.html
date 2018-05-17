@@ -27,8 +27,7 @@ $.getJSON('/assets/data/f2-series-area.json', function(data) {
       var textCfg = {};
       if (index === 0) {
         textCfg.textAlign = 'left';
-      }
-      if (index === total - 1) {
+      } else if (index === total - 1) {
         textCfg.textAlign = 'right';
       }
       return textCfg;
