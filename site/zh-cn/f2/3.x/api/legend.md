@@ -20,7 +20,7 @@ F2 图例的生成是由图形语法中的图形属性决定的，我们会根�
 ```js
 const F2 = require('@antv/f2/lib/core');
 const Legend = require('@antv/f2/lib/plugin/legend');
-Chart.plugins.register(Legend); // 方式一：全局注册 
+Chart.plugins.register(Legend); // 方式一：全局注册
 
 // 方式二：具体的 chart 实例注册
 const chart = new Chart({
@@ -79,7 +79,7 @@ chart.legend('gender', {
 
 当 `position` 为 'left'、'right' 时生效，用于设置垂直方向上图例的对齐方式，可设置的值为：'top'、'middle'、'bottom'，默认为 'middle'，居中对齐。
 
-| center（默认） | top | bottom |
+| middle（默认） | top | bottom |
 | -------- | -------- | -------- |
 | ![undefined](https://gw.alipayobjects.com/zos/skylark/3e351090-9e91-44b7-9c79-9fae1576a83e/2018/png/90d4ab82-0baa-429c-a92a-eb06c51e9b0d.png)  | ![undefined](https://gw.alipayobjects.com/zos/skylark/a6d8e7cd-951b-409e-96c7-b76a49ec0405/2018/png/6504d001-3bd8-4e3d-acd9-0c1fda595a0f.png)  | ![undefined](https://gw.alipayobjects.com/zos/skylark/e5a77ada-f4bc-4acd-9611-aac5f9769a41/2018/png/795f70b0-89bc-4b1b-a8d6-b26b543521c4.png)   |
 
@@ -178,12 +178,12 @@ marker: {
  * @param  {number} y   该 marker 的纵轴坐标
  * @param  {number} r   该 marker 的半径大小
  * @param  {object} ctx canvas 的上下文对象
- * @return {null}     
+ * @return {null}
  */
 marker(x, y, r, ctx) {}
 ```
 
-以下代码绘制了如图所示的 marker：<img src="https://gw.alipayobjects.com/zos/skylark/041d2fef-a068-4012-ac28-2439e15bdbda/2018/png/c541e6b3-8f37-4cc9-b8bb-fd97345ef7da.png" style="width: 10%;"> 
+以下代码绘制了如图所示的 marker：<img src="https://gw.alipayobjects.com/zos/skylark/041d2fef-a068-4012-ac28-2439e15bdbda/2018/png/c541e6b3-8f37-4cc9-b8bb-fd97345ef7da.png" style="width: 10%;">
 
 ```js
 chart.legend('city', {
@@ -233,7 +233,7 @@ valueStyle: {
 
 图例筛选行为的触发事件，默认为 `click`。
 
-1. String 类型 
+1. String 类型
 
 定义别的事件类型。
 
@@ -253,6 +253,18 @@ triggerOn(method, type) {
 ```
 
 **注意该属性只能使用 `chart.legend({})` 方式或者 Global 主题中设置。**
+
+- `selectedMode`: String
+
+设置图例项的选中模式，提供两种模式：
+
+```js
+// 默认模式，多选
+selectedMode: 'multiple'
+
+// 单选模式
+selectedMode: 'single'
+```
 
 - `clickable`: Boolean
 

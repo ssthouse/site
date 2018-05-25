@@ -3,7 +3,7 @@ index: 16
 title: Util 辅助函数
 -->
 
-# Util 
+# Util
 
 ---
 
@@ -139,8 +139,8 @@ Util.each([ 1, 2, 3 ], (val, index) => {
 `getPixelRatio()`
 
 - 描述：获取当前设备的像素比
-- 参数：
-- 返回：
+- 参数：无
+- 返回：Number, 返回当前设备像素比
 
 ### getRelativePosition
 

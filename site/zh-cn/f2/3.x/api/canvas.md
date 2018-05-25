@@ -11,8 +11,8 @@ title: 绘图属性
 
 ## 通用属性
 
-* `fill` 设置用于填充绘画的颜色、渐变或模式；
-* `stroke` 设置用于笔触的颜色、渐变或模式；
+* `fill` 设置用于填充绘画的颜色、渐变或纹理；
+* `stroke` 设置用于笔触的颜色、渐变或纹理；
 * `shadowColor` 设置用于阴影的颜色；
 * `shadowBlur`  设置用于阴影的模糊级别；
 * `shadowOffsetX` 设置阴影距形状的水平距离；
@@ -58,4 +58,3 @@ F2 提供了额外的几个文本属性，便于用户设置字体，具体的�
 * `fontWeight` 对应 font-weight；
 * `fontSize` 对应 font-size；
 * `fontFamily` 对应 font-family；
-
