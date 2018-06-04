@@ -12,7 +12,7 @@ module.exports = {
         g2: 'https://gw.alipayobjects.com/os/antv/assets/g2/3.1.0/g2.min.js',
         g6: 'https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js',
         'g6-plugins': 'https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6Plugins.js',
-        'g6-editor': 'https://gw.alipayobjects.com/os/rmsportal/rojVzIEqCvAqnaivqjcA.js',
+        'g6-editor-base': 'https://unpkg.com/@antv/g6-editor@1.0.0-beta.78/build/base.js',
         'g2-plugin-slider': 'https://gw.alipayobjects.com/os/antv/assets/g2-plugin-slider/2.0.2/g2-plugin-slider.js',
         'g2-brush': 'https://gw.alipayobjects.com/os/antv/assets/g2-brush/0.0.2/g2-brush.min.js',
         katex:    'https://gw.alipayobjects.com/os/antv/assets/lib/katex-0.8.3/katex.min.js',

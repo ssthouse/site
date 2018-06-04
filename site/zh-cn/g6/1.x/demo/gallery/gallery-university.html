@@ -10,109 +10,109 @@ resource:
 plotDescription: 展示了浙江省，各个城市，本科和专科的数量及分布情况
 -->
 <script>
-    $("#mountNode").css('backgroundColor','#0F141F');
-    $.getJSON('/assets/data/university.json', data => {
-      const Mapper = G6.Plugins['tool.d3.mapper'];
-      const Util = G6.Util;
-      const { forceSimulation, forceLink, forceManyBody, forceX, forceY } = d3;
-      const nodeColorMapper = new Mapper('node', '办学层次', 'color', ['#4BA4C4', '#F0D79F', '#FF8B33']);
-      let simulation;
+  $("#mountNode").css('backgroundColor','#0F141F');
+  $.getJSON('/assets/data/university.json', data => {
+    const Mapper = G6.Plugins['tool.d3.mapper'];
+    const Util = G6.Util;
+    const { forceSimulation, forceLink, forceManyBody, forceX, forceY } = d3;
+    const nodeColorMapper = new Mapper('node', '办学层次', 'color', ['#4BA4C4', '#F0D79F', '#FF8B33']);
+    let simulation;
 
-      // 注册城市文本导引信息
-      G6.registerGuide('city-label', {
-        draw(item) {
-          const tree = item.getGraph();
-          const roots = tree.getRoots();
-          const group = item.getGraphicGroup();
-          roots.forEach(root => {
-            const bbox = Util.getTotalBBox(root.getAllChildren().map(child => {
-              return child.getBBox();
-            }));
-            const model = root.getModel();
-            group.addShape('text', {
-              attrs: {
-                x: bbox.minX,
-                y: bbox.minY - 8,
-                text: model.name,
-                fill: '#ccc',
-              },
-            });
+    // 注册城市文本导引信息
+    G6.registerGuide('city-label', {
+      draw(item) {
+        const tree = item.getGraph();
+        const roots = tree.getRoots();
+        const group = item.getGraphicGroup();
+        roots.forEach(root => {
+          const bbox = Util.getTotalBBox(root.getAllChildren().map(child => {
+            return child.getBBox();
+          }));
+          const model = root.getModel();
+          group.addShape('text', {
+            attrs: {
+              x: bbox.minX,
+              y: bbox.minY - 8,
+              text: model.name,
+              fill: '#ccc',
+            },
           });
-        },
-      });
+        });
+      },
+    });
 
-      const tree = new G6.Tree({
-        container: 'mountNode',
-        height: window.innerHeight,
-        plugins: [nodeColorMapper],
-        layout() {
-          const nodes = tree.getNodes().map(node => {
-            return node.getModel();
+    const tree = new G6.Tree({
+      container: 'mountNode',
+      height: window.innerHeight,
+      plugins: [nodeColorMapper],
+      layout() {
+        const nodes = tree.getNodes().map(node => {
+          return node.getModel();
+        });
+        const edges = tree.getEdges().map(edge => {
+          return Util.mix({}, edge.getModel());
+        });
+        simulation && simulation.stop();
+        simulation = forceSimulation(nodes)
+          .force('charge', forceManyBody())
+          .force('link', forceLink(edges).id(d => {
+            return d.id;
+          }).distance(20)
+            .strength(1))
+          .force('y', forceY())
+          .on('tick', () => {
+            tree.updateNodePosition();
           });
-          const edges = tree.getEdges().map(edge => {
-            return Util.mix({}, edge.getModel());
-          });
-          simulation && simulation.stop();
-          simulation = forceSimulation(nodes)
-            .force('charge', forceManyBody())
-            .force('link', forceLink(edges).id(d => {
-              return d.id;
-            }).distance(20)
-              .strength(1))
-            .force('y', forceY())
-            .on('tick', () => {
-              tree.updateNodePosition();
-            });
-        },
-      });
-      tree.node({
-        size: 10,
-        style: {
-          stroke: null
+      },
+    });
+    tree.node({
+      size: 10,
+      style: {
+        stroke: null
+      }
+    });
+    tree.edge({
+      style() {
+        return {
+          strokeOpacity: 0.6
         }
-      });
-      tree.edge({
-        style() {
-          return {
-            strokeOpacity: 0.6
-          }
-        }
-      });
-      tree.read(data);
-      tree.add('guide', {
-        shape: 'city-label',
-      });
-      tree.translate(tree.getWidth() / 2, tree.getHeight() / 2);
+      }
+    });
+    tree.read(data);
+    tree.add('guide', {
+      shape: 'city-label',
+    });
+    tree.translate(tree.getWidth() / 2, tree.getHeight() / 2);
 
-      // 拖拽画布交互
-      let lastPoint;
-      tree.on('canvas:mouseenter', () => {
-        tree.css({
-          cursor: '-webkit-grabbing',
-        });
-      });
-      tree.on('dragstart', () => {
-        tree.css({
-          cursor: '-webkit-grabbing',
-        });
-      });
-      tree.on('drag', ev => {
-        if (lastPoint) {
-          tree.translate(ev.domX - lastPoint.x, ev.domY - lastPoint.y);
-        }
-        lastPoint = {
-          x: ev.domX,
-          y: ev.domY,
-        };
-      });
-      tree.on('dragend', () => {
-        lastPoint = undefined;
-        tree.css({
-          cursor: '-webkit-grab',
-        });
-      });
-      tree.on('canvas:mouseleave', () => {
-        lastPoint = undefined;
+    // 拖拽画布交互
+    let lastPoint;
+    tree.on('canvas:mouseenter', () => {
+      tree.css({
+        cursor: '-webkit-grabbing',
       });
     });
-  </script>
+    tree.on('dragstart', () => {
+      tree.css({
+        cursor: '-webkit-grabbing',
+      });
+    });
+    tree.on('drag', ev => {
+      if (lastPoint) {
+        tree.translate(ev.domX - lastPoint.x, ev.domY - lastPoint.y);
+      }
+      lastPoint = {
+        x: ev.domX,
+        y: ev.domY,
+      };
+    });
+    tree.on('dragend', () => {
+      lastPoint = undefined;
+      tree.css({
+        cursor: '-webkit-grab',
+      });
+    });
+    tree.on('canvas:mouseleave', () => {
+      lastPoint = undefined;
+    });
+  });
+</script>
