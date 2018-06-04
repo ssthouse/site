@@ -62,7 +62,7 @@ demoDirs.forEach(function (dir) {
         var name = basename(file, '.html');
         var href = base + 'zh-cn/g6/1.x/demo/' + category + '/' + name + '.html';
         var demo = {
-            screenshot: join(assets + '/dist/' + pkg.version + '/g6/1.x/', category + '/' + name + '.png'),
+            screenshot: meta.screenshot || join(assets + '/dist/' + pkg.version + '/g6/1.x/', category + '/' + name + '.png'),
             // screenshotDark: join(assets + '/dist/' + pkg.version + '/g6/1.x/', category + '/' + name + '-dark.png'),
             href: category === 'editor' ? join(assets + '/dist/' + pkg.version + '/g6/1.x/', category + '/' + name + '.html') : href,
             index: index,

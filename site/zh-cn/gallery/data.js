@@ -65,7 +65,7 @@ demoDirs.forEach(function (dir) {
         var name = basename(file, '.html');
         var href = base + 'zh-cn/gallery/' + category + '/' + name + '.html';
         var demo = {
-            screenshot: join(assets + '/dist/' + pkg.version + '/gallery/', category + '/' + name + '.png'),
+            screenshot: meta.screenshot || join(assets + '/dist/' + pkg.version + '/gallery/', category + '/' + name + '.png'),
             href: href,
             index: index,
             name: name,
