@@ -76,7 +76,7 @@
                     {% for demo in cat.demos %}
                     <div class="col-md-4 col-sm-6 col-xs-12 text-center">
                         <div class="card">
-                            <a class="screenshot-container" href="{{ demo.href }}">
+                            <a class="screenshot-container" href="{{ demo.href }}"{% if demo.openInNewTab %} target="_blank"{% endif %}>
                                 <!--data-original="{{ demo.screenshot }}"-->
                                 <img src="{{ assets }}/image/screenshot-placeholder.png"
                                      class="card-img-top screenshot lazyload"
@@ -85,7 +85,7 @@
                                      alt="{{ demo.title }}">
                             </a>
                             <div class="card-body">
-                                <a href="{{ demo.href }}"> {{ demo.title }} </a>
+                                <a href="{{ demo.href }}"{% if demo.openInNewTab %} target="_blank"{% endif %}> {{ demo.title }} </a>
                             </div>
                         </div>
                     </div>

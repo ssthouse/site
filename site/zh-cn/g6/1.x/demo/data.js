@@ -64,11 +64,12 @@ demoDirs.forEach(function (dir) {
         var demo = {
             screenshot: join(assets + '/dist/' + pkg.version + '/g6/1.x/', category + '/' + name + '.png'),
             // screenshotDark: join(assets + '/dist/' + pkg.version + '/g6/1.x/', category + '/' + name + '-dark.png'),
-            href: href,
+            href: category === 'editor' ? join(assets + '/dist/' + pkg.version + '/g6/1.x/', category + '/' + name + '.html') : href,
             index: index,
             name: name,
             category: category,
-            title: title
+            title: title,
+            openInNewTab: (category === 'editor')
         };
         demoByHref[href] = demo;
         demosByCategory[category].demos.push(demo);
