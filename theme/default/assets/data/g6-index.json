@@ -1,465 +1,388 @@
 {
   "nodes": [
     {
-      "label": "Myriel",
+      "name": "Myriel",
       "id": "0.0",
-      "color": "#D8482D",
       "weight": 22.714287
     },
     {
-      "label": "Napoleon",
+      "name": "Napoleon",
       "id": "1.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "MlleBaptistine",
+      "name": "MlleBaptistine",
       "id": "2.0",
-      "color": "#BB100A",
       "weight": 16.714285
     },
     {
-      "label": "MmeMagloire",
+      "name": "MmeMagloire",
       "id": "3.0",
-      "color": "#BB100A",
       "weight": 16.714285
     },
     {
-      "label": "CountessDeLo",
+      "name": "CountessDeLo",
       "id": "4.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "Geborand",
+      "name": "Geborand",
       "id": "5.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "Champtercier",
+      "name": "Champtercier",
       "id": "6.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "Cravatte",
+      "name": "Cravatte",
       "id": "7.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "Count",
+      "name": "Count",
       "id": "8.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "OldMan",
+      "name": "OldMan",
       "id": "9.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "Labarre",
+      "name": "Labarre",
       "id": "10.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "Valjean",
+      "name": "Valjean",
       "id": "11.0",
-      "color": "#FEF0D9",
       "weight": 45
     },
     {
-      "label": "Marguerite",
+      "name": "Marguerite",
       "id": "12.0",
-      "color": "#B70805",
       "weight": 15.857142
     },
     {
-      "label": "MmeDeR",
+      "name": "MmeDeR",
       "id": "13.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "Isabeau",
+      "name": "Isabeau",
       "id": "14.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "Gervais",
+      "name": "Gervais",
       "id": "15.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "Tholomyes",
+      "name": "Tholomyes",
       "id": "16.0",
-      "color": "#D44028",
       "weight": 21.857143
     },
     {
-      "label": "Listolier",
+      "name": "Listolier",
       "id": "17.0",
-      "color": "#CC301E",
       "weight": 20.142857
     },
     {
-      "label": "Fameuil",
+      "name": "Fameuil",
       "id": "18.0",
-      "color": "#CC301E",
       "weight": 20.142857
     },
     {
-      "label": "Blacheville",
+      "name": "Blacheville",
       "id": "19.0",
-      "color": "#CC301E",
       "weight": 20.142857
     },
     {
-      "label": "Favourite",
+      "name": "Favourite",
       "id": "20.0",
-      "color": "#CC301E",
       "weight": 20.142857
     },
     {
-      "label": "Dahlia",
+      "name": "Dahlia",
       "id": "21.0",
-      "color": "#CC301E",
       "weight": 20.142857
     },
     {
-      "label": "Zephine",
+      "name": "Zephine",
       "id": "22.0",
-      "color": "#CC301E",
       "weight": 20.142857
     },
     {
-      "label": "Fantine",
+      "name": "Fantine",
       "id": "23.0",
-      "color": "#ED7047",
       "weight": 27
     },
     {
-      "label": "MmeThenardier",
+      "name": "MmeThenardier",
       "id": "24.0",
-      "color": "#DC5032",
       "weight": 23.57143
     },
     {
-      "label": "Thenardier",
+      "name": "Thenardier",
       "id": "25.0",
-      "color": "#F1784C",
       "weight": 27.857143
     },
     {
-      "label": "Cosette",
+      "name": "Cosette",
       "id": "26.0",
-      "color": "#DC5032",
       "weight": 23.57143
     },
     {
-      "label": "Javert",
+      "name": "Javert",
       "id": "27.0",
-      "color": "#F58051",
       "weight": 28.714287
     },
     {
-      "label": "Fauchelevent",
+      "name": "Fauchelevent",
       "id": "28.0",
-      "color": "#BF180F",
       "weight": 17.571428
     },
     {
-      "label": "Bamatabois",
+      "name": "Bamatabois",
       "id": "29.0",
-      "color": "#D03823",
       "weight": 21
     },
     {
-      "label": "Perpetue",
+      "name": "Perpetue",
       "id": "30.0",
-      "color": "#B70805",
       "weight": 15.857142
     },
     {
-      "label": "Simplice",
+      "name": "Simplice",
       "id": "31.0",
-      "color": "#BF180F",
       "weight": 17.571428
     },
     {
-      "label": "Scaufflaire",
+      "name": "Scaufflaire",
       "id": "32.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "Woman1",
+      "name": "Woman1",
       "id": "33.0",
-      "color": "#B70805",
       "weight": 15.857142
     },
     {
-      "label": "Judge",
+      "name": "Judge",
       "id": "34.0",
-      "color": "#C72819",
       "weight": 19.285715
     },
     {
-      "label": "Champmathieu",
+      "name": "Champmathieu",
       "id": "35.0",
-      "color": "#C72819",
       "weight": 19.285715
     },
     {
-      "label": "Brevet",
+      "name": "Brevet",
       "id": "36.0",
-      "color": "#C72819",
       "weight": 19.285715
     },
     {
-      "label": "Chenildieu",
+      "name": "Chenildieu",
       "id": "37.0",
-      "color": "#C72819",
       "weight": 19.285715
     },
     {
-      "label": "Cochepaille",
+      "name": "Cochepaille",
       "id": "38.0",
-      "color": "#C72819",
       "weight": 19.285715
     },
     {
-      "label": "Pontmercy",
+      "name": "Pontmercy",
       "id": "39.0",
-      "color": "#BB100A",
       "weight": 16.714285
     },
     {
-      "label": "Boulatruelle",
+      "name": "Boulatruelle",
       "id": "40.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "Eponine",
+      "name": "Eponine",
       "id": "41.0",
-      "color": "#DC5032",
       "weight": 23.57143
     },
     {
-      "label": "Anzelma",
+      "name": "Anzelma",
       "id": "42.0",
-      "color": "#BB100A",
       "weight": 16.714285
     },
     {
-      "label": "Woman2",
+      "name": "Woman2",
       "id": "43.0",
-      "color": "#BB100A",
       "weight": 16.714285
     },
     {
-      "label": "MotherInnocent",
+      "name": "MotherInnocent",
       "id": "44.0",
-      "color": "#B70805",
       "weight": 15.857142
     },
     {
-      "label": "Gribier",
+      "name": "Gribier",
       "id": "45.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "Jondrette",
+      "name": "Jondrette",
       "id": "46.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "MmeBurgon",
+      "name": "MmeBurgon",
       "id": "47.0",
-      "color": "#B70805",
       "weight": 15.857142
     },
     {
-      "label": "Gavroche",
+      "name": "Gavroche",
       "id": "48.0",
-      "color": "#FCA072",
       "weight": 33
     },
     {
-      "label": "Gillenormand",
+      "name": "Gillenormand",
       "id": "49.0",
-      "color": "#CC301E",
       "weight": 20.142857
     },
     {
-      "label": "Magnon",
+      "name": "Magnon",
       "id": "50.0",
-      "color": "#B70805",
       "weight": 15.857142
     },
     {
-      "label": "MlleGillenormand",
+      "name": "MlleGillenormand",
       "id": "51.0",
-      "color": "#CC301E",
       "weight": 20.142857
     },
     {
-      "label": "MmePontmercy",
+      "name": "MmePontmercy",
       "id": "52.0",
-      "color": "#B70805",
       "weight": 15.857142
     },
     {
-      "label": "MlleVaubois",
+      "name": "MlleVaubois",
       "id": "53.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "LtGillenormand",
+      "name": "LtGillenormand",
       "id": "54.0",
-      "color": "#BF180F",
       "weight": 17.571428
     },
     {
-      "label": "Marius",
+      "name": "Marius",
       "id": "55.0",
-      "color": "#FC8F5C",
       "weight": 30.428574
     },
     {
-      "label": "BaronessT",
+      "name": "BaronessT",
       "id": "56.0",
-      "color": "#B70805",
       "weight": 15.857142
     },
     {
-      "label": "Mabeuf",
+      "name": "Mabeuf",
       "id": "57.0",
-      "color": "#DC5032",
       "weight": 23.57143
     },
     {
-      "label": "Enjolras",
+      "name": "Enjolras",
       "id": "58.0",
-      "color": "#ED7047",
       "weight": 27
     },
     {
-      "label": "Combeferre",
+      "name": "Combeferre",
       "id": "59.0",
-      "color": "#DC5032",
       "weight": 23.57143
     },
     {
-      "label": "Prouvaire",
+      "name": "Prouvaire",
       "id": "60.0",
-      "color": "#D44028",
       "weight": 21.857143
     },
     {
-      "label": "Feuilly",
+      "name": "Feuilly",
       "id": "61.0",
-      "color": "#DC5032",
       "weight": 23.57143
     },
     {
-      "label": "Courfeyrac",
+      "name": "Courfeyrac",
       "id": "62.0",
-      "color": "#E5603D",
       "weight": 25.285713
     },
     {
-      "label": "Bahorel",
+      "name": "Bahorel",
       "id": "63.0",
-      "color": "#E05837",
       "weight": 24.428572
     },
     {
-      "label": "Bossuet",
+      "name": "Bossuet",
       "id": "64.0",
-      "color": "#E5603D",
       "weight": 25.285713
     },
     {
-      "label": "Joly",
+      "name": "Joly",
       "id": "65.0",
-      "color": "#E05837",
       "weight": 24.428572
     },
     {
-      "label": "Grantaire",
+      "name": "Grantaire",
       "id": "66.0",
-      "color": "#D8482D",
       "weight": 22.714287
     },
     {
-      "label": "MotherPlutarch",
+      "name": "MotherPlutarch",
       "id": "67.0",
-      "color": "#B30000",
       "weight": 15
     },
     {
-      "label": "Gueulemer",
+      "name": "Gueulemer",
       "id": "68.0",
-      "color": "#D8482D",
       "weight": 22.714287
     },
     {
-      "label": "Babet",
+      "name": "Babet",
       "id": "69.0",
-      "color": "#D8482D",
       "weight": 22.714287
     },
     {
-      "label": "Claquesous",
+      "name": "Claquesous",
       "id": "70.0",
-      "color": "#D8482D",
       "weight": 22.714287
     },
     {
-      "label": "Montparnasse",
+      "name": "Montparnasse",
       "id": "71.0",
-      "color": "#D44028",
       "weight": 21.857143
     },
     {
-      "label": "Toussaint",
+      "name": "Toussaint",
       "id": "72.0",
-      "color": "#BB100A",
       "weight": 16.714285
     },
     {
-      "label": "Child1",
+      "name": "Child1",
       "id": "73.0",
-      "color": "#B70805",
       "weight": 15.857142
     },
     {
-      "label": "Child2",
+      "name": "Child2",
       "id": "74.0",
-      "color": "#B70805",
       "weight": 15.857142
     },
     {
-      "label": "Brujon",
+      "name": "Brujon",
       "id": "75.0",
-      "color": "#CC301E",
       "weight": 20.142857
     },
     {
-      "label": "MmeHucheloup",
+      "name": "MmeHucheloup",
       "id": "76.0",
-      "color": "#CC301E",
       "weight": 20.142857
     }
   ],

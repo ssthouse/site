@@ -1,38 +1,43 @@
 <!--
- index: 3.1
+ index: 5
  title: Edge
+ resource:
+   jsFiles:
+     - ${url.g6}
 -->
 
-# Edge
+## 简介
 
-G6 内部的`边(edge)`。本文档将向大家说明，边已开放的 API。
+该类是边类，继承于图项 Item，享有 Item 上的所有接口，本文档只介绍差异的接口，其它接口请参考[ Item API 文档](https://lark.alipay.com/antv/g6-2.0-doc/item)。
 
 ## 方法
 
-### show
+### getSource
+获取源图项
 
-显示
+```js
+edge.getSource();
+```
 
-### hide
+#### 返回
+`item` {object} 源图项
 
-隐藏
+### getTarget
+获取目标图项
 
-### getKeyShape
+```js
+edge.getTarget();
+```
 
-获取关键形
+#### 返回
+`item` {object} 目标图项
 
-### getGroup
+### getPoints
+获取用于绘制边的点集合
 
-获取图形图组
+```js
+edge.getPoints();
+```
 
-### getBBox
-
-获取包围盒
-
-### getModel
-
-获取数据模型
-
-### getShapeCfg
-
-获取绘制配置项
+#### 返回
+`points` {array} 用于绘制边的点集合

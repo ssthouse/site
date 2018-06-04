@@ -1,0 +1,83 @@
+<!--
+index: 0
+title: 首页
+resource:
+  jsFiles:
+    - ${url.g6}
+    - ${url['g6-plugins']}
+    - ${url.jquery}
+plotDescription: 首页艺术化展示
+plotUsage: 首页艺术化展示
+-->
+<script>
+  $.getJSON('/assets/data/g6-index.json', data => {
+    const Template = G6.Plugins['template.maxSpanningForest'];
+    const Mapper = G6.Plugins['tool.d3.mapper'];
+    const nodeSizeMapper = new Mapper('node', 'weight', 'size', [8, 20], {
+      legendCfg: null
+    });
+    const edgeSizeMapper = new Mapper('edge', 'weight', 'size', [1, 8], {
+      legendCfg: null
+    });
+    const nodeColorMapper = new Mapper('node', 'weight', 'color', ['#E0F5FF', '#BAE7FF', '#91D5FF', '#69C0FF', '#3DA0F2', '#1581E6', '#0860BF'], {
+      legendCfg: null
+    });
+    const template = new Template();
+    const graph = new G6.Graph({
+      id: 'mountNode',             // dom id
+      height: window.innerHeight,
+      plugins: [template, nodeSizeMapper, nodeColorMapper, edgeSizeMapper],
+      animate: true,
+    });
+    const force = template.layout;
+    const circle = new G6.Layouts['circle']({
+      sort(a, b) {
+        return a.weight - b.weight;
+      }
+    });
+    const grid = new G6.Layouts['grid']({
+      sort(a, b) {
+        return b.weight - a.weight;
+      }
+    });
+    const dagre = new G6.Layouts['dagre']({
+      nodesep() {
+        return graph.getWidth() / 50;
+      },
+      ranksep() {
+        return graph.getHeight() / 25;
+      },
+      marginx() {
+        return graph.getWidth() / 8;
+      },
+      marginy() {
+        return graph.getHeight() / 8;
+      },
+      useEdgeControlPoint: false,
+    });
+    const spiral = new G6.Layouts['archimeddeanSpiral']({
+      sort(a, b) {
+        return b.weight - a.weight;
+      }
+    });
+    graph.edge({
+      style(model) {
+        return {
+          stroke: graph.find(model.target).getModel().color,
+          strokeOpacity: 0.8
+        };
+      }
+    });
+    graph.read(data);
+    setInterval(() => {
+      if (document.visibilityState === 'visible') {
+        let layouts = [circle, dagre, force, grid, spiral];
+        layouts = layouts.filter(layout => {
+          return layout !== graph.getLayout();
+        });
+        const layout = layouts[parseInt(layouts.length * Math.random())];
+        graph.changeLayout(layout);
+      }
+    }, 2000);
+  });
+</script>
