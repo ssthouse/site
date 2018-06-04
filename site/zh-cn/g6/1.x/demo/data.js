@@ -89,7 +89,6 @@ module.exports = {
     navName: 'demo',
     demos: demos,
     template: 'g6-demo',
-    // canSwitchThemes: true,
     demosByCategory: demosByCategory,
     demoByHref: demoByHref,
     showFooter: false

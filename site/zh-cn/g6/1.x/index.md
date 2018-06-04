@@ -19,7 +19,7 @@ featuresCards:
     description: 丰富、优雅、易于复用的解决方案
   - img: ${assets}/image/home/features-powerful.svg
     title: 强大扩展能力
-    description: 轻易订制，满足你无限的创意
+    description: 高可订制，满足你无限的创意
 resource:
   jsFiles:
     - ${url.g6}
@@ -60,13 +60,13 @@ resource:
     <div class="container">
         <div class="header row">
             <div class="col-md-5 texts">
-                <h1>G6关系图类库</h1>
-                <p class="main-info">G6 是解决流程图和关系分析的图表库，集成了大量的交互，可以轻松的进行动态流程图和关系网络的开发。</p>
+                <h1>G6关系数据可视化</h1>
+                <p class="main-info">G6 是关系数据可视化引擎，开发者可以基于 G6 拓展出属于自己的图分析应用或者图编辑器应用。</p>
                 <a href="{{ products.g6.links.demo.href }}" class="btn btn-primary btn-lg btn-round-link">{{ resource.translate.demo }}</a>
                 <a href="{{base}}zh-cn/g6/1.x/tutorial/index.html#_安装" class="btn btn-light border btn-lg btn-round-link">{{ resource.translate.downloadAndUse }}</a>
                 <iframe class="btn-round-link btn btn-light btn-lg github-btn" src="https://ghbtns.com/github-btn.html?user=antvis&repo=g6&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
             </div>
-            <div id="c1" class="col-md-7 outter-graph-container"></div>
+            <div id="mountNode" class="col-md-7 outter-graph-container"></div>
         </div>
     </div>
 </section>
@@ -108,111 +108,75 @@ npm install @antv/g6 --save
 <!-- chart1 -->
 
 ```js-
-G6.Global.modalRectStyle = {
-    fill: '#F8FAFE',
-    fillOpacity: 0.7
-}
 $.getJSON('/assets/data/g6-index.json', data => {
-    var $container = $('#c1');
-    var height = 580;
-    data.nodes.forEach(node=>{
-        delete node.color;
-    })
-    const Plugins = G6.Plugins;
-    const Util = G6.Util;
-    const layoutCfg = {
-        width: $container.width(),
-        height: height,
-        center: {
-            x: $container.width() / 2,
-            y: height / 2
-        }
-    };
-    console.log(layoutCfg);
-    const grid = new G6.Layouts['grid'](Util.mix({}, layoutCfg, {
-        center: {
-            x: layoutCfg.center.x,
-            y: layoutCfg.center.y+30
-        }
-    }));
-    const dagre = new G6.Layouts['dagre']({
-    nodesep: ()=>{
-        return layoutCfg.width/50;
-    },
-    ranksep: ()=>{
-        return layoutCfg.height/25;
-    },
-    useEdgeControlPoint: false,
-    marginx: layoutCfg.center.x/4,
-    marginy: layoutCfg.center.y/4
-    });
-    const circle = new G6.Layouts['circle'](layoutCfg);
-    const force = new G6.Layouts['d3.force'](Util.mix({
-        manyBodyDistanceMax: ()=>{
-            return 210;
-        },
-    forceCollideRadius: node => {
-        return Math.max(node.width, node.height) / 2 + 12;
-    }
-    },layoutCfg));
-    const Mapper = Plugins['enhance.d3.mapper'];
-    const nodeSizeMapper = new Mapper('node', 'weight', 'size', [4, 20], {
+    const Template = G6.Plugins['template.maxSpanningForest'];
+    const Mapper = G6.Plugins['tool.d3.mapper'];
+    const nodeSizeMapper = new Mapper('node', 'weight', 'size', [8, 20], {
     legendCfg: null
     });
     const edgeSizeMapper = new Mapper('edge', 'weight', 'size', [1, 8], {
     legendCfg: null
     });
-    const nodeColorMapper = new Mapper('node', 'weight', 'color', [ '#E0F5FF', '#BAE7FF', '#91D5FF', '#69C0FF' , '#3DA0F2', '#1581E6', '#0860BF'], {
-        legendCfg: null
+    const nodeColorMapper = new Mapper('node', 'weight', 'color', ['#E0F5FF', '#BAE7FF', '#91D5FF', '#69C0FF', '#3DA0F2', '#1581E6', '#0860BF'], {
+    legendCfg: null
     });
-    const template = new Plugins['template.analysis.maxSpanningForest']({
-        arrow: null
+    const template = new Template();
+    const graph = new G6.Graph({
+    id: 'mountNode',             // dom id
+    height: 400,
+    plugins: [template, nodeSizeMapper, nodeColorMapper, edgeSizeMapper],
+    animate: true,
     });
-    const net = new G6.Net({
-        id: 'c1',
-        height: height,
-        useAnchor: null,
-        layout: force,
-        plugins: [ template, nodeSizeMapper, edgeSizeMapper, nodeColorMapper ],
-        animate: true
-    });
-    net.source(data);
-    let changeLayoutable = true;
-    data.nodes.sort((a, b)=>{
-    return b.weight - a.weight;
-    });
-    net.node().style({
-    fillOpacity: 1
-    });
-    net.edge().style(model=>{
-        return {
-            stroke: net.find(model.target).getShapeCfg().color,
-            strokeOpacity: 0.8
-        };
-    });
-    net.on('dommouseenter', ()=>{
-    changeLayoutable = false;
-    });
-    net.on('dommouseleave', ev=>{
-    if( ev.toElement && ev.toElement.className !== 'node-tool'){
-        changeLayoutable = true;
+    const force = template.layout;
+    const circle = new G6.Layouts['circle']({
+    sort(a, b) {
+        return a.weight - b.weight;
     }
     });
-    net.removeBehaviour(['wheelZoom', 'dragCanvas']);
-    net.render();
-setInterval(()=>{
-  if(document.visibilityState === 'visible' && changeLayoutable){
-    let layouts = [grid, circle, dagre, force];
-    layouts = Util.filter(layouts, layout=>{
-      return layout !== net.get('layout');
+    const grid = new G6.Layouts['grid']({
+    sort(a, b) {
+        return b.weight - a.weight;
+    }
     });
-    const layout = layouts[parseInt(layouts.length * Math.random())];
-    const nodes = net.getNodes();
-    // net.clearAllActived();
-    net.changeLayout(layout);
-  }
-  
-}, 2000);
+    const dagre = new G6.Layouts['dagre']({
+    nodesep() {
+        return graph.getWidth() / 50;
+    },
+    ranksep() {
+        return graph.getHeight() / 25;
+    },
+    marginx() {
+        return graph.getWidth() / 16;
+    },
+    marginy() {
+        return graph.getHeight() / 8;
+    },
+    useEdgeControlPoint: false,
+    });
+    const spiral = new G6.Layouts['archimeddeanSpiral']({
+    sort(a, b) {
+        return b.weight - a.weight;
+    }
+    });
+    graph.edge({
+    style(model) {
+        return {
+        stroke: graph.find(model.target).getModel().color,
+        strokeOpacity: 0.8
+        };
+    }
+    });
+    graph.read(data);
+    setInterval(() => {
+    if (document.visibilityState === 'visible') {
+        let layouts = [circle, dagre, force, grid, spiral];
+        layouts = layouts.filter(layout => {
+        return layout !== graph.getLayout();
+        });
+        const layout = layouts[parseInt(layouts.length * Math.random())];
+        graph.changeLayout(layout);
+    }
+    }, 2000);
 });
 ```
 

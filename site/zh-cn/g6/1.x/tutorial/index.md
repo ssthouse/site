@@ -1,220 +1,43 @@
 <!--
- index: 0
- title: 快速上手
- resource:
-   jsFiles:
-     - ${url.g6}
+index: 0
+title: 快速上手
+resource:
+  jsFiles:
+    - ${url.g6}
 -->
+
+# 快速上手
 
 ## G6
 
-G6 是一个由纯 JavaScript 编写的关系图基础技术框架。开发者能基于 G6 进行关系图的**分析视图**和**编辑视图**进行快速的二次开发。
+G6 是关系数据可视化引擎，开发者可以基于 G6 拓展出属于自己的图分析应用或者图编辑器应用。
 
-<div id = "g6_structure"></div>
+## 特性
 
-```js-
-/**
-* class 里是否含有 className
-* @param  {Object}   shape     图形
-* @param  {String}   className 名字
-* @return {Boolean}
-*/
-function hasClass (shape, className) {
-  if (shape) {
-    var clasees = shape.get('class');
-    if (clasees && clasees.indexOf(className) !== -1) {
-      return true;
-    }
-  }
-  return false;
-}
-var data = {
-  label: 'G6',
-  children: [{
-    label: '图类',
-    children: [
-      {
-        label: 'Graph'
-      },
-      {
-        label: 'Net'
-      },
-      {
-        label: 'Tree'
-      },
-      {
-        label: '……'
-      }
-    ]
-  },
-  {
-    label: '基础类',
-    children: [
-      {
-        label: 'Canvas'
-      },
-      {
-        label: 'Handler'
-      },
-      {
-        label: 'Layout'
-      },
-      {
-        label: 'Global'
-      }
-    ]
-  },
-  {
-    label: '工具类',
-    children: [
-      {
-        label: 'Matrix'
-      },
-      {
-        label: 'Color'
-      },
-      {
-        label: 'Util'
-      }
-    ]
-  }]
-};
-var Util = G6.Util;
-// 准备布局配置
-var layoutCfg = {
-  "direction": "LR",
-  "nodeSep": 20,
-  "nodeSize": 15,
-  "rankSep": 200
-};
-// 自定义树节点
-var DEFAULT_NODE_SIZE = 3;
-G6.registerNode('treeNode', {
-  draw(cfg, group) {
-    var model = cfg.model;
-    var r = layoutCfg.nodeSize ? layoutCfg.nodeSize / 2 : DEFAULT_NODE_SIZE;
-    var shapeCfg = {
-      attrs: {
-        x: cfg.x,
-        y: cfg.y,
-        r: r,
-        stroke: '#003380',
-        fill: 'white',
-        fillOpacity: 1,
-      },
-    };
-    if (model.children && model.children.length) {
-      shapeCfg.class = model.isCollapsed ? 'spreadoutButton' : 'collapseButton';
-      shapeCfg.attrs.fill = '#044A9A';
-      shapeCfg.attrs.stroke = '#003380';
-      shapeCfg.attrs.fillOpacity = 0.4;
-    }
-    if (model.root) {
-      shapeCfg.attrs.fill = '#044A9A';
-      shapeCfg.attrs.stroke = '#003380';
-      shapeCfg.attrs.fillOpacity = 0.7;
-    }
-    shapeCfg.attrStash = Util.mix({}, shapeCfg.attrs);
-    return group.addShape('circle', shapeCfg);
-  },
-  afterDraw(cfg, group) {
-    var model = cfg.model;
-    var r = layoutCfg.nodeSize ? layoutCfg.nodeSize / 2 : DEFAULT_NODE_SIZE;
-    var align = model.align;
-    var labelAttrs = {
-      text: model.label,
-      fill: '#666',
-      textBaseline: 'middle',
-      fontSize: 20,
-      x: cfg.x + r + DEFAULT_NODE_SIZE,
-      y: cfg.y,
-      textAlign: 'left',
-    };
-    if (align === 'R') {
-      Util.mix(labelAttrs, {
-        x: cfg.x - r - DEFAULT_NODE_SIZE,
-        y: cfg.y,
-        textAlign: 'right',
-      });
-    } else if (align === 'T' || align === 'CH') {
-      Util.mix(labelAttrs, {
-        x: cfg.x,
-        y: cfg.y + r + DEFAULT_NODE_SIZE,
-        textAlign: 'right',
-        rotate: -Math.PI / 2,
-      });
-    } else if (align === 'B') {
-      Util.mix(labelAttrs, {
-        x: cfg.x,
-        y: cfg.y - r - DEFAULT_NODE_SIZE,
-        textAlign: 'left',
-        rotate: -Math.PI / 2,
-      });
-    }
-    var label = group.addShape('text', {
-      attrs: labelAttrs,
-    });
-    return label;
-  }
-});
-// 生成树图实例
-var tree = new G6.Tree({
-  id: 'g6_structure',                  // 容器ID
-  width: 600,
-  height: 400,                         // 画布高
-  fitView: 'autoZoom',                 // 自动缩放
-  layoutFn: G6.Layouts.LayeredTidyTree, // 布局类型
-  layoutCfg: layoutCfg,                // 布局配置
-  behaviourFilter: ['wheelZoom'],
-  showButton: false,
-});
-// 加载数据
-tree.source(data);
-tree.node().shape('treeNode');
-tree.edge()
-  .shape('smooth')
-  .style({
-  stroke: '#A9BCD3'
-});
-// 渲染树图
-tree.render();
-// 添加事件
-tree.on('mouseenter', function(ev){
-  var item = ev.item;
-  var keyShape;
-  if (item && item.get('type') === 'node') {
-    keyShape = item.getKeyShape();
-    if( hasClass(keyShape, 'Button') ){
-      keyShape.attr('fillOpacity', 0.2);
-      keyShape.attr('strokeOpacity', 0.8);
-      tree.refresh();
-    }
-  }
-});
-tree.on('mouseleave', function(ev){
-  var item = ev.item;
-  var keyShape;
-  var attrStash;
-  if (item && item.get('type') === 'node') {
-    keyShape = item.getKeyShape();
-    if( hasClass(keyShape, 'Button') ){
-      attrStash = keyShape.get('attrStash');
-      keyShape.attr(attrStash);
-      tree.refresh();
-    }
-  }
-});
-```
+- 简单、易用、完备的图可视化引擎。
+- 丰富、优雅、易于复用的解决方案
+- 高可订制，满足你无限的创意
 
 ## 安装
 
 ### 浏览器引入
 
-```js
-<script src="{{ url['g6'] }}"></script>
+既可以通过将脚本下载到本地也可以直接引入在线资源；
+
+
+```html
+<!-- 引入在线资源 -->
+<script src="{{ url.g6 }}"></script>
+```
+
+```html
+<!-- 引入本地脚本 -->
+<script src="./g6.js"></script>
 ```
 
 ### 通过 npm 安装
+
+<a href="https://www.npmjs.com/package/@antv/g6" target="_blank"><img src="https://img.shields.io/npm/v/@antv/g6.svg?style=flat-square"></a>
 
 我们提供了 G6 npm 包，通过下面的命令即可完成安装
 
@@ -226,95 +49,124 @@ npm install @antv/g6 --save
 ```js
 import G6 from '@antv/g6';
 
-const net = new G6.Net({
-  id: 'c1',
+const graph = new G6.Graph({
+  container: 'mountNode',
   width: 600,
   height: 300
 });
 ```
 
-## 快速开始
+## 开始使用
 
-G6 中所有的图都由边和节点构成，只要给出`节点`和`边`数据，G6 就能为您绘制出关系图。
+在 G6 引入页面后，我们就已经做好了创建第一个图的准备了。
 
-<div id="c1"></div>
+下面是以一个简单关系图为例开始我们的第一个图创建。
+
+### 浏览器引入方式
+
+#### 1. 创建 `div` 图表容器
+
+在页面的 `body` 部分创建一个 div，并制定必须的属性 `id`：
+
+```html
+<div id="mountNode"></div>
+```
+
+#### 2. 编写图绘制代码
+
+这部分代码用 `<script></script>`，可以放在页面代码的任意位置（最好的做法是放在 `</body>` 之前）。
+
+```js
+const data = {
+  nodes: [{
+    id: 'node1',
+    x: 100,
+    y: 200
+  },{
+    id: 'node2',
+    x: 300,
+    y: 200
+  }],
+  edges: [{
+    id: 'edge1',
+    target: 'node2',
+    source: 'node1'
+  }]
+};
+const graph = new G6.Graph({
+  container: 'mountNode',
+  width: 500,
+  height: 500
+});
+graph.read(data);
+```
+
+完成上述两步之后，保存文件并用浏览器打开，一张简单关系图就绘制成功了：
+
+<div id="mountNode"></div>
 
 ```js-
 const data = {
-  "nodes": [
-    {
-      "x": 140,
-      "y": 210,
-      "id": "node1"
-    },
-    {
-      "x": 270,
-      "y": 210,
-      "id": "node2"
-    }
-  ],
-  "edges": [
-    {
-      "source": "node1",
-      "id": "edge1",
-      "target": "node2"
-    }
-  ]
+  nodes: [{
+    id: 'node1',
+    x: 100,
+    y: 200
+  },{
+    id: 'node2',
+    x: 300,
+    y: 200
+  }],
+  edges: [{
+    id: 'edge1',
+    target: 'node2',
+     source: 'node1'
+  }]
 };
-const net = new G6.Net({
-    id: 'c1',      // 容器ID
-    width: 500,    // 画布宽
-    height: 500   // 画布高
-  });
-net.source(data.nodes, data.edges);
-net.render();
+const graph = new G6.Graph({
+  container: 'mountNode',
+  width: 500,
+  height: 500
+});
+graph.read(data);
 ```
+
+完整的代码如下：
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title>关系图</title>
-    <!-- 第一步：引入G6 -->
-    <script src="{{ url['g6'] }}"></script>
+    <title>柱状图</title>
+    <!-- 引入 G6 文件 -->
+    <script src="{{ url.g6 }}"></script>
   </head>
   <body>
-    <!-- 第二步：创建DOM容器 -->
-    <div id="c1"></div>
+    <!-- 创建图容器 -->
+    <div id="mountNode"></div>
     <script>
-      // 第三步：设置数据
       const data = {
-        "nodes": [
-          {
-            "x": 140,
-            "y": 210,
-            "id": "node1"
-          },
-          {
-            "x": 270,
-            "y": 210,
-            "id": "node2"
-          }
-        ],
-        "edges": [
-          {
-            "source": "node1",
-            "id": "edge1",
-            "target": "node2"
-          }
-        ]
+        nodes: [{
+          id: 'node1',
+          x: 100,
+          y: 200
+       },{
+          id: 'node2',
+          x: 300,
+          y: 200
+       }],
+        edges: [{
+          id: 'edge1',
+          target: 'node2',
+          source: 'node1'
+       }]
       };
-      // 第四步：配置G6画布
-      const net = new G6.Net({
-          id: 'c1',      // 容器ID
-          width: 500,    // 画布宽
-          height: 500    // 画布高
-        });
-      // 第五步：载入数据
-      net.source(data.nodes, data.edges);
-      // 第六步：渲染关系图
-      net.render();
+      const graph = new G6.Graph({
+        container: 'mountNode',
+        width: 500,
+        height: 500
+      });
+      graph.read(data);
     </script>
   </body>
 </html>
@@ -322,19 +174,15 @@ net.render();
 
 ## 体验改进计划说明
 
-为了更好服务用户，G6 会将 URL 等信息发送回 AntV 服务器：
+为了更好服务用户，G6 会将 URL 和版本信息发送回 AntV 服务器：
 
 ```html
 https://kcart.alipay.com/web/bi.do
 ```
+
 除了 URL 与 G6 版本信息外，不会收集任何其他信息，一切为了能对 G6 的运行情况有更多了解，以更好服务于用户。如有担心，可以通过下面的代码关闭：
 
 ```js
 // 关闭 G6 的体验改进计划打点请求
 G6.track(false)
 ```
-
-## 提问及反馈地址
-
-GitHub: https://github.com/antvis/g6/issues
- 

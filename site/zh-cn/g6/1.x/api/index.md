@@ -6,86 +6,102 @@
      - ${url.g6}
 -->
 
-# G6
+## 常量
 
-通过 `G6` 对象可调用的属性：
+### version 
 
-* 图基类：[G6.Graph](./graph.html)
-* 网图类：[G6.Net](./net.html)
-* 树图类：[G6.Tree](./tree.html)
-* 处理类：[G6.Handler](./handler.html)
-* 绘图类：[G6.Canvas](./canvas.html)
-* 矩阵类：[G6.Matrix](./matrix.html)
-* 工具类：[G6.Util](./util.html)
-* 布局包：[G6.Layouts](./layouts.html)
-* 全局配置项：[G6.Global](./global.html)
+```js
+G6.version // 返回当前 G6 的版本号
+```
+
+当前版本号
+
+## 构造类
+
+### Graph
+
+渲染网状关系图，详细文档见 [Graph API](./graph.html) ，获取：
+
+```js
+G6.Graph;
+```
+
+### Tree
+
+渲染树状关系图，详细文档见 [Tree API](./tree.html) ，获取：
+
+```js
+G6.Tree;
+```
 
 ## 静态方法
 
 ### registerNode
 
-[Function] 注册节点，参见文档[自定义图形](../tutorial/custom-shape.html)。
-
 ```js
-// 注册节点
-G6.registerNode(name, {
-  // 绘制
-  draw(cfg, group){
-    return keyShape;
-  },
-  // 绘制后执行
-  afterDraw(cfg, group, keyShape){
-
-  },
-  // 获取锚点
-  getAnchorPoints(cfg){
-    return anchorPoints;
-  }
-});
+G6.registerNode(name, arguments, extend);
 ```
 
-#### 内部注册的节点
+注册新节点。详见教程 [自定义图形](../tutorial/custom-shape.html) 。
 
-| 名称        | 解释           | 结果  |
-| ------------- |:-------------:| -----:|
-| 矩形 `rect`      |  | ![image](https://zos.alipayobjects.com/rmsportal/eBLoJXBCkDeHqcVEkRTT.png) |
-| 圆形 `circle`      | 广义圆形，也可以是椭圆  |   ![image](https://zos.alipayobjects.com/rmsportal/orERcIfvAqIpmlbJpdrp.png) |
-| 菱形 `rhombus` |  |    ![image](https://zos.alipayobjects.com/rmsportal/xfVcMIioqzMCtNqDSnKy.png) |
-| 文本 `text` |  |    ![image](https://zos.alipayobjects.com/rmsportal/iUqRYTSlLKuwDYXVDveG.png) |
-| 图片 `image` | 也可以传`http`开头的图片链接 |    ![image](https://zos.alipayobjects.com/rmsportal/RkCSIGsYUXlMIBsIuiKM.png) |
-| 树节点 `tree-node` | 继承于`rect`， |    ![image](https://zos.alipayobjects.com/rmsportal/NuPQuritLREvKVzPlAsM.png) |
-| HTML 节点 `html`      | html 节点。参考实例：[Demo](../demo/other/htmlnode.html) | ![image](https://gw.alipayobjects.com/zos/rmsportal/SuJoNCCrlhudIOzNvWVA.png) |
+#### 参数
 
-`注意：如果注册已有的图形，将会直接复写该图形对应的方法。`
+* `name`                  {string}   新节点名称
+* `arguments`         {object}  新节点属性方法
+* `extend`              {string}   继承节点名称
 
 ### registerEdge
 
-[Function] 注册边，参见文档[自定义图形](../tutorial/custom-shape.html)。
-
 ```js
-// 注册边
-G6.registerEdge(name, {
-  // 绘制
-  draw(cfg, group){
-    return keyShape;
-  },
-  // 绘制后执行
-  afterDraw(cfg, group, keyShape){
-
-  }
-});
+G6.registerEdge(name, arguments, extend)
 ```
 
-#### 内部注册的边
+注册新边。详见教程 [自定义图形](../tutorial/custom-shape.html) 。
 
-| 名称        | 解释           | 结果  |
-| ------------- |:-------------:| -----:|
-| 直线 `line`      |  | ![image](https://zos.alipayobjects.com/rmsportal/ulCbytdOjNZgjxJyAHKW.png) |
-| 曲线 `smooth`      |  | ![image](https://zos.alipayobjects.com/rmsportal/WVkwgCTBtPKdeDeVxpqH.png) |
-| 二次贝塞尔曲线 `bezierQuadratic`      | 常用于有平行边存在的情况 | ![image](https://zos.alipayobjects.com/rmsportal/YSmiJUpmuXwmlBfvbRsk.png) |
-| 水平-竖直 `HV`      |  | ![image](https://zos.alipayobjects.com/rmsportal/KqzyOUZksDtDyrgjrWNU.png) |
-| 竖直-水平 `VH`      |  | ![image](https://zos.alipayobjects.com/rmsportal/ydtZnqoLOqJUXfYEMJXl.png) |
-| 竖直-水平-竖直 `VHV`      |  | ![image](https://zos.alipayobjects.com/rmsportal/TeSwiNLcUCrCJFXnZkft.png) |
-| 水平-竖直-水平 `HVH`      |  | ![image](https://zos.alipayobjects.com/rmsportal/aKZDselfbEHlFPOgKsYW.png) |
+#### 参数
 
-`注意：如果注册已有的图形，将会直接复写该图形对应的方法。`
+* `name`                  {string}   新导引名称
+* `arguments`         {object}  新导引属性方法
+* `extend`              {string}   继承导引名称
+
+### registerGroup
+
+```js
+G6.registerGroup(name, arguments, extend);
+```
+
+注册新群组。详见教程 [自定义图形](../tutorial/custom-shape.html) 。
+
+#### 参数
+
+* `name`                  {string}   新群组名称
+* `arguments`         {object}  新群组属性方法
+* `extend`              {string}   继承群组名称
+
+### registerGuide
+
+```js
+G6.registerGuide(name, arguments, extend)
+```
+
+注册新的导引信息。详见教程 [自定义图形](../tutorial/custom-shape.html) 。
+
+#### 参数
+
+* `name`                  {string}   新边名称
+* `arguments`         {object}  新边属性方法
+* `extend`              {string}   继承导引名称
+
+### registerBehaviour
+
+```js
+G6.registerBehaviour(name, callback);
+```
+
+注册新的行为。详见教程 [自定义交互](../tutorial/custom-interaction.html) 。
+
+#### 参数
+
+* `name`                 {string}   新行为
+* `callback`         {function}  回调函数
+
