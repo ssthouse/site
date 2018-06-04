@@ -1,0 +1,44 @@
+<!--
+index: 0
+title: 视口-平移
+resource:
+  jsFiles:
+    - ${url.g6}
+-->
+<script>
+        const data = {
+          nodes: [{
+            id: 'node1',
+            x: 100,
+            y: 200
+          }, {
+            id: 'node2',
+            x: 300,
+            y: 200
+          }],
+          edges: [{
+            id: 'edge1',
+            target: 'node2',
+            source: 'node1'
+          }]
+        };
+        const graph = new G6.Graph({
+          container: 'mountNode',
+          fitView: 'cc',
+          height: window.innerHeight,
+        });
+        graph.read(data);
+        let lastPoint;
+        graph.on('drag', ev => {
+          if (lastPoint) {
+            graph.translate(ev.domX - lastPoint.x, ev.domY - lastPoint.y);
+          }
+          lastPoint = {
+            x: ev.domX,
+            y: ev.domY
+          };
+        });
+        graph.on('dragend', ev => {
+          lastPoint = undefined;
+        });
+      </script>

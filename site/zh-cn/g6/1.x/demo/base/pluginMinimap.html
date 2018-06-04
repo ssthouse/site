@@ -1,0 +1,55 @@
+<!--
+index: 0
+title: 插件-缩略图
+resource:
+  jsFiles:
+    - ${url.g6}
+    - ${url['g6-plugins']}
+    - ${url.jquery}
+-->
+<script>
+$('body').html('<div id="mountNode"></div><div id="minimap" style="border: 1px solid #999; position: absolute; top: 0px;"></div>');
+        const Plugin = G6.Plugins["tool.minimap"];
+        const Util = G6.Util;
+        const plugin = new Plugin({
+          container: 'minimap',
+          width: 180,
+          height: 120
+        });
+        const data = {
+          nodes: [{
+            id: 'node0',
+            x: -100,
+            y: 200
+          }, {
+            id: 'node1',
+            x: 100,
+            y: 200
+          }, {
+            id: 'node2',
+            x: 300,
+            y: 200
+          }, {
+            id: 'node3',
+            x: 600,
+            y: 200
+          }],
+          edges: [{
+            target: 'node0',
+            source: 'node1'
+          }, {
+            target: 'node2',
+            source: 'node1'
+          }, {
+            target: 'node2',
+            source: 'node3'
+          }]
+        };
+        const graph = new G6.Graph({
+          container: 'mountNode',
+          fitView: 'cc',
+          height: window.innerHeight,
+          plugins: [plugin]
+        });
+        graph.read(data);
+      </script>
