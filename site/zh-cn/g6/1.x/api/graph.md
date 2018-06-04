@@ -43,9 +43,8 @@ new G6.Graph(cfg);
 候选值为： 'tl', 'lc', 'bl', 'cc', 'tc', 'tr', 'rc', 'br', 'bc', 'autoZoom'
 
 
-
-![image | center | 347x348](https://gw.alipayobjects.com/zos/rmsportal/ZWUxKCcRFzVkEjwrkwwD.png "")
-
+<img src="https://gw.alipayobjects.com/zos/rmsportal/ZWUxKCcRFzVkEjwrkwwD.png" style="width: 347px;"/>
+</br></br>
 
 ### fitViewPadding
 
@@ -140,7 +139,6 @@ graph.read(data);
   guides: []
 }
 ```
-
 
 ##### 节点的数据模型
 ```js
@@ -269,7 +267,7 @@ graph.read(data);
 
 这类事件可以与前缀 ''（ `空即任意` ）, 'node', 'edge', 'item'，自由组合使用：
  
-```
+```js
 graph.on('click', (ev)=>{});             // 鼠标左键点击事件
 graph.on('dblclick', (ev)=>{});          // 鼠标左键双击事件
 graph.on('mouseenter', (ev)=>{});        // 鼠标移入事件
@@ -288,7 +286,7 @@ graph.on('contextmenu', (ev)=>{});       // 菜单事件
 
 ##### 其它事件
 
-```
+```js
 graph.on('keydown', function(ev){});             // 键盘按键按下事件
 graph.on('keyup', function(ev){});               // 键盘按键抬起事件
 graph.on('mousewheel', function(ev){});          // 鼠标滚轮事件

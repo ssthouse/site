@@ -25,7 +25,7 @@ new G6.Tree(cfg);
 
 `type` {object} 
 
-```
+```js
 {
   auto: {boolean}, // 是否在画布数据变更后自动布局 默认 是true
   processer: {object|function}, // 布局处理器
@@ -34,7 +34,7 @@ new G6.Tree(cfg);
 
 `type` {function}
 
-```
+```js
 (roots)=>{
   // roots 根节点数据集
   // 在此处进行布局
@@ -43,7 +43,7 @@ new G6.Tree(cfg);
 
 `type` {object}
 
-```
+```js
 {
   excute() {
     this.roots; // 根节点数据集

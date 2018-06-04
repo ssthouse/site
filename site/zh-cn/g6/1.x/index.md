@@ -149,7 +149,7 @@ $.getJSON('/assets/data/g6-index.json', data => {
         return graph.getWidth() / 16;
     },
     marginy() {
-        return graph.getHeight() / 8;
+        return graph.getHeight() / 16;
     },
     useEdgeControlPoint: false,
     });

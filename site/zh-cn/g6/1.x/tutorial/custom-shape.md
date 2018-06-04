@@ -123,8 +123,6 @@ G6.registerNode('customNode', {
 
 ## 绘制后
 
-
-
 ![image | center](https://gw.alipayobjects.com/zos/rmsportal/DUaFgozReaflftPCEBcq.png "")
 
 

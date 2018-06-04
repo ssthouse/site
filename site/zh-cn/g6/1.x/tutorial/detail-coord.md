@@ -7,7 +7,7 @@ resource:
 
 ## 概述
 
-<span data-type="color" style="color:rgb(38, 38, 38)"><span data-type="background" style="background-color:rgb(255, 255, 255)">本文档主要向大家介绍 G6 的坐标转换，如有描述不清楚、有误的地方欢迎大家在 GitHub 上提 Issue 指正，或是直接 PR 修缮，根据您的贡献度，我们会视情况将您加入 AntV 共建者名录 :-)</span></span>
+本文档主要向大家介绍 G6 的坐标转换，如有描述不清楚、有误的地方欢迎大家在 GitHub 上提 Issue 指正，或是直接 PR 修缮，根据您的贡献度，我们会视情况将您加入 AntV 共建者名录 :-)
 
 ## 概念
 
