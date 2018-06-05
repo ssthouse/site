@@ -172,6 +172,12 @@ graph.read(data);
 </html>
 ```
 
+## G6-Editor 1.0
+
+![image](https://gw.alipayobjects.com/zos/rmsportal/nzmycBewjfxKDbepTDlT.gif)
+
+`G6-Editor` 是正在研发的图编辑器，但成熟度较低，现阶段开放出来仅共学习交流使用，[详见](https://yuque.com/antv/g6-editor)。
+
 ## 体验改进计划说明
 
 为了更好服务用户，G6 会将 URL 和版本信息发送回 AntV 服务器：
