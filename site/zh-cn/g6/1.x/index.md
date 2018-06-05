@@ -128,17 +128,17 @@ $.getJSON('/assets/data/g6-index.json', data => {
     animate: true,
     });
     const force = template.layout;
-    const circle = new G6.Layouts['circle']({
+    const circle = new G6.Layouts.Circle({
     sort(a, b) {
         return a.weight - b.weight;
     }
     });
-    const grid = new G6.Layouts['grid']({
+    const grid = new G6.Layouts.Grid({
     sort(a, b) {
         return b.weight - a.weight;
     }
     });
-    const dagre = new G6.Layouts['dagre']({
+    const dagre = new G6.Layouts.Dagre({
     nodesep() {
         return graph.getWidth() / 50;
     },
@@ -153,7 +153,7 @@ $.getJSON('/assets/data/g6-index.json', data => {
     },
     useEdgeControlPoint: false,
     });
-    const spiral = new G6.Layouts['archimeddeanSpiral']({
+    const spiral = new G6.Layouts.ArchimeddeanSpiral({
     sort(a, b) {
         return b.weight - a.weight;
     }

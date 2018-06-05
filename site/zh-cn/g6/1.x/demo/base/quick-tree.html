@@ -6,26 +6,26 @@ resource:
     - ${url.g6}
 -->
 <script>
-        const data = {
-          roots: [{
-            label: 'root',
-            children: [{
-              label: 'child1',
-              children: [
-                {
-                  label: 'child\n1.1'
-                }
-              ]
-            }, {
-              label: 'child2'
-            }]
-          }]
-        };
-        const tree = new G6.Tree({
-          container: 'mountNode',
-          width: 500,
-          height: 500,
-          fitView: 'cc'
-        });
-        tree.read(data);
-      </script>
+  const data = {
+    roots: [{
+      label: 'root',
+      children: [{
+        label: 'child1',
+        children: [
+          {
+            label: 'child\n1.1'
+          }
+        ]
+      }, {
+        label: 'child2'
+      }]
+    }]
+  };
+  const tree = new G6.Tree({
+    container: 'mountNode',
+    width: 500,
+    height: 500,
+    fitView: 'cc'
+  });
+  tree.read(data);
+</script>

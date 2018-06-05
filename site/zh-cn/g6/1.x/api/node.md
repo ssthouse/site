@@ -20,4 +20,4 @@ node.getEdges();
 ```
 
 #### 返回
-`edges` {array} 与该节点相连的边集合
+`edges` {array} 获取该节点相连的边集合

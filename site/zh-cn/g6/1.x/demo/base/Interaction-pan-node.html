@@ -6,45 +6,45 @@ resource:
     - ${url.g6}
 -->
 <script>
-        const data = {
-          nodes: [{
-            id: 'node1',
-            x: 100,
-            y: 200
-          }, {
-            id: 'node2',
-            x: 300,
-            y: 200
-          }],
-          edges: [{
-            id: 'edge1',
-            target: 'node2',
-            source: 'node1'
-          }]
-        };
-        const graph = new G6.Graph({
-          container: 'mountNode',
-          fitView: 'cc',
-          height: window.innerHeight,
-        });
-        graph.read(data);
-        let node;
-        let dx;
-        let dy;
-        graph.on('node:dragstart', ev => {
-          const { item } = ev;
-          const model = item.getModel();
-          node = item;
-          dx = model.x - ev.x;
-          dy = model.y - ev.y;
-        });
-        graph.on('node:drag', ev => {
-          node && graph.update(node, {
-            x: ev.x + dx,
-            y: ev.y + dy
-          });
-        });
-        graph.on('node:dragend', ev => {
-          node = undefined;
-        });
-      </script>
+  const data = {
+    nodes: [{
+      id: 'node1',
+      x: 100,
+      y: 200
+    }, {
+      id: 'node2',
+      x: 300,
+      y: 200
+    }],
+    edges: [{
+      id: 'edge1',
+      target: 'node2',
+      source: 'node1'
+    }]
+  };
+  const graph = new G6.Graph({
+    container: 'mountNode',
+    fitView: 'cc',
+    height: window.innerHeight,
+  });
+  graph.read(data);
+  let node;
+  let dx;
+  let dy;
+  graph.on('node:dragstart', ev => {
+    const { item } = ev;
+    const model = item.getModel();
+    node = item;
+    dx = model.x - ev.x;
+    dy = model.y - ev.y;
+  });
+  graph.on('node:drag', ev => {
+    node && graph.update(node, {
+      x: ev.x + dx,
+      y: ev.y + dy
+    });
+  });
+  graph.on('node:dragend', ev => {
+    node = undefined;
+  });
+</script>
