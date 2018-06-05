@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>&#x63D2;&#x4EF6;-&#x7F29;&#x7565;&#x56FE;</title>
+    <style>::-webkit-scrollbar{display:none;}html,body{overflow:hidden;}</style>
+</head>
+<body>
+<div id="mountNode"></div>
+<script>
+/*Fixing iframe window.innerHeight 0 issue in Safari*/
+document.body.clientHeight;
+</script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6Plugins.js"></script>
+<script src="https://gw.alipayobjects.com/os/antv/assets/lib/jquery-3.2.1.min.js"></script>
+<script>
+$('body').html('<div id="mountNode"></div><div id="minimap" style="border: 1px solid #999; position: absolute; top: 0px;"></div>');
+var Plugin = G6.Plugins["tool.minimap"];
+var Util = G6.Util;
+var plugin = new Plugin({
+  container: 'minimap',
+  width: 180,
+  height: 120
+});
+var data = {
+  nodes: [{
+    id: 'node0',
+    x: -100,
+    y: 200
+  }, {
+    id: 'node1',
+    x: 100,
+    y: 200
+  }, {
+    id: 'node2',
+    x: 300,
+    y: 200
+  }, {
+    id: 'node3',
+    x: 600,
+    y: 200
+  }],
+  edges: [{
+    target: 'node0',
+    source: 'node1'
+  }, {
+    target: 'node2',
+    source: 'node1'
+  }, {
+    target: 'node2',
+    source: 'node3'
+  }]
+};
+var graph = new G6.Graph({
+  container: 'mountNode',
+  fitView: 'cc',
+  height: window.innerHeight,
+  plugins: [plugin]
+});
+graph.read(data);
+</script>
+
+
+</body></html>

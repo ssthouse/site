@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>&#x81EA;&#x5B9A;&#x4E49;-&#x6D41;&#x52A8;&#x6548;&#x679C;&#x7EBF;&#x6761;</title>
+    <style>::-webkit-scrollbar{display:none;}html,body{overflow:hidden;}</style>
+</head>
+<body>
+<div id="mountNode"></div>
+<script>
+/*Fixing iframe window.innerHeight 0 issue in Safari*/
+document.body.clientHeight;
+</script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script>
+G6.registerEdge('flowingEdge', {
+  afterDraw: function afterDraw(item) {
+    var keyShape = item.getKeyShape();
+    keyShape.attr('lineDash', [10, 10]);
+    keyShape.attr('lineDashOffset', 0);
+    keyShape.animate({
+      lineDashOffset: -20,
+      repeat: true
+    }, 500);
+  }
+});
+var data = {
+  nodes: [{
+    id: 'node1',
+    x: 100,
+    y: 200
+  }, {
+    id: 'node2',
+    x: 300,
+    y: 200
+  }],
+  edges: [{
+    target: 'node2',
+    source: 'node1',
+    shape: 'flowingEdge'
+  }]
+};
+var graph = new G6.Graph({
+  container: 'mountNode',
+  fitView: 'cc',
+  height: window.innerHeight
+});
+graph.read(data);
+</script>
+
+
+</body></html>

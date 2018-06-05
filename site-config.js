@@ -3,7 +3,8 @@
 var path = require('path');
 var resolve = path.resolve;
 var pkg = require('./package.json');
-
+const g6Version = '2.0.0-beta.85';
+const g6EditorVersion = '1.0.0-beta.83';
 module.exports = {
     url: {
         g2: 'https://gw.alipayobjects.com/os/antv/assets/g2/3.1.0/g2.min.js',
@@ -12,10 +13,13 @@ module.exports = {
         d3: 'https://gw.alipayobjects.com/os/antv/assets/lib/d3-4.13.0.min.js',
         dataSet: 'https://gw.alipayobjects.com/os/antv/assets/data-set/0.8.7/data-set.min.js',
         f2: 'https://gw.alipayobjects.com/os/antv/assets/f2/3.1.8/f2.js',
-        g6: 'https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js',
-        'g6-plugins': 'https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6Plugins.js',
-        'g6-editor-base': 'https://unpkg.com/@antv/g6-editor@1.0.0-beta.81/build/base.js',
-        'g6-editor-base-css': 'https://unpkg.com/@antv/g6-editor@1.0.0-beta.81/build/base.css',
+        g6: 'https://unpkg.com/@antv/g6@'+g6Version+'/dist/g6.js',
+        'g6-plugins': 'https://unpkg.com/@antv/g6@'+g6Version+'/dist/g6Plugins.js',
+        'g6-editor-base': 'https://unpkg.com/@antv/g6-editor@'+g6EditorVersion+'/build/base.js',
+        'g6-editor-base-css': 'https://unpkg.com/@antv/g6-editor@'+g6EditorVersion+'/build/base.css',
+        'g6-editor-mind': 'https://unpkg.com/@antv/g6-editor@'+g6EditorVersion+'/build/mind.js',
+        'g6-editor-modelFlow': 'https://unpkg.com/@antv/g6-editor@'+g6EditorVersion+'/build/modelFlow.js',
+        'g6-editor-modelFlow-css': 'https://unpkg.com/@antv/g6-editor@'+g6EditorVersion+'/build/modelFlow.css',
         jquery:   'https://gw.alipayobjects.com/os/antv/assets/lib/jquery-3.2.1.min.js',
         katex:    'https://gw.alipayobjects.com/os/antv/assets/lib/katex-0.8.3/katex.min.js',
         katexCss: 'https://gw.alipayobjects.com/os/antv/assets/lib/katex-0.8.3/katex.min.css',

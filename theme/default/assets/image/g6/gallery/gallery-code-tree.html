@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>&#x51FD;&#x6570;&#x751F;&#x6210;&#x6811;</title>
+    <style>::-webkit-scrollbar{display:none;}html,body{overflow:hidden;}</style>
+</head>
+<body>
+<div id="mountNode"></div>
+<script>
+/*Fixing iframe window.innerHeight 0 issue in Safari*/
+document.body.clientHeight;
+</script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script>
+var getTreeData = function getTreeData(x1, y1, angle, depth) {
+  var nodes = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : [];
+  var edges = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : [];
+
+  var deg_to_rad = Math.PI / 180;
+  if (depth !== 0) {
+    var x2 = x1 + Math.cos(angle * deg_to_rad) * depth * 10.0;
+    var y2 = y1 + Math.sin(angle * deg_to_rad) * depth * 10.0;
+    var id1 = G6.Util.guid();
+    var id2 = G6.Util.guid();
+    nodes.push({
+      id: id1,
+      x: x1,
+      y: y1
+    });
+    nodes.push({
+      id: id2,
+      x: x2,
+      y: y2
+    });
+    edges.push({
+      source: id1,
+      target: id2
+    });
+    getTreeData(x2, y2, angle - 30, depth - 1, nodes, edges);
+    getTreeData(x2, y2, angle + 30, depth - 1, nodes, edges);
+  }
+  return {
+    nodes: nodes,
+    edges: edges
+  };
+};
+var data = getTreeData(0, 0, -90, 9);
+var graph = new G6.Graph({
+  container: 'mountNode',
+  fitView: 'autoZoom',
+  height: window.innerHeight
+});
+graph.node({
+  size: 2
+});
+graph.read(data);
+</script>
+
+
+
+</body></html>

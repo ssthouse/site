@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>&#x89C6;&#x53E3;-&#x81EA;&#x9002;&#x5E94;</title>
+    <style>::-webkit-scrollbar{display:none;}html,body{overflow:hidden;}</style>
+</head>
+<body>
+<div id="mountNode"></div>
+<script>
+/*Fixing iframe window.innerHeight 0 issue in Safari*/
+document.body.clientHeight;
+</script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script src="https://gw.alipayobjects.com/os/antv/assets/lib/jquery-3.2.1.min.js"></script>
+<script>
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+
+$('body').html("<button class='fitView'>tl</button><button class='fitView'>tc</button><button class='fitView'>tr</button><button class='fitView'>cc</button><button class='fitView'>lc</button><button class='fitView'>rc</button><button class='fitView'>bl</button><button class='fitView'>bc</button><button class='fitView'>br</button><button class='fitView'>autoZoom</button><div id='mountNode'></div>>");
+var data = {
+  nodes: [{
+    id: 'node1',
+    x: 100,
+    y: 200
+  }, {
+    id: 'node2',
+    x: 300,
+    y: 200
+  }],
+  edges: [{
+    id: 'edge1',
+    target: 'node2',
+    source: 'node1'
+  }]
+};
+var graph = new G6.Graph(_defineProperty({
+  container: 'mountNode',
+  fitView: 'cc',
+  height: window.innerHeight
+}, 'fitView', 'cc'));
+graph.read(data);
+var buttons = document.getElementsByClassName('fitView');
+
+var _loop = function _loop(index) {
+  var button = buttons[index];
+  button.onclick = function() {
+    graph.setFitView(button.innerHTML);
+  };
+};
+
+for (var index = 0; index < buttons.length; index++) {
+  _loop(index);
+}
+</script>
+
+
+</body></html>

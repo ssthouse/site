@@ -1,0 +1,23 @@
+<!--
+index: 0
+title: 插件-布局-阿基米德螺线
+resource:
+  jsFiles:
+    - ${url.g6}
+    - ${url['g6-plugins']}
+-->
+<script>
+const Plugin = G6.Plugins["layout.archimeddeanSpiral"];
+const Util = G6.Util;
+const data = Util.createChainData(160);
+const graph = new G6.Graph({
+    container: 'mountNode',
+    fitView: 'cc',
+    height: window.innerHeight,
+    plugins: [new Plugin()]
+});
+graph.node({
+    size: 16
+});
+graph.read(data);
+</script>

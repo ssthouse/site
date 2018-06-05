@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>&#x63D2;&#x4EF6;-&#x5E03;&#x5C40;-&#x963F;&#x57FA;&#x7C73;&#x5FB7;&#x87BA;&#x7EBF;</title>
+    <style>::-webkit-scrollbar{display:none;}html,body{overflow:hidden;}</style>
+</head>
+<body>
+<div id="mountNode"></div>
+<script>
+/*Fixing iframe window.innerHeight 0 issue in Safari*/
+document.body.clientHeight;
+</script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6Plugins.js444"></script>
+<script>
+var Plugin = G6.Plugins["layout.archimeddeanSpiral"];
+var Util = G6.Util;
+var data = Util.createChainData(160);
+var graph = new G6.Graph({
+  container: 'mountNode',
+  fitView: 'cc',
+  height: window.innerHeight,
+  plugins: [new Plugin()]
+});
+graph.node({
+  size: 16
+});
+graph.read(data);
+</script>
+
+
+</body></html>

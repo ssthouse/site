@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>&#x56FE;-&#x8C03;&#x6574;&#x5C42;&#x7EA7;</title>
+    <style>::-webkit-scrollbar{display:none;}html,body{overflow:hidden;}</style>
+</head>
+<body>
+<div id="mountNode"></div>
+<script>
+/*Fixing iframe window.innerHeight 0 issue in Safari*/
+document.body.clientHeight;
+</script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script>
+var nodes = [];
+var width = window.innerWidth;
+var height = window.innerHeight;
+var num = 500;
+for (var index = 0; index < num; index++) {
+  nodes.push({
+    x: width * Math.random(),
+    y: height * Math.random()
+  });
+}
+var data = {
+  nodes: nodes
+};
+var graph = new G6.Graph({
+  container: 'mountNode',
+  width: width,
+  height: height
+});
+graph.node({
+  style: {
+    fillOpacity: 0.8
+  }
+});
+graph.read(data);
+graph.on('node:mouseenter', function(ev) {
+  var item = ev.item;
+
+  graph.toFront(item);
+  graph.update(item, {
+    style: {
+      fill: 'red'
+    }
+  });
+});
+graph.on('node:mouseleave', function(ev) {
+  var item = ev.item;
+
+  graph.toBack(item);
+  graph.update(item, {
+    style: {
+      fill: '#1890FF'
+    }
+  });
+});
+</script>
+
+
+</body></html>

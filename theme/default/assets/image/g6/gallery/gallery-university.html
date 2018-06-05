@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>&#x6D59;&#x6C5F;&#x7701;&#x5404;&#x57CE;&#x5E02;&#x5927;&#x5B66;&#x5206;&#x5E03;</title>
+    <style>::-webkit-scrollbar{display:none;}html,body{overflow:hidden;}</style>
+</head>
+<body>
+<div id="mountNode"></div>
+<script>
+/*Fixing iframe window.innerHeight 0 issue in Safari*/
+document.body.clientHeight;
+</script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6Plugins.js"></script>
+<script src="https://gw.alipayobjects.com/os/antv/assets/lib/jquery-3.2.1.min.js"></script>
+<script src="https://gw.alipayobjects.com/os/antv/assets/lib/d3-4.13.0.min.js"></script>
+<script>
+$("#mountNode").css('backgroundColor', '#0F141F');
+$.getJSON('/assets/data/university.json', function(data) {
+  var Mapper = G6.Plugins['tool.d3.mapper'];
+  var Util = G6.Util;
+  var _d = d3,
+    forceSimulation = _d.forceSimulation,
+    forceLink = _d.forceLink,
+    forceManyBody = _d.forceManyBody,
+    forceX = _d.forceX,
+    forceY = _d.forceY;
+
+  var nodeColorMapper = new Mapper('node', '办学层次', 'color', ['#4BA4C4', '#F0D79F', '#FF8B33']);
+  var simulation = void 0;
+
+  // 注册城市文本导引信息
+  G6.registerGuide('city-label', {
+    draw: function draw(item) {
+      var tree = item.getGraph();
+      var roots = tree.getRoots();
+      var group = item.getGraphicGroup();
+      roots.forEach(function(root) {
+        var bbox = Util.getTotalBBox(root.getAllChildren().map(function(child) {
+          return child.getBBox();
+        }));
+        var model = root.getModel();
+        group.addShape('text', {
+          attrs: {
+            x: bbox.minX,
+            y: bbox.minY - 8,
+            text: model.name,
+            fill: '#ccc'
+          }
+        });
+      });
+    }
+  });
+
+  var tree = new G6.Tree({
+    container: 'mountNode',
+    height: window.innerHeight,
+    plugins: [nodeColorMapper],
+    layout: function layout() {
+      var nodes = tree.getNodes().map(function(node) {
+        return node.getModel();
+      });
+      var edges = tree.getEdges().map(function(edge) {
+        return Util.mix({}, edge.getModel());
+      });
+      simulation && simulation.stop();
+      simulation = forceSimulation(nodes).force('charge', forceManyBody()).force('link', forceLink(edges).id(function(d) {
+        return d.id;
+      }).distance(20).strength(1)).force('y', forceY()).on('tick', function() {
+        tree.updateNodePosition();
+      });
+    }
+  });
+  tree.node({
+    size: 10,
+    style: {
+      stroke: null
+    }
+  });
+  tree.edge({
+    style: function style() {
+      return {
+        strokeOpacity: 0.6
+      };
+    }
+  });
+  tree.read(data);
+  tree.add('guide', {
+    shape: 'city-label'
+  });
+  tree.translate(tree.getWidth() / 2, tree.getHeight() / 2);
+
+  // 拖拽画布交互
+  var lastPoint = void 0;
+  tree.on('canvas:mouseenter', function() {
+    tree.css({
+      cursor: '-webkit-grabbing'
+    });
+  });
+  tree.on('dragstart', function() {
+    tree.css({
+      cursor: '-webkit-grabbing'
+    });
+  });
+  tree.on('drag', function(ev) {
+    if (lastPoint) {
+      tree.translate(ev.domX - lastPoint.x, ev.domY - lastPoint.y);
+    }
+    lastPoint = {
+      x: ev.domX,
+      y: ev.domY
+    };
+  });
+  tree.on('dragend', function() {
+    lastPoint = undefined;
+    tree.css({
+      cursor: '-webkit-grab'
+    });
+  });
+  tree.on('canvas:mouseleave', function() {
+    lastPoint = undefined;
+  });
+});
+</script>
+
+
+</body></html>

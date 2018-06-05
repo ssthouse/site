@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>&#x56FE;-&#x52A8;&#x753B;</title>
+    <style>::-webkit-scrollbar{display:none;}html,body{overflow:hidden;}</style>
+</head>
+<body>
+<div id="mountNode"></div>
+<script>
+/*Fixing iframe window.innerHeight 0 issue in Safari*/
+document.body.clientHeight;
+</script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script>
+var data = {
+  nodes: [{
+    id: 'node1',
+    x: 100,
+    y: 200
+  }]
+};
+var graph = new G6.Graph({
+  container: 'mountNode',
+  fitView: 'cc',
+  height: window.innerHeight,
+  animate: true
+});
+graph.read(data);
+setTimeout(function() {
+  graph.update('node1', {
+    x: 50,
+    y: 50
+  });
+}, 1000);
+setTimeout(function() {
+  graph.update('node1', {
+    x: 200,
+    y: 50
+  });
+}, 1200);
+setTimeout(function() {
+  graph.remove('node1');
+}, 2000);
+</script>
+
+
+</body></html>

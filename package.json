@@ -96,6 +96,7 @@
     "lint": "eslint --ext .html,.js ./",
     "lint-fix": "eslint --ext .html,.js --fix ./",
     "screenshot": "npm run build && node bin/screenshot.js",
+    "simpleScreenshot": "node bin/screenshot.js",
     "server": "node bin/server.js -d -o",
     "start": "npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1",

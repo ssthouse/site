@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>&#x81EA;&#x5B9A;&#x4E49;-&#x7ED8;&#x5236;</title>
+    <style>::-webkit-scrollbar{display:none;}html,body{overflow:hidden;}</style>
+</head>
+<body>
+<div id="mountNode"></div>
+<script>
+/*Fixing iframe window.innerHeight 0 issue in Safari*/
+document.body.clientHeight;
+</script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script>
+var data = {
+  "nodes": [{
+    "shape": "customNode",
+    "id": "node1"
+  }]
+};
+
+G6.registerNode('customNode', {
+  draw: function draw(item) {
+    var group = item.getGraphicGroup();
+    group.addShape('text', {
+      attrs: {
+        x: 100,
+        y: 100,
+        fill: '#333',
+        text: '我是一个自定义节点，\n有下面那个方形和我自己组成'
+      }
+    });
+    return group.addShape('rect', {
+      attrs: {
+        x: 100,
+        y: 100,
+        width: 100,
+        height: 100,
+        stroke: 'red'
+      }
+    });
+  }
+});
+
+var graph = new G6.Graph({
+  container: 'mountNode', // 容器ID
+  fitView: 'cc',
+  height: window.innerHeight
+});
+graph.read(data);
+</script>
+
+
+</body></html>

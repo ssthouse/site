@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>&#x89C6;&#x53E3;-&#x805A;&#x7126;</title>
+    <style>::-webkit-scrollbar{display:none;}html,body{overflow:hidden;}</style>
+</head>
+<body>
+<div id="mountNode"></div>
+<script>
+/*Fixing iframe window.innerHeight 0 issue in Safari*/
+document.body.clientHeight;
+</script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script src="https://unpkg.com/@antv/g6@2.0.0-beta.85/dist/g6.js"></script>
+<script src="https://gw.alipayobjects.com/os/antv/assets/lib/jquery-3.2.1.min.js"></script>
+<script>
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+
+$('body').html("<button id='focus_node1'>聚焦节点1</button><button id='focus_node2'>聚焦节点2</button><div id='mountNode'></div>");
+var data = {
+  nodes: [{
+    id: 'node1',
+    x: 100,
+    y: 200,
+    label: '节点1'
+  }, {
+    id: 'node2',
+    x: 300,
+    y: 200,
+    label: '节点2'
+  }],
+  edges: [{
+    id: 'edge1',
+    target: 'node2',
+    source: 'node1'
+  }]
+};
+var graph = new G6.Graph(_defineProperty({
+  container: 'mountNode',
+  fitView: 'cc',
+  height: window.innerHeight
+}, 'fitView', 'cc'));
+graph.read(data);
+
+document.getElementById('focus_node1').onclick = function() {
+  graph.focus('node1');
+};
+document.getElementById('focus_node2').onclick = function() {
+  graph.focus('node2');
+};
+</script>
+
+
+</body></html>
