@@ -65,3 +65,46 @@ chart.source(data);
 
 详见 [DataSet 教程](./data-set.html)。
 
+## 更新数据
+
+G2 更新数据的方式主要有三种：
+* 仅仅是更新图表的数据
+* 清理所有，重新绘制
+* 使用 DataView 时的更新
+
+### 更新数据
+
+如果需要马上更新图表，使用 chart.changeData(data) 即可
+
+```js
+chart.changeData(newData);
+```
+* view 也支持 view.changeData(data);
+
+如果仅仅是更新数据，而不需要马上更新可以调用 chart.source(data) 需要更新图表时调用 chart.repaint()
+
+```js
+chart.source(newData);
+
+chart.guide().clear();// 清理guide
+chart.repaint();
+```
+
+### 清理图形语法
+
+更新数据时还可以清除图表上的所有元素，重新定义图形语法，重新绘制
+
+```js
+chart.line().position('x*y');
+
+chart.render();
+
+chart.clear(); // 清理所有
+chart.interval().position('x*y').color('z');
+chart.render();
+```
+
+### 使用 DataView  更新
+
+由于 DataSet 支持状态量 state，一旦更改状态量，图表即一起刷新，详情查看 [DataSet 教程](./data-set.html)。
+
