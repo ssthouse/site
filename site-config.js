@@ -9,11 +9,11 @@ const g6Version = '/2.0.0';
 const g6EditorVersion = '/1.0.0';
 module.exports = {
     url: {
-        g2: 'https://gw.alipayobjects.com/os/antv/assets/g2/3.1.0/g2.min.js',
+        g2: 'https://gw.alipayobjects.com/os/antv/assets/g2/3.1.2/g2.min.js',
         'g2-brush': 'https://gw.alipayobjects.com/os/antv/assets/g2-brush/0.0.2/g2-brush.min.js',
         'g2-plugin-slider': 'https://gw.alipayobjects.com/os/antv/assets/g2-plugin-slider/2.0.2/g2-plugin-slider.js',
         d3: 'https://gw.alipayobjects.com/os/antv/assets/lib/d3-4.13.0.min.js',
-        dataSet: 'https://gw.alipayobjects.com/os/antv/assets/data-set/0.8.7/data-set.min.js',
+        dataSet: 'https://gw.alipayobjects.com/os/antv/assets/data-set/0.8.9/data-set.min.js',
         f2: 'https://gw.alipayobjects.com/os/antv/assets/f2/3.1.8/f2.js',
         g6: g6Url + g6Version + '/g6.js',
         'g6-plugins': g6Url + g6Version+'/g6Plugins.js',
