@@ -1,0 +1,122 @@
+<!--
+index: 2
+title: 自定义图例
+-->
+
+<script>
+var data = [{
+  time: '10:10',
+  call: 4,
+  waiting: 2,
+  people: 2
+}, {
+  time: '10:15',
+  call: 2,
+  waiting: 6,
+  people: 3
+}, {
+  time: '10:20',
+  call: 13,
+  waiting: 2,
+  people: 5
+}, {
+  time: '10:25',
+  call: 9,
+  waiting: 9,
+  people: 1
+}, {
+  time: '10:30',
+  call: 5,
+  waiting: 2,
+  people: 3
+}, {
+  time: '10:35',
+  call: 8,
+  waiting: 2,
+  people: 1
+}, {
+  time: '10:40',
+  call: 13,
+  waiting: 1,
+  people: 2
+}];
+var chart = new F2.Chart({
+  id: 'myChart',
+  width: 500,
+  height: 350,
+  pixelRatio: window.devicePixelRatio
+});
+chart.source(data, {
+  call: {
+    min: 0,
+    alias: '采购金额'
+  },
+  people: {
+    min: 0,
+    alias: '采购商品品类数'
+  },
+  waiting: {
+    min: 0,
+    alias: '采购次数'
+  }
+});
+chart.legend({
+      custom: true,
+      position: 'top',
+      items: [
+        {
+          name: '采购金额',
+          marker: 'square',
+          fill: '#FF9872'
+        }, {
+          name: '采购商品品类数',
+          marker(x, y, r, ctx) {
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = ctx.fillStyle;
+            ctx.moveTo(x - r - 3, y);
+            ctx.lineTo(x + r + 3, y);
+            ctx.stroke();
+            ctx.arc(x, y, r - 1, 0, Math.PI * 2, false);
+            ctx.fill();
+          },
+          fill: '#616CAD'
+        }, {
+          name: '采购次数',
+          marker(x, y, r, ctx) {
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = ctx.fillStyle;
+            ctx.moveTo(x - r - 3, y);
+            ctx.lineTo(x + r + 3, y);
+            ctx.stroke();
+            ctx.arc(x, y, r - 1, 0, Math.PI * 2, false);
+            ctx.fill();
+          },
+          fill: '#F54300'
+        }
+      ],
+      onClick: (ev) => {
+          console.log(ev)
+        const item = ev.clickedItem;
+        const name = item.get('name');
+        const checked = item.get('checked');
+        const geoms = chart.get('geoms');
+        for (let i = 0; i < geoms.length; i++) {
+          const geom = geoms[i];
+          const container = geom.get('container')
+          console.log(geom.getYScale().alias, name)
+          if (geom.getYScale().alias === name) {
+            console.log(2)
+            if (checked) {
+              container.show();
+            } else {
+              container.hide();
+            }
+          }
+        }
+      }
+    });
+chart.interval().position('time*waiting').color('#FF9872');
+chart.line().position('time*call').color('#616CAD').size(3).shape('smooth');
+chart.line().position('time*people').color('#F54300').size(3).shape('smooth');
+chart.render();
+</script>

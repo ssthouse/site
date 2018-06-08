@@ -126,7 +126,7 @@ $('.slick').each(function () {
 <!-- chart1 -->
 
 ```js-
-  $.getJSON('/assets/data/f2-series-line.json', function(data) {
+  $.getJSON('/assets/data/f2/series-line.json', function(data) {
     var chart = new F2.Chart({
       id: 'c1',
       pixelRatio: window.devicePixelRatio
