@@ -23,13 +23,16 @@ G6 的插件其实非常自由，在代码层面上没有做任何的约束，�
 
 
 ```html
-<!-- 引入在线资源 -->
+<!-- 插件依赖 G6  -->
 <script src="{{ url.g6 }}"></script>
+<!-- 引入在线资源 -->
+<script src="{{ url.g6Plugins }}"></script>
 ```
 
 ```html
 <!-- 引入本地脚本 -->
 <script src="./g6.js"></script>
+<script src="./g6Plugins.js"></script>
 ```
 
 在 npm 引入环境下，可以找到 dist 目录。
