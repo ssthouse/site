@@ -494,3 +494,6 @@ chart.guide().arc({
 chart.guide().clear();
 ```
 
+## DEMO
+
+详见 [Guide 使用](../demo/index.html#_Guide-使用)。

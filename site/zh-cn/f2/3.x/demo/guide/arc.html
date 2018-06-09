@@ -1,6 +1,7 @@
 <!--
 index: 0
 title: Arc, 辅助弧线
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/rRAJQqGHrUhXPiLNoTLE.gif
 -->
 
 <script>
@@ -10,7 +11,6 @@ var G = F2.G;
 var Util = F2.Util;
 var Global = F2.Global;
 var { Vector2 } = G;
-var Animate = F2.Animate;
 Shape.registerShape('interval', 'tick', {
   draw(cfg, container) {
     const points = this.parsePoints(cfg.points);
@@ -41,8 +41,6 @@ Shape.registerShape('interval', 'tick', {
       if (endAngle >= 1.5 * Math.PI) {
         endAngle = endAngle - 2 * Math.PI;
       }
-
-      const coord = this._coord;
 
       const lineWidth = r - r0;
       const newRadius = r - (lineWidth / 2);
@@ -99,7 +97,6 @@ chart.guide().html({
   position: ['50%', '50%'],
   html: '<p id="number" style="font-size: 32px;margin: 0;color: #1890ff;">0%</p>'
 }); // draw a text
-let i = 0;
 chart.interval()
   .position('x*y')
   .size(15)
@@ -108,7 +105,7 @@ chart.interval()
     appear: {
       duration: 1200,
       easing: 'cubicIn',
-      animation: function(shape, animateCfg, coord) {
+      animation: function(shape, animateCfg) {
         const startAngle = shape.attr('startAngle');
         const endAngle = shape.attr('endAngle');
         shape.attr('endAngle', startAngle);
@@ -119,7 +116,6 @@ chart.interval()
             }
           }, animateCfg))
           .onUpdate((frame) => {
-            console.log(frame)
             $('#number').text(parseInt(frame * 85) + '%');
           });
       }

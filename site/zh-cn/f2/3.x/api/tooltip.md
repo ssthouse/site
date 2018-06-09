@@ -17,7 +17,7 @@ Tooltip 作为 F2 的插件，如要使用，请将其注册如 Chart 类或者 
 ```js
 const F2 = require('@antv/f2/lib/core');
 const Tooltip = require('@antv/f2/lib/plugin/tooltip');
-Chart.plugins.register(Tooltip); // 方式一：全局注册 
+Chart.plugins.register(Tooltip); // 方式一：全局注册
 
 // 方式二：具体的 chart 实例注册
 const chart = new Chart({
@@ -153,3 +153,6 @@ chart.tooltip({
     chart.render();
 ```
 
+## DEMO
+
+详见 [Tooltip 使用](../demo/index.html#_Tooltip-使用)。
