@@ -75,7 +75,7 @@ chart.axis('field', {
     length: 5,// 刻度线长度
   },
   // 0％ 处的栅格线着重显示
-  grid: (text, index) => {
+  grid: (text, index, total) => {
     if(text === '0%') {
       return {
         stroke: '#efefef'
@@ -101,3 +101,7 @@ chart.axis('field', {
   }
 });
 ```
+
+## DEMO
+
+详见 [坐标轴使用](../demo/index.html#_坐标轴-使用)。

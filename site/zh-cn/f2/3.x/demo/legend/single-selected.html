@@ -1,6 +1,7 @@
 <!--
-index: 13
+index: 4
 title: 图例单选模式
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/BtrPoTwBnRffSntInDhA.gif
 resource:
   jsFiles:
     - ${url.lodash}
@@ -53,7 +54,8 @@ const chart = new F2.Chart({
   id: 'mountNode',
   width: window.innerWidth,
   height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
-  pixelRatio: window.devicePixelRatio
+  pixelRatio: window.devicePixelRatio,
+  padding: [ 'auto', 180, 'auto', 10 ]
 });
 
 chart.source(data, {
@@ -61,13 +63,21 @@ chart.source(data, {
     tickCount: 5
   }
 });
+
+// 默认只勾选一个图例
+chart.filter('name', val => {
+  return val === 'Installation';
+});
+
 chart.legend({
-  selectedMode: 'single' // 设置图例单选模式
+  position: 'right',
+  selectedMode: 'single', // 设置图例单选模式
+  offsetX: -25
 });
 chart.tooltip({
   custom: true, // 自定义 tooltip 内容框
   onChange: function(obj) {
-    var legend = chart.get('legendController').legends.top[0];
+    var legend = chart.get('legendController').legends.right[0];
     var tooltipItems = obj.items;
     var legendItems = legend.items;
     var map = {};
@@ -84,8 +94,23 @@ chart.tooltip({
     legend.setItems(_.values(map));
   },
   onHide: function() {
-    var legend = chart.get('legendController').legends.top[0];
+    var legend = chart.get('legendController').legends.right[0];
     legend.setItems(chart.getLegendItems().country);
+  }
+});
+chart.axis('value', {
+  labelOffset: 0,
+  label: {
+    top: true,
+    textAlign: 'start',
+    textBaseline: 'bottom'
+  }
+});
+chart.axis('year', {
+  label: {
+    rotate: -Math.PI / 2,
+    textAlign: 'end',
+    textBaseline: 'middle'
   }
 });
 chart.line().position('year*value').color('name');
