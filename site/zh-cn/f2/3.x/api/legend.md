@@ -129,9 +129,15 @@ titleStyle: {
 
 marker 和文本之间的间距，默认值为 6px。
 
-- `unCheckColor`: String
+- `unCheckStyle`: Object
 
-用于取消选中的图例 marker 以及文本的颜色。
+用于设置取消选中的图例 marker 以及文本的样式。默认值为：
+
+```js
+unCheckStyle: {
+  fill: '#bfbfbf'
+}
+```
 
 - `itemFormatter`: Function
 
@@ -228,6 +234,10 @@ valueStyle: {
   textBaseline: 'top' // 文本基准线，可取 top middle bottom，默认为middle
 }
 ```
+
+- `joinString`: String
+
+设置图例项中 name 和 value 的连接字符，默认为 ':'。
 
 - `triggerOn`: String/Function
 

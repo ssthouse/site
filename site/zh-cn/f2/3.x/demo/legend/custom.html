@@ -1,7 +1,6 @@
 <!--
 index: 2
 title: 自定义图例，带交互
-screenshot: https://gw.alipayobjects.com/zos/rmsportal/gEYlzXQaodbkXYWAojPr.gif
 resource:
   jsFiles:
     - ${url.lodash}
@@ -124,7 +123,7 @@ resource:
     custom: true, // 自定义 tooltip 内容框
     onChange: function(obj) {
       const legend = chart.get('legendController').legends.top[0];
-      const tooltipItems = obj.items.splice(0, 2); // 因为 tooltip 内容有重复，所以这里只取前两项
+      const tooltipItems = obj.items;
       const legendItems = legend.items;
       const map = {};
       legendItems.map(function(item) {
