@@ -45,14 +45,14 @@ npm install @antv/g6 --save
 
 ```js
 const G6 = require('@antv/g6');
-const Minimap = require('@antv/g6/build/toolMinimap');
+const Minimap = require('@antv/g6/plugins/tool.minimap/');
 ```
 
 也可以全部引入
 
 ```js
 const G6 = require('@antv/g6');
-const G6Plugins = require('@antv/g6/build/g6Plugins');
+const G6Plugins = require('@antv/g6/plugins/');
 ```
 
 #### 全局型
