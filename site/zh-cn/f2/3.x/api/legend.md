@@ -129,9 +129,15 @@ titleStyle: {
 
 marker 和文本之间的间距，默认值为 6px。
 
-- `unCheckColor`: String
+- `unCheckStyle`: Object
 
-用于取消选中的图例 marker 以及文本的颜色。
+用于设置取消选中的图例 marker 以及文本的样式。默认值为：
+
+```js
+unCheckStyle: {
+  fill: '#bfbfbf'
+}
+```
 
 - `itemFormatter`: Function
 
@@ -229,6 +235,10 @@ valueStyle: {
 }
 ```
 
+- `joinString`: String
+
+设置图例项中 name 和 value 的连接字符，默认为 ':'。
+
 - `triggerOn`: String/Function
 
 图例筛选行为的触发事件，默认为 `click`。
@@ -287,7 +297,7 @@ onClick: ev => {}
 
 默认为 false，当 `custom` 为 true，表示不使用默认生成的图例，允许用户自定义图例，包括具体的图例项以及点击交互行为。
 
-自定义图例时需要用户自己声明具体的图例项 `items`(该属性是一个对象数组，数组中每一项为一个对象类型，结构为：`{ name: '', marker:{ fill: 'red' } }`)以及图例项的 `onClick` 事件。
+自定义图例时需要用户自己声明具体的图例项 `items`(该属性是一个对象数组，数组中每一项为一个对象类型，结构为：`{ name: '', value: 12, marker:{ fill: 'red' } }, checked: true`)以及图例项的 `onClick` 事件。
 
 ```js
 chart.legend({ custom: true, items: [], onClick(){} });
@@ -327,3 +337,7 @@ chart.legend({
   ]
 });
 ```
+
+## DEMO
+
+详见 [Legend 使用](../demo/index.html#_Legend-使用)。

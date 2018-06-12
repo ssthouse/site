@@ -106,7 +106,7 @@ const chart = new F2.Chart({
 
 const chart = new F2.Chart({
   id: 'c1',
-  padding: [ 40, 10, 'auto', 'auto' ]  // 指定几个方向自动计算 padding 
+  padding: [ 40, 10, 'auto', 'auto' ]  // 指定几个方向自动计算 padding
 });
 ```
 
@@ -223,7 +223,7 @@ const data = [
 chart.scale('x', {
   type: 'cat', // 声明 type 字段为分类类型
   values: [ 'A', 'B', 'C' ] // 重新显示的值
-  alias: '类型' // 设置属性的别名  
+  alias: '类型' // 设置属性的别名
 });
 ```
 
@@ -257,7 +257,7 @@ chart.scale({
 
 ### `coord`
 
-`chart.coord()` 
+`chart.coord()`
 
 * 描述：配置坐标系
 * 返回：当前 chart 实例
@@ -266,7 +266,7 @@ chart.scale({
 
 ### `axis`
 
-`chart.axis()` 
+`chart.axis()`
 
 * 描述：配置坐标轴
 * 返回：当前 chart 实例
@@ -284,7 +284,7 @@ chart.scale({
 
 ### `tooltip`
 
-`chart.tooltip()` 
+`chart.tooltip()`
 
 * 描述：配置提示信息
 * 返回：当前 chart 实例
@@ -293,7 +293,7 @@ chart.scale({
 
 ### `guide`
 
-`chart.guide()` 
+`chart.guide()`
 
 * 描述：配置辅助元素
 * 返回：当前 guideController 实例
@@ -302,7 +302,7 @@ chart.scale({
 
 ### `animate`
 
-`chart.animate()` 
+`chart.animate()`
 
 * 描述：配置图表的动画
 * 返回：当前 chart 实例
@@ -399,7 +399,7 @@ const point = chart.getPosition({ time: '2010-02-02', value: 20 });
 
 ```js
 const obj = chart.getRecord({ x: 100, y: 100 });
-``` 
+```
 
 ### `getSnapRecords`
 
@@ -431,7 +431,7 @@ const obj = chart.getRecord({ x: 100, y: 100 });
 
 ```js
 const obj = chart.getSnapRecords({x: 100, y: 100});
-``` 
+```
 
 ### `getLegendItems`
 
@@ -470,4 +470,6 @@ const obj = chart.getSnapRecords({x: 100, y: 100});
 * 描述：隐藏当前 tooltip
 * 返回：当前 chart 实例
 
+## 事件说明
 
+F2 没有提供事件机制，用户可以直接通过监听 `canvas` DOM 上的事件进行自定义交互行为。
