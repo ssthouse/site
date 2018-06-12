@@ -35,10 +35,24 @@ G6 的插件其实非常自由，在代码层面上没有做任何的约束，�
 <script src="./g6Plugins.js"></script>
 ```
 
-在 npm 引入环境下，可以找到 dist 目录。
+官方的插件目前维护在 G6 的主仓库里，如果要使用官方提供的插件，只需要安装 `@antv/g6` 即可。
 
 ```bash
 npm install @antv/g6 --save
+```
+
+可以按需要引入
+
+```js
+const G6 = require('@antv/g6');
+const Minimap = require('@antv/g6/build/toolMinimap');
+```
+
+也可以全部引入
+
+```js
+const G6 = require('@antv/g6');
+const G6Plugins = require('@antv/g6/build/g6Plugins');
 ```
 
 #### 全局型
@@ -207,4 +221,4 @@ G6.Plugins['layout.circle'] = Plugin;
 module.exports = Plugin;
 ```
 
-[官方插件目录](https://github.com/antvis/g6/plugins/)
+[官方插件目录](https://github.com/antvis/g6/tree/master/plugins)
