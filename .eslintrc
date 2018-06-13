@@ -25,7 +25,8 @@
     "html2canvas": true,
     "React": true,
     "ReactDOM": true,
-    "Hammer": true
+    "Hammer": true,
+    "moment": true
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "parser": "babel-eslint",

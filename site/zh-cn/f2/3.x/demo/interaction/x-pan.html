@@ -1,0 +1,40 @@
+<!--
+index: 2
+title: x 轴平移
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/aYCIXkFtJXaWFZYTSgiY.gif
+-->
+
+<script>
+$.getJSON('/assets/data/f2/linear-pan.json', function(data) {
+  const years = [];
+  data.map(obj => {
+    years.push(obj.release);
+  });
+  const min = Math.min.apply(null, years);
+  const max = Math.max.apply(null, years);
+  const chart = new F2.Chart({
+    id: 'mountNode',
+    pixelRatio: window.devicePixelRatio,
+    limitInPlot: true
+  });
+  chart.source(data, {
+    release: {
+      min: 1990,
+      max: 2010
+    }
+  });
+  chart.tooltip(false);
+  chart.line().position('release*count');
+  chart.point().position('release*count');
+
+  chart.interaction('pan', {
+    limitRange: {
+      release: {
+        min,
+        max
+      }
+    }
+  });
+  chart.render();
+});
+</script>

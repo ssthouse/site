@@ -1,0 +1,30 @@
+<!--
+index: 4
+title: 散点图缩放平移
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/ybxBhGuSGzEwAYupEPev.gif
+-->
+
+<script>
+$.getJSON('/assets/data/f2/cereal.json', function(data) {
+  const chart = new F2.Chart({
+    id: 'mountNode',
+    pixelRatio: window.devicePixelRatio
+  });
+  chart.source(data);
+  chart.legend({
+    position: 'bottom',
+    itemWidth: null,
+    align: 'center'
+  });
+  chart.tooltip(false);
+  chart.point().position('Calories*Potassium').color('Manufacturer').style({
+    fillOpacity: 0.6
+  });
+  chart.interaction('pan', {
+    mode: 'xy'
+  }).interaction('pinch', {
+    mode: 'xy'
+  });
+  chart.render();
+});
+</script>
