@@ -62,7 +62,7 @@ G6.registerNode('customNode', {
     // 锚点
     points: [
       [0, 1, cfg],
-      [0,5, 0,5, cfg]
+      [0.5, 0.5, cfg]
     ]  || callback
   },
 });
@@ -73,7 +73,7 @@ G6.registerNode('customNode', {
 G6.registerNode('customNode', {
   anchor: [
     [0, 1, cfg],
-    [0,5, 0,5, cfg]
+    [0.5, 0.5, cfg]
   ],
 }); 
 
@@ -82,7 +82,7 @@ G6.registerNode('customNode', {
   anchor(item) {
     return [
       [0, 1, cfg],
-      [0,5, 0,5, cfg]
+      [0.5, 0.5, cfg]
     ];
   },
 }); 
