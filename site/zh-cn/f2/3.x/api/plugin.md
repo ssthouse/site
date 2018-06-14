@@ -1,5 +1,5 @@
 <!--
-index: 13
+index: 15
 title: Plugin 插件机制
 
 -->
@@ -32,9 +32,9 @@ F2 在 Chart 类上注册一个静态属性 Chart.plugins, 使用发布-订阅�
 ```js
 const plugin = {
     init(chart) {
-       // do something when initialize the chart 
+       // do something when initialize the chart
     }
-};   
+};
 ```
 
 ## 如何注册/使用插件
@@ -45,9 +45,9 @@ const plugin = {
 const plugin1 = { /* plugin implementation */ };
 const plugin2 = { /* plugin implementation */ };
 // 全局注册插件 plugin1，所有创建的 chart 实例都默认注册上
-Chart.plugins.register(plugin1); 
+Chart.plugins.register(plugin1);
 // 全局注册多个插件
-Chart.plugins.register([ plugin1, plugin2 ]); 
+Chart.plugins.register([ plugin1, plugin2 ]);
 ```
 
 2. 在 chart 实例上注册
@@ -75,7 +75,7 @@ const chart3 = new Chart({});
 
 `Chart.plugins.clear()` 清除插件
 
-## 获取注册的所有插件 
+## 获取注册的所有插件
 
 `Chart.plugins.getAll()`  获取注册的所有插件
 
