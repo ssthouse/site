@@ -36,7 +36,7 @@
 </html>
 {% endmacro %}
 
-{% macro f2demo(title, content, resource, dist, url) %}
+{% macro f2demo(title, content, resource, dist, url, version) %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +54,11 @@
     <canvas id="mountNode"></canvas>
   </div>
 <script>/*Fixing iframe window.innerHeight 0 issue in Safari*/document.body.clientHeight;</script>
-<script src="{{ url.f2 }}"></script>{% for js in resource.jsFiles %}
+{% if version == 'f2-all' %}
+<script src="{{ url['f2-all'] }}"></script>
+{% else %}
+<script src="{{ url.f2 }}"></script>
+{% endif %}{% for js in resource.jsFiles %}
 <script src="{{ js }}"></script>{% endfor %}
 <script src="{{ url.jquery }}"></script>
 <script src="https://gw.alipayobjects.com/os/rmsportal/NjNldKHIVQRozfbAOJUW.js"></script>

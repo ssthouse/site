@@ -69,7 +69,8 @@ demoDirs.forEach(function (dir) {
             index: index,
             name: name,
             category: category,
-            title: title
+            title: title,
+            version: meta.version || 'f2'
         };
         demoByHref[href] = demo;
         demosByCategory[category].demos.push(demo);

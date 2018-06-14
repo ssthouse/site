@@ -1,7 +1,8 @@
 <!--
 index: 2
 title: x 轴平移
-screenshot: https://gw.alipayobjects.com/zos/rmsportal/aYCIXkFtJXaWFZYTSgiY.gif
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/GGtsUxGOsGcutjvXhSZI.gif
+version: 'f2-all'
 -->
 
 <script>
@@ -23,7 +24,22 @@ $.getJSON('/assets/data/f2/linear-pan.json', function(data) {
       max: 2010
     }
   });
-  chart.tooltip(false);
+  chart.tooltip({
+    showCrosshairs: true,
+    showItemMarker: false,
+    background: {
+      radius: 2,
+      fill: '#1890FF',
+      padding: [3, 5]
+    },
+    nameStyle: {
+      fill: '#fff'
+    },
+    onShow(ev) {
+      const items = ev.items;
+      items[0].name = items[0].title;
+    }
+  });
   chart.line().position('release*count');
   chart.point().position('release*count');
 
