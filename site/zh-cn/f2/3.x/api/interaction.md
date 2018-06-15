@@ -161,7 +161,7 @@ chart.interaction('interval-select', {});
 
 ```js
 chart.interaction('interval-select', {
-  startEvent: {String}, // 触发事件，默认为 touchstart
+  startEvent: {String}, // 触发事件，默认为 tap 事件
   selectStyle: {Object}, // 被选中图形的样式配置
   unSelectStyle: {Object}, // 未被选中图形的样式配置
   onStart: {Function}, // 事件触发后的回调
@@ -173,8 +173,8 @@ chart.interaction('interval-select', {
 
 ##### `startEvent`
 * 类型：String
-* 默认值：'touchstart'
-* 说明：该交互原则上是手指点击后触发的，除去 touchstart，还可以使用 tab
+* 默认值：'tap'
+* 说明：该交互原则上是手指点击后触发的，除去 tap，还可以使用 touchstart
 
 选中交互的触发事件名称。
 
