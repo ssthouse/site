@@ -245,7 +245,7 @@
 <script type="text/javascript">
 const userAgent = navigator.userAgent;
 const mobile = !!userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i);
-const currentUrl = window.location.protocol + '//' + window.location.host + $('#qrcode').data('url');
+const currentUrl = window.location.protocol + '//' + window.location.host + $('#qrcode').data('url') + '?enableWK=YES';
 $('.url').html(currentUrl);
 
 if (!mobile) { // in mobile

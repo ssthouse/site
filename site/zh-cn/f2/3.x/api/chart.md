@@ -144,6 +144,13 @@ const chart = new F2.Chart({
 - 描述：是否关闭 chart 的动画
 - 默认值：null
 
+### `limitInPlot`
+
+- 参数类型: Boolean
+- 描述：是否将图形限制在绘图区域内，在进行图表交互时经常用到，参见 [demo](../demo/interaction/x-pan.html)
+- 默认值：false
+
+
 ## 方法
 
 ### `get`
