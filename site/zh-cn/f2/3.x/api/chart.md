@@ -146,6 +146,8 @@ const chart = new F2.Chart({
 
 ### `limitInPlot`
 
+> F2 3.2 版本提供该属性，目前请使用 3.2.0-beta.5 版本
+
 - 参数类型: Boolean
 - 描述：是否将图形限制在绘图区域内，在进行图表交互时经常用到，参见 [demo](../demo/interaction/x-pan.html)
 - 默认值：false
