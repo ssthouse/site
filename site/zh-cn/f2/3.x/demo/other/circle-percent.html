@@ -1,0 +1,110 @@
+<!--
+index: 9
+title: 圆内占比
+resource:
+  jsFiles:
+-->
+
+<script>
+  const { Shape, Util } = F2;
+  let circleClip;
+
+  // 自定义 shape，创建在圆形剪切区域的矩形
+  Shape.registerShape('interval', 'circle-clip', {
+    draw(cfg, container) {
+      const points = this.parsePoints(cfg.points);
+      const style = Util.mix({
+        fill: cfg.color
+      }, cfg.style);
+
+      // points 顺序
+      // 1 --- 2
+      // |     |
+      // 0 --- 3
+      const coord = this._coord; // 获取坐标系对象
+      const coordHeight = coord.y.start - coord.y.end;
+      const radius = coordHeight / 2;
+      const center = {
+        x: (points[0].x + points[3].x) / 2,
+        y: (coord.y.start + coord.y.end) / 2
+      }; // 剪切圆的圆心， x 应该是对应柱子的中间点，y 是对应坐标系的纵轴中心点
+      const rectHeight = Math.abs(points[2].y - points[3].y);
+      const rectStart = {
+        x: center.x - radius,
+        y: points[1].y
+      };
+      // 创建矩形
+      const rect = container.addShape('rect', {
+        className: 'interval',
+        attrs: Util.mix({
+          x: rectStart.x,
+          y: rectStart.y,
+          width: radius * 2,
+          height: rectHeight
+        }, style)
+      });
+
+      // 在 canvas 上创建剪切圆
+      if (!circleClip) {
+        const canvas = container.get('canvas');
+        circleClip = canvas.addShape('circle', {
+          zIndex: 10,
+          attrs: {
+            x: center.x,
+            y: center.y,
+            r: radius,
+            lineWidth: 2,
+            stroke: '#ccc'
+          }
+        });
+      }
+
+      rect.attr('clip', circleClip);
+
+      return rect;
+    }
+  });
+
+  // 开始绘制图表
+  const data = [
+    { type: 'a', value: 25 }
+  ];
+
+  const chart = new F2.Chart({
+    id: 'mountNode',
+    pixelRatio: window.devicePixelRatio
+  });
+  chart.source(data, {
+    value: {
+      max: 100
+    } // 设置 value 的最大值
+  });
+  chart.axis(false);
+  chart.tooltip(false);
+  chart.interval().position('type*value').shape('circle-clip')
+    .animate({
+      appear: { // 为了使动画效果更好，自定义动画，使用矩形的高度变化
+        duration: 1000, // 动画的执行时间
+        animation: function(shape, animateCfg) {
+          const height = shape.attr('height');
+          const y = shape.attr('y');
+          shape.attr('height', 0);
+          shape.attr('y', y + height);
+          shape.animate().to(Util.mix({
+            attrs: {
+              height,
+              y
+            }
+          }, animateCfg));
+        }
+      }
+    });
+  chart.render();
+
+  setTimeout(function() {
+    // 更新数据
+    chart.changeData([
+      { type: 'a', value: 64 }
+    ]);
+  }, 3500);
+</script>

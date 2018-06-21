@@ -36,7 +36,7 @@ F2（Fast & Flexible），是专为移动端定制的一套开箱即用的可视
 ```
 
 你也可以直接通过 [unpkg](https://unpkg.com/@antv/f2) 下载。
- 
+
 ### 通过 npm 安装
 
 [![npm](https://img.shields.io/npm/v/@antv/f2.svg?style=flat-square&maxAge=600)](https://npmjs.com/package/@antv/f2)
@@ -79,7 +79,7 @@ const F2 = require('@antv/f2');
 
 ```js
 // F2 对数据源格式的要求，仅仅是 JSON 数组，数组的每个元素是一个标准 JSON 对象。
-const data = [ 
+const data = [
   { genre: 'Sports', sold: 275 },
   { genre: 'Strategy', sold: 115 },
   { genre: 'Action', sold: 120 },
@@ -90,7 +90,7 @@ const data = [
 // Step 1: 创建 Chart 对象
 const chart = new F2.Chart({
   id: 'myChart',
-  pixelRatio: window.devicePixelRatio // 指定分辨率 
+  pixelRatio: window.devicePixelRatio // 指定分辨率
 });
 
 // Step 2: 载入数据源
@@ -108,7 +108,7 @@ chart.render();
 <canvas id="myChart" width="400" height="260"></canvas>
 
 ```js-
-const data = [ 
+const data = [
   { genre: 'Sports', sold: 275 },
   { genre: 'Strategy', sold: 115 },
   { genre: 'Action', sold: 120 },
@@ -118,7 +118,7 @@ const data = [
 
 const chart = new F2.Chart({
   id: 'myChart',
-  pixelRatio: window.devicePixelRatio // 指定分辨率 
+  pixelRatio: window.devicePixelRatio // 指定分辨率
 });
 // load the data
 chart.source(data);
@@ -130,3 +130,19 @@ chart.render();
 ### 更多示例
 
 更多的示例直接查看 [Demo](../demo/index.html)
+
+
+## 体验改进计划说明
+
+为了更好服务用户，F2 会将 URL 和版本信息发送回 AntV 服务器（H5 环境下）：
+
+```html
+https://kcart.alipay.com/web/bi.do
+```
+
+除了 URL 与 F2 版本信息外，不会收集任何其他信息，一切为了能对 F2 的运行情况有更多了解，以更好服务于用户。如有担心，可以通过下面的代码关闭：
+
+```js
+// 关闭 F2 的体验改进计划打点请求
+F2.track(false)
+```

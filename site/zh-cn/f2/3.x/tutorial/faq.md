@@ -22,7 +22,7 @@ resource:
 
 浏览器上有个属性 `window.devicePixelRatio` 就是标明了屏幕像素的比例。
 
-#### 解决方案  
+#### 解决方案
 
 F2 提供了两种方式来解决这个问题：
 
@@ -66,8 +66,8 @@ chart.source(data, {
 });
 chart.line().position('x*y');
 chart.guide().text({
-  position: [ 2, 3.5 ], 
-  content: 'pxielRatio = 1', 
+  position: [ 2, 3.5 ],
+  content: 'pxielRatio = 1',
   style: {
     textAlign: 'center',
     fontSize: 14
@@ -92,8 +92,8 @@ chart1.source(data, {
 });
 chart1.line().position('x*y');
 chart.guide().text({
-  position: [ 2, 3.5 ], 
-  content: 'pxielRatio = 2', 
+  position: [ 2, 3.5 ],
+  content: 'pxielRatio = 2',
   style: {
     textAlign: 'center',
     fontSize: 14
@@ -205,27 +205,23 @@ F2 提供了三个方法用于跟获取图表的信息：
 
 常见的点击画布获取信息的步骤如下：
 
-1. 获取点击的画布的坐标
+1. 获取点击的画布的坐标，可以通过 [F2.Util.getRelativePosition(point, canvas)](../api/util.html#_getRelativePosition) 方法将事件坐标转换为画布坐标
 2. 通过 `getSnapRecords()` 方法获取临近的数据
 
 ```js
-function getPoint(canvas, clientX, clientY) {  
-  const bbox = canvas.getBoundingClientRect();  
-  return {  
-    x: clientX - bbox.left,   
-    y: clientY - bbox.top 
-  };  
-} 
-
-canvas.onclick=function(event){  
-  const point = getPoint(canvas, event.clientX, event.clientY);
-  const x = parseInt(point.x);  
-  const y = parseInt(point.y);  
+canvas.onclick=function(event){
+  let point = {
+    x: event.clientX,
+    y: event.clientY
+  };
+  point = F2.Util.getRelativePosition(point, canvas);
+  const x = parseInt(point.x);
+  const y = parseInt(point.y);
   console.log("x:" + x + ";" + "y:" + y);
   // 根据画布坐标获取对应数据集
   const data = chart.getSnapRecords(point);
   console.log(data);
-} 
+}
 ```
 
 用户获取到数据后可以进行任何自己想进行的交互。
@@ -249,8 +245,8 @@ F2 的图表定义时有多种方式可以设置渐变色
   const grd = ctx.createLinearGradient(0,0,500,0);
   grd.addColorStop(0,"#293c55");
   grd.addColorStop(1,"#f7f7f7");
-    
-  
+
+
   // 直接设置渐变颜色
   chart.area().position('x*y').color(grd);
 
@@ -275,7 +271,7 @@ F2 的图表定义时有多种方式可以设置渐变色
 
 #### 问题描述
 
-有时候坐标轴上的数字没有排序，例如 '2,4,1,0,10' 
+有时候坐标轴上的数字没有排序，例如 '2,4,1,0,10'
 
 <img src="https://gw.alipayobjects.com/zos/rmsportal/sGpgCogaOcoBUpKqcsWr.png" style="width:500px" />
 
@@ -326,7 +322,7 @@ chart.line().position('time*value').label('value');
 
 #### 解决方案
 
-使用 F2 的 guide，参考 [guide 接口](../api/chart.html#_guide)。
+使用 F2 的 guide，参考 [guide 接口](../api/guide.html)。
 
-[查看示例](/zh-cn/f2/3.x/demo/column/diy.html)。
+[查看示例](/zh-cn/f2/3.x/demo/guide/text.html)。
 

@@ -26,6 +26,18 @@ F2.version // F2 的版本
 * [F2.Global](./global.html)：F2 的全局配置，包含图表的皮肤样式
 * [F2.Util](./util.html)：辅助类工具函数
 
+
+## 方法 Functions
+
+自 **3.1.12** 版本起，F2 命名空间下添加如下方法：
+
+```js
+F2.track(true);      // 开启打点监控
+F2.track(false);     // 关闭打点监控
+```
+
+该方法用于 F2 在 H5 环境下使用情况的打点监控，默认处于开启状态，如果您不想让我们知道您的版本使用情况或者该方法为您造成了困扰，请使用调用 `F2.track(false)` 将其关闭。
+
 更多 API：
 * [Chart](./chart.html)
 * [Geometry](./geometry.html)
@@ -38,3 +50,4 @@ F2.version // F2 的版本
 * [Animation](./animation.html)
 * [Plugin](./plugin.html)
 * [绘图属性](./canvas.html)
+

@@ -5,6 +5,7 @@ screenshot: https://gw.alipayobjects.com/zos/rmsportal/xAnOnADmoyobtVJKPRhq.gif
 version: 'f2-all'
 -->
 
+<p style="text-align: center;">F2 版本：3.2.0-beta.5</p>
 
 <script>
 var data = [
@@ -63,11 +64,16 @@ chart.interaction('pie-select', {
     easing: 'backOut'
   },
   onEnd(ev) {
-    const { shape, data, shapeInfo} = ev;
+    const { shape, data, shapeInfo, selected } = ev;
     if (shape) {
-      $('#number').css('color', shapeInfo.color);
-      $('#number').text(data.percent * 100 + '%');
-      $('#name').text(data.name);
+      if (selected) {
+        $('#number').css('color', shapeInfo.color);
+        $('#number').text(data.percent * 100 + '%');
+        $('#name').text(data.name);
+      } else {
+        $('#number').text('');
+        $('#name').text('');
+      }
     }
   }
 });

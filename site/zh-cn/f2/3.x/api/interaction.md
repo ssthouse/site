@@ -10,7 +10,9 @@ resource:
 
 ---
 
-F2 3.2 版本提供一套交互机制，以达到通用交互行为的封装和复用。基于此机制，我们提供了以下四种通用的交互行为：
+> 注意：目前请使用 3.2.0-beta.5 版本！！！
+
+**F2 3.2 版本**提供一套交互机制，以达到通用交互行为的封装和复用。基于此机制，我们提供了以下四种通用的交互行为：
 
 1. 饼图选中
 4. 柱状图选中
@@ -64,6 +66,7 @@ chart.interaction('pie-select', {
   offset: {Number}, // 光环偏移距离
   appendRadius: {Number}, // 光环大小
   style: {Object}, // 光环的样式配置
+  cancelable: {Boolean}, // 是否允许取消选中，默认值为 true，表示允许
   onStart: {Function}, // 事件触发后的回调
   onEnd: {Function} // 事件结束后的回调
 });
@@ -112,6 +115,12 @@ animate: {
 
 设置光环的样式。
 
+##### `cancelable`
+* 类型：Boolean
+* 默认值：true
+
+当 shape 被选中后，再次点击是否允许取消选中，默认为 true，表示会取消选中。
+
 ##### `onStart`
 类型：Function
 默认值：null
@@ -134,7 +143,8 @@ onEnd(ev) {
   // ev.data: Object 类型，被选中图形的原始数据
   // ev.shapeInfo: Object 类型，被选中图形的数据信息
   // ev.shape: Shape 实例，被选中的图形
-  const { data, shapeInfo, shape } = ev;
+  // ev.selected: 当前 shape 的选中状态
+  const { data, shapeInfo, shape, selected } = ev;
 }
 ```
 
@@ -164,6 +174,7 @@ chart.interaction('interval-select', {
   startEvent: {String}, // 触发事件，默认为 tap 事件
   selectStyle: {Object}, // 被选中图形的样式配置
   unSelectStyle: {Object}, // 未被选中图形的样式配置
+  cancelable: {Boolean}, // 是否允许取消选中，默认值为 true，表示允许
   onStart: {Function}, // 事件触发后的回调
   onEnd: {Function} // 事件结束后的回调
 });
@@ -188,7 +199,13 @@ chart.interaction('interval-select', {
 * 类型：Object
 * 默认值：`{fillOpacity: 0.4}`
 
-用于设置未被选中柱子的显示样式。如果不需要设置，可以直接设置为 null。
+用于设置未被选中柱子的显示样式。如果不需要设置，可以直接设置为 `null`。
+
+##### `cancelable`
+* 类型：Boolean
+* 默认值：true
+
+当 shape 被选中后，再次点击是否允许取消选中，默认为 true，表示会取消选中。
 
 ##### `onStart`
 类型：Function
@@ -211,8 +228,8 @@ onEnd(ev) {
   // ev: Object 类型, 该对象包含的重要属性如下：
   // ev.data: Object 类型，被选中图形的原始数据
   // ev.shapeInfo: Object 类型，被选中图形的数据信息
-  // ev.shape: Shape 实例，被选中的图形
-  const { data, shapeInfo, shape } = ev;
+  // ev.selected: 当前 shape 的选中状态
+  const { data, shapeInfo, shape, selected } = ev;
 }
 ```
 
