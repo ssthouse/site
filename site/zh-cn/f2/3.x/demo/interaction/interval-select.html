@@ -1,0 +1,42 @@
+<!--
+index: 1
+title: 柱状图选中
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/rMazYGmlsSCnWWwsPaFk.gif
+version: 'f2-all'
+-->
+
+<p style="text-align: center;">F2 版本：3.2.0-beta.5</p>
+
+<script>
+  var data = [
+    { year: '1951 年', sales: 38 },
+    { year: '1952 年', sales: 52 },
+    { year: '1956 年', sales: 61 },
+    { year: '1957 年', sales: 145 },
+    { year: '1958 年', sales: 48 },
+    { year: '1959 年', sales: 38 },
+    { year: '1960 年', sales: 38 },
+    { year: '1962 年', sales: 38 },
+  ];
+  var chart = new F2.Chart({
+    id: 'mountNode',
+    pixelRatio: window.devicePixelRatio
+  });
+
+  chart.source(data, {
+    sales: {
+      tickCount: 5
+    }
+  });
+  chart.tooltip(false);
+  chart.interval().position('year*sales');
+  chart.render();
+
+  chart.interaction('interval-select', {
+    selectStyle: {
+      stroke: '#000',
+      lineWidth: 1
+    },
+    // unSelectStyle:null
+  });
+</script>

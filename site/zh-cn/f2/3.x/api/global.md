@@ -1,5 +1,5 @@
 <!--
-index: 15
+index: 17
 title: Global 全局配置
 -->
 
@@ -123,7 +123,7 @@ const Theme = {
 `Global.setTheme(cfg)`
 
 - cfg: Object
-  
+
   用户自定义的主题配置。
 
 常用配置示例

@@ -59,6 +59,10 @@ chart.guide().line({
 });
 ```
 
+#### 示例
+
+[Guide.Line](../demo/guide/line.html)。
+
 #### 参数
 
 - `top`: Boolean
@@ -111,7 +115,7 @@ chart.guide().line({
 
 绘制辅助文本。
 
-```ja
+```js
 chart.guide().text({
   top: {Boolean}, // 指定 guide 是否绘制在 canvas 最上层，默认为 true, 即绘制在最上层
   position: {Function} | {Array}, // 文本的起始位置，值为原始数据值，支持 callback
@@ -126,6 +130,11 @@ chart.guide().text({
   offsetY: {Number} // y 方向偏移量
 });
 ```
+
+
+#### 示例
+
+[Guide.Text](../demo/guide/text.html)。
 
 #### 参数
 
@@ -209,6 +218,10 @@ chart.guide().tag({
   } // 点的样式
 });
 ```
+
+#### 示例
+
+[Guide.Tag](../demo/guide/tag.html)。
 
 #### 参数
 
@@ -315,6 +328,10 @@ chart.guide().rect({
 });
 ```
 
+#### 示例
+
+[Guide.Rect](../demo/guide/rect.html)。
+
 #### 参数
 
 - `top`: Boolean
@@ -379,6 +396,10 @@ chart.guide().html({
 });
 ```
 
+#### 示例
+
+[Guide.Html](../demo/guide/html.html)。
+
 #### 参数
 
 - `position`: Array/Function
@@ -441,6 +462,10 @@ chart.arc({
 });
 ```
 
+#### 示例
+
+[Guide.Arc](../demo/guide/arc.html)。
+
 #### 参数
 
 - `top`: Boolean
@@ -488,12 +513,82 @@ chart.guide().arc({
 
 设置圆弧的显示样式，详见绘图属性。
 
+### RegionFilter
+
+> F2 3.2 版本提供该组件，目前请使用 3.2.0-beta.5 版本
+
+`chart.guide.regionFilter({})`
+
+辅助过滤区域。
+
+```js
+chart.guide().regionFilter({
+  top: {Boolean}, // 指定 giude 是否绘制在 canvas 最上层，默认为 false, 即绘制在最下层
+  start: {Function} | {Array}, // 起始位置，值为原始数据值，支持 callback
+  end: {Function} | {Array},// 结束位置，值为原始数据值，支持 callback
+  color: {String}, // 设置过滤区域的颜色
+  style: {Object} // 过滤区域 shape 附加的样式设置
+});
+```
+
+#### 示例
+
+[Guide.RegionFilter](../demo/guide/regionFilter.html)。
+
+#### 参数
+
+- `top`: Boolean
+
+指定 guide 是否绘制在 canvas 最上层，默认为 false, 即绘制在最下层。
+
+- `start`: Array/Function
+
+指定起始位置，该值的类型如下：
+
+  + Array: 数组来配置位置 [ x, y]，根据数组中的值的存在以下几种形式：
+    * x，y 都是原始数据 [ '2010-01-01', 200 ];
+    * x，y 可以使用原始数据的替代字符串 'min', 'max', 'median' , 例如：[ 'median', 200 ]
+    * x, y 都是用百分比的形式，在绘图区域定位，字符串中存在 '%', 例如 [ '50%', '50%' ] 使得辅助元素居中
+  + Function: 回调函数，可以动态的确定辅助元素的位置，应用于数据动态更新，辅助元素的位置根据数据变化的场景
+
+```js
+chart.guide().regionFilter({
+  /**
+   * 设置辅助框的起始点
+   * @param  {Scale} xScale x 轴对应的度量
+   * @param {Array} yScales y 轴对应的度量的数组集合
+   * @return {Array} 返回值必须为数组格式
+   */
+  start(xScale, yScales) {
+    return []; // 位置信息
+  },
+  /**
+   * 设置辅助框的终止点
+   * @param  {Scale} xScale x 轴对应的度量
+   * @param {Array} yScales y 轴对应的度量的数组集合
+   * @return {Array} 返回值必须为数组格式
+   */
+  end(xScale, yScales) {
+    return []; // 位置信息
+  }
+});
+```
+
+- `end`: Array/Function
+
+指定结束位置，该属性用法同 start。
+
+- `color`: String
+
+用于设置过滤区域的颜色。
+
+- `style`: Object
+
+用于设置过滤区域 shape 附加的样式设置，详见[绘图属性](./canvas.md)。
+
+
 ### 清空 guides
 
 ```js
 chart.guide().clear();
 ```
-
-## DEMO
-
-详见 [Guide 使用](../demo/index.html#_Guide-使用)。

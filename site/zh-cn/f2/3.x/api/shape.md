@@ -1,5 +1,5 @@
 <!--
-index: 12
+index: 14
 title: 自定义 Shape
 resource:
   jsFiles:
@@ -20,7 +20,7 @@ resource:
 
 ```js
 const Shape = F2.Shape;
-const shapeObj = Shape.registerShape('geomType', 'shapeName', { 
+const shapeObj = Shape.registerShape('geomType', 'shapeName', {
   getPoints(pointInfo) {
     // 获取每种 shape 绘制的关键点
   },
@@ -95,7 +95,7 @@ Shape.registerShape('interval', 'rect', {
     // ...
     path = this.parsePath(path);
     // ...
-    // 
+    //
     return shape; // 返回最后绘制的 shape
   }
 });

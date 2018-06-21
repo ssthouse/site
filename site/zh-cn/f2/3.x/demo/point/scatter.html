@@ -9,8 +9,6 @@ plotUsage: 通过观察散点图上数据点的分布情况，我们可以推断
   $.getJSON('/assets/data/f2/scatter.json', function(data) {
     var chart = new F2.Chart({
       id: 'mountNode',
-      width: window.innerWidth,
-      height: window.innerWidth > window.innerHeight ? (window.innerHeight - 54) : window.innerWidth * 0.707,
       pixelRatio: window.devicePixelRatio
     });
     chart.source(data, {

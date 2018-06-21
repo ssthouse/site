@@ -1,5 +1,5 @@
 <!--
-index: 14
+index: 16
 title: G 绘图接口
 resource:
   jsFiles:
