@@ -14,6 +14,7 @@ resource:
 chart 对象支持两种数据载入的方式：
 
 - 方式 1：`data` 属性传入
+
 ```js
 const chart = new G2.Chart({
   id: 'c1',
@@ -26,6 +27,7 @@ const chart = new G2.Chart({
   ]
 });
 ```
+
 - 方式 2：调用 `chart.source(data)` 方法，每个字段的[列定义](scale.html)也可以在这里传入
 
 ```js
@@ -74,14 +76,14 @@ G2 更新数据的方式主要有三种：
 
 ### 更新数据
 
-如果需要马上更新图表，使用 chart.changeData(data) 即可
+如果需要马上更新图表，使用 `chart.changeData(data)` 即可
 
 ```js
 chart.changeData(newData);
 ```
-* view 也支持 view.changeData(data);
+* view 也支持 `view.changeData(data)`
 
-如果仅仅是更新数据，而不需要马上更新可以调用 chart.source(data) 需要更新图表时调用 chart.repaint()
+如果仅仅是更新数据，而不需要马上更新图表，可以调用 `chart.source(data)`，需要更新图表时调用 `chart.repaint()`
 
 ```js
 chart.source(newData);
@@ -106,5 +108,4 @@ chart.render();
 
 ### 使用 DataView  更新
 
-由于 DataSet 支持状态量 state，一旦更改状态量，图表即一起刷新，详情查看 [DataSet 教程](./data-set.html)。
-
+由于 `DataSet` 支持状态量 `state`，一旦更改状态量，图表即一起刷新，详情查看 [DataSet 教程](./data-set.html)。
