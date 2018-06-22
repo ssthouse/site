@@ -10,6 +10,7 @@ module.exports = {
                 demo: { text: '${resource.translate.demo}', href: '${base}zh-cn/g2/3.x/demo/index.html' },
                 api: { text: '${resource.translate.api}', href: '${base}zh-cn/g2/3.x/api/index.html' },
                 tutorial: { text: '${resource.translate.tutorial}', href: '${base}zh-cn/g2/3.x/tutorial/index.html' },
+                history: { text: '${resource.translate.history}', href: '${base}zh-cn/g2/3.x/tutorial/history.html' },
                 // changelog: { hideFromNav: true, text: '${resource.translate.changelog}', href: '${base}zh-cn/g2/3.x/tutorial/changelog.html' },
             }
         },
@@ -22,6 +23,7 @@ module.exports = {
                 demo: { text: '${resource.translate.demo}', href: '${base}zh-cn/g6/1.x/demo/index.html' },
                 api: { text: '${resource.translate.api}', href: '${base}zh-cn/g6/1.x/api/index.html' },
                 tutorial: { text: '${resource.translate.tutorial}', href: '${base}zh-cn/g6/1.x/tutorial/index.html' },
+                history: { text: '${resource.translate.history}', href: '${base}zh-cn/g6/1.x/tutorial/history.html' },
                 // toolbox: { text: '${resource.translate.toolbox}', href: '${base}zh-cn/g6/1.x/toolbox.html' },
                 // changelog: { hideFromNav: true, text: '${resource.translate.changelog}', href: '${base}zh-cn/g6/1.x/tutorial/changelog.html' },
             }
@@ -36,6 +38,7 @@ module.exports = {
                 demo: { text: '${resource.translate.demo}', href: '${base}zh-cn/f2/3.x/demo/index.html' },
                 api: { text: '${resource.translate.api}', href: '${base}zh-cn/f2/3.x/api/index.html' },
                 tutorial: { text: '${resource.translate.tutorial}', href: '${base}zh-cn/f2/3.x/tutorial/index.html' },
+                history: { text: '${resource.translate.history}', href: '${base}zh-cn/f2/3.x/tutorial/history.html' },
                 // changelog: { hideFromNav: true, text: '${resource.translate.changelog}', href: '${base}zh-cn/f2/3.x/tutorial/changelog.html' },
             }
         },
@@ -78,6 +81,7 @@ module.exports = {
             feedback: '立即反馈',
             gallery: 'Gallery',
             getStarted: '开始使用',
+            history: '更新日志',
             inputKeyWord: '输入关键字',
             intro: '介绍',
             joinUs: '立即加入',

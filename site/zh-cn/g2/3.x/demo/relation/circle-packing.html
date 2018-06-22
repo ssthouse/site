@@ -34,9 +34,7 @@ relativePlots:
         });
         chart.axis(false);
         chart.legend(false);
-        chart.tooltip({
-            showTitle: false
-        });
+        chart.tooltip(false);
 
         const nodes = dv.getAllNodes().map(node => ({
             hasChildren: !!(node.data.children && node.data.children.length),
