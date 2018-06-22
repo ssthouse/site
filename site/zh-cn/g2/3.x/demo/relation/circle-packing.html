@@ -5,11 +5,18 @@ resource:
   jsFiles:
     - ${url.dataSet}
     - ${url.jquery}
-plotDescription: voronoi 图得名于 Georgy Voronoi，是由一组由连接两邻点直线的垂直平分线组成的连续多边形组成。
-plotUsage: 由于voronoi图在空间剖分上的等分性特征，因此可用于解决最近点、最小封闭圆等问题，以及许多空间分析问题，如邻接、接近度和可达性分析等。
+plotDescription: Circle Packing 图通过包含与被包含的圆形组成，包含关系表示树形数据中的层次关系。圆形的大小、颜色还可以用来表示权重等。
+plotUsage: 用于表示树形数据，能直观地表示层级和权重，并且布局比较紧凑。
 relativePlots:
   - ${plotByName.voronoi}
 -->
+
+<style>
+    #mountNode {
+        text-align: center;
+    }
+</style>
+
 <script>
     $.getJSON('/assets/data/flare.json', data => {
         const dv = new DataSet.View().source(data, {
@@ -18,7 +25,7 @@ relativePlots:
         dv.transform({
             type: 'hierarchy.circle-packing',
         });
-        const diameter = Math.min(window.innerWidth, window.innerHeight) - 20;
+        const diameter = Math.min(window.innerWidth, window.innerHeight);
         const chart = new G2.Chart({
             container: 'mountNode',
             height: diameter,
@@ -31,7 +38,7 @@ relativePlots:
             showTitle: false
         });
 
-        chart.source(dv.getAllNodes().map(node => ({
+        const nodes = dv.getAllNodes().map(node => ({
             hasChildren: !!(node.data.children && node.data.children.length),
             name: node.data.name.split(/(?=[A-Z][^A-Z])/g).join('\n'),
             value: node.value,
@@ -39,7 +46,9 @@ relativePlots:
             x: node.x,
             y: node.y,
             r: node.r
-        })));
+        }));
+
+        chart.source(nodes);
         chart.point()
             .position('x*y')
             .color('hasChildren')
