@@ -2007,12 +2007,12 @@ padding 为数字以及数组类型时使用方法同 CSS 盒模型。
 ##### 代码实例
 
 ```js
-const data = {
-  cut: 'a', price: 1,
-  cut: 'b', price: 2,
-  cut: 'c', price: 3,
-  cut: 'd', price: 4
-};
+const data = [
+  { cut: 'a', price: 1 },
+  { cut: 'b', price: 2 },
+  { cut: 'c', price: 3 },
+  { cut: 'd', price: 4 }
+];
 
 chart.getXY({
   cut: 'b',
