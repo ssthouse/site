@@ -183,3 +183,31 @@ $.getJSON('/assets/data/world.geo.json', function(mapData) {
 });
 ```
 
+Global 上可以配置的信息：
+* 全局的控制变量：柱子的默认宽度、版本号、折线图遇到 Null 时的处理策略
+```js
+const Global = {
+  version: '3.2.0-beta.3',
+  renderer2d: 'canvas',
+  // renderer2d: 'svg',
+  trackable: true,
+  animate: true,
+  snapArray: [ 0, 1, 2, 4, 5, 10 ],
+  // 指定固定 tick 数的逼近值
+  snapCountArray: [ 0, 1, 1.2, 1.5, 1.6, 2, 2.2, 2.4, 2.5, 3, 4, 5, 6, 7.5, 8, 10 ],
+  widthRatio: { // 宽度所占的分类的比例
+    column: 1 / 2, // 一般的柱状图占比 1/2
+    rose: 0.9999999, // 玫瑰图柱状占比 1
+    multiplePie: 1 / 1.3 // 多层的饼图、环图
+  },
+  // 折线图、区域图、path 当只有一个数据时，是否显示成点
+  showSinglePoint: false,
+  connectNulls: false,
+  scales: {
+  }
+};
+```
+更多的查看：https://github.com/antvis/g2/blob/master/src/global.js
+
+* 默认的皮肤样式，查看 https://github.com/antvis/g2/blob/master/src/theme/default.js
+
