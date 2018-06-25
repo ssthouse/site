@@ -24,7 +24,7 @@ resource:
 geom.animate({
   enter: {
     animation: 'fadeIn', // 动画名称
-    easing: 'easeInQuart', // 动画缓动效果
+    easing: 'easeQuadIn', // 动画缓动效果
     delay: 100, // 动画延迟执行时间
     duration: 600 // 动画执行时间
   }
