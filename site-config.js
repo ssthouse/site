@@ -49,12 +49,6 @@ module.exports = {
             template: 'g2-demo-standalone'
         },
         {
-            src: 'zh-cn/g2/3.x/demo',
-            dest: '${assets}/dist/${pkg.version}/g2/3.x',
-            demoTheme: 'dark',
-            template: 'g2-demo-standalone'
-        },
-        {
             src: 'zh-cn/g6/1.x/demo',
             dest: '${assets}/dist/${pkg.version}/g6/1.x',
             template: 'g6-demo-standalone'
