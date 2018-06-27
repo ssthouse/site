@@ -3,7 +3,7 @@ index: 3
 title: Geometry 几何标记
 -->
 
-# Geometry 
+# Geometry
 
 ---
 
@@ -94,6 +94,18 @@ chart.line({
 | `startOnZero: true` | `startOnZero: false` |
 | ------------------- | -------------------  |
 | <img src="https://gw.alipayobjects.com/zos/rmsportal/ZQqwUCczalrKqGgagOVp.png" style="width: 400px"> | <img src="https://gw.alipayobjects.com/zos/rmsportal/yPswkaXvUpCYOdhocGwB.png" style="width: 400px"> |
+
+### `connectNulls`
+
+- 参数类型：Boolean
+- 描述：用于设置是否将空数据连接起来（用于 line，area 以及 path 类型）
+- 默认值： false
+
+```js
+chart.line({
+  connectNulls: true // 将空数据连接
+});
+```
 
 ## 方法
 
@@ -187,7 +199,7 @@ chart.point().position('x*y').color('red'); // 所有点用红色渲染
     if(value === 1) {
       return 'red'
     }
-  
+
     return 'blue';
   });
   ```
@@ -221,8 +233,8 @@ geom 类型 | shape 类型 | 解释
 point | 'circle', 'hollowCircle', 'rect' | 默认为 'circle'
 line | 'line', 'smooth', 'dash'| dash：虚线，smooth： 平滑线
 area | 'area', 'smooth' | 填充内容的区域图
-interval | 'rect' | 
-polygon | 'polygon' | 
+interval | 'rect' |
+polygon | 'polygon' |
 schema | 'candle'| 目前仅 K 线图
 
 ##### 代码示例
