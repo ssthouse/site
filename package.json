@@ -20,7 +20,6 @@
     "html-minifier": "^3.5.5",
     "image-size": "^0.6.1",
     "imagemin": "^5.3.1",
-    "imagemin-pngquant": "^5.0.1",
     "js-beautify": "^1.7.5",
     "js-yaml": "^3.10.0",
     "lodash": "^4.17.4",
@@ -56,16 +55,18 @@
     "babel-preset-stage-0": "^6.24.1",
     "clean-css-cli": "^4.1.9",
     "css-loader": "^0.28.7",
+    "enquire.js": "^2.1.6",
     "eslint": "^4.6.1",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-babel": "^4.0.0",
     "eslint-plugin-html": "^3.2.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^5.0.1",
+    "eslint-plugin-markdown": "^1.0.0-beta.6",
     "eslint-plugin-react": "^7.0.1",
     "eslint-tinker": "^0.4.1",
-    "eslint-plugin-markdown": "^1.0.0-beta.6",
     "extract-text-webpack-plugin": "^3.0.0",
+    "imagemin-pngquant": "^5.0.1",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "pre-commit": "^1.2.2",
@@ -75,8 +76,7 @@
     "rc-tween-one": "^1.5.5",
     "style-loader": "^0.18.2",
     "uglify-js": "^3.1.1",
-    "webpack": "^3.5.6",
-    "enquire.js": "^2.1.6"
+    "webpack": "^3.5.6"
   },
   "pre-commit": {
     "run": [
