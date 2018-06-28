@@ -107,6 +107,8 @@ chart.line({
 });
 ```
 
+详见 [demo](../demo/line/connect-null.html)。
+
 ## 方法
 
 ### position
