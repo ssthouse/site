@@ -22,7 +22,7 @@ require('@antv/f2/lib/component/guide'); // 加载全部的 guide 组件
 require('@antv/f2/lib/component/guide/arc'); // 只加载 Guide.Arc 组件
 require('@antv/f2/lib/component/guide/html'); // 只加载 Guide.Html 组件
 require('@antv/f2/lib/component/guide/text'); // 只加载 Guide.Text 组件
-require('@antv/f2/li/component/guide/rect'); // 只加载 Guide.Rect 组件
+require('@antv/f2/lib/component/guide/rect'); // 只加载 Guide.Rect 组件
 require('@antv/f2/lib/component/guide/line'); // 只加载 Guide.Line 组件
 
 // 第二步：加载插件 Guide
