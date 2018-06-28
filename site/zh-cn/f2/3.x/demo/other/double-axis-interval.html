@@ -1,0 +1,102 @@
+<!--
+index: 10
+title: 双 Y 轴柱状图
+resource:
+  jsFiles:
+-->
+
+<script>
+// ----- 自定义 shape ------
+var Shape = F2.Shape;
+var Util = F2.Util;
+var Global = F2.Global;
+
+function getRectRange(points, step) {
+  const xValues = [];
+  const yValues = [];
+  for (let i = 0, len = points.length; i < len; i++) {
+    const point = points[i];
+    xValues.push(point.x - step);
+    yValues.push(point.y);
+  }
+  const xMin = Math.min.apply(null, xValues);
+  const yMin = Math.min.apply(null, yValues);
+  const xMax = Math.max.apply(null, xValues);
+  const yMax = Math.max.apply(null, yValues);
+
+  return {
+    x: xMin,
+    y: yMin,
+    width: xMax - xMin,
+    height: yMax - yMin
+  };
+}
+
+// 左侧柱子
+Shape.registerShape('interval', 'left', {
+  draw: function(cfg, container) {
+    var points = this.parsePoints(cfg.points);
+    var style = Util.mix({
+      fill: cfg.color
+    }, Global.shape.interval, cfg.style);
+
+    var rectCfg = getRectRange(points, cfg.size); // cfg.size 对应 .size(25)
+
+    return container.addShape('rect', {
+      className: 'interval',
+      attrs: Util.mix(rectCfg, style)
+    });
+  }
+});
+// 右侧柱子
+Shape.registerShape('interval', 'right', {
+  draw: function(cfg, container) {
+    var points = this.parsePoints(cfg.points);
+    var style = Util.mix({
+      fill: cfg.color
+    }, Global.shape.interval, cfg.style);
+    var rectCfg = getRectRange(points, -cfg.size / 2);  // cfg.size 对应 .size(25
+
+    return container.addShape('rect', {
+      className: 'interval',
+      attrs: Util.mix(rectCfg, style)
+    });
+  }
+});
+
+// ------ 开始绘制 chart ------
+var data = [
+  {genre: 'ant 牌黄油', domestic: 460000, international: 25000},
+  {genre: 'ant 牌芝士', domestic: 425000, international: 30000},
+  {genre: 'ant 牌牛奶', domestic: 310000, international: 15000},
+  {genre: 'ant 牌奶昔', domestic: 270000, international: 40000}
+];
+
+var chart = new F2.Chart({
+  id: 'mountNode',
+  pixelRatio: window.devicePixelRatio
+});
+
+chart.source(data, {
+  genre: {
+    alias: '商品名称' // 列定义，定义该属性显示的别名
+  },
+  domestic: {
+    alias: '内销额'
+  },
+  international: {
+    alias: '出口额'
+  }
+});
+
+chart.legend({
+  position: 'bottom'
+});
+chart.axis('international', {
+  grid: null
+});
+
+chart.interval().position('genre*domestic').shape('left').size(15);
+chart.interval().position('genre*international').color('#36B3C3').shape('right').size(15);
+chart.render();
+</script>
