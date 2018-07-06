@@ -348,7 +348,8 @@ chart.axis('xField', {
   tickLine: {
     lineWidth: 2,
     length: 10,
-    stroke: 'red'
+    stroke: 'red',
+    alignWithLabel:true
   }
 });
 ```
@@ -364,6 +365,17 @@ chart.axis('genre', {
 ```
 
 <img src="https://gw.alipayobjects.com/zos/rmsportal/OxLjLzCOhdDuVHpsllEz.png" width="50%">
+
+* alignWithLabel 设置为负值，且数据类型为category时，tickLine的样式变为category数据专有样式。
+
+```js
+chart.axis('genre', {
+  tickLine: {
+    alignWithLabel: false
+  }
+});
+```
+<img src="/assets/image/g2/tutorial/linearCat.png" width="50%">
 
 ### 坐标轴子刻度线 subTickLine
 
