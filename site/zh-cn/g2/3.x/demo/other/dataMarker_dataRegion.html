@@ -1,0 +1,54 @@
+<!--
+index: 1
+title: 特殊数据点标注和特殊数据区间标注
+resource:
+  jsFiles:
+    - ${url.dataSet}
+    - ${url.jquery}
+plotDescription: dataMarker guide和dataRegion guide用于对图表中的某个特殊数据点或某个特殊数据区间进行标注，适合用于折线图和面积图。
+plotUsage: 数据来源：天宏基金官网 http://www.thfund.com.cn/fundinfo/000198。
+-->
+<script>
+$.getJSON('/assets/data/income.json', data => {
+      const chart = new G2.Chart({
+        container: 'mountNode',
+        forceFit: true,
+        height: window.innerHeight,
+        padding: 50
+      });
+      chart.source(data);
+      chart.scale('time', {
+        range: [ 0, 1 ]
+      });
+      chart.line().position('time*rate');
+      chart.guide().dataMarker({
+        position: [ '2014-01-03', 6.763 ],
+        content: '受稳健货币政策影响，协定存款利\n率居高不下,收益率达6.763%',
+        style: {
+          text: { textAlign: 'left' }
+        }
+      });
+      chart.guide().dataMarker({
+        position: [ '2013-05-31', 2.093 ],
+        content: '余额宝刚成立时，并未达到目标资产\n配置，故收益率较低',
+        style: {
+          text: { textAlign: 'left' }
+        }
+      });
+      chart.guide().dataMarker({
+        position: [ '2016-09-04', 2.321 ],
+        content: '受积极货币政策的影响，收益率降\n到历史最低2.321%',
+        style: {
+          text: { textAlign: 'left' }
+        }
+      });
+      chart.guide().dataRegion({
+        start: [ '2016-12-02', 2.517 ],
+        end: [ '2017-03-24', 3.83 ],
+        content: '宏观经济过热，受稳健货币政策影\n响，余额宝收益率随之上升',
+        lineLength: 50
+      });
+      chart.render();
+    });
+
+</script>

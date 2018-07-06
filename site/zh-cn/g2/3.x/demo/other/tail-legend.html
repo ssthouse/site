@@ -1,0 +1,128 @@
+<!--
+index: 2
+title: 尾部跟随图例
+resource:
+  jsFiles:
+    - ${url.jquery}
+plotDescription: 使用尾部跟随Legend,legend自动跟随最后一个数据点在画布上的位置，适用于折线图和堆叠面积图。并展示了尾部跟随Legend自定义交互方法。
+plotUsage: 数据来源：Tobacco smoking prevalence trends among people aged 15+ years from 2000 until 2025 (WHO)
+-->
+<script>
+const data = [
+          { country: 'France', year: '2000', value: 32.2, marker: 'true' },
+          { country: 'France', year: '2005', value: 30.9, marker: 'false' },
+          { country: 'France', year: '2010', value: 29.7, marker: 'false' },
+          { country: 'France', year: '2015', value: 28.6, marker: 'false' },
+          { country: 'France', year: '2020', value: 27.7, marker: 'false' },
+          { country: 'France', year: '2025', value: 26.9, marker: 'true' },
+          { country: 'Germany', year: '2000', value: 32.8, marker: 'true' },
+          { country: 'Germany', year: '2005', value: 30.6, marker: 'false' },
+          { country: 'Germany', year: '2010', value: 28.7, marker: 'false' },
+          { country: 'Germany', year: '2015', value: 27.0, marker: 'false' },
+          { country: 'Germany', year: '2020', value: 25.3, marker: 'false' },
+          { country: 'Germany', year: '2025', value: 23.7, marker: 'true' },
+          { country: 'India', year: '2000', value: 19.4, marker: 'true' },
+          { country: 'India', year: '2005', value: 16.1, marker: 'false' },
+          { country: 'India', year: '2010', value: 13.5, marker: 'false' },
+          { country: 'India', year: '2015', value: 11.5, marker: 'false' },
+          { country: 'India', year: '2020', value: 9.8, marker: 'false' },
+          { country: 'India', year: '2025', value: 8.5, marker: 'true' },
+          { country: 'Portugal', year: '2000', value: 24.1, marker: 'true' },
+          { country: 'Portugal', year: '2005', value: 22.8, marker: 'false' },
+          { country: 'Portugal', year: '2010', value: 21.1, marker: 'false' },
+          { country: 'Portugal', year: '2015', value: 19.8, marker: 'false' },
+          { country: 'Portugal', year: '2020', value: 18.6, marker: 'false' },
+          { country: 'Portugal', year: '2025', value: 17.8, marker: 'true' },
+          { country: 'Russian', year: '2000', value: 41.6, marker: 'true' },
+          { country: 'Russian', year: '2005', value: 40.2, marker: 'false' },
+          { country: 'Russian', year: '2010', value: 38.8, marker: 'false' },
+          { country: 'Russian', year: '2015', value: 37.6, marker: 'false' },
+          { country: 'Russian', year: '2020', value: 36.4, marker: 'false' },
+          { country: 'Russian', year: '2025', value: 35.2, marker: 'true' },
+          { country: 'United Kingdom', year: '2000', value: 36.3, marker: 'true' },
+          { country: 'United Kingdom', year: '2005', value: 30.5, marker: 'false' },
+          { country: 'United Kingdom', year: '2010', value: 25.7, marker: 'false' },
+          { country: 'United Kingdom', year: '2015', value: 21.6, marker: 'false' },
+          { country: 'United Kingdom', year: '2020', value: 18.1, marker: 'false' },
+          { country: 'United Kingdom', year: '2025', value: 15.2, marker: 'true' },
+          { country: 'Switzerland', year: '2000', value: 29.8, marker: 'true' },
+          { country: 'Switzerland', year: '2005', value: 27.6, marker: 'false' },
+          { country: 'Switzerland', year: '2010', value: 25.8, marker: 'false' },
+          { country: 'Switzerland', year: '2015', value: 24.2, marker: 'false' },
+          { country: 'Switzerland', year: '2020', value: 22.6, marker: 'false' },
+          { country: 'Switzerland', year: '2025', value: 21.0, marker: 'true' }
+    ];
+    const chart = new G2.Chart({
+      container: 'mountNode',
+      forceFit: true,
+      height: window.innerHeight,
+      padding: 'auto'
+    });
+    chart.source(data, {
+      year: {
+        type: 'linear',
+        tickInterval: 5
+      },
+      value: {
+        type: 'linear',
+        tickInterval: 5
+      }
+    });
+    chart.axis('year', {
+      tickLine: null
+    });
+    chart.legend({ attachLast: true });
+    chart.legend('marker', false);
+    chart.tooltip(false);
+    chart.line().position('year*value').color('country', country => {
+      if (country === 'Switzerland') return '#0e5b8b';
+      return '#dadcf0';
+    });
+    chart.point().position('year*value').color('country', country => {
+      if (country === 'Switzerland') return '#0e5b8b';
+      return '#dadcf0';
+    })
+    .size('marker', marker => {
+      if (marker === 'true') return 4;
+      return 0;
+    })
+    .style('country', {
+      opacity: 0.6,
+      fill: function fill(val) {
+        if (val === 'Switzerland') return '#0e5b8b';
+        return '#dadcf0';
+      },
+      lineWidth: 0
+    });
+    chart.render();
+    // interactive
+    const legendController = chart.get('legendController');
+    const legend = legendController.legends['right-top'][0];
+    const shapes = legend.get('geom').getShapes();
+
+    legend.on('itemhover', function(ev) {
+      const selectedValue = ev.item.value;
+      hideShape(shapes, selectedValue);
+    });
+
+    legend.on('itemunhover', function() {
+      resetShape(shapes);
+    });
+
+    function hideShape(shapes, value) {
+      for (let i = 0; i < shapes.length; i++) {
+        const shape = shapes[i];
+        const id = shape._id.split('-')[3];
+        if (id !== value) {
+          shape.attr('opacity', 0.3);
+        }
+      }
+    }
+
+    function resetShape(shapes) {
+      for (let i = 0; i < shapes.length; i++) {
+        const shape = shapes[i];
+        shape.attr('opacity', 1);
+      }
+    }
+</script>
