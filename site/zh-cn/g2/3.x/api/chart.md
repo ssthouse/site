@@ -466,8 +466,11 @@ chart.axis('x', {
     stroke: '#ccc', // 刻度线的颜色
     strokeOpacity: 0.5, // 刻度线颜色的透明度
     length: 5, // 刻度线的长度，可以为负值（表示反方向渲染）
+    alignWithLabel:true//设为负值则显示为category数据类型特有的样式
   }
   ```
+
+  * alignWithLabel的用法详情见教程 [axis](../tutorial/axes.html)
 
   6. `subTickCount`: number
 
@@ -548,7 +551,7 @@ chart.legend('gender', {
 
   1. `position`: string
 
-  设置图例的显示位置，可设置的值为：`top`、`right`、`bottom`、`left`，分别表示上、右、下、左。默认为 `bottom`。
+  设置图例的显示位置，可设置的值为12个：`left-top`,`left-center`,`left-bottom`,`right-top`,`right-top`,`right-bottom`,`top-left`,`top-center`,`top-bottom`,`bottom-left`,`bottom-center`,`bottom-right`。也可使用`bottom`,`top`,`left`,`right`设置位置，此时对应的值分别为`bottom-center`,`top-center`,`left-bottom`,`right-bottom`。默认为 `bottom-center`。
 
   2. `layout`: string
 
@@ -750,22 +753,26 @@ chart.legend('gender', {
   }
   ```
 
-  15. `clickable`: boolean
+  15. `attachLast`:boolean
+
+  是否启用尾部跟随图例(tail-legend)，尾部跟随图例自动跟随geom的最后一个数据点，适用的图表类型为`line`、`stackLine`、`area`、`stackArea`。 默认为false，即不启用。
+
+  16. `clickable`: boolean
 
   对分类类型的图例生效，设置图例项是否允许点击，默认为 true，即允许点击。
 
-  16. `hoverable`: boolean
+  17. `hoverable`: boolean
 
   对分类类型的图例生效，设置是否开启鼠标 hover 至图例的交互效果，默认为 true，即开启动画。
 
-  17.  `selectedMode`: string
+  18.  `selectedMode`: string
 
   针对分类类型图例，当 clickable 为 true 时该配置项生效，用于设置图例的选中交互模式，可配置的属性:
 
   * `selectedMode: 'single'`：表示开启单选模式；
   * `selectedMode: 'multiple'`：表示开启多选模式，默认为 `multiple`。
 
-  18. `onHover`: function
+  19. `onHover`: function
 
   针对分类类型的图例，用于自定义鼠标 hover 图例项的交互，当 `hoverable` 为 false 不生效。
   
@@ -778,7 +785,7 @@ chart.legend('gender', {
   onHover: ev => {}
   ```
 
-  19. `onClick`: function
+  20. `onClick`: function
 
   针对分类类型的图例，用于自定义鼠标点击图例项的交互，当 `clickable` 为 false 不生效。
   
@@ -791,15 +798,15 @@ chart.legend('gender', {
   onClick: ev => {}
   ```
 
-  20. `useHtml`: boolean
+  21. `useHtml`: boolean
 
   针对分类类型图例，用于开启是否使用 html 渲染图例，默认为 false，true 表示使用 html 渲染图例。
 
-  21. `container`: string
+  22. `container`: string
 
   **当 `useHtml` 为 true 时生效**，用于指定生成图例的 dom 容器，那么该值必须为 dom 容器的 id 值为分类类型的话，则支持传入索引值。
 
-  22. `containerTpl`: string
+  23. `containerTpl`: string
 
   **当 `useHtml` 为 true 时生效**，用于指定图例容器的模板，默认值如下：
 
@@ -812,7 +819,7 @@ chart.legend('gender', {
 
   如默认结构不满足需求，可以自定义该模板，但是**自定义模板时必须包含各个 dom 节点的 class**，样式可以自定义。
 
-  23. `itemTpl`: string
+  24. `itemTpl`: string
 
   **当 `useHtml` 为 true 时生效**，用于指定生成图例的图例项 html 模板，默认值如下：
   
@@ -825,19 +832,19 @@ chart.legend('gender', {
 
   !注意：自定义模板时必须包含各个 dom 节点的 class，样式可以自定义。
 
-  24. `slidable`: boolean
+  25. `slidable`: boolean
 
   **针对连续图例**，用于设置连续图例是否允许滑动，默认为 true，即开启滑动操作。
 
-  25. `width`: number
+  26. `width`: number
 
   **针对连续图例**，用于设置图例的宽度。
 
-  26. `height`: number
+  27. `height`: number
 
   **针对连续图例**，用于设置图例的高度。
 
-  27. `custom`: boolean
+  28. `custom`: boolean
 
   默认为 false，当 `custom` 为 true，表示不使用默认生成的图例，允许用户自定义图例，包括具体的图例项以及 click、hover 交互。
 
@@ -1592,7 +1599,8 @@ chart.guide().regionFilter({
   top: {boolean}, // 指定 giude 是否绘制在 canvas 最上层，默认为 true, 即绘制在最上层
   start: {object} | {function} | {array}, // 辅助框起始位置，值为原始数据值，支持 callback 
   end: {object} | {function} | {array},// 辅助框结束位置，值为原始数据值，支持 callback
-  color:'#ccc' //染色色值
+  color:'#ccc', //染色色值
+  apply:{array} //可选，设定regionFilter只对特定geom类型起作用
 });
 ```
 
@@ -1603,7 +1611,7 @@ chart.guide().regionFilter({
 
 - `start`: object | array | function
 
-指定辅助过滤区域的的起始位置，即过滤区域的左上角，该值的类型如下：
+指定辅助过滤区域的起始位置，即过滤区域的左上角，该值的类型如下：
 
   * object: 使用图表 x,y 对应的原始数据例如： { time: '2010-01-01', value: 200 }
   * array: 数组来配置位置 [ x, y]，根据数组中的值的存在以下几种形式：
@@ -1619,6 +1627,158 @@ chart.guide().regionFilter({
 - `color`: string
 
 指定辅助过滤区域内图形元素重新着色的色值。
+
+- `apply`: array
+
+可选,设定regionFilter只对特定geom类型起作用，如apply:['area'],默认regionFilter的作用域为整个图表
+
+
+#### chart.guide().dataMarker(cfg)
+
+特殊数据标注点，适用于折线图和面积图。
+
+```js
+chart.guide().dataMarker({
+  top:true | false, // 指定 giude 是否绘制在 canvas 最上层，默认为true, 即绘制在最上层
+  position: {object} | {function} | {array}, // 标注点起始位置，值为原始数据值，支持 callback ,
+  content: {string}, // 显示的文本内容
+  style: {
+    text: {object},
+    point:{object},
+    line:{object}
+  },//可选，文本/point/line样式
+  display:{
+    text:{boolean},
+    point:{boolean},
+    line:{boolean}
+  },//可选，是否显示文本/point/line，默认为全部显示
+  lineLength:{number},//可选，line长度，default为30
+  direction:'upward' | 'downward' //可选，朝向，默认为upwaard
+});
+```
+##### 参数
+
+- `top`: boolean
+
+指定 guide 是否绘制在 canvas 最上层，默认为 false, 即绘制在最下层。
+
+- `position`: object | array | function
+
+指定特殊数据点标注的位置，该值的类型如下：
+
+  * object: 使用图表 x,y 对应的原始数据例如： { time: '2010-01-01', value: 200 }
+  * array: 数组来配置位置 [ x, y]，根据数组中的值的存在以下几种形式：
+    + x，y 都是原始数据 [ '2010-01-01', 200 ];
+    + x，y 可以使用原始数据的替代字符串 'min', 'max', 'median' , 例如：[ 'median', 200 ]
+    + x, y 都是用百分比的形式，在绘图区域定位，字符串中存在 '%', 例如 [ '50%', '50%' ] 使得辅助元素居中
+  * function: 回调函数，可以动态的确定辅助元素的位置，应用于数据动态更新，辅助元素的位置根据数据变化的场景
+
+- `content`: string
+
+辅助文本的显示内容。
+
+- `style`: object
+
+style:{ point:{},
+        line:{},
+        text:{}
+        }，
+point/line/text样式，更详细的配置项 [绘图属性](graphic.html)
+
+- `display`: object
+
+display:{ point:true | false,
+          line:true | false,
+          text:true | false
+        }，
+是否显示point/line/text。
+
+- `lineLength`: number
+
+line的长度，default为30。
+
+- `direction`: string
+
+标注点朝向：'upward' | 'downward', default为'upward'，即向上
+
+
+#### chart.guide().dataRegion(cfg)
+
+特殊数据区间标注，适用于折线图和面积图。
+
+```js
+chart.guide().dataRegion({
+  top:true | false, // 指定 giude 是否绘制在 canvas 最上层，默认为 true, 即绘制在最上层
+  start: {object} | {function} | {array}, // 标注点起始位置，值为原始数据值，支持 callback ,
+  end: {object} | {function} | {array}, // 标注点结束位置，值为原始数据值，支持 callback ,
+  content: {string}, // 显示的文本内容
+  style: {
+    text: {object},
+    point:{object},
+    line:{object}
+  },//可选，文本/point/line样式
+  display:{
+    text:{boolean},
+    point:{boolean},
+    line:{boolean}
+  },//可选，是否显示文本/point/line，默认为全部显示
+  lineLength:{number},//可选，line长度，default为30
+  direction:'upward' | 'downward' //可选，朝向，默认为upwaard
+});
+```
+##### 参数
+
+- `top`: boolean
+
+指定 guide 是否绘制在 canvas 最上层，默认为 false, 即绘制在最下层。
+
+- `start`: object | array | function
+
+指定特殊数据点标注的起始位置，该值的类型如下：
+
+  * object: 使用图表 x,y 对应的原始数据例如： { time: '2010-01-01', value: 200 }
+  * array: 数组来配置位置 [ x, y]，根据数组中的值的存在以下几种形式：
+    + x，y 都是原始数据 [ '2010-01-01', 200 ];
+    + x，y 可以使用原始数据的替代字符串 'min', 'max', 'median' , 例如：[ 'median', 200 ]
+    + x, y 都是用百分比的形式，在绘图区域定位，字符串中存在 '%', 例如 [ '50%', '50%' ] 使得辅助元素居中
+  * function: 回调函数，可以动态的确定辅助元素的位置，应用于数据动态更新，辅助元素的位置根据数据变化的场景
+
+- `end`: object | array | function
+
+指定特殊数据点标注的起始位置，该属性用法同 `start`。
+
+- `content`: string
+
+辅助文本的显示内容。
+
+- `style`: object
+
+style:{ point:{},
+        line:{},
+        text:{}
+        }，
+point/line/text样式，更详细的配置项 [绘图属性](graphic.html)
+
+- `display`: object
+
+display:{ point:true | false,
+          line:true | false,
+          text:true | false
+        }，
+是否显示point/line/text。
+
+- `lineLength`: number
+
+line的长度，default为30。
+
+- `regionStyle`: object
+
+区间area样式，更详细的配置项 [绘图属性](graphic.html)
+
+- `direction`: string
+
+标注点朝向：'upward' | 'downward', default为'upward'，即向上
+
 
 ### facet
 

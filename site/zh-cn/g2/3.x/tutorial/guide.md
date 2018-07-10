@@ -15,14 +15,17 @@ Guide 作为 G2 图表的辅助元素，主要用于在图表上标识额外的�
 
 ## guide 类型
 
-G2 目前支持 **6** 种辅助标记类型：
+G2 目前支持 **9** 种辅助标记类型：
 
 * line：辅助线（可带文本），例如表示平均值或者预期分布的直线；
 * image：辅助图片，在图表上添加辅助图片；
 * text：辅助文本，指定位置添加文本说明；
 * region：辅助框，框选一段图区，设置背景、边框等；
+* regionFilter:区域着色，将图表中位于矩形选区中的图形元素提取出来，重新着色；
 * html：辅助 html，指定位置添加自定义 html，显示自定义信息；
 * arc：辅助弧线。
+* dataMarker:特殊数据点标注，多用于折线图和面积图
+* dataRegion:特殊数据区间标注，多用于折线图和面积图
 
 ## 如何使用
 
@@ -172,7 +175,7 @@ chart.guide().text({
   top: {boolean}, // 指定 giude 是否绘制在 canvas 最上层，默认为 false, 即绘制在最下层
   zIndex: {number},
   position: {object} | {function} | {array}, // 文本的起始位置，值为原始数据值，支持 callback
-  content: {string}, // 显示的文本内容
+  content: 
   style: {
     fill: '#666', // 文本颜色
     fontSize: '12', // 文本大小
@@ -355,6 +358,7 @@ chart.guide().regionFilter({
   start: {object} | {function} | {array}, // 辅助框起始位置，值为原始数据值，支持 callback 
   end: {object} | {function} | {array},// 辅助框结束位置，值为原始数据值，支持 callback
   color:'#ccc' //染色色值
+  apply:{array} //可选,设定regionFilter只对特定geom类型起作用，如apply:['area'],默认regionFilter的作用域为整个图表
 });
 ```
 
@@ -418,7 +422,7 @@ const data = [
 ### arc 辅助弧线
 
 ```js
-chart.arc({
+chart.guide().arc({
   top: true | false, // 指定 giude 是否绘制在 canvas 最上层，默认为 false, 即绘制在最下层
   start: {object} | {function} | {array}, // 辅助框起始位置，值为原始数据值，支持 callback 
   end: {object} | {function} | {array},// 辅助框结束位置，值为原始数据值，支持 callback
@@ -428,6 +432,126 @@ chart.arc({
 
 `注意`：
 * arc 辅助弧线，仅在 polar [坐标系（Coord）](coord.html)下生效
+
+### dataMarker 特殊数据标注点
+
+对图表中的某个特殊数据点进行标注。默认状态的特殊数据标注点由point、line、text三部分组成，同时开放接口对各部分是否显示及显示样式等进行设置。
+```js
+chart.guide().dataMarker({
+  top:true | false, // 指定 giude 是否绘制在 canvas 最上层，默认为true, 即绘制在最上层
+  position: {object} | {function} | {array}, // 标注点起始位置，值为原始数据值，支持 callback ,
+  content: {string}, // 显示的文本内容
+  style: {
+    text: {object},
+    point:{object},
+    line:{object}
+  },//可选，文本/point/line样式
+  display:{
+    text:{boolean},
+    point:{boolean},
+    line:{boolean}
+  },//可选，是否显示文本/point/line，默认为全部显示
+  lineLength:{number},//可选，line长度，default为30
+  direction:'upward' | 'downward' //可选，朝向，默认为upwaard
+});
+```
+
+`注意`：
+* dataMarker 特殊数据标注点，适用于折线图和面积图
+
+<div id="c7"></div>
+
+```js+
+var data = [{ year: '1991',value: 3}, 
+            { year: '1992',value: 4}, 
+            { year: '1993',value: 3.5}, 
+            { year: '1994',value: 5}, 
+            { year: '1995',value: 4.9}, 
+            { year: '1996',value: 6}, 
+            { year: '1997',value: 7}, 
+            { year: '1998',value: 9}, 
+            { year: '1999',value: 13}];
+var chart = new G2.Chart({
+  container: 'c7',
+  forceFit: true,
+  height: window.innerHeight
+});
+chart.source(data);
+chart.scale('value', {
+  min: 0
+});
+chart.scale('year', {
+  range: [0, 1]
+});
+chart.line().position('year*value');
+chart.guide().dataMarker({
+  position: [ '1997', 7 ],
+  content: '特殊数据标注点'
+});
+chart.render();
+```
+
+### dataRegion 特殊数据区间标注
+
+对图表中的某个特殊数据区间进行标注。
+
+```js
+chart.guide().dataRegion({
+  top:true | false, // 指定 giude 是否绘制在 canvas 最上层，默认为 true, 即绘制在最上层
+  start: {object} | {function} | {array}, // 标注点起始位置，值为原始数据值，支持 callback ,
+  end: {object} | {function} | {array}, // 标注点结束位置，值为原始数据值，支持 callback ,
+  content: {string}, // 显示的文本内容
+  style: {
+    text: {object},
+    point:{object},
+    line:{object}
+  },//可选，文本/point/line样式
+  display:{
+    text:{boolean},
+    point:{boolean},
+    line:{boolean}
+  },//可选，是否显示文本/point/line，默认为全部显示
+  lineLength:{number},//可选，line长度，default为30
+  direction:'upward' | 'downward' //可选，朝向，默认为upwaard
+});
+```
+
+`注意`：
+* dataRegion 特殊数据区间标注，适用于折线图和面积图
+
+<div id="c8"></div>
+
+```js+
+var data = [{ year: '1991',value: 3}, 
+            { year: '1992',value: 4}, 
+            { year: '1993',value: 3.5}, 
+            { year: '1994',value: 5}, 
+            { year: '1995',value: 4.9}, 
+            { year: '1996',value: 6}, 
+            { year: '1997',value: 7}, 
+            { year: '1998',value: 9}, 
+            { year: '1999',value: 13}];
+var chart = new G2.Chart({
+  container: 'c8',
+  forceFit: true,
+  height: window.innerHeight
+});
+chart.source(data);
+chart.scale('value', {
+  min: 0
+});
+chart.scale('year', {
+  range: [0, 1]
+});
+chart.line().position('year*value');
+chart.guide().dataRegion({
+  start: [ '1994', 5 ],
+  end: [ '1996', 6 ],
+  content: '数据区间标注',
+  lineLength: 50
+});
+chart.render();
+```
 
 ### 动态辅助标记
 
@@ -451,7 +575,7 @@ chart.render();
   + xScale, yScale 映射到 x 轴上的字段生成的度量，详情查看 [度量](./scale.html), [api](/zh-cn/g2/3.x/api/scale.html);
   + 分类度量常用的值是 `values` 包含了所有的分类，连续度量常用的是 min, max
 
-<div id="c7"></div>
+<div id="c9"></div>
 
 ```js+
 const data = [];                                                 
@@ -478,7 +602,7 @@ function findMax() {
 }
 
 const chart = new G2.Chart({ // 创建图表
-  container: 'c7',
+  container: 'c9',
   forceFit: true,
   height: 450
 });

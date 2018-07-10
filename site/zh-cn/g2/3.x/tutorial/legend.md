@@ -43,7 +43,7 @@ chart.legend(false); //所有的图例都不显示
 
 属性名 | 解释 | 默认值 
 ----|----|----
-position |图例的显示位置，可配置值 'top','left','right','bottom' 。| 'bottom'
+position |图例的显示位置，支持12个定位位置，配置值 'left-top','left-center','left-bottom','right-top','right-top','right-bottom','top-left','top-center','top-bottom','bottom-left','bottom-center','bottom-right'。也可使用'left'(默认为left-bottom'),'right'(默认为'right-bottom'),'top'(默认为top-center'),'bottom'(默认为bottom-center')定位。| 'bottom-center'
 title | 用于图例标题的显示样式配置，如果值为 null 则不展示。| 左右两侧图例默认展示标题，上下图例默认不展示标题 
 background | 用于图例背景色的配置 | 默认没有背景色 
 offsetX | 整个图例的水平偏移距离 | -- 
@@ -52,6 +52,7 @@ width | 图例的整体宽度（用于连续图例） | 20
 height | 图例的整体高度（用于连续图例） | 156
 autoWrap | 图例项过多时是否自动换行（用于分类图例）| true，自动换行
 marker | 配置图例 marker 的显示样式，支持指定 `point` 几何标记支持的所有 shape(除去 'rect')：'circle', 'square', 'bowtie', 'diamond', 'hexagon', 'triangle', 'triangle-down', 'hollowCircle', 'hollowSquare', 'hollowBowtie', 'hollowDiamond', 'hollowHexagon', 'hollowTriangle', 'hollowTriangle-down', 'cross', 'tick', 'plus', 'hyphen', 'line' | 不同的几何标记不同的 marker
+attachLast | 是否启用尾部跟随图例（适用于`line`、`lineStack`、`area`、`areaStack`图表类型) | false
 clickable | 图例项是否可以点击 | true
 hoverable |  是否默认开启鼠标 hover 到图例项上的交互 | true
 selectedMode | clickable 为 true 时生效，图例的选中模式，单选或者多选 | 'multiple' 默认多选
@@ -205,7 +206,7 @@ chart.coord().transpose();
 // 关键代码：设置对应图例的选择模式
 chart.legend('部门', {
   selectedMode: 'single',
-  position: 'right',
+  position: 'right-bottom',
   hoverable: false
 });
 chart.legend('完成状态', false);
