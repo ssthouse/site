@@ -19,6 +19,19 @@ G2 默认提供了两种图表主题： default、dark。
 
 ## 图表样式设置
 
+### 新增主题
+
+新增主题可以使用 Global 上的 registerTheme 接口。
+
+```js
+const { Global } = G2; // 获取 Global 全局对象
+Global.registerTheme('newTheme', {
+  colors: [ 'red', 'blue', 'yello' ]
+}); // 传入两个参数，一个参数是主题的名称，另一个参数是主题配置项
+```
+
+这样就可以在全局切换这个主题或者在 chart 新建的时候指定设置的主题了。
+
 ### 全局图表主题切换
 
 直接传入主题名

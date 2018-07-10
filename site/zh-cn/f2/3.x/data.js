@@ -1,6 +1,6 @@
 const plotByName = {
-    interaction:   { index: 0,  icon: '', url: '${base}zh-cn/f2/3.x/demo/index.html#_图表交互', name: '图表交互', },
-    health:   { index: 1,  icon: '', url: '${base}zh-cn/f2/3.x/demo/index.html#_健康类图表', name: '健康类图表', },
+    interaction:   { index: 0,  icon: 'icon-region', url: '${base}zh-cn/f2/3.x/demo/index.html#_图表交互', name: '图表交互', },
+    health:   { index: 1,  icon: 'icon-kagi', url: '${base}zh-cn/f2/3.x/demo/index.html#_健康类图表', name: '健康类图表', },
     line:   { index: 2,  icon: 'icon-line', url: '${base}zh-cn/f2/3.x/demo/index.html#_折线图', name: '折线图', },
     area:   { index: 3,  icon: 'icon-area', url: '${base}zh-cn/f2/3.x/demo/index.html#_面积图', name: '面积图', },
     bar:    { index: 4,  icon: 'icon-bar', url: '${base}zh-cn/f2/3.x/demo/index.html#_柱状图', name: '柱状图', },
