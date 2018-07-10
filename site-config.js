@@ -15,7 +15,7 @@ module.exports = {
         'g2-plugin-slider': 'https://gw.alipayobjects.com/os/antv/assets/g2-plugin-slider/2.0.3/g2-plugin-slider.js',
         d3: 'https://gw.alipayobjects.com/os/antv/assets/lib/d3-4.13.0.min.js',
         dataSet: 'https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.8.9/dist/data-set.min.js',
-        f2: 'https://gw.alipayobjects.com/os/antv/assets/f2/3.1.13/f2.min.js',
+        f2: 'https://gw.alipayobjects.com/os/antv/assets/f2/3.1.14/f2.min.js',
         'f2-all': 'https://gw.alipayobjects.com/os/antv/assets/f2/3.2.0-beta.6/f2-all.min.js',
         g6: g6Url + g6Version + '/g6.js',
         'g6-plugins': g6Url + g6Version+'/g6Plugins.js',

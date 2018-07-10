@@ -1,0 +1,83 @@
+<!--
+index: 18
+title: 带文本的分组柱状图
+resource:
+  jsFiles:
+-->
+
+<script>
+    var Shape = F2.Shape;
+    var Util = F2.Util;
+    Shape.registerShape('interval', 'text', {
+      draw: function draw(cfg, container) {
+        var points = this.parsePoints(cfg.points);
+        // points 顶点的顺序
+        // 1 ---- 2
+        // |      |
+        // 0 ---- 3
+        var style = {
+          fill: cfg.color,
+          z: true // 需要闭合
+        };
+        const intervalShape = container.addShape('rect', {
+          attrs: Util.mix({
+            x: points[1].x,
+            y: points[1].y,
+            width: points[2].x - points[1].x,
+            height: points[0].y - points[1].y
+          }, style)
+        });
+
+        var origin = cfg.origin._origin; // 获取对应的原始数据记录
+        var textShape = container.addShape('text', {
+          zIndex: 1,
+          attrs: {
+            x: (points[1].x + points[2].x) / 2,
+            y: points[1].y - 5, // 往上偏移 5 像素
+            text: origin['月均降雨量'],
+            fill: '#808080',
+            textAlign: 'center',
+            textBaseline: 'bottom',
+            fontSize: 10 // 字体大小
+          }
+        });
+        container.sort();
+        return [ intervalShape, textShape ];
+      }
+    });
+
+    const data =[
+      { name: 'London', 月份: 'Jan.', 月均降雨量: 18.9 },
+      { name: 'London', 月份: 'Feb.', 月均降雨量: 28.8 },
+      { name: 'London', 月份: 'Mar.', 月均降雨量: 39.3 },
+      { name: 'London', 月份: 'Apr.', 月均降雨量: 81.4 },
+      { name: 'London', 月份: 'May.', 月均降雨量: 47 },
+      { name: 'London', 月份: 'Jun.', 月均降雨量: 20.3 },
+      { name: 'London', 月份: 'Jul.', 月均降雨量: 24 },
+      { name: 'London', 月份: 'Aug.', 月均降雨量: 35.6 },
+      { name: 'Berlin', 月份: 'Jan.', 月均降雨量: 12.4 },
+      { name: 'Berlin', 月份: 'Feb.', 月均降雨量: 23.2 },
+      { name: 'Berlin', 月份: 'Mar.', 月均降雨量: 34.5 },
+      { name: 'Berlin', 月份: 'Apr.', 月均降雨量: 99.7 },
+      { name: 'Berlin', 月份: 'May.', 月均降雨量: 52.6 },
+      { name: 'Berlin', 月份: 'Jun.', 月均降雨量: 35.5 },
+      { name: 'Berlin', 月份: 'Jul.', 月均降雨量: 37.4 },
+      { name: 'Berlin', 月份: 'Aug.', 月均降雨量: 42.4 }
+    ];
+    const chart = new F2.Chart({
+      id: 'mountNode',
+      pixelRatio: window.devicePixelRatio
+    });
+    chart.source(data);
+    chart.legend(false);
+
+    chart.interval().position('月份*月均降雨量')
+      .color('name')
+      .shape('text')
+      .adjust({
+        type: 'dodge',
+        marginRatio: 0.2
+      });
+
+    chart.render();
+</script>
