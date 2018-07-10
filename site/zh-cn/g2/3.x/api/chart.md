@@ -124,6 +124,10 @@ plotBackground: {
 
 建议使用 `chart.source(data)` 设置数据源。
 
+### `theme`
+
+设置当前图表的主题，可以是字符串 `default` 或者 `dark`（这两个是目前 G2 支持的主题），也可以是一个包含主题配置项的对象，具体设置形式参考 [图表皮肤](../tutorial/theme.html)。这是“Chart 级别的主题样式配置”。
+
 ## 方法
 
 ### source

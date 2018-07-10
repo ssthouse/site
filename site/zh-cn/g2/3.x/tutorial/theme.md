@@ -9,7 +9,7 @@ resource:
 
 # 图表皮肤
 
-在图表样式上，G2 提供了丰富的自定义配置选项，即可从全局设置，也支持局部设置数据层级的设置。
+在图表样式上，G2 提供了丰富的自定义配置选项，既可从全局设置，也支持 Chart 级别的主题设置和局部设置数据层级的设置。
 
 ## 图表主题
 
@@ -19,7 +19,7 @@ G2 默认提供了两种图表主题： default、dark。
 
 ## 图表样式设置
 
-### 图表主题切换
+### 全局图表主题切换
 
 直接传入主题名
 
@@ -28,7 +28,7 @@ const { Global } = G2; // 获取 Global 全局对象
 Global.setTheme('dark'); // 传入值为 'default'、'dark' 的一种，如果不是，那么使用 default 主题。
 ```
 
-### 局部样式设置
+### 变更全局样式
 
 G2 图表样式的配置项都是设置到全局变量 `G2.Global` 上，可以通过如下两种方式进行局部的样式设置：
 
@@ -184,7 +184,9 @@ $.getJSON('/assets/data/world.geo.json', function(mapData) {
 ```
 
 Global 上可以配置的信息：
+
 * 全局的控制变量：柱子的默认宽度、版本号、折线图遇到 Null 时的处理策略
+
 ```js
 const Global = {
   version: '3.2.0-beta.3',
@@ -207,7 +209,146 @@ const Global = {
   }
 };
 ```
+
 更多的查看：https://github.com/antvis/g2/blob/master/src/global.js
 
 * 默认的皮肤样式，查看 https://github.com/antvis/g2/blob/master/src/theme/default.js
 
+### Chart 级别主题切换
+
+同一个上下文现在支持多种主题共存，上述两个图表，通过给第二个图表指定主题，可以切换其主题：
+
+```js
+  const chart2 = new G2.Chart({
+    container: 'c2',
+    forceFit: true,
+    height: 250,
+    theme: 'dark'
+  });
+```
+
+<div id="c3"></div>
+<div id="c4"></div>
+
+```js-
+const Util = G2.Util;
+const theme = Util.deepMix({
+  shape: {
+    polygon: {
+      stroke: '#213c51', // 地图轮廓线颜色
+      lineWidth: 1 // 地图轮廓线宽度
+    },
+    hollowPoint: {
+      fill: '#21273b', // 点的填充颜色
+      lineWidth: 2, // 点的边框宽度
+      radius: 3 // 点的半径
+    },
+    interval: {
+      fillOpacity: 1 // 填充透明度设置
+    }
+  },
+  axis: {
+    bottom: {
+      label: {
+        textStyle: { fill: '#999'} // 底部标签文本的颜色
+      }
+    },
+    left: {
+      label: {
+        textStyle: { fill: '#999'} // 左部标签文本的颜色
+      }
+    },
+    right: {
+      label: {
+        textStyle: { fill: '#999'} // 右部标签文本的颜色
+      }
+    }
+  }
+}, G2.Global);
+G2.Global.setTheme(theme);
+
+$.getJSON('/assets/data/world.geo.json', function(mapData) {
+  const userData = [];
+  const features = mapData.features;
+  for(let i=0; i<features.length; i++) {
+    const name = features[i].properties.name;
+    userData.push({
+      "name": name,
+      "value": Math.round(Math.random()*1000)
+    });
+  }
+
+  // 绘制地图背景
+  const ds = new DataSet();
+  const bgDataView = ds.createView('back')
+    .source(mapData, {
+      type: 'GeoJSON'
+    })
+    .transform({
+      type: 'geo.projection',
+      projection: 'geoMercator'
+    });
+  const userPolygonDv = ds.createView()
+    .source(userData)
+    .transform({
+      geoDataView: bgDataView,
+      field: 'name',
+      type: 'geo.region',
+      as: [ 'longitude', 'latitude' ]
+  });
+  const chart = new G2.Chart({
+    container: 'c3',
+    forceFit: true,
+    height: 400,
+    padding: 0
+  });
+  chart.source(userPolygonDv);
+  chart.coord().reflect();
+  chart.tooltip({
+    showTitle: false
+  });
+  chart.axis(false);
+  chart.legend(false);
+  chart.polygon()
+    .position('longitude*latitude')
+    .color('value','#39ccf4-#20546b')
+    .style({
+      lineWidth: 1,
+      stroke: '#999'
+    });
+  chart.render();
+
+  const data = [
+    { time: '10:10', call: 4, waiting: 2, people: 2 },
+    { time: '10:15', call: 2, waiting: 6, people: 3 },
+    { time: '10:20', call: 13, waiting: 2, people: 5 },
+    { time: '10:25', call: 9, waiting: 9, people: 1 },
+    { time: '10:30', call: 5, waiting: 2, people: 3 },
+    { time: '10:35', call: 8, waiting: 2, people: 1 },
+    { time: '10:40', call: 13, waiting: 1, people: 2 }
+  ];
+  const dv = new DataSet.DataView();
+  dv.source(data).transform({
+    type: 'fold',
+    fields: [ 'call','waiting' ],
+    key: 'type',
+    value: 'count',
+    retains: [ 'time', 'people' ]
+  });
+  const chart2 = new G2.Chart({
+    container: 'c4',
+    forceFit: true,
+    height: 250,
+    theme: 'dark'
+  });
+  chart2.source(dv, {
+    'count': { alias: '话务量（通）', min: 0 },
+    'people': { alias: '人数（人）', min: 0 }
+  });
+  chart2.legend(false);// 不显示图例
+  chart2.intervalStack().position('time*count').color('type', [ '#348cd1', '#43b5d8' ]); // 绘制层叠柱状图
+  chart2.line().position('time*people').color('#5ed470').size(4).shape('smooth'); // 绘制曲线图
+  chart2.point().position('time*people').color('#5ed470').tooltip(false); // 绘制点图
+  chart2.render();
+});
+```

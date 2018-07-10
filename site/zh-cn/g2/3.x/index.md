@@ -135,6 +135,10 @@ var padding = [40, 40, 90, 60];
     lineWidth: 1
   });
   chart.render();
+  chart.showTooltip({
+    x: 250,
+    y: 250
+  });
 ```
 
 <!-- chart2 -->
