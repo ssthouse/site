@@ -15,12 +15,11 @@ G6 中定义 4 个最基础的图元素，分别是 `node` 、 `edge` 、 `group
 ## 注册
 
 ```js
+
 // 注册节点
 G6.registerNode(name, {
   // 绘制
   draw: callback,
-  // 绘制后执行
-  afterDraw: callback,
   // 获取锚点
   anchor: array || callback
 }, extendShape);
@@ -29,33 +28,24 @@ G6.registerNode(name, {
 G6.registerEdge(name, {
   // 绘制
   draw: callback,
-  // 绘制后执行
-  afterDraw: callback
 }, extendShape);
 
 // 注册组
 G6.registerGroup(name, {
   // 绘制
   draw: callback,
-  // 绘制后执行
-  afterDraw: callback
 }, extendShape);
 
 // 注册导引信息
 G6.registerGuide(name, {
   // 绘制
   draw: callback,
-  // 绘制后执行
-  afterDraw: callback
 }, extendShape);
 
 ```
 
 ## 绘制
 与 G2 自定 Shape 类似，`draw` 是图项最终绘制的接口，`决定了一个图项最终画成什么样`。G6 中拓展图形的最小接口，例如：
-
-
-
 
 ![image | center](https://gw.alipayobjects.com/zos/rmsportal/ZoCivRVCgpgMbvbUEDla.png "")
 

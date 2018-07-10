@@ -58,7 +58,7 @@ resource:
 G6.registerNode('customNode', {
   anchor: {
     // 相交盒模型
-    type: 'circle' || callback, // 'circle', 'rect', 'path'
+    intersectBox: 'circle' || callback, // 'circle', 'rect', 'path'
     // 锚点
     points: [
       [0, 1, cfg],
