@@ -31,6 +31,7 @@ const chart = new Chart({
 ```js
 chart.tooltip(false); // 关闭 tooltip
 chart.tooltip({
+  alwaysShow: false, // 当移出触发区域，是否仍显示提示框内容，默认为 false，移出触发区域 tooltip 消失，设置为 true 可以保证一直显示提示框内容
   offsetX: 0, // x 方向的偏移
   offsetY: 0, // y 方向的偏移
   triggerOn: [ 'touchstart', 'touchmove' ], // tooltip 出现的触发行为，可自定义，用法同 legend 的 triggerOn

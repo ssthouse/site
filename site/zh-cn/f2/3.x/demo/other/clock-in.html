@@ -1,0 +1,129 @@
+<!--
+index: 11
+title: 每日打卡记录
+resource:
+  jsFiles:
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+<script>
+// 自定义 shape
+// point 为矩形的四个顶点，顺序
+// 1 ----- 2
+// |       |
+// 0 ----- 3
+function getRectRange(points, coord) {
+  const coordHeight = Math.abs(coord.y.start - coord.y.end);
+  const xValues = [];
+  const yValues = [];
+  for (let i = 0, len = points.length; i < len; i++) {
+    const point = points[i];
+    xValues.push(point.x);
+    yValues.push(point.y);
+  }
+  const xMin = Math.min.apply(null, xValues);
+  const yMin = Math.min.apply(null, yValues);
+  const xMax = Math.max.apply(null, xValues);
+  const yMax = Math.max.apply(null, yValues);
+
+  return {
+    x: xMin,
+    y: yMax,
+    width: xMax - xMin,
+    height: coordHeight - (yMax - yMin)
+  };
+}
+const Util = F2.Util;
+F2.Shape.registerShape('interval', 'reverse', {
+  draw(cfg, container) {
+    const points = this.parsePoints(cfg.points);
+    const style = Util.mix({
+      fill: cfg.color
+    }, cfg.style);
+    const rectCfg = getRectRange(points, this._coord);
+
+    return container.addShape('rect', {
+      className: 'interval',
+      attrs: Util.mix(rectCfg, style)
+    });
+  }
+});
+
+// ------------- 绘制图表 -------------
+const data = [
+  { date: '06-27', time: 1530227400000 }, // 2018-06-29 07:10:00
+  { date: '28', time: 1530267780000 }, // 2018-06-29 18:23:00
+  { date: '29' },
+  { date: '30' },
+  { date: '07-01', time: 1530274980000 }, // 2018-06-29 20:23:00
+];
+
+const chart = new F2.Chart({
+  id: 'mountNode',
+  pixelRatio: window.devicePixelRatio,
+  padding: [ 60, 'auto', 'auto' ]
+});
+
+chart.source(data, {
+  time: {
+    min: 1530201600000, // 2018-06-29 00:00:00
+    max: 1530287999000, // 2018-06-29 23:59:59
+    nice: false,
+    ticks: [ 1530201600000, 1530287999000 ], // 00:00, 23:59
+    formatter(val) {
+      return moment(val).format('HH:mm');
+    },
+    scale(value) { // 将 Y 轴数据自上而下排序方式改为 从小到大
+            if (value === null || value === undefined) {
+              return NaN;
+            }
+            const max = this.max;
+            const min = this.min;
+            if (max === min) {
+              return 0;
+            }
+
+            const percent = (value - min) / (max - min);
+            const rangeMin = this.rangeMin();
+            const rangeMax = this.rangeMax();
+            return 1 - (rangeMin + percent * (rangeMax - rangeMin));
+          }
+  }
+});
+
+chart.tooltip(false);
+chart.axis('time', {
+  position: 'right'
+});
+
+// 绘制 guide
+data.map(obj => {
+  if (obj.time) {
+    chart.guide().tag({
+      position: [ obj.date, 'max' ],
+      content: moment(obj.time).format('HH:mm'),
+      direct: 'tc',
+      background: {
+        padding: [ 5 ], // tag 内边距，使用同 css 盒模型的 padding
+        radius: 2, // tag 圆角
+        fill: '#1890FF', // tag 背景色
+      },
+      side: 6,
+      withPoint: null
+    }).line({
+      start: [ obj.date, 'min' ],
+      end: [ obj.date, 'max' ],
+      top: false
+    });
+  }
+});
+
+chart.interval().position('date*time').shape('reverse')
+  .size(16)
+  .animate({
+    appear: {
+      animation: 'fadeIn'
+    }
+  });
+chart.render();
+</script>
