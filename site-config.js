@@ -3,9 +3,8 @@
 var path = require('path');
 var resolve = path.resolve;
 var pkg = require('./package.json');
-const g6Url = 'https://gw.alipayobjects.com/os/antv/assets/g6';
 const g6EditorUrl = 'https://gw.alipayobjects.com/os/antv/assets/g6-editor';
-const g6Version = '/2.0.0';
+const g6Version = '2.0.4';
 const g6EditorVersion = '/1.0.0';
 module.exports = {
     url: {
@@ -17,8 +16,8 @@ module.exports = {
         dataSet: 'https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.8.9/dist/data-set.min.js',
         f2: 'https://gw.alipayobjects.com/os/antv/assets/f2/3.1.14/f2.min.js',
         'f2-all': 'https://gw.alipayobjects.com/os/antv/assets/f2/3.2.0-beta.6/f2-all.min.js',
-        g6: g6Url + g6Version + '/g6.js',
-        'g6-plugins': g6Url + g6Version+'/g6Plugins.js',
+        g6: 'https://unpkg.com/@antv/g6@' + g6Version + '/build/g6.js',
+        'g6-plugins': 'https://unpkg.com/@antv/g6@' + g6Version + '/build/plugins.js',
         'g6-editor-base': g6EditorUrl + g6EditorVersion+'/base.js',
         'g6-editor-base-css': g6EditorUrl + g6EditorVersion+'/base.css',
         'g6-editor-mind': g6EditorUrl + g6EditorVersion+'/mind.js',
