@@ -24,6 +24,7 @@ resource:
   jsFiles:
     - ${url.g6}
     - ${url['g6-plugins']}
+    - ${url.d3}
 -->
 
 <style>
@@ -111,6 +112,7 @@ npm install @antv/g6 --save
 $.getJSON('/assets/data/g6-index.json', data => {
     const Template = G6.Plugins['template.maxSpanningForest'];
     const Mapper = G6.Plugins['tool.d3.mapper'];
+    const { forceSimulation, forceLink, forceManyBody, forceCenter, forceCollide } = d3;
     const nodeSizeMapper = new Mapper('node', 'weight', 'size', [8, 20], {
     legendCfg: null
     });
@@ -121,13 +123,44 @@ $.getJSON('/assets/data/g6-index.json', data => {
     legendCfg: null
     });
     const template = new Template();
+    const force = {
+        execute() {
+            const nodes = this.nodes;
+            const edges = this.edges;
+            const graph = this.graph;
+            const width = graph.getWidth();
+            const height = graph.getHeight();
+            const simulation = forceSimulation(nodes)
+            .force('charge', forceManyBody().distanceMax(width * 3))
+            .force('link', forceLink(G6.Util.cloneDeep(edges))
+                .id(model => {
+                return model.id;
+                })
+                .strength(1)
+            )
+            .force('center', forceCenter(width / 2, height / 2))
+            .force('collision', forceCollide().radius(model => {
+                return model.width / 2 * 1.2;
+            }));
+            simulation.stop();
+            for (let i = 0, n = Math.ceil(Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay())); i < n; ++i) {
+            simulation.tick();
+            }
+            nodes.forEach(node => {
+            delete node.vx;
+            delete node.vy;
+            });
+        }
+    };
     const graph = new G6.Graph({
-    id: 'mountNode',             // dom id
-    height: 400,
-    plugins: [template, nodeSizeMapper, nodeColorMapper, edgeSizeMapper],
-    animate: true,
+        id: 'mountNode',             // dom id
+        height: 400,
+        plugins: [template, nodeSizeMapper, nodeColorMapper, edgeSizeMapper],
+        animate: true,
+        layout: {
+            processer: force
+        }
     });
-    const force = template.layout;
     const circle = new G6.Layouts.Circle({
     sort(a, b) {
         return a.weight - b.weight;
