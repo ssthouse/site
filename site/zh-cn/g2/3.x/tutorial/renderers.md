@@ -4,7 +4,7 @@ title: 选择 Canvas 还是 SVG
 resource:
   jsFiles:
     - ${url.dataSet}
-    - ${url.g2-svg}
+    - ${url["g2-svg"]}
 -->
 
 # 选择 Canvas 还是 SVG
@@ -45,6 +45,8 @@ Canvas 提供的绘图能力更底层，适合做到像素级的图形处理，�
 
 ### SVG demo
 
+<div id="mountNode"></div>
+
 ```js-
 var data = [{
   name: 'London',
@@ -79,7 +81,8 @@ dv.transform({
 var chart = new G2.Chart({
   container: 'mountNode',
   forceFit: true,
-  height: window.innerHeight
+  height: 500,
+  padding: 'auto'
 });
 chart.source(dv);
 chart.interval().position('月份*月均降雨量').color('name').adjust([{
