@@ -44,11 +44,24 @@ screenshot: https://gw.alipayobjects.com/zos/rmsportal/YZdVacvVzZzdehwJVBeA.gif
       .adjust('stack');
     chart.render();
 
+    // 绘制内阴影
+    const frontPlot= chart.get('frontPlot');
+    const coord = chart.get('coord'); // 获取坐标系对象
+    frontPlot.addShape('sector', {
+      attrs: {
+        x: coord.center.x,
+        y: coord.center.y,
+        r: coord.circleRadius * coord.innerRadius * 1.2, // 全半径
+        r0: coord.circleRadius * coord.innerRadius,
+        fill: '#000',
+        opacity: 0.15
+      }
+    });
+
     // 开始绘制文本
     const ANCHOR_OFFSET = 5; // 锚点偏移量
     const OFFSET = 18; // 连接线拐弯点偏移量
     const APPEND_OFFSET = 30; // 文本同 canvas 四边的偏移值
-    const coord = chart.get('coord'); // 获取坐标系对象
     const center = coord.center; // 极坐标圆心坐标
     const r = coord.circleRadius; // 极坐标半径
     const canvas = chart.get('canvas'); // 获取 canvas 对象
@@ -110,20 +123,41 @@ screenshot: https://gw.alipayobjects.com/zos/rmsportal/YZdVacvVzZzdehwJVBeA.gif
     // 绘制文本
     function _drawLabel(label) {
       const { _data, y, _side } = label;
-      const text = new F2.G.Shape.Text({
+      const group = new F2.G.Group({
+        origin: _data // 存储原始数据
+      });
+      // 新建分类名的 text shape, 加入到 group 中
+      group.addShape('text', {
         attrs: {
           x: _side === 'left' ? APPEND_OFFSET : canvasWidth - APPEND_OFFSET,
           y,
           fontSize: 12, // 字体大小
           fill: '#808080',
-          text: _data.memo + '\n' + _data.amount.toFixed(2),
-          textBaseline: 'middle',
+          text: _data.memo,
+          textBaseline: 'bottom',
           textAlign: _side === 'left' ? 'left' : 'right',
           lineHeight: 16
         },
         origin: _data // 存储原始数据
       });
-      return text;
+      // 新建数字 text shaoe，加入到 group 中
+      group.addShape('text', {
+        attrs: {
+          x: _side === 'left' ? APPEND_OFFSET : canvasWidth - APPEND_OFFSET,
+          y,
+          fontSize: 12, // 字体大小
+          fill: '#000',
+          text: '$' + _data.amount.toFixed(2),
+          textBaseline: 'top',
+          textAlign: _side === 'left' ? 'left' : 'right',
+          lineHeight: 16,
+          fontWeight: 'bold'
+        },
+        origin: _data // 存储原始数据
+      });
+
+
+      return group;
     }
 
     // 查找被点击的 label
