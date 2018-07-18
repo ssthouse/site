@@ -70,7 +70,8 @@ demoDirs.forEach(function (dir) {
             name: name,
             category: category,
             title: title,
-            version: meta.version || 'f2'
+            version: meta.version || 'f2',
+            needIcon: meta.needIcon || false
         };
         demoByHref[href] = demo;
         demosByCategory[category].demos.push(demo);

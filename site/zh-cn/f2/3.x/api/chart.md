@@ -112,6 +112,12 @@ const chart = new F2.Chart({
 
 > 说明：padding 的使用方法同 CSS 盒模型中的 padding。
 
+### `appendPadding`
+
+- 参数类型：Number
+- 描述：图表画布区域四边的预留边距，即我们会在 padding 的基础上，为四边再加上 appendPadding 的数值，默认为 15 px。
+- 默认值：15
+
 ### `pixelRatio`
 
 - 参数类型：Number

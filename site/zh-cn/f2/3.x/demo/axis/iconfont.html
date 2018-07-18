@@ -1,33 +1,24 @@
 <!--
 index: 6
 title: 图标坐标轴
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/yemAvFtBapMsbNZPDIAH.png
+needIcon: true
 -->
-
-<style>
-  @font-face {
-    font-family: 'iconfont';  /* project id 750097 */
-    src: url('//at.alicdn.com/t/font_750097_7vtswa9trv7.eot');
-    src: url('//at.alicdn.com/t/font_750097_7vtswa9trv7.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_750097_7vtswa9trv7.woff') format('woff'),
-    url('//at.alicdn.com/t/font_750097_7vtswa9trv7.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_750097_7vtswa9trv7.svg#iconfont') format('svg');
-  }
-</style>
 
 <script>
   var iconfontMap = {
-    '苹果': '&#xe60d;',
-    '梨子': '&#xe60e;',
-    '香蕉': '&#xe60f;',
-    '葡萄': '&#xe610;',
-    '西瓜': '&#xe60c;'
+    '苹果': 'e60d', // unicode
+    '梨子': 'e60e',
+    '香蕉': 'e60f',
+    '葡萄': 'e610',
+    '西瓜': 'e60c'
   };
   var data = [
-    { fruit: '苹果', value: 26, iconfont: '&#xe60d;'},
-    { fruit: '梨子', value: 40, iconfont: '&#xe60e;'},
-    { fruit: '香蕉', value: 30, iconfont: '&#xe60f;'},
-    { fruit: '葡萄', value: 24, iconfont: '&#xe610;'},
-    { fruit: '西瓜', value: 15, iconfont: '&#xe60c;'}
+    { fruit: '苹果', value: 26 },
+    { fruit: '梨子', value: 40 },
+    { fruit: '香蕉', value: 30 },
+    { fruit: '葡萄', value: 24 },
+    { fruit: '西瓜', value: 15 }
   ];
   var chart = new F2.Chart({
     id: 'mountNode',
@@ -42,8 +33,8 @@ title: 图标坐标轴
     label(text) {
       return {
         fontSize: 20,
-        fontFamily: 'iconfont',
-        text: iconfontMap[text]
+        fontFamily: 'charts-icon',
+        text: String.fromCharCode(parseInt(iconfontMap[text], 16))
       };
     }
   });

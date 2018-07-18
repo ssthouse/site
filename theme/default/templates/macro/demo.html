@@ -36,7 +36,7 @@
 </html>
 {% endmacro %}
 
-{% macro f2demo(title, content, resource, dist, url, version) %}
+{% macro f2demo(title, content, resource, dist, url, version, needIcon) %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,10 +45,22 @@
     <meta name="chart-name" content="{{title}}">
     <title>F2 图表组件库 - AntV</title>{% for css in resource.cssFiles %}
     <link rel="stylesheet" href="{{ css }}" />{% endfor %}
-<link rel="stylesheet" href="https://gw.alipayobjects.com/os/rmsportal/XQbQUStlgGlnVrWMZhrb.css" />
+    <link rel="stylesheet" href="https://gw.alipayobjects.com/os/rmsportal/XQbQUStlgGlnVrWMZhrb.css" />
+    {% if needIcon == true %}
+    <style>
+      @font-face {
+        font-family: 'charts-icon';  /* project id 750097 */
+        src: url('//at.alicdn.com/t/font_750097_7vtswa9trv7.eot');
+        src: url('//at.alicdn.com/t/font_750097_7vtswa9trv7.eot?#iefix') format('embedded-opentype'),
+        url('//at.alicdn.com/t/font_750097_7vtswa9trv7.woff') format('woff'),
+        url('//at.alicdn.com/t/font_750097_7vtswa9trv7.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_750097_7vtswa9trv7.svg#iconfont') format('svg');
+      }
+    </style>
+    {% endif %}
 </head>
 <body>
-  <div class="chart-wrapper" >
+  <div class="chart-wrapper">
     <canvas id="mountNode"></canvas>
   </div>
 <script>/*Fixing iframe window.innerHeight 0 issue in Safari*/document.body.clientHeight;</script>
