@@ -44,7 +44,7 @@ F2 是由 G2-mobile 升级而来，两者基本兼容，本章列出从 G2-mobil
 
   + margin 改成 padding
 
-  为了升级方面，margin 还保留支持
+  为了升级方便，margin 还保留支持
 
   ```js
   // G2-mobile 2.0

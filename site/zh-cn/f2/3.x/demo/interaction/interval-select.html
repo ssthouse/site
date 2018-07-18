@@ -1,11 +1,20 @@
 <!--
 index: 1
 title: 柱状图选中
-screenshot: https://gw.alipayobjects.com/zos/rmsportal/rMazYGmlsSCnWWwsPaFk.gif
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/LRQhnWWXNOLBpuNULUib.gif
 version: 'f2-all'
 -->
 
-<p style="text-align: center;">F2 版本：3.2.0-beta.5</p>
+<p style="text-align: center;">F2 版本：3.2.0-beta.7</p>
+
+<style>
+  .chart-label {
+    text-align: center;
+    font-size: 12px;
+    font-weight: normal;
+    color: #808080;
+  }
+</style>
 
 <script>
   var data = [
@@ -29,6 +38,16 @@ version: 'f2-all'
     }
   });
   chart.tooltip(false);
+
+  // 绘制 guide
+  data.map(obj => {
+    chart.guide().html({
+      position: [ obj.year, obj.sales ],
+      html: `<div data-year="${obj.year}" class="chart-label">${obj.sales}</div>`,
+      alignX: 'center',
+      alignY: 'bottom'
+    });
+  });
   chart.interval().position('year*sales');
   chart.render();
 
@@ -37,6 +56,34 @@ version: 'f2-all'
       stroke: '#000',
       lineWidth: 1
     },
-    // unSelectStyle:null
+    selectAxisStyle: {
+      fill: '#000',
+      fontWeight: 'bold'
+    },
+    onEnd(ev) {
+      const { data, selected } = ev;
+      if (selected) {
+        $('.chart-label').each((index, el) => {
+          el = $(el);
+          if (el.data('year') === data.year) {
+            el.css({
+              color: '#000',
+            });
+          } else {
+            el.css({
+              color: '#808080',
+            });
+          }
+        });
+      } else {
+        $('.chart-label').each((index, el) => {
+          el = $(el);
+
+          el.css({
+            color: '#808080'
+          });
+        });
+      }
+    }
   });
 </script>

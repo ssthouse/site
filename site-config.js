@@ -15,7 +15,7 @@ module.exports = {
         d3: 'https://gw.alipayobjects.com/os/antv/assets/lib/d3-4.13.0.min.js',
         dataSet: 'https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.8.9/dist/data-set.min.js',
         f2: 'https://gw.alipayobjects.com/os/antv/assets/f2/3.1.14/f2.min.js',
-        'f2-all': 'https://gw.alipayobjects.com/os/antv/assets/f2/3.2.0-beta.6/f2-all.min.js',
+        'f2-all': 'https://gw.alipayobjects.com/os/antv/assets/f2/3.2.0-beta.7/f2-all.min.js',
         g6: 'https://unpkg.com/@antv/g6@' + g6Version + '/build/g6.js',
         'g6-plugins': 'https://unpkg.com/@antv/g6@' + g6Version + '/build/plugins.js',
         'g6-editor-base': g6EditorUrl + g6EditorVersion+'/base.js',

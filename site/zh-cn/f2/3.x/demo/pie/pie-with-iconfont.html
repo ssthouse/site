@@ -1,0 +1,147 @@
+<!--
+index: 9
+title: 带 iconfont 的饼图
+-->
+
+<style>
+@font-face {
+  font-family: 'iconfont';  /* project id 750097 */
+  src: url('//at.alicdn.com/t/font_750097_250j75u0yi5.eot');
+  src: url('//at.alicdn.com/t/font_750097_250j75u0yi5.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_750097_250j75u0yi5.woff') format('woff'),
+  url('//at.alicdn.com/t/font_750097_250j75u0yi5.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_750097_250j75u0yi5.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+</style>
+<script>
+  const fontSize = 24 * (window.innerWidth / 375); // 字体适配不同屏幕
+
+  // 根据角度和圆心求坐标
+  function _getEndPoint(center, angle, r) {
+    return {
+      x: center.x + r * Math.cos(angle),
+      y: center.y + r * Math.sin(angle)
+    };
+  }
+  const { Shape, Util, G } = F2;
+  const { Vector2 } = G;
+  Shape.registerShape('interval', 'pie-with-icon', {
+    draw(cfg, container) {
+      const points = this.parsePoints(cfg.points);
+      const style = Util.mix({
+        fill: cfg.color
+      }, cfg.style);
+      const coord = this._coord;
+      if (cfg.isInCircle && coord.transposed) { // 只处理极坐标y
+        const newPoints = [ points[0], points[3], points[2], points[1] ];
+
+        const { x, y } = cfg.center;
+        const v = [ 1, 0 ];
+        const v0 = [ newPoints[0].x - x, newPoints[0].y - y ];
+        const v1 = [ newPoints[1].x - x, newPoints[1].y - y ];
+        const v2 = [ newPoints[2].x - x, newPoints[2].y - y ];
+
+        let startAngle = Vector2.angleTo(v, v1);
+        let endAngle = Vector2.angleTo(v, v2);
+        const r0 = Vector2.length(v0);
+        const r = Vector2.length(v1);
+
+        if (startAngle >= 1.5 * Math.PI) {
+          startAngle = startAngle - 2 * Math.PI;
+        }
+
+        if (endAngle >= 1.5 * Math.PI) {
+          endAngle = endAngle - 2 * Math.PI;
+        }
+
+        const middleAngle = (startAngle + endAngle) / 2;
+        const numbricCenter = _getEndPoint(cfg.center, middleAngle, (r + r0) / 2 );
+
+        const sector = container.addShape('Sector', {
+          className: 'interval',
+          attrs: Util.mix({
+            x,
+            y,
+            r,
+            r0,
+            startAngle,
+            endAngle
+          }, style)
+        });
+
+        const sectorBBox = sector.getBBox();
+        if (sectorBBox.width >= fontSize && sectorBBox.height >= fontSize ) { // 确定扇形部分可以放下 iconfont
+          const text = container.addShape('text', {
+            attrs: {
+              x: numbricCenter.x,
+              y: numbricCenter.y,
+              fontFamily: 'iconfont',
+              textAlign: 'center',
+              textBaseline: 'middle',
+              fontSize,
+              text: cfg.origin._origin.iconfont,
+              fill: '#fff',
+              fontWeight: '400'
+            }
+          });
+
+          return [ sector, text ];
+        }
+        return sector;
+      }
+    }
+  });
+
+  var data = [
+    { name: '吊环', percent: 30, a: '1', iconfont: '&#xe64b;' },
+    { name: '拳击', percent: 25, a: '1', iconfont: '&#xe650;' },
+    { name: '跑步机', percent: 15, a: '1', iconfont: '&#xe64f;' },
+    { name: '跳绳', percent: 15, a: '1', iconfont: '&#xe651;' },
+    { name: '杠铃', percent: 15, a: '1', iconfont: '&#xe64c;' }
+  ];
+
+  var map = {};
+  data.map(function(obj) {
+    map[obj.name] = obj.percent + '%';
+  });
+
+  var chart = new F2.Chart({
+    id: 'mountNode',
+    pixelRatio: window.devicePixelRatio
+  });
+  chart.source(data, {
+    percent: {
+      formatter: function(val) {
+        return val + '%';
+      }
+    }
+  });
+  chart.tooltip(false);
+  chart.legend({
+    position: 'right',
+    marker: 'square',
+    itemFormatter(val) {
+      return val + '  ' + map[val];
+    }
+  });
+  chart.coord('polar', {
+    transposed: true,
+    innerRadius: 0.4,
+    radius: 0.85
+  });
+  chart.axis(false);
+  chart.interval()
+    .position('a*percent')
+    .color('name', [ '#1890FF', '#13C2C2', '#2FC25B', '#FACC14', '#F04864', '#8543E0', '#3436C7', '#223273' ])
+    .adjust('stack')
+    .shape('pie-with-icon');
+  chart.render();
+</script>

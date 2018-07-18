@@ -1,0 +1,53 @@
+<!--
+index: 6
+title: 图标坐标轴
+-->
+
+<style>
+  @font-face {
+    font-family: 'iconfont';  /* project id 750097 */
+    src: url('//at.alicdn.com/t/font_750097_7vtswa9trv7.eot');
+    src: url('//at.alicdn.com/t/font_750097_7vtswa9trv7.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_750097_7vtswa9trv7.woff') format('woff'),
+    url('//at.alicdn.com/t/font_750097_7vtswa9trv7.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_750097_7vtswa9trv7.svg#iconfont') format('svg');
+  }
+</style>
+
+<script>
+  var iconfontMap = {
+    '苹果': '&#xe60d;',
+    '梨子': '&#xe60e;',
+    '香蕉': '&#xe60f;',
+    '葡萄': '&#xe610;',
+    '西瓜': '&#xe60c;'
+  };
+  var data = [
+    { fruit: '苹果', value: 26, iconfont: '&#xe60d;'},
+    { fruit: '梨子', value: 40, iconfont: '&#xe60e;'},
+    { fruit: '香蕉', value: 30, iconfont: '&#xe60f;'},
+    { fruit: '葡萄', value: 24, iconfont: '&#xe610;'},
+    { fruit: '西瓜', value: 15, iconfont: '&#xe60c;'}
+  ];
+  var chart = new F2.Chart({
+    id: 'mountNode',
+    pixelRatio: window.devicePixelRatio
+  });
+
+  chart.source(data);
+  chart.legend(false);
+
+  // 使用 iconfont 显示 X 轴坐标轴文本
+  chart.axis('fruit', {
+    label(text) {
+      return {
+        fontSize: 20,
+        fontFamily: 'iconfont',
+        text: iconfontMap[text]
+      };
+    }
+  });
+
+  chart.interval().position('fruit*value').color('fruit');
+  chart.render();
+</script>

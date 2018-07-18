@@ -10,7 +10,7 @@ resource:
 
 ---
 
-> 注意：目前请使用 3.2.0-beta.5 版本！！！
+> 注意：目前请使用 3.2.0-beta.7 版本！！！
 
 **F2 3.2 版本**提供一套交互机制，以达到通用交互行为的封装和复用。基于此机制，我们提供了以下四种通用的交互行为：
 
@@ -174,6 +174,8 @@ chart.interaction('interval-select', {
   startEvent: {String}, // 触发事件，默认为 tap 事件
   selectStyle: {Object}, // 被选中图形的样式配置
   unSelectStyle: {Object}, // 未被选中图形的样式配置
+  selectAxis: {Boolean}, // 是否高亮坐标轴文本
+  selectAxisStyle: {Object}, // 坐标轴文本被选中后的样式
   cancelable: {Boolean}, // 是否允许取消选中，默认值为 true，表示允许
   onStart: {Function}, // 事件触发后的回调
   onEnd: {Function} // 事件结束后的回调
@@ -200,6 +202,18 @@ chart.interaction('interval-select', {
 * 默认值：`{fillOpacity: 0.4}`
 
 用于设置未被选中柱子的显示样式。如果不需要设置，可以直接设置为 `null`。
+
+##### `selectAxis`
+* 类型：Boolean
+* 默认值：true
+
+是否高亮坐标轴文本，默认为 true，会高亮。如不需要，可以选择关闭。
+
+##### `selectAxisStyle`
+* 类型：Object
+* 默认值：`{ fontWeight: 'bold' }`
+
+设置坐标轴文本高亮的样式。默认只是文字加粗。
 
 ##### `cancelable`
 * 类型：Boolean
