@@ -157,6 +157,7 @@ module.exports = {
         { name: '米法'  , jobTitle: '工程师'     , avatar: '${assets}/image/members/mifa.png'     , weibo: ''                                   , github: 'https://github.com/paleface001'  } ,
         { name: '芈乐'  , jobTitle: '工程师'     , avatar: '${assets}/image/members/mile.jpg'     , weibo: ''                                   , github: 'https://github.com/weepy3641'    } ,
         { name: '青湳'  , jobTitle: '工程师'     , avatar: '${assets}/image/members/qingnan.png'  , weibo: ''                                   , github: 'https://github.com/elaine1234'   } ,
+        { name: '十吾'  , jobTitle: '工程师'     , avatar: '${assets}/image/members/shiwu.jpg'    , weibo: 'https://weibo.com/u/2844988612'     , github: 'https://github.com/Yanyan-Wang'  } ,
         { name: '完白'  , jobTitle: '设计师'     , avatar: '${assets}/image/members/wanbai.png'   , weibo: ''                                   , github: ''                                } ,
         { name: '象数'  , jobTitle: '工程师'     , avatar: '${assets}/image/members/xiangshu.png' , weibo: 'https://weibo.com/1707284737'       , github: 'https://github.com/lzxue'        } ,
         { name: '萧庆'  , jobTitle: '工程师'     , avatar: '${assets}/image/members/xiaoqing.jpg' , weibo: ''                                   , github: 'https://github.com/dxq613'       } ,
