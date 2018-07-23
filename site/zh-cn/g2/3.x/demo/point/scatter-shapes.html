@@ -1,6 +1,6 @@
 <!--
-index: 0
-title: 散点图
+index: 1.1
+title: 多形状散点图
 resource:
   jsFiles:
     - ${url.dataSet}
@@ -23,23 +23,14 @@ relativePlots:
       showTitle: false,
       crosshairs: {
         type: 'cross'
-      },
-      itemTpl: '<li data-index={index} style="margin-bottom:4px;">'
-        + '<span style="background-color:{color};" class="g2-tooltip-marker"></span>'
-        + '{name}<br/>'
-        + '{value}'
-        + '</li>'
+      }
     });
     chart.point().position('height*weight')
+      .color('gender')
       .size(4)
-      .shape('circle')
       .opacity(0.65)
-      .tooltip('gender*height*weight', (gender, height, weight) => {
-      return {
-        name: gender,
-        value: height + '(cm), ' + weight + '(kg)'
-      };
-    });
+      .shape('gender', ['circle', 'square'])
+      .tooltip('gender*height*weight');
     chart.render();
   });
 </script>

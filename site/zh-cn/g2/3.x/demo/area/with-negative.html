@@ -34,6 +34,7 @@ relativePlots:
     { year: '2014',  north: 389, south: -169 },
     { year: '2015',  north: 334, south: -184 }
   ];
+  // 数据需要加工成 {year: '1996', type: 'north', value: 50} 的模式
   const dv = new DataView().source(data);
   dv.transform({
     type: 'fold',

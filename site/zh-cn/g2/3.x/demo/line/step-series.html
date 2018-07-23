@@ -12,35 +12,37 @@ relativePlots:
 -->
 <script>
   const data = [
-    { month: 'Jan', series2: 51, series1: 125 },
-    { month: 'Feb', series2: 91, series1: 132 },
-    { month: 'Mar', series2: 34, series1: 141 },
-    { month: 'Apr', series2: 47, series1: 158 },
-    { month: 'May', series2: 63, series1: 133 },
-    { month: 'June', series2: 58, series1: 143 },
-    { month: 'July', series2: 56, series1: 176 },
-    { month: 'Aug', series2: 77, series1: 194 },
-    { month: 'Sep', series2: 99, series1: 115 },
-    { month: 'Oct', series2: 106, series1: 134 },
-    { month: 'Nov', series2: 88, series1: 110 },
-    { month: 'Dec', series2: 56, series1: 91 }
-  ];
-
-  const ds = new DataSet();
-  const dv = ds.createView().source(data);
-  dv.transform({
-    type: 'fold',
-    fields: [ 'series1', 'series2' ], // 展开字段集
-    key: 'key', // key字段
-    value: 'value', // value字段
-  });
-
+    {"month": "Jan","key": "series1","value": 125},
+    {"month": "Jan","key": "series2","value": 51},
+    {"month": "Feb","key": "series1","value": 132},
+    {"month": "Feb","key": "series2","value": 91},
+    {"month": "Mar","key": "series1","value": 141},
+    {"month": "Mar","key": "series2","value": 34},
+    {"month": "Apr","key": "series1","value": 158},
+    {"month": "Apr","key": "series2","value": 47},
+    {"month": "May","key": "series1","value": 133},
+    {"month": "May","key": "series2","value": 63},
+    {"month": "June","key": "series1","value": 143},
+    {"month": "June","key": "series2","value": 58},
+    {"month": "July","key": "series1","value": 176},
+    {"month": "July","key": "series2","value": 56},
+    {"month": "Aug","key": "series1","value": 194},
+    {"month": "Aug","key": "series2","value": 77},
+    {"month": "Sep","key": "series1","value": 115},
+    {"month": "Sep","key": "series2","value": 99},
+    {"month": "Oct","key": "series1","value": 134},
+    {"month": "Oct","key": "series2","value": 106},
+    {"month": "Nov","key": "series1","value": 110},
+    {"month": "Nov","key": "series2","value": 88},
+    {"month": "Dec","key": "series1","value": 91},
+    {"month": "Dec","key": "series2","value": 56}];
+    
   const chart = new G2.Chart({
     container: 'mountNode',
     forceFit: true,
     height: window.innerHeight
   });
-  chart.source(dv, {
+  chart.source(data, {
     month: {
       range: [ 0, 1 ]
     }

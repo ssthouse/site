@@ -30,6 +30,7 @@ chartDetail: ${base}zh-cn/vis/chart/stacked-bar.html
     value: '人口数量', // value字段
     retains: [ 'State' ] // 保留字段集，默认为除fields以外的所有字段
   });
+  // 数据被加工成 {State: 'WY', 年龄段: '小于5岁', 人口数量: 25635}
 
   const chart = new G2.Chart({
     container: 'mountNode',

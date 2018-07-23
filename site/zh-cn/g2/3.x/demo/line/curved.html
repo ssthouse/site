@@ -11,6 +11,8 @@ relativePlots:
   - ${plotByName.area}
 -->
 <script>
+  // 在一行中保存多个城市的数据，需要将数据转换成
+  // {month: 'Jan', city: 'Tokyo', temperature: 3.9}
   const data = [
     { month: 'Jan', Tokyo: 7.0, London: 3.9 },
     { month: 'Feb', Tokyo: 6.9, London: 4.2 },
@@ -27,6 +29,7 @@ relativePlots:
   ];
   const ds = new DataSet();
   const dv = ds.createView().source(data);
+  // fold 方式完成了行列转换，如果不想使用 DataSet 直接手工转换数据即可
   dv.transform({
     type: 'fold',
     fields: [ 'Tokyo', 'London' ], // 展开字段集
