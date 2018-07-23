@@ -30,6 +30,7 @@ chartDetail: ${base}zh-cn/vis/chart/stacked-bar.html
     { country: 'Asia', year: '2050', value: 5268 },
     { country: 'Asia', year: '2100', value: 7268 }
   ];
+  // 计算每个柱子的占比
   const ds = new DataSet();
   const dv = ds.createView()
     .source(data)

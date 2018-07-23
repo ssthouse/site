@@ -10,28 +10,20 @@ relativePlots:
   - ${plotByName.bar}
 -->
 <script>
-  const data = [
-    { country: '中国', population: 131744 },
-    { country: '印度', population: 104970 },
-    { country: '美国', population: 29034 },
+  // 注意由于分类轴的顺序是从下往上的，所以数组的数值顺序要从小到大
+  const data = [    
+    { country: '巴西', population: 18203 },
     { country: '印尼', population: 23489 },
-    { country: '巴西', population: 18203 }
+    { country: '美国', population: 29034 },
+    { country: '印度', population: 104970 },
+    { country: '中国', population: 131744 }
   ];
-  const ds = new DataSet();
-  const dv = ds.createView().source(data);
-  dv.source(data)
-    .transform({
-      type: 'sort',
-      callback(a, b) { // 排序依据，和原生js的排序callback一致
-        return a.population - b.population;
-      }
-    });
   const chart = new G2.Chart({
     container: 'mountNode',
     forceFit: true,
     height: window.innerHeight
   });
-  chart.source(dv);
+  chart.source(data);
   chart.axis('country', {
     label: {
       offset: 12
