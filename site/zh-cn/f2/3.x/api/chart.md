@@ -114,9 +114,15 @@ const chart = new F2.Chart({
 
 ### `appendPadding`
 
-- 参数类型：Number
-- 描述：图表画布区域四边的预留边距，即我们会在 padding 的基础上，为四边再加上 appendPadding 的数值，默认为 15 px。
+- 参数类型：Number/Array
+- 描述：图表画布区域四边的预留边距，即我们会在 padding 的基础上，为四边再加上 appendPadding 的数值，默认为 15。
 - 默认值：15
+
+下图中红色区域为 `appendPadding`，黄色区域为 `padding`。
+
+<img src="https://gw.alipayobjects.com/zos/rmsportal/oFTYeMwQDMICIWMRCAmt.png" style="width: 50%;" />
+<div></div>
+
 
 ### `pixelRatio`
 
@@ -152,7 +158,7 @@ const chart = new F2.Chart({
 
 ### `limitInPlot`
 
-> F2 3.2 版本提供该属性，目前请使用 3.2.0-beta.7 版本
+> F2 3.2 版本提供该属性，目前请使用 3.2.0-beta.9 版本
 
 - 参数类型: Boolean
 - 描述：是否将图形限制在绘图区域内，在进行图表交互时经常用到，参见 [demo](../demo/interaction/x-pan.html)
