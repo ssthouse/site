@@ -151,7 +151,7 @@ itemFormatter(val) {
 
 - `marker`: String/Function/Object
 
-用于设置图例的 marker 样式，默认为 circle 即圆形。
+用于设置图例的 marker 样式，默认为 'circle' 即圆形。
 
 * String 类型
 
@@ -199,7 +199,7 @@ chart.legend('city', {
     ctx.moveTo(x - r - 3, y);
     ctx.lineTo(x + r + 3, y);
     ctx.stroke();
-    ctx.arc(x, y, r - 1, 0, Math.PI * 2, false);
+    ctx.arc(x, y, r, 0, Math.PI * 2, false);
     ctx.fill();
   }
 });
@@ -239,30 +239,9 @@ valueStyle: {
 
 设置图例项中 name 和 value 的连接字符，默认为 ':'。
 
-- `triggerOn`: String/Function
+- `triggerOn`: String
 
 图例筛选行为的触发事件，默认为 `click`。
-
-1. String 类型
-
-定义别的事件类型。
-
-2. Function 类型
-
-当不处于 html5 环境时，用于方便用户自己去绑定事件。
-
-```js
-/**
- * 用户自己去绑定或者解绑事件
- * @param {Function} method 该事件的处理函数
- * @param {String} type 'bind' 表示绑定 'unbind' 表示解绑
- */
-triggerOn(method, type) {
-  // user's code
-}
-```
-
-**注意该属性只能使用 `chart.legend({})` 方式或者 Global 主题中设置。**
 
 - `selectedMode`: String
 
@@ -309,24 +288,6 @@ chart.legend('field', { custom: true, items: [], onClick(){} });
 具体使用如下：
 
 ```js
-chart.legend('city', {
-  custom: true,
-  position: 'left',
-  items: [
-    { name: 'a1', marker: 'square', fill: 'red'},
-    { name: 'a2', marker: 'square', fill: 'blue'},
-    { name: 'a3', marker: 'square', fill: 'green'}
-  ]
-});
-chart.legend('city', {
-  custom: true,
-  position: 'left',
-  items: [
-    { name: 'a1', marker: { symbol: 'square', stroke: 'red', radius: 8 }},
-    { name: 'a2', marker: { symbol: 'square', stroke: 'green', radius: 8 }},
-    { name: 'a3', marker: { symbol: 'square', stroke: 'blue', radius: 8 }}
-  ]
-});
 chart.legend({
   custom: true,
   position: 'left',
@@ -334,6 +295,15 @@ chart.legend({
     { name: 'a1', marker: 'square', fill: 'red'},
     { name: 'a2', marker: 'square', fill: 'blue'},
     { name: 'a3', marker: 'square', fill: 'green'}
+  ]
+});
+chart.legend({
+  custom: true,
+  position: 'left',
+  items: [
+    { name: 'a1', marker: { symbol: 'square', stroke: 'red', radius: 8 }},
+    { name: 'a2', marker: { symbol: 'square', stroke: 'green', radius: 8 }},
+    { name: 'a3', marker: { symbol: 'square', stroke: 'blue', radius: 8 }}
   ]
 });
 ```
