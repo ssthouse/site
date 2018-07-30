@@ -67,8 +67,7 @@ graph.read(data);
 G6.registerNode('rect', {
   getPath(item) {
     const model = item.getModel();
-    const group = item.getGraphicGroup();
-    // G 的 Shape，绘制了一个填充为红色的矩形
+    const group = item.getGraphicGroup(); // G 的 group
     const shape = group.addShape('rect', {
       attrs: {
         x: -10,
@@ -87,11 +86,11 @@ const data = {
     id: 'node1',
     x: 100,
     y: 200,
-    shape: 'rect' // G6 的 shape
+    shape: 'rect'
   }],
   groups: [
     {
-      id: 'group1',
+      id: 'group1',  // G6 的 group
     }
   ]
 };
