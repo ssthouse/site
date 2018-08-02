@@ -8,8 +8,7 @@ const g6Version = '2.0.4';
 const g6EditorVersion = '/1.0.0';
 module.exports = {
     url: {
-        g2: 'https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.2.4/dist/g2.min.js',
-        'g2-svg': 'https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.2.4/dist/g2-svg.min.js',
+        g2: 'https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.2.7-beta.1/dist/g2.min.js',
         'g2-brush': 'https://gw.alipayobjects.com/os/antv/assets/g2-brush/0.0.2/g2-brush.min.js',
         'g2-plugin-slider': 'https://gw.alipayobjects.com/os/antv/assets/g2-plugin-slider/2.0.3/g2-plugin-slider.js',
         d3: 'https://gw.alipayobjects.com/os/antv/assets/lib/d3-4.13.0.min.js',

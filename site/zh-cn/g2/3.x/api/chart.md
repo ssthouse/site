@@ -24,7 +24,9 @@ new G2.Chart({
   forceFit?: {boolean},
   animate?: {boolean},
   pixelRatio?: {number},
-  data?: {array} | {DataSet.View}
+  data?: {array} | {DataSet.View},
+  theme?: {string} | {object},
+  renderer?: {string},
 });
 ```
 
@@ -127,6 +129,11 @@ plotBackground: {
 ### `theme`
 
 设置当前图表的主题，可以是字符串 `default` 或者 `dark`（这两个是目前 G2 支持的主题），也可以是一个包含主题配置项的对象，具体设置形式参考 [图表皮肤](../tutorial/theme.html)。这是“Chart 级别的主题样式配置”。
+
+### `renderer`
+
+设置当前图表的使用的渲染方案，可以是字符串 `canvas` 或者 `svg`（这两个是目前 G2 支持的渲染引擎）。具体两种渲染引擎的差异可以参考 [选择 Canvas 还是 SVG](../tutorial/renderers.html)。
+
 
 ## 方法
 

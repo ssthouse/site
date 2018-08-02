@@ -4,7 +4,7 @@ title: 选择 Canvas 还是 SVG
 resource:
   jsFiles:
     - ${url.dataSet}
-    - ${url["g2-svg"]}
+    - ${url.g2}
 -->
 
 # 选择 Canvas 还是 SVG
@@ -37,11 +37,16 @@ Canvas 提供的绘图能力更底层，适合做到像素级的图形处理，�
 
 ## G2 如何使用不同的渲染方案
 
-从 `3.2.0` 版本开始，G2 正式支持 SVG 渲染。目前默认使用 Canvas 渲染，SVG 版本单独打包成 `g2-svg.min.js` 文件，CDN 链接如下：
+从 `3.2.7-beta.2` 版本开始，G2 正式支持 Chart 级别切换 SVG 渲染。目前默认使用 Canvas 渲染，使用 SVG 版本可以给 Chart 实例指定 renderer 为 svg 如下：
 
-`https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.2.0/dist/g2-svg.min.js`
+```js
+const chart = new G2.Chart({
+  // ...
+  renderer: 'svg'
+})
+```
 
-目前所有的图表都支持了两种渲染引擎，可以放心使用。
+目前 **所有图表** 都支持了两种渲染引擎，并且同一个页面也可以混用两种渲染引擎，可以放心使用。
 
 ### SVG demo
 
@@ -82,7 +87,8 @@ var chart = new G2.Chart({
   container: 'mountNode',
   forceFit: true,
   height: 500,
-  padding: 'auto'
+  padding: 'auto',
+  renderer: 'svg'
 });
 chart.source(dv);
 chart.interval().position('月份*月均降雨量').color('name').adjust([{
