@@ -134,6 +134,11 @@ plotBackground: {
 
 设置当前图表的使用的渲染方案，可以是字符串 `canvas` 或者 `svg`（这两个是目前 G2 支持的渲染引擎）。具体两种渲染引擎的差异可以参考 [选择 Canvas 还是 SVG](../tutorial/renderers.html)。
 
+全局指定 renderer 的方法：
+
+```js
+G2.Global.renderer = 'svg';
+```
 
 ## 方法
 

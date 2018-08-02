@@ -48,6 +48,7 @@ G2.version; // 返回 G2 当前的版本
 
 1. 通过 `G2.Global.fontFamily` 获取 G2 图表默认的字体；
 2. 通过 `G2.Global.setTheme('dark')` 来切换或者设置皮肤，详细信息见 [图表样式设置教程](/zh-cn/g2/3.x/tutorial/theme.html#_图表样式设置)。
+3. 通过 `G2.Global.renderer = 'svg'` 指定默认用 svg 渲染。
 
 ### Util
 
