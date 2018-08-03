@@ -10,7 +10,7 @@ resource:
 
 ---
 
-> 注意：目前请使用 3.2.0-beta.9 版本！！！
+> 注意：目前请使用 3.2.0-beta.12 版本！！！
 
 **F2 3.2 版本**提供一套交互机制，以达到通用交互行为的封装和复用。基于此机制，我们提供了以下四种通用的交互行为：
 
@@ -26,9 +26,13 @@ resource:
 交互模块默认没有打包至 `@antv/f2` 模块包中。使用时需要手动引入，如下：
 
 ```js
+// 首先引入 F2
+const F2 = require('@antv/f2/lib/index');
+
 // 引入所有的交互行为
 require('@antv/f2/lib/interaction/');
 
+// 如果只需要引入其中一种交互行为，那么请使用如下的方式
 // 引入 pie-select
 require('@antv/f2/lib/interaction/pie-select');
 
