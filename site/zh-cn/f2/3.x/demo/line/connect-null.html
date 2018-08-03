@@ -41,6 +41,9 @@ resource:
       return textCfg;
     }
   });
+  chart.tooltip({
+    showCrosshairs: true
+  });
   chart.line({
     connectNulls: true // 配置，连接空值数据
   }).position('day*value');
