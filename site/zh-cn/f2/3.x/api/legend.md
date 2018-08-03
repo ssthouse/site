@@ -20,10 +20,10 @@ F2 图例的生成是由图形语法中的图形属性决定的，我们会根�
 ```js
 const F2 = require('@antv/f2/lib/core');
 const Legend = require('@antv/f2/lib/plugin/legend');
-Chart.plugins.register(Legend); // 方式一：全局注册
+F2.Chart.plugins.register(Legend); // 方式一：全局注册
 
 // 方式二：具体的 chart 实例注册
-const chart = new Chart({
+const chart = new F2.Chart({
   id: 'canvas',
   plugins: Legend
 });
