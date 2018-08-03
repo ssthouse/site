@@ -182,7 +182,8 @@ chart.interaction('interval-select', {
   selectAxisStyle: {Object}, // 坐标轴文本被选中后的样式
   cancelable: {Boolean}, // 是否允许取消选中，默认值为 true，表示允许
   onStart: {Function}, // 事件触发后的回调
-  onEnd: {Function} // 事件结束后的回调
+  onEnd: {Function}, // 事件结束后的回调
+  mode: {String} // 选中策略，默认为 'shape', 即击中柱子才会触发交互
 });
 ```
 
@@ -250,6 +251,13 @@ onEnd(ev) {
   const { data, shapeInfo, shape, selected } = ev;
 }
 ```
+
+##### `mode`
+
+* 类型：String
+* 默认值：'shape'
+
+选中策略，默认为 'shape', 即击中柱子才会触发交互。另一个可选值为 'range'，即只要集中点落在该柱子的一定 x 方向范围内都会触发选中交互。
 
 ### 实例
 
