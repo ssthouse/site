@@ -7,6 +7,8 @@
 {% endblock %}
 {% block content %}
 {% set currentDemo = demoByHref[__href] %}
+{% set currentCat = currentDemo.category %}
+{% set currentDemos = demosByCategory[currentCat] %}
 <div class="drawer-toggle">
     <span class="iconfont icon-menu-fold"></span>
 </div>
@@ -126,7 +128,7 @@
                 {% if template == 'g2-demo' %}
                 <section class="links">
                     <h4>{{ resource.translate.referenceLinks }}</h4>
-                    <a href="http://bizcharts.net/products/bizCharts/demo/detail?id={{ currentDemo.category }}-{{ currentDemo.name }} ">
+                    <a href="http://bizcharts.net/products/bizCharts/demo/detail?id={{ currentDemo.category }}-{{ currentDemo.name }}&selectedKey={{ currentDemos.title }} ">
                         BizCharts
                         <span class="iconfont icon-right"></span>
                     </a>
