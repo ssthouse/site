@@ -1,0 +1,33 @@
+<!--
+index: 19
+title: x 轴两边不留边距
+resource:
+  jsFiles:
+-->
+
+<script>
+const data = [
+  { country: 'UK', value: 100 },
+  { country: 'Spain', value: 80 },
+  { country: 'Germany', value: 60 },
+  { country: 'Italy', value: 40 },
+  { country: 'Austria', value: 20 },
+  { country: 'France', value: 10 },
+];
+
+const chart = new F2.Chart({
+  id: 'mountNode',
+  pixelRatio: window.devicePixelRatio
+});
+const margin = 1 / data.length;
+chart.source(data, {
+  country: {
+    range: [ margin / 4, 1 - (margin / 4) ] // 配置 range 范围，使左右两边不留边距
+  }
+});
+chart.legend(false);
+chart.interval()
+  .position('country*value')
+ .color('country', [ '#1976D2', '#1E88E6', '#2197F3', '#42A5F5', '#64B5F6', '#91CAF9' ]);
+chart.render();
+</script>

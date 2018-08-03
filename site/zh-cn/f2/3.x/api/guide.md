@@ -198,7 +198,8 @@ chart.guide().tag({
   top: {Boolean}, // 指定 guide 是否绘制在 canvas 最上层，默认为 true, 即绘制在最上层
   position: {Function} | {Array}, // Tag 的起始位置，值为原始数据值，支持 callback
   content: {String}, // tag 的文本内容，支持文本换行，只需要在文本中写入 '\n'，如 '最大值\n200'
-  direct: {String}, // 箭头朝向，默认自动计算，也可以手动指定方向，'tl'、'tc'、'tr'、'cl'、'cr'、'bl'、'bc'、'br'
+  direct: {String}, // 箭头朝向，默认为 'tl'，但是当 tag 超出画布范围时，会进行自动调整
+  autoAdjust: {Boolean}, // 当 tag 超出画布范围时，是否进行自动调整。默认为 true
   side: {Number}, // 三角标的边长，默认为 4
   offsetX: {Number}, // X 轴偏移，默认为 0
   offsetY: {Number}, // Y 轴偏移，默认为 0
@@ -521,7 +522,7 @@ chart.guide().arc({
 
 ### RegionFilter
 
-> F2 3.2 版本提供该组件，目前请使用 3.2.0-beta.9 版本
+> F2 3.2 版本提供该组件，目前请使用 3.2.0-beta.12 版本
 
 `chart.guide.regionFilter({})`
 
