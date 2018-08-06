@@ -1,0 +1,100 @@
+<!--
+index: 8.1
+title: 带子节点的矩形树图
+resource:
+  jsFiles:
+    - ${url.dataSet}
+    - ${url.jquery}
+plotDescription: 矩形树图采用矩形表示层次结构里的节点，父子节点之间的层次关系用矩形之间的相互嵌套隐喻来表达。从根节点开始，屏幕空间根据相应的子节点数目被分为多个矩形，矩形的面积大小通常对应节点的属性。每个矩形又按照相应节点的子节点递归的进行分割，知道叶子节点为止。
+plotUsage: 矩形树图的好处在于，相比起传统的树形结构图，矩形树图能更有效得利用空间，并且拥有展示占比的功能。矩形树图的缺点在于，当分类占比太小的时候文本会变得很难排布。相比起分叉树图，矩形树图的树形数据结构表达的不够直观、明确。
+relativePlots:
+  - ${plotByName.treemap}
+  - ${plotByName.adjacency}
+chartDetail: ${base}zh-cn/vis/chart/treemap.html
+-->
+<script>
+$.getJSON('/assets/data/mobile.json', mobiles => {
+  const { DataView } = DataSet;
+
+  // 会通过子节点累加 value 值，所以设置为 0
+  mobiles.forEach(function(mobile) {
+    mobile.value = null;
+  });
+  const data = {
+    name: 'root',
+    children: mobiles
+  };
+  var dv = new DataView();
+  dv.source(data, {
+    type: 'hierarchy'
+  }).transform({
+    field: 'value',
+    type: 'hierarchy.treemap',
+    tile: 'treemapResquarify',
+    as: ['x', 'y']
+  });
+  var nodes = dv.getAllNodes();
+  nodes.map(function(node) {
+    node.name = node.data.name;
+    if (!node.data.brand && node.parent) {
+       node.brand = node.parent.data.brand;
+    } else {
+       node.brand = node.data.brand;
+    }
+    //node.value = node.data.value;
+    return node;
+  });
+  var chart = new G2.Chart({
+    container: 'mountNode',
+    forceFit: true,
+    height: window.innerHeight,
+    padding: 0,
+    animate: false
+  });
+  chart.coord().scale(1, -1); // 习惯性最小的在最下面
+  chart.source(nodes);
+  chart.scale({
+    x: {
+      nice: false
+    },
+    y: {
+      nice: false
+    }
+  });
+  chart.axis(false);
+  chart.legend(false);
+  chart.tooltip({
+    showTitle: false
+  });
+  chart.polygon().position('x*y')
+    .color('brand')
+    .tooltip('name*value', function(name, value) {
+    return {
+      name: name,
+      value: value
+    };
+  }).style({
+    lineWidth: 1,
+    stroke: '#fff'
+  })
+  .label('brand*depth*value', function(brand, depth, value){
+     if(depth ===1 && value > 0.2) { // 只有第一级显示文本，数值太小时不显示文本
+         return brand;
+     }
+  }, {
+    offset: 0,
+    textStyle: {
+      textBaseline: 'middle',
+      fill: '#000',
+      shadowBlur: 10,
+      shadowColor: '#fff'
+    },
+    formatter(val) {
+      if (val !== 'root') {
+        return val;
+      }
+    }
+  });
+  chart.render();
+});
+</script>
