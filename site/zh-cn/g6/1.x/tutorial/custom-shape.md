@@ -47,7 +47,7 @@ G6.registerGuide(name, {
 ## 绘制
 与 G2 自定 Shape 类似，`draw` 是图项最终绘制的接口，`决定了一个图项最终画成什么样`。G6 中拓展图形的最小接口，例如：
 
-![image | center](https://gw.alipayobjects.com/zos/rmsportal/ZoCivRVCgpgMbvbUEDla.png "")
+![image | center](https://gw.alipayobjects.com/zos/rmsportal/RtpjqJktpVsggInSBXYn.png "")
 
 
 ```js
@@ -55,7 +55,15 @@ const data = {
   "nodes": [
     {
       "shape": "customNode",
-      "id": "node1"
+      "id": "node1",
+      "x": 50,
+      "y": 100
+    },
+    {
+      "shape": "customNode",
+      "id": "node2",
+      "x": 250,
+      "y": 100
     }
   ],
 };
@@ -63,18 +71,36 @@ const data = {
 G6.registerNode('customNode', {
   draw(item){
     const group = item.getGraphicGroup();
+    const model = item.getModel();
     group.addShape('text', {
       attrs: {
-        x: 100,
-        y: 100,
+        x: 0,
+        y: 0,
         fill: '#333',
         text: '我是一个自定义节点，\n有下面那个方形和我自己组成'
       }
     });
+    group.addShape('text', {
+      attrs: {
+        x: 0,
+        y: 0,
+        fill: '#333',
+        text: ' ('+model.x+', '+model.y+') \n 原点是组的图坐标',
+        textBaseline: 'top'
+      }
+    });
+    group.addShape('circle', {
+      attrs: {
+        x: 0,
+        y: 0,
+        r: 4,
+        fill: 'blue'
+      }
+    });
     return group.addShape('rect', {
       attrs: {
-        x: 100,
-        y: 100,
+        x: 0,
+        y: 0,
         width: 100,
         height: 100,
         stroke: 'red'
