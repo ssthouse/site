@@ -53,6 +53,13 @@ $.getJSON('/assets/data/f2/linear-pan.json', function(data) {
       }
     }
   });
+  // 定义进度条
+  chart.scrollBar({
+    mode: 'x',
+    xStyle: {
+      offsetY: -5
+    }
+  });
   chart.render();
 });
 </script>

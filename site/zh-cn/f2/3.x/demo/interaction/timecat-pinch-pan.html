@@ -64,6 +64,13 @@ version: 'f2-all'
       chart
         .interaction('pinch')
         .interaction('pan');
+       // 定义进度条
+      chart.scrollBar({
+        mode: 'x',
+        xStyle: {
+          offsetY: -2
+        }
+      });
       chart.render();
     });
 </script>

@@ -104,4 +104,13 @@ chart.axis('field', {
 
 ## DEMO
 
-详见 [坐标轴使用](../demo/index.html#_坐标轴-使用)。
+[TODO: 带图]
+
+[label 文本换行](../demo/component/axis-break-line.html)
+[label 文本旋转](../demo/component/axis-rotate.html)
+[label 回调](../demo/component/axis-label-callback.html)
+[grid 样式配置](../demo/component/axis-grid.html)
+[grid 回调](../demo/component/axis-grid-callback.html)
+[弧形网格线](../demo/component/axis-circle-grid.html)
+
+

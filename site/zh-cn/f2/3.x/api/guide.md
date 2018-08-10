@@ -24,6 +24,9 @@ require('@antv/f2/lib/component/guide/html'); // 只加载 Guide.Html 组件
 require('@antv/f2/lib/component/guide/text'); // 只加载 Guide.Text 组件
 require('@antv/f2/lib/component/guide/rect'); // 只加载 Guide.Rect 组件
 require('@antv/f2/lib/component/guide/line'); // 只加载 Guide.Line 组件
+require('@antv/f2/lib/component/guide/tag'); // 只加载 Guide.Tag 组件
+require('@antv/f2/lib/component/guide/point'); // 只加载 Guide.Point 组件
+require('@antv/f2/lib/component/guide/regionFilter'); // 只加载 Guide.RegionFilter 组件
 
 // 第二步：加载插件 Guide
 const Guide = require('@antv/f2/lib/plugin/guide');
@@ -61,7 +64,7 @@ chart.guide().line({
 
 #### 示例
 
-[Guide.Line](../demo/guide/line.html)。
+[Guide.Line](../demo/component/guide-line.html)。
 
 #### 参数
 
@@ -135,7 +138,7 @@ chart.guide().text({
 
 #### 示例
 
-[Guide.Text](../demo/guide/text.html)。
+[Guide.Text](../demo/component/guide-text.html)。
 
 #### 参数
 
@@ -224,7 +227,7 @@ chart.guide().tag({
 
 #### 示例
 
-[Guide.Tag](../demo/guide/tag.html)。
+[Guide.Tag](../demo/component/guide-tag.html)。
 
 #### 参数
 
@@ -334,7 +337,7 @@ chart.guide().rect({
 
 #### 示例
 
-[Guide.Rect](../demo/guide/rect.html)。
+[Guide.Rect](../demo/component/guide-rect.html)。
 
 #### 参数
 
@@ -403,7 +406,7 @@ chart.guide().html({
 
 #### 示例
 
-[Guide.Html](../demo/guide/html.html)。
+[Guide.Html](../demo/component/guide-html.html)。
 
 #### 参数
 
@@ -470,7 +473,7 @@ chart.arc({
 
 #### 示例
 
-[Guide.Arc](../demo/guide/arc.html)。
+[Guide.Arc](../demo/component/guide-arc.html)。
 
 #### 参数
 
@@ -540,7 +543,7 @@ chart.guide().regionFilter({
 
 #### 示例
 
-[Guide.RegionFilter](../demo/guide/regionFilter.html)。
+[Guide.RegionFilter](../demo/component/guide-regionFilter.html)。
 
 #### 参数
 

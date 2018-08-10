@@ -311,3 +311,12 @@ chart.legend({
 ## DEMO
 
 详见 [Legend 使用](../demo/index.html#_Legend-使用)。
+
+[TODO 带图]
+
+[水平居中布局](../demo/component/legend-align.html)
+[自定义文本样式](../demo/component/legend-custom-text-style.html)
+[自定义带交互的图例](../demo/component/legend-custom.html)
+[marker 定制](../demo/component/legend-marker.html)
+[图例单选模式](../demo/component/legend-single-selected.html)
+[右上角图例](../demo/component/legend-vertical-align.html)

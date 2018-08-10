@@ -156,4 +156,10 @@ chart.tooltip({
 
 ## DEMO
 
-详见 [Tooltip 使用](../demo/index.html#_Tooltip-使用)。
+[TODO: 带图片]
+
+[自定义 HTML tooltip](../demo/component/tooltip-custom.html)
+[初始化显示 tooltip](../demo/component/tooltip-showTooltip.html)
+[自定义样式](../demo/component/tooltip-style.html)
+[带标题的 tooltip](../demo/component/tooltip-showTitle.html)
+[内容项垂直布局](../demo/component/tooltip-layout.html)

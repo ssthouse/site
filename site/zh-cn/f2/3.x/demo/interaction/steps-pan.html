@@ -108,7 +108,15 @@ $.getJSON('/assets/data/f2/steps.json', function(data) {
       offsetY: 20
     });
   });
-
+  // 定义进度条
+  chart.scrollBar({
+    mode: 'x',
+    xStyle: {
+      backgroundColor: '#e8e8e8',
+      fillerColor: '#808080',
+      offsetY: -2
+    }
+  });
   chart.interaction('pan', {
     mode: 'x',
     onEnd: () => {
