@@ -1,0 +1,48 @@
+<!--
+index: 4
+title: 散点图平移缩放
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/bMaXXSapdtVVyzZPRgbp.gif
+version: 'f2-all'
+-->
+
+<p style="text-align: center;">请使用手机扫码观看</p>
+<p style="text-align: center;">Please scan the QR code</p>
+
+<script>
+$.getJSON('/assets/data/f2/cereal.json', function(data) {
+  const chart = new F2.Chart({
+    id: 'mountNode',
+    pixelRatio: window.devicePixelRatio
+  });
+  chart.source(data);
+  chart.legend({
+    position: 'right'
+  });
+  chart.tooltip(false);
+  chart.point().position('Calories*Potassium').color('Manufacturer').style({
+    fillOpacity: 0.6
+  });
+  chart.interaction('pan', {
+    mode: 'xy'
+  }).interaction('pinch', {
+    mode: 'xy'
+  });
+  // 添加进度条
+  chart.scrollBar({
+    mode: 'xy',
+    xStyle: {
+      lineCap: 'butt',
+      fillerColor: 'rgb(158, 158, 158)',
+      backgroundColor: 'rgba(158, 158, 158, 0.3)',
+      offsetY: -5
+    },
+    yStyle: {
+      lineCap: 'butt',
+      fillerColor: 'rgb(158, 158, 158)',
+      backgroundColor: 'rgba(158, 158, 158, 0.3)',
+      offsetX: 5
+    },
+  });
+  chart.render();
+});
+</script>

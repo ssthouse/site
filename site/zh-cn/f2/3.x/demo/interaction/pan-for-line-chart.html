@@ -1,24 +1,15 @@
 <!--
 index: 2
-title: x 轴平移
-screenshot: https://gw.alipayobjects.com/zos/rmsportal/GGtsUxGOsGcutjvXhSZI.gif
+title: 折线图平移
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/MMAUjpwkyFotExKMEeZO.gif
 version: 'f2-all'
 -->
 
-<p style="text-align: center;">F2 版本：3.2.0-beta.12</p>
-
 <script>
 $.getJSON('/assets/data/f2/linear-pan.json', function(data) {
-  const years = [];
-  data.map(obj => {
-    years.push(obj.release);
-  });
-  const min = Math.min.apply(null, years);
-  const max = Math.max.apply(null, years);
   const chart = new F2.Chart({
     id: 'mountNode',
-    pixelRatio: window.devicePixelRatio,
-    limitInPlot: true
+    pixelRatio: window.devicePixelRatio
   });
   chart.source(data, {
     release: {
@@ -43,22 +34,30 @@ $.getJSON('/assets/data/f2/linear-pan.json', function(data) {
     }
   });
   chart.line().position('release*count');
-  chart.point().position('release*count');
+  chart.point()
+    .position('release*count')
+    .style({
+      lineWidth: 1,
+      stroke: '#fff'
+    });
 
-  chart.interaction('pan', {
-    limitRange: {
-      release: {
-        min,
-        max
-      }
-    }
-  });
+  chart.interaction('pan');
   // 定义进度条
   chart.scrollBar({
     mode: 'x',
     xStyle: {
       offsetY: -5
     }
+  });
+
+  // 绘制 tag
+  chart.guide().tag({
+    position: [ 1969, 1344 ],
+    withPoint: false,
+    content: '1,344',
+    limitInPlot: true,
+    offsetX: 5,
+    direct: 'cr'
   });
   chart.render();
 });

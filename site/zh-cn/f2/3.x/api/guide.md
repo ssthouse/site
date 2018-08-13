@@ -525,8 +525,6 @@ chart.guide().arc({
 
 ### RegionFilter
 
-> F2 3.2 版本提供该组件，目前请使用 3.2.0-beta.12 版本
-
 `chart.guide.regionFilter({})`
 
 辅助过滤区域。

@@ -13,151 +13,57 @@ Global 是 F2 中的全局配置项，全局配置项包含了以下内容：
 * 数据图形映射相关的属性，例如默认的颜色、默认的形状、默认的大小，柱状图的默认宽度
 * 坐标轴、辅助文本的默认样式
 
+可以通过 `console.log(F2.Global)` 来查看所有属性的默认值。
 
-## 属性
+属性名|类型|描述
+---|:--:|---:
+`padding`|Array/Number|图表绘图区域和画布边框的间距，用于显示坐标轴文本、图例，详见 [padding](https://antv.alipay.com/zh-cn/f2/3.x/api/chart.html#_padding)
+`appendPadding`|Array/Number|图表画布区域四边的预留边距，即我们会在 padding 的基础上，为四边再加上 appendPadding 的数值，默认为 15，详见 [appendPadding](https://antv.alipay.com/zh-cn/f2/3.x/api/chart.html#_appendPadding)
+`axis`|Object|各个坐标轴的默认样式配置
+`colors`|Array|默认图表色系
+`defaultColor`|String|默认主色值
+`fontFamily`|String|默认字体
+`guide`|Object|各个 Guide 组件的默认样式配置
+`legend`|Object|各种类型的图例的默认样式配置
+`lineDash`|Array|默认虚线配置
+`pixelRatio`|Number|默认的像素比
+`shape`|Object|默认各种类型 shape 的样式配置
+`sizes`|Array|默认的大小范围
+`tooltip`|Object|默认 Tooltip 的样式配置
+`version`|String|当前 F2 的版本号
+`widthRatio`|Object|不同 shape 的宽度比配置
 
-### 一些全局的参数
+以下是 `G2.Global.widthRatio` 属性包含的属性配置说明：
 
 ```js
-const Global = {
-  // 宽度的占比
-  widthRatio: { // 宽度所占的分类的比例
-    column: 1 / 2, // 一般的柱状图占比 1/2
-    rose: 0.999999, // 玫瑰图的占的宽度
-    multiplePie: 3 / 4, // 多层饼图的宽度
-    dodgeMargin: 0 // 分组柱状图的间距
-  },
-  // 虚线配置
-  lineDash: [ 4, 4 ]
-};
-
-```
-
-### [皮肤主题相关](#皮肤主题相关)
-
-```js
-const color1 = '#E8E8E8'; // 坐标轴线、坐标轴网格线的颜色
-const color2 = '#808080'; // 字体颜色
-// 坐标轴的默认样式配置
-const defaultAxis = {
-  label: {
-    fill: color2,
-    fontSize: 10
-  }, // 坐标轴文本的样式
-  line: {
-    stroke: color1,
-    lineWidth: 1,
-    top: true
-  }, // 坐标轴线的样式
-  grid: {
-    stroke: color1,
-    lineWidth: 1,
-    lineDash: [ 2 ]
-  }, // 坐标轴网格线的样式
-  tickLine: null, // 坐标轴刻度线，默认不展示
-  labelOffset: 7.5 // 坐标轴文本距离坐标轴线的距离
-};
-
-const Theme = {
-  fontFamily: '"Helvetica Neue", "San Francisco", Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", sans-serif', // 默认字体
-  defaultColor: '#1890FF', // 默认颜色
-  pixelRatio: 1, // 默认像素比，具体参数由用户自己设置
-  padding: 'auto', // 图表边距，默认自动计算
-  appendPadding: 15, // 默认留白，15 像素
-  colors: [
-    '#1890FF',
-    '#2FC25B',
-    '#FACC14',
-    '#223273',
-    '#8543E0',
-    '#13C2C2',
-    '#3436C7',
-    '#F04864'
-  ], // 默认色系
-  shapes: {
-    line: [ 'line', 'dash' ],
-    point: [ 'circle', 'hollowCircle' ]
-  },
-  sizes: [ 4, 10 ], // 默认的大小范围
-  axis: {
-    bottom: Util.mix({}, defaultAxis, {
-      grid: null
-    }), // 底部坐标轴配置
-    left: Util.mix({}, defaultAxis, {
-      line: null
-    }), // 左侧坐标轴配置
-    right: Util.mix({}, defaultAxis, {
-      line: null
-    }), // 右侧坐标轴配置
-    circle: Util.mix({}, defaultAxis, {
-      line: null
-    }), // 极坐标下的圆弧坐标轴配置
-    radius: Util.mix({}, defaultAxis, {
-      labelOffset: 4
-    }) // 极坐标下的半径坐标轴配置
-  }, // 各种坐标轴配置
-  shape: {
-    line: {
-      lineWidth: 2, // 线的默认宽度
-      lineJoin: 'round',
-      lineCap: 'round'
-    }, // 线图样式配置
-    point: {
-      lineWidth: 0,
-      size: 3 // 圆的默认半径
-    }, // 点图样式配置
-    area: {
-      fillOpacity: 0.1
-    } // 区域图样式配置
-  },
-  _defaultAxis: defaultAxis // 用于获取默认的坐标轴配置
-};
+G2.Global.widthRatio.column: 1 / 2, // 一般的柱状图宽度占比
+G2.Global.widthRatio.rose: 0.999999, // 玫瑰图的宽度占比
+G2.Global.widthRatio.multiplePie: 3 / 4, // 多层饼图的宽度占比
+G2.Global.widthRatio.dodgeMargin: 0 // 分组柱状图的间距
 ```
 
 ## 方法
 
-`F2.Global` 提供了一个方法：`setTheme(cfg)` 设置主题。
+### `Global.setTheme(config)`
 
-### Global.setTheme
+用户自定义的主题配置。
 
-`Global.setTheme(cfg)`
+**参数：**
 
-- cfg: Object
+属性名|类型|描述
+---|:--:|---:
+`config`|Object|图表样式配置
 
-  用户自定义的主题配置。
 
-常用配置示例
+示例：
 
 ```javascript
 F2.Global.setTheme({
-  pixelRatio : 2
-}); // 设为双精度
-```
-
-### 修改全局配置项的方式
-
-可以有两种方式来改变全局的配置项：
-
-*  修改具体的某个配置，直接通过 F2.Global 来修改对应属性的配置信息
-*  通过设置皮肤样式，修改一系列的配置项
-
-#### 修改单个配置项
-
-```js
-F2.Global.pixelRatio = 2;
-
-F2.Global.colors = [ 'red', 'blue' ];
-```
-
-#### 设置皮肤
-
-```js
-F2.Global.setTheme({
-  colors: [ 'red','blue' ],
+  colors: [ '#F04864', '#D66BCA', '#8543E0', '#8E77ED', '#3436C7', '#737EE6', '#223273', '#7EA2E6' ],
   pixelRatio: 2,
   guide: {
     line: {
-      stroke: 'red',
+      stroke: '#F04864',
       lineWidth: 2
     }
   }

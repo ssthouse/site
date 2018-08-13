@@ -1,12 +1,12 @@
 <!--
 index: 5
-title: x 轴平移缩放
+title: 曲线图的横向平移缩放
 screenshot: https://gw.alipayobjects.com/zos/rmsportal/xdbKlFMujBsopOFgyfRN.gif
 version: 'f2-all'
 -->
 
-<p style="text-align: center;">F2 版本：3.2.0-beta.12</p>
-<p style="text-align: center;">缩放手势需要在手机端操作，请手机扫码观看</p>
+<p style="text-align: center;">请使用手机扫码观看</p>
+<p style="text-align: center;">Please scan the QR code</p>
 
 <script>
     // Generate sample data
@@ -51,10 +51,7 @@ version: 'f2-all'
     });
     chart.interaction('pinch', {
       maxScale: 5,
-      minScale: 1,
-      onEnd() {
-        // console.log(chart.getXScale());
-      }
+      minScale: 1
     });
     chart.line().position('x*y').shape('smooth');
     chart.render();

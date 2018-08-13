@@ -15,7 +15,7 @@ resource:
 ## 常量 Constants
 
 ```js
-F2.version // F2 的版本
+F2.version // 显示当前 F2 的版本号
 ```
 
 ## 类 Classes

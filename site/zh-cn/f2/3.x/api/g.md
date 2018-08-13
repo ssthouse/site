@@ -19,7 +19,7 @@ resource:
 
 G 采用层次化结构设计，结构如下：
 
-<img src="https://gw.alipayobjects.com/zos/skylark/bf8b4e5a-0421-48ae-ac32-a789b0079d17/2018/png/3c63f255-011a-4166-8715-0f72511175b5.png" style="width: 248px;">
+<img src="https://gw.alipayobjects.com/zos/rmsportal/nreSRkPdaGHPhWXTZdQr.png" style="width: 248px;">
 
 其中：
 
@@ -27,25 +27,99 @@ G 采用层次化结构设计，结构如下：
 - Group 容器，可包含 Group 和 Shape 对象
 - Shape 为 G 提供的具体的图形
 
-## API
-
-1. 如何引入 `G`
+## 如何引入 `G`
 
 ```js
-const { G } = F2; // 引入
+const F2 = require('@antv/f2');
+const { G } = F2;
 ```
 
-2. `G` 命名空间上提供的类
-
-```js
-const { Canvas, Group, Shape, Matrix, Vector2 } = G;
-```
+### 类
 
 - [Canvas](#_Canvas)
 - [Group](#_Group)
 - [Shape](#_Shape)
+  * [Shape.Line](#_Line-线) 线
+  * [Shape.Arc](#_Arc-圆弧) 圆弧
+  * [Shape.Circle](#_Circle-圆) 圆
+  * [Shape.Polygon](#_Polygon-多边形) 多边形
+  * [Shape.Polyline](#_Polyline-多点线段) 多点线段
+  * [Shape.Rect](#_Rect-矩形) 矩形
+  * [Shape.Sector](#_Sector-扇形) 扇形
+  * [Shape.Text](#_Text-文本) 文本
+  * [Shape.Custom](#_Custom-自定义图形) 自定义图形
+
+### 命名空间
+
 - [Matrix](#_Matrix)
 - [Vector2](#_Vector2)
+
+### 实例
+
+<canvas id="canvas"></canvas>
+
+```js+
+const { Canvas } = F2.G; // 引入 Canvas
+const canvas = new Canvas({
+  el: 'canvas',
+  width: 200,
+  height: 100
+}); // 创建 canvas 实例
+const container = canvas.addGroup({
+  zIndex: 2
+}); // canvas 添加一个 group
+const itemGroup = container.addGroup({
+  zIndex: 1
+}); // container 添加一个 group
+itemGroup.addShape('circle', {
+  attrs: {
+    x: 5,
+    y: 0,
+    r: 5,
+    fill: 'red'
+  }
+}); // itemGroup 中添加一个圆
+itemGroup.addShape('text', {
+  attrs: {
+    x: 17,
+    y: 0,
+    textAlign: 'start',
+    textBaseline: 'middle',
+    fontSize: 12,
+    fill: 'red',
+    text: '分类一'
+  }
+}); // itemGroup 中添加一个文本
+const bbox = itemGroup.getBBox(); // 获取 itemGroup 的包围盒
+container.addShape('rect', {
+  zIndex: 0,
+  attrs: {
+    x: bbox.minX - 5,
+    y: bbox.minY - 5,
+    width: bbox.width + 10,
+    height: bbox.height + 10,
+    fill: 'rgba(0, 0, 0, 0.09)',
+    radius: 4
+  }
+}); // container 中添加一个矩形
+container.sort(); // container 容器内元素排序
+container.moveTo(30, 50); // 将 container 移至 (30, 50)
+
+canvas.addShape('rect', {
+  zIndex: 0,
+  attrs: {
+    x: 0,
+    y: 0,
+    width: 200,
+    height: 100,
+    fill: 'rgba(0, 0, 0, 0.09)',
+    radius: 4
+  }
+}); // canvas 中添加一个矩形
+
+canvas.sort(); // canvas 容器内的元素排序
+canvas.draw(); // 绘制
+```
 
 ### Canvas
 
@@ -73,27 +147,11 @@ new Canvas({
 | `height` | Number | canvas 的高度，可选，如果不设置则默认按照传入 canvas 元素的实际高度。 |
 | `pixelRatio` | Number | canvas 的显示精度，默认读取当前设备的像素比。 |
 
-#### 属性
-
-快速索引：
-- [children](#_children)
-- [destroyed](#_destroyed)
-
-属性的获取方式：`canvas.get(attributeName)`
-
-##### `children`
-
-类型：Array
-描述：canvas 容器下包含的元素集合。
-
-##### `destroyed`
-
-类型：Boolean
-描述：标识对象是否已被销毁
-
 #### 方法
 
 快速索引：
+- [getChildren()](#_getChildren-)
+- [isDestroyed()](#_isDestroyed-)
 - [getWidth()](#_getWidth-)
 - [getHeight()](#_getHeight-)
 - [changeSize(width, height)](#_changeSize-width,-height-)
@@ -108,6 +166,26 @@ new Canvas({
 - [clear()](#_clear-)
 - [draw()](#_draw-)
 - [destroy()](#_destroy-)
+
+##### `getChildren()`
+
+```js
+/**
+ * 获取 canvas 容器下包含的元素集合
+ * @return {Array} 返回容器内包含的元素集合
+ */
+getChildren()
+```
+
+##### `isDestroyed()`
+
+```js
+/**
+ * 标识对象是否已被销毁
+ * @return {Boolean}
+ */
+isDestroyed()
+```
 
 ##### `getWidth()`
 
@@ -272,49 +350,17 @@ new Group({
 
 | 属性名 | 类型 | 描述 |
 | -------- | -------- | -------- |
-| `zIndex` | Number | 层次索引。 |
+| `zIndex` | Number | z-index 值，用于调整绘制顺序。 |
 | `visible` | Boolean | 显示还是隐藏。 |
 | `className` | String | 对象标记，由用户指定 |
-
-#### 属性
-
-快速索引：
-- [children](#__children)
-- [destroyed](#__destroyed)
-- [visible](#_visible)
-- [isGroup](#_isGroup)
-- [attrs](#_attrs)
-
-属性的获取方式：`group.get(attributeName)`
-
-##### `children`
-
-类型：Array
-描述：group 容器下包含的元素集合。
-
-##### `destroyed`
-
-类型：Boolean
-描述：标识对象是否已被销毁
-
-##### `visible`
-
-类型：Boolean
-描述：当前 group 对象是否可见
-
-##### `isGroup`
-
-类型：Boolean
-描述：标记当前对象为 group，true
-
-##### `attrs`
-
-类型：Object
-描述：group 对象的图形属性，目前该属性只包含 `matrix` 矩阵属性。
 
 #### 方法
 
 快速索引：
+- [getChildren()](#__getChildren-)
+- [isDestroyed()](#__isDestroyed-)
+- [isVisible()](#__isVisible-)
+- [isGroup()](#__isGroup-)
 - [addShape(type, config)](#__addShape-type,-config-)
 - [addGroup(config)](#__addGroup-config-)
 - [add(items)](l#__add-items-)
@@ -337,6 +383,45 @@ new Group({
 - [remove(destroy)](#_remove-destroy-)
 - [destroy()](#__destroy-)
 
+##### `getChildren()`
+
+```js
+/**
+ * 获取 group 容器下包含的元素集合
+ * @return {Array}
+ */
+getChildren()
+```
+
+##### `isDestroyed()`
+
+```js
+/**
+ * 标识对象是否已被销毁
+ * @return {Boolean}
+ */
+isDestroyed()
+```
+
+##### `isVisible()`
+
+```js
+/**
+ * 判断当前 group 对象是否可见
+ * @return {Array}
+ */
+isVisible()
+```
+
+##### `isGroup()`
+
+```js
+/**
+ * 标记当前对象为 group
+ * @return {Array}
+ */
+isGroup()
+```
 
 ##### `addShape(type, config)`
 
@@ -579,16 +664,6 @@ remove(destroy)
 ```js
 const { Line, Arc, Circle, Polygon, Polyline, Rect, Sector, Text, Custom } = Shape;
 ```
-
-- [Line](#_Line-线) 线
-- [Arc](#_Arc-圆弧) 圆弧
-- [Circle](#_Circle-圆) 圆
-- [Polygon](#_Polygon-多边形) 多边形
-- [Polyline](#_Polyline-多点线段) 多点线段
-- [Rect](#_Rect-矩形) 矩形
-- [Sector](#_Sector-扇形) 扇形
-- [Text](#_Text-文本) 文本
-- [Custom](#_Custom-自定义图形) 自定义图形
 
 这些 shape 拥有不同的图形属性以及一些通用的属性和方法。
 
@@ -949,7 +1024,7 @@ new G.Shape.Rect({
     width: 80, // 矩形宽度
     lineWidth: 1, // html5 canvas 绘图属性
     fill: '#1890FF', // html5 canvas 绘图属性
-    strokeStyle: '#000' // html5 canvas 绘图属性
+    strokeStyle: '#000', // html5 canvas 绘图属性
     radius: 0 // 圆角的设置，可以是数值或者数组格式，支持为四个夹角分别设置，用法同 padding
   }
 })
@@ -1234,65 +1309,4 @@ scale(out, v, s)
  * @return {Array}      返回结果
  */
 transformMat2d(out, v, m)
-```
-
-
-## 实例
-
-<canvas id="canvas"></canvas>
-
-```js+
-const { Canvas } = F2.G; // 引入 Canvas
-const canvas = new Canvas({
-  el: 'canvas',
-  width: 200,
-  height: 100
-}); // 创建 canvas 对象
-const container = canvas.addGroup(); // canvas 上添加一个分组
-const itemGroup = container.addGroup(); // container 上添加一个分组
-itemGroup.addShape('circle', {
-  attrs: {
-    x: 5,
-    y: 0,
-    r: 5,
-    fill: 'red'
-  }
-}); // 在该分组中添加一个圆
-itemGroup.addShape('text', {
-  attrs: {
-    x: 17,
-    y: 0,
-    textAlign: 'start',
-    textBaseline: 'middle',
-    fontSize: 12,
-    fill: 'red',
-    text: '分类一'
-  }
-}); // 在该分组中添加一个文本
-const bbox = itemGroup.getBBox(); // 获取改分组的包围盒，用于计算其他图形的显示位置
-container.addShape('rect', {
-  zIndex: -1,
-  attrs: {
-    x: bbox.minX - 5,
-    y: bbox.minY - 5,
-    width: bbox.width + 10,
-    height: bbox.height + 10,
-    fill: 'rgba(0, 0, 0, 0.09)'
-  }
-}); // 添加一个矩形
-
-canvas.addShape('rect', {
-  zIndex: 0,
-  attrs: {
-    x: 0,
-    y: 0,
-    width: 200,
-    height: 100,
-    fill: 'rgba(0, 0, 0, 0.09)'
-  }
-}); // 添加一个矩形
-
-container.sort(); // 按照 zIndex 层级索引进行排序
-container.moveTo(30, 50); // 移动 container
-canvas.draw(); // 绘制
 ```

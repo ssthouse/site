@@ -1,11 +1,9 @@
 <!--
 index: 0
 title: 饼图选中交互
-screenshot: https://gw.alipayobjects.com/zos/rmsportal/xAnOnADmoyobtVJKPRhq.gif
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/BbIvSTiDCDMoWVsGNkWr.gif
 version: 'f2-all'
 -->
-
-<p style="text-align: center;">F2 版本：3.2.0-beta.12</p>
 
 <script>
 var data = [
@@ -28,7 +26,8 @@ chart.source(data, {
   }
 });
 chart.legend({
-  position: 'right'
+  position: 'right',
+  marker: 'square'
 });
 chart.tooltip(false);
 chart.coord('polar', {

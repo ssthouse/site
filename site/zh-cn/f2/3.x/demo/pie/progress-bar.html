@@ -4,6 +4,8 @@ title: 环形进度条
 -->
 
 <script>
+  var fontSize = 24 * (window.innerWidth / 375); // 字体适配不同屏幕
+
   var data = [ { x: '1', y: 85 } ];
   var chart = new F2.Chart({
     id: 'mountNode',
@@ -35,7 +37,7 @@ title: 环形进度条
     position: [ '50%', '50%' ],
     content: '85%',
     style: {
-      fontSize: 24,
+      fontSize,
       fill: '#1890FF'
     }
   });

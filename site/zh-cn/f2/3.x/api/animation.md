@@ -10,7 +10,7 @@ resource:
 
 ---
 
-F2 默认提供了两种动画版本：
+面向移动端的图表追求生动性，因此 F2 提供了一套动画机制。但同时移动端对大小有一定的要求，因此针对不同的场景，F2 提供了两种动画版本：
 
 1. 群组入场动画
 2. 精细动画，以 shape 为对象单位的动画，包含 `appear`、`enter` 两种入场动画、`update` 更新动画以及 `leave` 销毁动画
@@ -26,15 +26,17 @@ F2 默认提供了两种动画版本：
 1. 群组入场动画
 
 ```js
+const F2 = require('@antv/f2/lib/core');
 const GroupAnimation = require('@antv/f2/lib/animation/group');
-Chart.plugins.register(GroupAnimation); // 这里进行全局注册，也可以给 chart 的实例注册
+F2.Chart.plugins.register(GroupAnimation); // 这里进行全局注册，也可以给 chart 的实例注册
 ```
 
 2. 精细动画版本
 
 ```js
+const F2 = require('@antv/f2/lib/core');
 const Animation = require('@antv/f2/lib/animation/detail');
-Chart.plugins.register(Animation); // 这里进行全局注册，也可以给 chart 的实例注册
+F2.Chart.plugins.register(Animation); // 这里进行全局注册，也可以给 chart 的实例注册
 ```
 
 **注意：**
