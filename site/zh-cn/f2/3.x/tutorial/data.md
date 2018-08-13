@@ -1,6 +1,6 @@
 <!--
 index: 4
-title: 数据 Data
+title: 数据
 resource:
   jsFiles:
     - ${url.f2}
