@@ -20,7 +20,7 @@ Scroll bar 是一个静态插件，主要用于辅助 pan 和 pinch 交互以。
 const F2 = require('@antv/f2/lib/index');
 const ScrollBar = require('@antv/f2/lib/plugin/scroll-bar');
 
-// 注册插件 Guide
+// 注册插件 ScrollBar
 F2.Chart.plugins.register(ScrollBar); // 这里进行全局注册，也可以给 chart 的实例注册
 
 // 或者给具体的 chart 实例注册
