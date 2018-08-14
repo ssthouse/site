@@ -44,6 +44,19 @@ require('@antv/f2/lib/interaction/pan');
 require('@antv/f2/lib/interaction/pinch');
 ```
 
+* 调用
+
+```js
+chart.interaction('name', config);
+```
+
+- 清除交互行为
+
+```js
+chart.clearInteraction()       // 清除 chart 实例上所有的交互行为
+chart.clearInteraction('name') // 清除名称为 'type' 的交互行为
+```
+
 ---
 
 ## 饼图选中
