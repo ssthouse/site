@@ -1,5 +1,5 @@
 const plotByName = {
-    interaction:   { index: 0,  icon: 'icon-region', url: '${base}zh-cn/f2/3.x/demo/index.html#_图表交互', name: '图表交互', },
+    interaction:   { index: 0,  icon: 'icon-interaction', url: '${base}zh-cn/f2/3.x/demo/index.html#_图表交互', name: '图表交互', },
     line:   { index: 1,  icon: 'icon-line', url: '${base}zh-cn/f2/3.x/demo/index.html#_折线图', name: '折线图', },
     area:   { index: 2,  icon: 'icon-area', url: '${base}zh-cn/f2/3.x/demo/index.html#_面积图', name: '面积图', },
     bar:    { index: 3,  icon: 'icon-bar', url: '${base}zh-cn/f2/3.x/demo/index.html#_柱状图', name: '柱状图', },
