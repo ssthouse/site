@@ -1,6 +1,6 @@
 <!--
-index: 17
-title: Global 全局配置
+index: 14
+title: Global
 -->
 
 # Global

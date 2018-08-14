@@ -1,6 +1,6 @@
 <!--
 index: 16
-title: G 绘图接口
+title: G
 resource:
   jsFiles:
     - ${url.f2}
@@ -54,7 +54,7 @@ const { G } = F2;
 - [Matrix](#_Matrix)
 - [Vector2](#_Vector2)
 
-### 实例
+**示例：**
 
 <canvas id="canvas"></canvas>
 
@@ -359,8 +359,8 @@ new Group({
 快速索引：
 - [getChildren()](#__getChildren-)
 - [isDestroyed()](#__isDestroyed-)
-- [isVisible()](#__isVisible-)
-- [isGroup()](#__isGroup-)
+- [isVisible()](#_isVisible-)
+- [isGroup()](#_isGroup-)
 - [addShape(type, config)](#__addShape-type,-config-)
 - [addGroup(config)](#__addGroup-config-)
 - [add(items)](l#__add-items-)
@@ -408,7 +408,7 @@ isDestroyed()
 ```js
 /**
  * 判断当前 group 对象是否可见
- * @return {Array}
+ * @return {Boolean}
  */
 isVisible()
 ```
@@ -418,7 +418,7 @@ isVisible()
 ```js
 /**
  * 标记当前对象为 group
- * @return {Array}
+ * @return {Boolean}
  */
 isGroup()
 ```
@@ -688,47 +688,13 @@ new Shape.Line({
 | `visible` | Boolean | 显示还是隐藏。 |
 | `className` | String | 对象标记，由用户指定 |
 
-
-#### 通用属性
-
-快速索引：
-- [type](#_type)
-- [attrs](#__attrs)
-- [destroyed](#___destroyed)
-- [visible](#__visible)
-- [isShape](#_isShape)
-
-属性的获取方式：`shape.get(attributeName)`
-
-##### `type`
-
-类型：String
-描述：返回当前 shape 的类型
-
-##### `attrs`
-
-类型：Object
-描述：shape 对象的图形属性
-
-##### `destroyed`
-
-类型：Boolean
-描述：标识对象是否已被销毁
-
-##### `visible`
-
-类型：Boolean
-描述：当前 group 对象是否可见
-
-##### `isShape`
-
-类型：Boolean
-描述：标记当前对象为 shape 类型，true
-
-
 #### 通用方法
 
 快速索引：
+- [getType()](#_getType-)
+- [isDestroyed()](#___isDestroyed-)
+- [isVisible()](#__isVisible-)
+- [isShape()](#_isShape-)
 - [attr()](#_attr-)
 - [getBBox()](#__getBBox-)
 - [getParent()](#__getParent-)
@@ -745,6 +711,46 @@ new Shape.Line({
 - [setTransform(actions)](#__setTransform-actions-)
 - [remove(destroy)](#__remove-destroy-)
 - [destroy()](#___destroy-)
+
+##### `getType()`
+
+```js
+/**
+ * 获取当前 shape 的类型
+ * @return {String}
+ */
+getType()
+```
+
+##### `isDestroyed()`
+
+```js
+/**
+ * 标识对象是否已被销毁
+ * @return {Boolean}
+ */
+isDestroyed()
+```
+
+##### `isVisible()`
+
+```js
+/**
+ * 判断当前 group 对象是否可见
+ * @return {Boolean}
+ */
+isVisible()
+```
+
+##### `isShape()`
+
+```js
+/**
+ * 标记当前对象为 Shape
+ * @return {Boolean}
+ */
+isGroup()
+```
 
 ##### `attr()`
 

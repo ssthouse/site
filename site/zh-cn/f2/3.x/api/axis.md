@@ -1,6 +1,6 @@
 <!--
 index: 6
-title: Axis 坐标轴
+title: Axis
 -->
 
 # Axis
@@ -61,22 +61,18 @@ title: Axis 坐标轴
 
 ```js
 chart.axis('field', {
-  // 设置坐标轴线的样式，如果值为 null，则不显示坐标轴线，图形属性
   line: {
     lineWidth: 1,
     stroke: '#ccc'
-  },
-  // 坐标轴文本距离轴线的距离
-  labelOffset: 20,
-  // 坐标点对应的线，null 不显示，图形属性
+  }, // 设置坐标轴线的样式，如果值为 null，则不显示坐标轴线，图形属性
+  labelOffset: 20, // 坐标轴文本距离轴线的距离
   tickLine: {
     lineWidth: 1,
     stroke: '#ccc',
     length: 5,// 刻度线长度
-  },
-  // 0％ 处的栅格线着重显示
+  }, // 坐标点对应的线，null 不显示，图形属性
   grid: (text, index, total) => {
-    if(text === '0%') {
+    if(text === '0%') { // 0％ 处的栅格线着重显示
       return {
         stroke: '#efefef'
       };
@@ -85,11 +81,11 @@ chart.axis('field', {
       stroke: '#f7f7f7'
     }
   },
-  // 第一个点左对齐，最后一个点右对齐，其余居中，只有一个点时左对齐
   label: (text, index, total) => {
     const cfg = {
       textAlign: 'center'
     };
+    // 第一个点左对齐，最后一个点右对齐，其余居中，只有一个点时左对齐
     if (index === 0) {
       cfg.textAlign = 'start';
     }
@@ -104,13 +100,13 @@ chart.axis('field', {
 
 ## DEMO
 
-[TODO: 带图]
-
-[label 文本换行](../demo/component/axis-break-line.html)
-[label 文本旋转](../demo/component/axis-rotate.html)
-[label 回调](../demo/component/axis-label-callback.html)
-[grid 样式配置](../demo/component/axis-grid.html)
-[grid 回调](../demo/component/axis-grid-callback.html)
-[弧形网格线](../demo/component/axis-circle-grid.html)
-
+| 场景描述 | demo |
+| -------- | -------- |
+| [label 文本换行](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/axis-break-line.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/DEwVBFoGLbnMrwHxauyp.png" style="width: 50%;" /> |
+| [label 文本旋转](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/axis-rotate.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/aZQMEqhJsZrHBPVvfwVu.png" style="width: 50%;" /> |
+| [label 回调](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/axis-label-callback.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/JNURaLRrBdyAFOgatkwO.png" style="width: 50%;" /> |
+| [grid 样式配置](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/axis-grid.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/WgyBJAgRVIwsjaIyPhvA.png" style="width: 50%;" /> |
+| [grid 回调](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/axis-grid-callback.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/dWXDCtnpVQFhvhtgSmWy.png" style="width: 50%;" /> |
+| [弧形网格线](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/axis-circle-grid.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/CnTYvcQBFcUeWmcKutse.png" style="width: 50%;" /> |
+| [iconfont 文本](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/axis-iconfont.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/wBAMqyEGjiKXvVfkAzSr.png" style="width: 50%;" /> |
 

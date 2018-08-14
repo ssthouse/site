@@ -1,6 +1,6 @@
 <!--
 index: 11
-title: Interaction 交互行为
+title: Interaction
 resource:
   jsFiles:
     - ${url.f2}
@@ -17,7 +17,7 @@ F2 提供一套交互机制，以达到通用交互行为的封装和复用。�
 2. 图表平移
 3. 图表缩放
 
-对于有高级需求的开发者，可以基于此机制封装自己的交互行为，详见 [自定义交互行为](./custom-interaction.md) 教程，非常欢迎一起建设。
+对于开发者来说，可以基于此机制封装自己的交互行为，详见 [自定义交互行为](./custom-interaction.md) 教程，非常欢迎一起建设。
 
 **说明**
 
@@ -44,10 +44,11 @@ require('@antv/f2/lib/interaction/pan');
 require('@antv/f2/lib/interaction/pinch');
 ```
 
+---
 
 ## 饼图选中
 
-![image](https://cdn.yuque.com/lark/0/2018/gif/514/1526448784560-f7df768b-cb2e-444f-b5d4-4057613532a7.gif)
+![image](https://gw.alipayobjects.com/zos/rmsportal/BbIvSTiDCDMoWVsGNkWr.gif)
 
 ### 使用
 
@@ -82,7 +83,7 @@ chart.interaction('pie-select', {
 ##### `startEvent`
 * 类型：String
 * 默认值：'tap'
-* 说明：该交互原则上是手指点击后触发的，除去 'touchstart'，还可以使用 'tap'
+* 说明：该交互原则上是手指点击后触发的，除去 'tap'，还可以使用 'touchstart'
 
 选中交互的触发事件名称。
 
@@ -155,17 +156,18 @@ onEnd(ev) {
 
 ### 实例
 
-[饼图选中](../demo/interaction/pie-select.html)
+[饼图选中](../demo/interaction/selection-for-pie-chart.html)
 
+---
 
 ## 柱状图选中
 
-![interval-click.gif](https://cdn.yuque.com/lark/0/2018/gif/514/1528881278252-708fefbc-699f-4117-bd21-8aecff10137d.gif)
+![interval-click.gif](https://gw.alipayobjects.com/zos/rmsportal/MWxbXBRyApfCMPZUKhTP.gif)
 
 ### 使用
 
 ```js
-// 引入
+const F2 = require('@antv/f2/lib/index'); // 引入 F2
 require('@antv/f2/lib/interaction/interval-select');
 
 // 调用
@@ -193,7 +195,7 @@ chart.interaction('interval-select', {
 ##### `startEvent`
 * 类型：String
 * 默认值：'tap'
-* 说明：该交互原则上是手指点击后触发的，除去 tap，还可以使用 touchstart
+* 说明：该交互原则上是手指点击后触发的，除去 'tap'，还可以使用 'touchstart'
 
 选中交互的触发事件名称。
 
@@ -234,7 +236,7 @@ chart.interaction('interval-select', {
 事件触发后的回调。
 
 ```js
-onEnd(ev) {
+onStart(ev) {
   // ev: Object 类型, 该对象包含的重要属性如下：
   // ev.data: Object 类型，被选中图形的原始数据
   // ev.shapeInfo: Object 类型，被选中图形的数据信息
@@ -268,12 +270,13 @@ onEnd(ev) {
 
 ### 实例
 
-- [柱状图选中](../demo/interaction/interval-select.html)
+- [柱状图选中](../demo/interaction/selection-for-bar-chart.html)
 
+---
 
-## 平移
+## Pan 平移
 
-![pan.gif](https://cdn.yuque.com/lark/0/2018/gif/514/1528812604919-03cff529-22a2-49cb-8756-0bc5101a1d8f.gif)
+![pan.gif](https://gw.alipayobjects.com/zos/rmsportal/MMAUjpwkyFotExKMEeZO.gif)
 
 基于 Hammer.js 的 pan 事件： http://hammerjs.github.io/recognizer-pan/
 同时提供长按触发 tooltip 的交互。
@@ -281,11 +284,13 @@ onEnd(ev) {
 ### 使用
 
 ```js
-// 引入
-require('@antv/f2/lib/interaction/pan');
+const F2 = require('@antv/f2/lib/index'); // 引入 F2
+require('@antv/f2/lib/interaction/pan'); // 引入图表平移交互
 
-// 调用
-chart.interaction('pan', {});
+// ... 创建 chart 实例
+
+// 调用，需要在 chart.render() 方法之前调用
+chart.interaction('pan');
 ```
 
 ### API
@@ -359,7 +364,7 @@ limitRange: {
 
 设置之后，图表只会在 x 轴的 0 - 100 数值范围内移动。
 
-**参见 demo:**  [x 轴平移](../demo/interaction/x-pan.html)。
+**参见 demo:**  [x 轴平移](../demo/interaction/pan-for-line-chart.html)。
 
 ##### `onStart`
 类型：Function
@@ -393,24 +398,21 @@ onEnd(ev) {}
 
 ### 实例
 
-- [x 轴平移](../demo/interaction/x-pan.html)
-- [每日步数](../demo/interaction/steps-pan.html)
-- [x y 轴两个方向的平移](../demo/interaction/xy-pinch-pan.html)
+- [折线图平移](../demo/interaction/pan-for-line-chart.html)
+- [柱状图平移](../demo/interaction/pan-for-bar-chart.html)
+- [散点图拼图](../demo/interaction/pinch-and-pan-for-scatter-chart.html)
 
+---
 
-## 缩放
+## Pinch 缩放
 
-<div data-type="alignment" data-value="center" style="text-align:center">
-  <div data-type="p">
-    <div data-type="image" data-display="block" data-align="center" data-src="https://cdn.nlark.com/yuque/0/2018/gif/98090/1534079851012-7d999b4b-365e-4c41-b082-c5d3e954ab98.gif" data-width="348">
-      <img src="https://cdn.nlark.com/yuque/0/2018/gif/98090/1534079851012-7d999b4b-365e-4c41-b082-c5d3e954ab98.gif" width="348" />
-    </div>
-  </div>
-</div>
+![pinch.gif](https://gw.alipayobjects.com/zos/rmsportal/sMYbKWigXWEcEQQJksNi.gif)
 
-### 如何使用
+基于 Hammer.js 的 pinch 事件： http://hammerjs.github.io/recognizer-pinch/
 
-```javascript
+### 使用
+
+```js
 const F2 = require('@antv/f2/lib/index'); // 引入 F2
 require('@antv/f2/lib/interaction/pinch'); // 引入图表缩放交互
 
@@ -420,188 +422,97 @@ require('@antv/f2/lib/interaction/pinch'); // 引入图表缩放交互
 chart.interaction('pinch');
 ```
 
+### API
 
-### 配置
-```javascript
+```js
 chart.interaction('pinch', {
-  mode: {String},
-  minScale: {Number},
-  maxScale: {Number},
-  pressThreshold: {Number},
-  pressTime: {Number}, 
-  onStart: {Function},
-  onProcess: {Function},
-  onEnd: {Function}
+  mode: {String}, // 图表平移的方向，默认为 'x'
+  minScale: {Number}, // 缩小的最小倍数
+  maxScale: {Number}, // 放大的最大倍数
+  onStart: {Function}, // 事件触发后的回调
+  onProcess: {Function}, // 事件进行中的回调
+  onEnd: {Function}, // 事件结束后的回调
+  pressThreshold: 9, // hammer.js 设置，用于设置触发 press 事件的设置
+  pressTime: 251 // hammer.js 设置，用于设置触发 press 事件的最小时间差
 });
 ```
 
-<div class="bi-table">
-  <table>
-    <colgroup>
-      <col width="151px" />
-      <col width="109px" />
-      <col width="161px" />
-      <col width="261px" />
-    </colgroup>
-    <tbody>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="alignment" data-value="center" style="text-align:center">
-            <div data-type="p"><strong>参数</strong></div>
-          </div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="alignment" data-value="center" style="text-align:center">
-            <div data-type="p"><strong>类型</strong></div>
-          </div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="alignment" data-value="center" style="text-align:center">
-            <div data-type="p"><strong>默认值</strong></div>
-          </div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="alignment" data-value="center" style="text-align:center">
-            <div data-type="p"><strong>说明</strong></div>
-          </div>
-        </td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p"><code>mode</code> </div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">String</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">&#x27;x&#x27;</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">图表的缩放方向，可设置 x 轴、y 轴以及 x、y 两个方向。默认值为 &#x27;x&#x27;，即 x 轴方向的缩放。</div>
-          <div data-type="p"></div><pre data-syntax="js"><code class="language-js">mode: &#x27;x&#x27;, // x 轴方向
-mode: &#x27;y&#x27;, // y 轴方向
-mode: &#x27;xy&#x27;, // x y 两个方向
-</code></pre>
-          <div data-type="p"></div>
-          <blockquote>
-            <div data-type="p">注意，对于分类类型或者 TimeCat 类型的数据，只支持 x 轴方向的缩放。</div>
-            <div data-type="p"></div>
-          </blockquote>
-        </td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p"><code>minScale</code> </div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">Number</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">1 / null</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">设置图表缩小时的最小倍数。linear 类型数据为 null，分类类型以及 TimeCat 类型数据默认为 1。</div>
-        </td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p"><code>maxScale</code> </div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">Number</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">4 / null</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">设置图表放大时的最大倍数。linear 类型数据为 null，分类类型以及 TimeCat 类型数据默认为 4。</div>
-        </td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p"><code>pressTime</code> </div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">Number</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">251</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">hammer.js 设置，用于设置识别 press 事件的最小时间差，详见
-            <a target="_blank" href="http://hammerjs.github.io/recognizer-press/" class="bi-link">http://hammerjs.github.io/recognizer-press/</a>
-          </div>
-          <div data-type="p"></div>
-          <div data-type="p">长按会触发 tooltip。</div>
-        </td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p"><code>pressThreshold</code> </div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">Number</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">9</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">hammer.js 设置，用于设置识别 press 事件的最小移动距离，详见
-            <a target="_blank" href="http://hammerjs.github.io/recognizer-press/" class="bi-link">http://hammerjs.github.io/recognizer-press/</a>
-          </div>
-          <div data-type="p"></div>
-          <div data-type="p">长按会触发 tooltip。</div>
-        </td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p"><code>onStart</code> </div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">Function</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">null</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">start 事件触发后的回调。</div>
-        </td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p"><code>onProcess</code> </div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">Function</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">null</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">process 事件触发后的回调。</div>
-        </td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p"><code>onEnd</code> </div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">Function</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">null</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">事件结束后的回调函数。</div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+#### 参数说明
+
+##### `mode`
+* 类型：String
+* 默认值：'x'
+
+图表的缩放方向，可设置 x 轴、y 轴以及 x、y 两个方向。默认值为 'x'，即 x 轴方向的缩放。
+
+```js
+mode: 'x', // x 轴方向
+mode: 'y', // y 轴方向
+mode: 'xy', // x y 两个方向
+```
+
+> 注意，对于分类类型或者 TimeCat 类型的数据，只支持 x 轴方向的缩放。
+
+##### `minScale`
+* 类型：Number
+* 默认值：linear 类型数据为 null，分类类型以及 TimeCat 类型数据默认为 1
+
+设置图表缩小时的最小倍数。
+
+##### `maxScale`
+* 类型：Number
+* 默认值：linear 类型数据为 null，分类类型以及 TimeCat 类型数据默认为 4
+
+设置图表放大时的最大倍数。
+
+##### `onStart`
+类型：Function
+默认值：null
+
+事件触发后的回调。
+
+```js
+onStart(ev) {}
+```
+
+##### `onProcess`
+类型：Function
+默认值：null
+
+事件进行中的回调。
+
+```js
+onProcess(ev) {}
+```
+
+##### `onEnd`
+* 类型： Function
+* 默认值：null
+
+事件结束后的回调函数，用于可以基于该回调函数进行相应的操作。
+
+```js
+onEnd(ev) {}
+```
+
+##### `pressThreshold`
+* 类型：Number
+* 默认值：9
+
+hammer.js 设置，用于设置识别 press 事件的最小移动距离，详见 http://hammerjs.github.io/recognizer-press/
+
+长按会触发 tooltip。
+
+##### `pressTime`
+* 类型：Number
+* 默认值：251
+
+hammer.js 设置，用于设置识别 press 事件的最小时间差，详见 http://hammerjs.github.io/recognizer-press/
+
+长按会触发 tooltip。
 
 ### 实例
-* [x 轴缩放、平移](https://antv.alipay.com/zh-cn/f2/3.x/demo/interaction/x-pinch-pan.html)
-* [xy 轴缩放、平移](https://antv.alipay.com/zh-cn/f2/3.x/demo/interaction/xy-pinch-pan.html)
-* [时间类型的平移缩放](https://antv.alipay.com/zh-cn/f2/3.x/demo/interaction/timecat-pinch-pan.html)
 
-
+- [x 轴缩放、平移](../demo/interaction/pinch-and-pan-for-smooth-line.html)
+- [xy 轴缩放、平移](../demo/interaction/pinch-and-pan-for-scatter-chart.html)
+- [时间类型的平移缩放](../demo/interaction/pinch-and-pan-for-line-chart.html)

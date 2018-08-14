@@ -1,6 +1,6 @@
 <!--
 index: 10
-title: Animation 动画
+title: Animate
 resource:
   jsFiles:
     - ${url.f2}

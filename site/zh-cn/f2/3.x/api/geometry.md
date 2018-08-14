@@ -1,6 +1,6 @@
 <!--
 index: 3
-title: Geometry 几何标记
+title: Geometry
 -->
 
 # Geometry
@@ -9,7 +9,7 @@ title: Geometry 几何标记
 
 几何标记对象，决定了图表的类型，具体的概念介绍请参见 [Geom](../tutorial/geometry.html)。
 
-语法实例：
+语法示例：
 
 ```js
 chart.<geomType>()
@@ -51,6 +51,15 @@ Geom 支持的接口可以分为三大类：
 
 ## 属性
 
+```js
+chart.<geomType>({
+  generatePoints: {Boolean},
+  sortable: {Boolean},
+  startOnZero: {Boolean},
+  connectNulls: {Boolean}
+})
+```
+
 ### `generatePoints`
 
 - 参数类型：Boolean
@@ -69,7 +78,7 @@ chart.line({
 - 描述：是否对数据按照 x 轴对应字段进行排序，true 时会进行排序
 - 默认值：默认 area 和 line 类型会进行排序（即值为 true），其他类型均为 false。
 
-**在绘制折线图或者区域图时，如果您的数据已经经过排序，可以将该属性设置为 `false`，以提高处理性能。**
+**在绘制折线图或者区域图时，如果您的数据已经经过排序，可以将该属性设置为 `false`，以提高性能。**
 
 ```js
 chart.line({
@@ -116,19 +125,15 @@ chart.line({
 将数据值映射到图形的位置上的方法。
 
 ```js
-line().position('x*y');
-line().position([ 'x', 'y' ]);
+chart.line().position('x*y');
+chart.line().position([ 'x', 'y' ]);
 ```
 
 #### position('fieldA*fieldB')
 
-使用 `*` 连接，position 属性会对多个字段进行数据的映射，如：cut*price，x*y 等，用于二维坐标系图表的绘制。
+使用 `*` 连接，position 属性会对多个字段进行数据的映射，如：`cut*price`，`x*y` 等，用于二维坐标系图表的绘制。
 
-以 `chart.point().position('x*y')` 为例，point 代表图形，即最后需要生成点图，而 position 代表位置，position('x*y') 代表数据在图形中的位置由 x 和 y 这两个维度的变量决定，x * y 的数据处理结果可以理解为：
-
-<img src="https://gw.alipayobjects.com/zos/rmsportal/EcuDeyeTOsztVOuxmZPe.png" style="width: 50%;">
-
-(x1, y1) 这样的数值对，最后就会被转换为画布上对应的坐标点。
+以 `chart.point().position('x*y')` 为例，point 代表图形，即最后需要生成点图，而 position 代表位置，position('x*y') 代表数据在图形中的位置由 x 和 y 这两个维度的变量决定。
 
 另外，也可以以数组格式传入：`chart.geom().position([ 'fieldA', 'fieldB' ])`
 
@@ -137,16 +142,16 @@ line().position([ 'x', 'y' ]);
 将数据值映射到图形的颜色上的方法。
 
 ```js
-line().color('red'); // 常量颜色
-line().color('type'); // 对 type 字段进行映射，使用内置的颜色
-line().color('type', [ 'red', 'blue' ]) // 指定颜色
-line().color('type', (type) => { // 通过回调函数
+chart.line().color('red'); // 常量颜色
+chart.line().color('type'); // 对 type 字段进行映射，使用内置的颜色
+chart.line().color('type', [ 'red', 'blue' ]) // 指定颜色
+chart.line().color('type', (type) => { // 通过回调函数
   if (type === 'a') {
     return 'red';
   }
   return 'blue';
 });
-line().color('type*value', (type, value) => { //多个参数，通过回调函数
+chart.line().color('type*value', (type, value) => { //多个参数，通过回调函数
   if (type === 'a' && value > 100) {
     return 'red';
   }
@@ -211,10 +216,10 @@ chart.point().position('x*y').color('red'); // 所有点用红色渲染
 将数据值映射到图形的形状上的方法。
 
 ```js
-point().shape('circle'); // 常量
-point().shape('type'); // 使用字段映射到形状，使用内置的形状
-point().shape('type', [ 'circle', 'hollowCircle', 'rect' ]); // 指定形状
-point().shape('type', (type) => { // 回调函数
+chart.point().shape('circle'); // 常量
+chart.point().shape('type'); // 使用字段映射到形状，使用内置的形状
+chart.point().shape('type', [ 'circle', 'hollowCircle', 'rect' ]); // 指定形状
+chart.point().shape('type', type => { // 回调函数
   if(type === 'a') {
     return 'circle';
   }
@@ -296,10 +301,10 @@ chart.point().position('x*y').shape('z', value => {
 将数据值映射到图形的大小上的方法。
 
 ```js
-point.size(10); // 常量
-point.size('type'); // 使用字段映射到大小
-point.size('type', [ 0, 10 ]); // 使用字段映射到大小，并指定最大值和最小值
-point.size('type', type => { // 回调函数
+chart.point.size(10); // 常量
+chart.point.size('type'); // 使用字段映射到大小
+chart.point.size('type', [ 0, 10 ]); // 使用字段映射到大小，并指定最大值和最小值
+chart.point.size('type', type => { // 回调函数
   if (type === 'a') {
     return 10;
   }
@@ -365,11 +370,11 @@ chart.point().position('x*y').size('z', value => {
 F2 支持的调整类型包括：'stack', 'dodge'。
 
 ```js
-interval().adjust('stack');
-interval().adjust({
+chart.interval().adjust('stack');
+chart.interval().adjust({
   type: 'stack'
 });
-interval().adjust([{
+chart.interval().adjust([{
   type: 'dodge',
   marginRatio: 0, // 数值范围为 0 至 1，用于调整分组中各个柱子的间距
 }]);
@@ -385,7 +390,7 @@ interval().adjust([{
 
 参数：
 
-- `cfg` Object 类型，配置绘图属性，详见[绘图属性](./canvas.html)
+- `cfg`: Object 类型，配置绘图属性，详见[绘图属性](./canvas.html)
 
 ```js
 line().style({ // 统一为所有 shape 设置固定的样式
@@ -397,8 +402,8 @@ line().style({ // 统一为所有 shape 设置固定的样式
 
 参数：
 
-- `field` String 类型，映射的字段名
-- `cfg` Object 类型，配置绘图属性，**此时属性值也可以是回调函数**
+- `field`: String 类型，映射的字段名
+- `cfg`: Object 类型，配置绘图属性，**此时属性值也可以是回调函数**
 
 ```js
 style('city', {

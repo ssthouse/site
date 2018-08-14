@@ -1,6 +1,6 @@
 <!--
-index: 13
-title: 自定义交互
+index: 19
+title: 自定义 Interaction
 resource:
   jsFiles:
     - ${url.f2}
