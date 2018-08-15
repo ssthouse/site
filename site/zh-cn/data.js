@@ -1,4 +1,5 @@
-module.exports = {
+
+const data = {
     locale: 'zh-cn',
     products: {
         g2: {
@@ -183,3 +184,19 @@ module.exports = {
         copyright: 'ICP 证浙 B2-2-100257  Copyright © 蚂蚁金融服务集团',
     }
 };
+
+data.homepageNavs = {
+    g2: data.products.g2,
+    g6: data.products.g6,
+    f2: data.products.f2,
+    visChart: {
+        name: '${resource.translate.visChart}',
+        href: '${base}zh-cn/vis/chart/index.html'
+    },
+    visDesign: {
+        name: '${resource.translate.visDesign}',
+        href: '${base}zh-cn/vis/design/index.html'
+    },
+};
+
+module.exports = data;
