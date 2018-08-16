@@ -43,14 +43,14 @@ const data = {
                 // changelog: { hideFromNav: true, text: '${resource.translate.changelog}', href: '${base}zh-cn/f2/3.x/tutorial/changelog.html' },
             }
         },
-        gallery: {
-            name: '${resource.translate.gallery}',
-            href: '${base}zh-cn/gallery/index.html',
-            icon: '${assets}/image/icon/gallery.svg',
-            links: {
-                // publications: { text: '经典文献', href: '' },
-            }
-        },
+        // gallery: {
+        //     name: '${resource.translate.gallery}',
+        //     href: '${base}zh-cn/gallery/index.html',
+        //     icon: '${assets}/image/icon/gallery.svg',
+        //     links: {
+        //         // publications: { text: '经典文献', href: '' },
+        //     }
+        // },
         vis: {
             name: '${resource.translate.vis}',
             href: '${base}zh-cn/vis/index.html',
