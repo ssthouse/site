@@ -32,9 +32,9 @@ class Banner extends React.PureComponent {
             <p className="main-info" key="p">
               AntV 是蚂蚁金服全新一代数据可视化解决方案，致力于提供一套简单方便、专业可靠、无限可能的数据可视化最佳实践。
             </p>
-            <a target="_blank" href={'/zh-cn/g2/3.x/index.html'} key="a">
+            <a href="#__products" key="a">
               <button className="btn-round-link btn btn-primary btn-lg">
-                开始使用
+                继续了解
               </button>
             </a>
           </QueueAnim>

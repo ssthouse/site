@@ -13,11 +13,15 @@ export default function Page1() {
           <span className="title">{card.title}</span>
           <span className="description text-secondary">{card.description}</span>
         </div>
+        <div className="card-footer">
+          <small className="text-muted">Last updated 3 mins ago</small>
+        </div>
       </a>
     </Col>
   ));
 
   return (<section className="page-wrapper page1">
+    <a id="__products"></a>
     <QueueAnim
       component={Row}
       type="bottom"

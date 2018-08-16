@@ -52,7 +52,7 @@ const animate = {
 };
 
 export default function BannerImage() {
-  return (<svg viewBox="0 0 790 480" width="100%" height="100%">
+  return (<svg viewBox="0 0 790 420" width="100%" height="100%">
     <defs>
       <linearGradient x1="90.6674592%" y1="40.4771205%" x2="17.4068727%" y2="55.2232143%" id="linearGradient-1">
         <stop stopColor="#FCD63C" offset="0%" />
