@@ -3,8 +3,8 @@ index: 12
 title: Transform
 resource:
   jsFiles:
-    - ${url.g2}
     - ${url.dataSet}
+    - ${url.g2}
 -->
 
 # Transform 数据转换
@@ -783,15 +783,14 @@ dv.transform({
 ```js
 dv.transform({
   type: 'tag-cloud',
-  fields: [ 'text', 'value' ],    // 参与标签云layout的字段集
+  fields: [ 'text', 'value' ],    // 参与标签云layout的字段集（前者为文本内容，后者为权重值）
   font: 'serif',                  // 标签字体
   size: [ 500, 500 ],             // 画布size，[ width, height ]
   padding: 0,
   spiral: 'archimedean',          // 标签螺旋排布规律函数 'archimedean' || 'rectangular' || {function}
   fontSize(d) { return d.value }, // 计算标签字体大小的回调函数，d为一行数据
-  text(d) { return d.text },      // 生成标签文本的回调函数，d为一行数据
-  timeInterval: Infinity,         // 最大迭代时间
-  imageMask: {Image},             // Image的实例，必须是loaded状态
+  timeInterval: Infinity,         // 最大迭代时间，默认为无限大
+  imageMask: {Image},             // Image的实例，必须是 loaded 状态
 })
 ```
 
