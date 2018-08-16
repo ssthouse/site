@@ -19,7 +19,7 @@ resource:
     { date: '2018-10-31', y: 2, type: 'site', title: '官网国际化验收' },
     { date: '2018-11-15', y: 4, type: 'site', title: '官网改进验收' },
     { date: '2018-11-22', y: 6, type: 'g2', title: 'G2 3.4 双引擎与交互语法发布' },
-    { date: '2019-01-06', y: 2, type: 'g2', title: 'G2 3.5 图表状态量发布' },
+    { date: '2019-01-06', y: 2, type: 'g2', title: 'G2 3.5 图表状态量与地图发布' },
   ];
   const chart = new G2.Chart({
     container: 'plan',

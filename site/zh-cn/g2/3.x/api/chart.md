@@ -386,146 +386,146 @@ chart.axis('x', {
 
 一个对象类型，用于设置坐标轴配置信息，可配置属性如下：
 
-  1. `position`: string
+1. `position`: string
 
-  设置坐标轴的显示位置，可设置的值包含 `top`、`bottom`、`left`、`right`，即上下左右四个位置。
+设置坐标轴的显示位置，可设置的值包含 `top`、`bottom`、`left`、`right`，即上下左右四个位置。
 
-  2. `line`: object |null
+2. `line`: object |null
 
-  设置坐标轴线的样式，包括线的颜色、粗细等。如果该属性值为 `null` 则表示不展示坐标轴线。
+设置坐标轴线的样式，包括线的颜色、粗细等。如果该属性值为 `null` 则表示不展示坐标轴线。
 
-  ```js
-  line: {
-    stroke: {string}, // 坐标轴线的颜色
-    strokeOpacity: {number}, // 坐标轴线的透明度，数值范围为 0 - 1
-    lineDash: {array}, // 设置虚线的样式，如 [2, 3]第一个用来表示实线的像素，第二个用来表示空白的像素。如果提供了奇数个值，则这个值的数列重复一次，从而变成偶数个值
-    lineWidth: {number} // 设置坐标轴线的粗细
-  }
-  ```
+```js
+line: {
+  stroke: {string}, // 坐标轴线的颜色
+  strokeOpacity: {number}, // 坐标轴线的透明度，数值范围为 0 - 1
+  lineDash: {array}, // 设置虚线的样式，如 [2, 3]第一个用来表示实线的像素，第二个用来表示空白的像素。如果提供了奇数个值，则这个值的数列重复一次，从而变成偶数个值
+  lineWidth: {number} // 设置坐标轴线的粗细
+}
+```
 
-  3. `label`: object | null
+3. `label`: object | null
 
-  设置坐标轴文本的样式。如果该属性值为 `null` 则表示不展示坐标轴文本。
+设置坐标轴文本的样式。如果该属性值为 `null` 则表示不展示坐标轴文本。
 
-  ```js
-  label: {
-    offset: {number}, // 数值，设置坐标轴文本 label 距离坐标轴线的距离
-    // 设置文本的显示样式，还可以是个回调函数，回调函数的参数为该坐标轴对应字段的数值
-    textStyle: {
-      textAlign: 'center', // 文本对齐方向，可取值为： start center end
-      fill: '#404040', // 文本的颜色
-      fontSize: '12', // 文本大小
-      fontWeight: 'bold', // 文本粗细
-      rotate: 30, 
-      textBaseline: 'top' // 文本基准线，可取 top middle bottom，默认为middle
-    } | (text) => {
-      // text: 坐标轴对应字段的数值
-    }, 
-    autoRotate: {boolean}, // 文本是否需要自动旋转，默认为 true
-    /**
-     * 用于格式化坐标轴上显示的文本信息的回调函数
-     * @param  {string} text  文本值
-     * @param  {object} item  该文本值对应的原始数据记录
-     * @param  {number} index 索引值
-     * @return {string}       返回格式化后的文本值
-     */
-    formatter(text, item, index) {},
-    /**
-     * 使用 html 渲染文本
-     * @param  {string} text  文本值
-     * @param  {object} item  该文本值对应的原始数据记录
-     * @param  {number} index 索引值
-     * @return {string}       返回 html 字符串
-     */
-    htmlTemplate(text, item, index) {}
-  }
-  ```
-  * textStyle 的更详细的配置项 [绘图属性](graphic.html)
+```js
+label: {
+  offset: {number}, // 数值，设置坐标轴文本 label 距离坐标轴线的距离
+  // 设置文本的显示样式，还可以是个回调函数，回调函数的参数为该坐标轴对应字段的数值
+  textStyle: {
+    textAlign: 'center', // 文本对齐方向，可取值为： start center end
+    fill: '#404040', // 文本的颜色
+    fontSize: '12', // 文本大小
+    fontWeight: 'bold', // 文本粗细
+    rotate: 30, 
+    textBaseline: 'top' // 文本基准线，可取 top middle bottom，默认为middle
+  } | (text) => {
+    // text: 坐标轴对应字段的数值
+  }, 
+  autoRotate: {boolean}, // 文本是否需要自动旋转，默认为 true
+  /**
+   * 用于格式化坐标轴上显示的文本信息的回调函数
+   * @param  {string} text  文本值
+   * @param  {object} item  该文本值对应的原始数据记录
+   * @param  {number} index 索引值
+   * @return {string}       返回格式化后的文本值
+   */
+  formatter(text, item, index) {},
+  /**
+   * 使用 html 渲染文本
+   * @param  {string} text  文本值
+   * @param  {object} item  该文本值对应的原始数据记录
+   * @param  {number} index 索引值
+   * @return {string}       返回 html 字符串
+   */
+  htmlTemplate(text, item, index) {}
+}
+```
+* textStyle 的更详细的配置项 [绘图属性](graphic.html)
 
-  4. `title`: object | null
+4. `title`: object | null
 
-  设置坐标轴标题的显示样式。如果该属性值为 `null` 则表示不展示坐标轴标题。
+设置坐标轴标题的显示样式。如果该属性值为 `null` 则表示不展示坐标轴标题。
 
-  **在 G2 的默认主题中，坐标轴标题是不展示的。**
+**在 G2 的默认主题中，坐标轴标题是不展示的。**
 
-  通过 `title: true` 渲染坐标轴标题。通过以下配置对标题进行个性化配置：
+通过 `title: true` 渲染坐标轴标题。通过以下配置对标题进行个性化配置：
 
-  ```js
-  title: {
-    autoRotate: {boolean}, // 是否需要自动旋转，默认为 true 
-    offset: {number}, // 数值，设置坐标轴标题距离坐标轴线的距离
-    // 设置标题的文本样式
-    textStyle: {
-      textAlign: 'center', // 文本对齐方向，可取值为： start middle end
-      fill: '#404040', // 文本的颜色
-      fontSize: '12', // 文本大小
-      fontWeight: 'bold', // 文本粗细
-      rotate: 30, // 文本旋转角度，以角度为单位，仅当 autoRotate 为 false 时生效
-      textBaseline: 'top' // 文本基准线，可取 top middle bottom，默认为middle
-    },
-    position: 'start' | 'center' | 'end' // 标题的显示位置（相对于坐标轴线），可取值为 start center end
-  }
-  ```
-  * textStyle 的更详细的配置项 [绘图属性](graphic.html)
+```js
+title: {
+  autoRotate: {boolean}, // 是否需要自动旋转，默认为 true 
+  offset: {number}, // 数值，设置坐标轴标题距离坐标轴线的距离
+  // 设置标题的文本样式
+  textStyle: {
+    textAlign: 'center', // 文本对齐方向，可取值为： start middle end
+    fill: '#404040', // 文本的颜色
+    fontSize: '12', // 文本大小
+    fontWeight: 'bold', // 文本粗细
+    rotate: 30, // 文本旋转角度，以角度为单位，仅当 autoRotate 为 false 时生效
+    textBaseline: 'top' // 文本基准线，可取 top middle bottom，默认为middle
+  },
+  position: 'start' | 'center' | 'end' // 标题的显示位置（相对于坐标轴线），可取值为 start center end
+}
+```
+* textStyle 的更详细的配置项 [绘图属性](graphic.html)
 
-  5. `tickLine`: object | null
+5. `tickLine`: object | null
 
-  设置坐标轴的刻度线。如果该属性值为 `null` 则表示不展示。
+设置坐标轴的刻度线。如果该属性值为 `null` 则表示不展示。
 
-  ```js
-  tickLine: {
-    lineWidth: 1, // 刻度线宽
-    stroke: '#ccc', // 刻度线的颜色
-    strokeOpacity: 0.5, // 刻度线颜色的透明度
-    length: 5, // 刻度线的长度，可以为负值（表示反方向渲染）
-    alignWithLabel:true//设为负值则显示为category数据类型特有的样式
-  }
-  ```
+```js
+tickLine: {
+  lineWidth: 1, // 刻度线宽
+  stroke: '#ccc', // 刻度线的颜色
+  strokeOpacity: 0.5, // 刻度线颜色的透明度
+  length: 5, // 刻度线的长度，可以为负值（表示反方向渲染）
+  alignWithLabel:true//设为负值则显示为category数据类型特有的样式
+}
+```
 
-  * alignWithLabel的用法详情见教程 [axis](../tutorial/axes.html)
+* alignWithLabel的用法详情见教程 [axis](../tutorial/axes.html)
 
-  6. `subTickCount`: number
+6. `subTickCount`: number
 
-  设置每两个刻度之间次刻度线的个数，默认为 0，即不展示次刻度线。
+设置每两个刻度之间次刻度线的个数，默认为 0，即不展示次刻度线。
 
-  ```js
-  subTickCount: 2 // 设置次刻度线的个数，数值类型
-  ```
+```js
+subTickCount: 2 // 设置次刻度线的个数，数值类型
+```
 
-  7. `subTickLine`: object
+7. `subTickLine`: object
 
-  设置次刻度线的样式，仅当 subTickCount 不为 0 时生效。
+设置次刻度线的样式，仅当 subTickCount 不为 0 时生效。
 
-  ```js
-  subTickLine: {
-    lineWidth: 1, // 次刻度线宽
-    stroke: '#ddd', // 次刻度线颜色
-    strokeOpacity: 0.5, // 次刻度线颜色的透明度
-    length: 3 // 次刻度线的长度，可以为负值（表示反方向渲染）
-  }
-  ```
+```js
+subTickLine: {
+  lineWidth: 1, // 次刻度线宽
+  stroke: '#ddd', // 次刻度线颜色
+  strokeOpacity: 0.5, // 次刻度线颜色的透明度
+  length: 3 // 次刻度线的长度，可以为负值（表示反方向渲染）
+}
+```
 
-  8. `grid`: object | null
+8. `grid`: object | null
 
-  设置坐标轴网格线的样式，网格线与坐标轴线垂直。如果该属性值为 `null` 则表示不展示。
+设置坐标轴网格线的样式，网格线与坐标轴线垂直。如果该属性值为 `null` 则表示不展示。
 
-  ```js
-  grid: {
-    align: 'center', // 声明网格顶点从两个刻度中间开始，默认从刻度点开始
-    type: 'line' | 'polygon', // 声明网格的类型，line 表示线，polygon 表示矩形框
-    // 当网格类型 type 为 line 时，使用 lineStyle 设置样式
-    lineStyle: {
-      stroke: '#d9d9d9', // 网格线的颜色
-      lineWidth: 1, // 网格线的粗细
-      lineDash: [4, 4 ] // 网格线的虚线配置，第一个参数描述虚线的实部占多少像素，第二个参数描述虚线的虚部占多少像素
-    },
-    alternateColor: '#ccc' | [ '#f80', '#ccc' ], // 当网格类型 type 为 polygon 时，使用 alternateColor 为网格设置交替的颜色，指定一个值则先渲染奇数层，两个值则交替渲染
-    hideFirstLine: true | false, // 是否隐藏第一条网格线，默认为 false
-    hideLastLine: true | false // 是否隐藏最后一条网格线，默认为 false
-  }
-  ```
+```js
+grid: {
+  align: 'center', // 声明网格顶点从两个刻度中间开始，默认从刻度点开始
+  type: 'line' | 'polygon', // 声明网格的类型，line 表示线，polygon 表示矩形框
+  // 当网格类型 type 为 line 时，使用 lineStyle 设置样式
+  lineStyle: {
+    stroke: '#d9d9d9', // 网格线的颜色
+    lineWidth: 1, // 网格线的粗细
+    lineDash: [4, 4 ] // 网格线的虚线配置，第一个参数描述虚线的实部占多少像素，第二个参数描述虚线的虚部占多少像素
+  },
+  alternateColor: '#ccc' | [ '#f80', '#ccc' ], // 当网格类型 type 为 polygon 时，使用 alternateColor 为网格设置交替的颜色，指定一个值则先渲染奇数层，两个值则交替渲染
+  hideFirstLine: true | false, // 是否隐藏第一条网格线，默认为 false
+  hideLastLine: true | false // 是否隐藏最后一条网格线，默认为 false
+}
+```
 
-  * lineStyle 的更详细的配置项 [绘图属性](graphic.html)
+* lineStyle 的更详细的配置项 [绘图属性](graphic.html)
 
 ### legend
 
@@ -561,453 +561,450 @@ chart.legend('gender', {
 
 是一个对象，该对象可配置的属性如下：
 
-  1. `position`: string
+1. `position`: string
 
-  设置图例的显示位置，可设置的值为12个：`left-top`,`left-center`,`left-bottom`,`right-top`,`right-top`,`right-bottom`,`top-left`,`top-center`,`top-bottom`,`bottom-left`,`bottom-center`,`bottom-right`。也可使用`bottom`,`top`,`left`,`right`设置位置，此时对应的值分别为`bottom-center`,`top-center`,`left-bottom`,`right-bottom`。默认为 `bottom-center`。
+设置图例的显示位置，可设置的值为12个：`left-top`,`left-center`,`left-bottom`,`right-top`,`right-top`,`right-bottom`,`top-left`,`top-center`,`top-bottom`,`bottom-left`,`bottom-center`,`bottom-right`。也可使用`bottom`,`top`,`left`,`right`设置位置，此时对应的值分别为`bottom-center`,`top-center`,`left-bottom`,`right-bottom`。默认为 `bottom-center`。
 
-  2. `layout`: string
+2. `layout`: string
 
-  对分类类型的图例生效，用于设置各个图例项的排列方式，可设置值包括：`vertical`、`horizontal`，分别表示垂直和水平排布。
+对分类类型的图例生效，用于设置各个图例项的排列方式，可设置值包括：`vertical`、`horizontal`，分别表示垂直和水平排布。
 
-  3. `title`: object | null
+3. `title`: object | null
 
-  图例标题的显示样式设置，如果值为 null，表示不展示图例标题，默认不展示。
+图例标题的显示样式设置，如果值为 null，表示不展示图例标题，默认不展示。
 
-  ```js
-  title: {
-    textAlign: 'center', // 文本对齐方向，可取值为： start middle end
-    fill: '#404040', // 文本的颜色
-    fontSize: '12', // 文本大小
-    fontWeight: 'bold', // 文本粗细
-    rotate: 30, // 文本旋转角度，以角度为单位，仅当 autoRotate 为 false 时生效
-    textBaseline: 'top' // 文本基准线，可取 top middle bottom，默认为middle
+```js
+title: {
+  textAlign: 'center', // 文本对齐方向，可取值为： start middle end
+  fill: '#404040', // 文本的颜色
+  fontSize: '12', // 文本大小
+  fontWeight: 'bold', // 文本粗细
+  rotate: 30, // 文本旋转角度，以角度为单位，仅当 autoRotate 为 false 时生效
+  textBaseline: 'top' // 文本基准线，可取 top middle bottom，默认为middle
+}
+```
+
+4. `offsetX`: number
+
+图例 x 方向的偏移值，数值类型，数值单位为 'px'，默认值为 0。
+
+5. `offsetY`: number
+
+图例 Y 方向的偏移值，数值类型，数值单位为 'px'，默认值为 0。
+
+6. `itemGap`: number
+
+对分类类型的图例生效，表示图例每项之间的间距，如果是水平排布则为左右间距，如果是竖直排布则为上下间距。
+
+7. `itemMarginBottom`: number 
+
+对分类类型的图例生效，表示各个图例项垂直方向的间距。
+
+8. `itemWidth`: number 
+
+对分类类型的图例生效，设置图例项的宽度，当图例有很多图例项，并且用户想要这些图例项能垂直对齐时，此时这个属性可帮用户实现此效果。
+
+[在线示例](/zh-cn/g2/3.x/demo/other/polar-interval.html)：
+
+<div id="c1"></div>
+
+```js-
+ const data = [{country:'中国',cost:96},{country:'德国',cost:121},{country:'美国',cost:100},{country:'日本',cost:111},{country:'韩国',cost:102},{country:'法国',cost:124},{country:'意大利',cost:123},{country:'荷兰',cost:111},{country:'比利时',cost:123},{country:'英国',cost:109},{country:'加拿大',cost:115},{country:'俄罗斯',cost:99},{country:'墨西哥',cost:91},{country:'印度',cost:87},{country:'瑞士',cost:125},{country:'澳大利亚',cost:130},{country:'西班牙',cost:109},{country:'巴西',cost:123},{country:'泰国',cost:91},{country:'印尼',cost:83},{country:'波兰',cost:101},{country:'瑞典',cost:116},{country:'奥地利',cost:111},{country:'捷克',cost:107}];
+const chart = new G2.Chart({
+  container: 'c1',
+  forceFit: true,
+  height: 500,
+  padding: [ 10, 40, 130, 40 ]
+});
+chart.source(data, {
+  'cost': {
+    min: 0
   }
-  ```
-
-  4. `offsetX`: number
-
-  图例 x 方向的偏移值，数值类型，数值单位为 'px'，默认值为 0。
-  
-  5. `offsetY`: number
-  
-  图例 Y 方向的偏移值，数值类型，数值单位为 'px'，默认值为 0。
-
-  6. `itemGap`: number
-
-  对分类类型的图例生效，表示图例每项之间的间距，如果是水平排布则为左右间距，如果是竖直排布则为上下间距。
-
-  7. `itemMarginBottom`: number 
-
-  对分类类型的图例生效，表示各个图例项垂直方向的间距。
-
-  8. `itemWidth`: number 
-
-  对分类类型的图例生效，设置图例项的宽度，当图例有很多图例项，并且用户想要这些图例项能垂直对齐时，此时这个属性可帮用户实现此效果。
-
-  [在线示例](/zh-cn/g2/3.x/demo/other/polar-interval.html)：
-  
-  <div id="c1"></div>
-
-  ```js-
-   const data = [{country:'中国',cost:96},{country:'德国',cost:121},{country:'美国',cost:100},{country:'日本',cost:111},{country:'韩国',cost:102},{country:'法国',cost:124},{country:'意大利',cost:123},{country:'荷兰',cost:111},{country:'比利时',cost:123},{country:'英国',cost:109},{country:'加拿大',cost:115},{country:'俄罗斯',cost:99},{country:'墨西哥',cost:91},{country:'印度',cost:87},{country:'瑞士',cost:125},{country:'澳大利亚',cost:130},{country:'西班牙',cost:109},{country:'巴西',cost:123},{country:'泰国',cost:91},{country:'印尼',cost:83},{country:'波兰',cost:101},{country:'瑞典',cost:116},{country:'奥地利',cost:111},{country:'捷克',cost:107}];
-  const chart = new G2.Chart({
-    container: 'c1',
-    forceFit: true,
-    height: 500,
-    padding: [ 10, 40, 130, 40 ]
-  });
-  chart.source(data, {
-    'cost': {
-      min: 0
+});
+chart.coord('polar', {
+  radius: 0.6
+});
+chart.axis('cost', {
+  label: null,
+  tickLine: null,
+  line: {
+    stroke: '#E9E9E9',
+    lineDash: [ 3, 3 ]
+  }
+});
+chart.axis('country', {
+  grid: {
+    align: 'center'
+  },
+  tickLine: null,
+  label: {
+    Offset: 10,
+    textStyle: {
+      textAlign: 'center' // 设置坐标轴 label 的文本对齐方向
     }
-  });
-  chart.coord('polar', {
-    radius: 0.6
-  });
-  chart.axis('cost', {
-    label: null,
-    tickLine: null,
-    line: {
-      stroke: '#E9E9E9',
-      lineDash: [ 3, 3 ]
+  }
+});
+chart.legend('country', {
+  itemWidth: 50 // 设置图例项的宽度，使其在垂直方向上能够排列整齐
+});
+chart.interval()
+  .position('country*cost')
+  .color('country')
+  .label('cost', {
+    offset: -15,
+    textStyle: {
+      textAlign: 'center',
+      fontSize: 11,
+      shadowBlur: 2,
+      shadowColor: 'rgba(0, 0, 0, .45)'
     }
+  })
+  .style({
+    lineWidth: 1,
+    stroke: '#fff'
   });
-  chart.axis('country', {
-    grid: {
-      align: 'center'
-    },
-    tickLine: null,
-    label: {
-      Offset: 10,
-      textStyle: {
-        textAlign: 'center' // 设置坐标轴 label 的文本对齐方向
-      }
-    }
-  });
-  chart.legend('country', {
-    itemWidth: 50 // 设置图例项的宽度，使其在垂直方向上能够排列整齐
-  });
-  chart.interval()
-    .position('country*cost')
-    .color('country')
-    .label('cost', {
-      offset: -15,
-      textStyle: {
-        textAlign: 'center',
-        fontSize: 11,
-        shadowBlur: 2,
-        shadowColor: 'rgba(0, 0, 0, .45)'
-      }
-    })
-    .style({
-      lineWidth: 1,
-      stroke: '#fff'
-    });
-  chart.render();
-  ```
-  
-  9. `unCheckColor`: string
+chart.render();
+```
 
-  对分类类型的图例生效，用于取消选中的图例文本颜色。
+9. `unCheckColor`: string
 
-  10. `background`: object
-  
-  对分类类型的图例生效，用于设置图例的背景样式。
-  
-  ```js
-  background: {
-    fill: '#000',
-    fillOpacity: 0.3
-  }
-  ```
+对分类类型的图例生效，用于取消选中的图例文本颜色。
 
-  11. `allowAllCanceled`: boolean
+10. `background`: object
 
-  对分类类型的图例生效，表示是否允许所有图例项被取消选中，默认为 false，即必须保留一个被选中的图例项。
+对分类类型的图例生效，用于设置图例的背景样式。
 
-  12. `itemFormatter`: function
+```js
+background: {
+  fill: '#000',
+  fillOpacity: 0.3
+}
+```
 
-  回调函数，用于格式化图例每项的文本显示。
+11. `allowAllCanceled`: boolean
 
-  ```js
-  itemFormatter(val) {
-    return val; // val 为每个图例项的文本值
-  }
-  ```
-  
-  13. `marker`: string | function
+对分类类型的图例生效，表示是否允许所有图例项被取消选中，默认为 false，即必须保留一个被选中的图例项。
 
-  对分类类型的图例生效，用于设置图例的 marker 样式，默认按照 geom 的类型显示。
+12. `itemFormatter`: function
 
-  * 当为 string 类型时，即表示使用 G2 默认提供的类型，支持的类型如下：
+回调函数，用于格式化图例每项的文本显示。
 
-  type | 样式
-  ---- | ----
-  circle | <img src="/assets/image/g2/tutorial/circle.png" style="width:50%">
-  square | <img src="/assets/image/g2/tutorial/square.png" style="width:50%">
-  bowtie | <img src="/assets/image/g2/tutorial/bowtie.png" style="width:50%">
-  diamond | <img src="/assets/image/g2/tutorial/diamond.png" style="width:50%">
-  hexagon | <img src="/assets/image/g2/tutorial/hexagon.png" style="width:50%">
-  triangle | <img src="/assets/image/g2/tutorial/triangle.png" style="width:50%">
-  triangle-down | <img src="/assets/image/g2/tutorial/triangle-down.png" style="width:50%">
-  cross | <img src="/assets/image/g2/tutorial/cross.png" style="width:50%">
-  tick | <img src="/assets/image/g2/tutorial/tick.png" style="width:50%">
-  plus | <img src="/assets/image/g2/tutorial/plus.png" style="width:50%">
-  hyphen | <img src="/assets/image/g2/tutorial/hyphen.png" style="width:50%">
-  line | <img src="/assets/image/g2/tutorial/line.png" style="width:50%">
-  hollowCircle | <img src="/assets/image/g2/tutorial/hollowCircle.png" style="width:50%">
-  hollowSquare | <img src="/assets/image/g2/tutorial/hollowSquare.png" style="width:50%">
-  hollowBowtie | <img src="/assets/image/g2/tutorial/hollowBowtie.png" style="width:50%">
-  hollowDiamond | <img src="/assets/image/g2/tutorial/hollowDiamond.png" style="width:50%">
-  hollowHexagon | <img src="/assets/image/g2/tutorial/hollowHexagon.png" style="width:50%">
-  hollowTriangle | <img src="/assets/image/g2/tutorial/hollowTriangle.png" style="width:50%">
-  hollowTriangle-down | <img src="/assets/image/g2/tutorial/hollowTriangle-down.png" style="width:50%">
+```js
+itemFormatter(val) {
+  return val; // val 为每个图例项的文本值
+}
+```
 
-  * marker 也支持自定义 shape，使用方式如下，
+13. `marker`: string | function
 
-  ```js
-  /**
-   * 自定义 marker 形状
-   * @param  {number} x   该 marker 的横轴坐标
-   * @param  {number} y   该 marker 的纵轴坐标
-   * @param  {number} r   该 marker 的半径大小
-   * @param  {object} ctx canvas 的上下文对象
-   * @return {null}     
-   */
-  marker(x, y, r, ctx) {}
-  ```
+对分类类型的图例生效，用于设置图例的 marker 样式，默认按照 geom 的类型显示。
 
-  以下代码绘制了如图所示的 marker：<img src="https://gw.alipayobjects.com/zos/rmsportal/WOOfsuIGEAPWdtgsdciZ.png" style="width:20px">
+* 当为 string 类型时，即表示使用 G2 默认提供的类型，支持的类型如下：
 
-  ```js
-  marker(x, y, r, ctx) {
-    ctx.lineWidth = 1;
-    ctx.fillStyle = ctx.strokeStyle;
-    ctx.moveTo(x - r - 3, y);
-    ctx.lineTo(x + r + 3, y);
-    ctx.arc(x, y, r - 1, 0, Math.PI * 2, false);
-    ctx.fill();
-  }
-  ```
+type | 样式
+---- | ----
+circle | <img src="/assets/image/g2/tutorial/circle.png" style="width:50%">
+square | <img src="/assets/image/g2/tutorial/square.png" style="width:50%">
+bowtie | <img src="/assets/image/g2/tutorial/bowtie.png" style="width:50%">
+diamond | <img src="/assets/image/g2/tutorial/diamond.png" style="width:50%">
+hexagon | <img src="/assets/image/g2/tutorial/hexagon.png" style="width:50%">
+triangle | <img src="/assets/image/g2/tutorial/triangle.png" style="width:50%">
+triangle-down | <img src="/assets/image/g2/tutorial/triangle-down.png" style="width:50%">
+cross | <img src="/assets/image/g2/tutorial/cross.png" style="width:50%">
+tick | <img src="/assets/image/g2/tutorial/tick.png" style="width:50%">
+plus | <img src="/assets/image/g2/tutorial/plus.png" style="width:50%">
+hyphen | <img src="/assets/image/g2/tutorial/hyphen.png" style="width:50%">
+line | <img src="/assets/image/g2/tutorial/line.png" style="width:50%">
+hollowCircle | <img src="/assets/image/g2/tutorial/hollowCircle.png" style="width:50%">
+hollowSquare | <img src="/assets/image/g2/tutorial/hollowSquare.png" style="width:50%">
+hollowBowtie | <img src="/assets/image/g2/tutorial/hollowBowtie.png" style="width:50%">
+hollowDiamond | <img src="/assets/image/g2/tutorial/hollowDiamond.png" style="width:50%">
+hollowHexagon | <img src="/assets/image/g2/tutorial/hollowHexagon.png" style="width:50%">
+hollowTriangle | <img src="/assets/image/g2/tutorial/hollowTriangle.png" style="width:50%">
+hollowTriangle-down | <img src="/assets/image/g2/tutorial/hollowTriangle-down.png" style="width:50%">
 
-  14. `textStyle`: object
+* marker 也支持自定义 shape，使用方式如下，
 
-  用于设置图例项的文本样式。
+```js
+/**
+ * 自定义 marker 形状
+ * @param  {number} x   该 marker 的横轴坐标
+ * @param  {number} y   该 marker 的纵轴坐标
+ * @param  {number} r   该 marker 的半径大小
+ * @return {null}     
+ */
+marker(x, y, r) {}
+```
 
-  ```js
-  textStyle: {
-    textAlign: 'center', // 文本对齐方向，可取值为： start middle end
-    fill: '#404040', // 文本的颜色
-    fontSize: '12', // 文本大小
-    fontWeight: 'bold', // 文本粗细
-    rotate: 30, // 文本旋转角度，以角度为单位，仅当 autoRotate 为 false 时生效
-    textBaseline: 'top' // 文本基准线，可取 top middle bottom，默认为middle
-  }
-  ```
+以下代码绘制了如图所示的 marker：<img src="https://gw.alipayobjects.com/zos/rmsportal/WOOfsuIGEAPWdtgsdciZ.png" style="width:20px">
 
-  15. `attachLast`:boolean
-
-  是否启用尾部跟随图例(tail-legend)，尾部跟随图例自动跟随geom的最后一个数据点，适用的图表类型为`line`、`stackLine`、`area`、`stackArea`。 默认为false，即不启用。
-
-  16. `clickable`: boolean
-
-  对分类类型的图例生效，设置图例项是否允许点击，默认为 true，即允许点击。
-
-  17. `hoverable`: boolean
-
-  对分类类型的图例生效，设置是否开启鼠标 hover 至图例的交互效果，默认为 true，即开启动画。
-
-  18.  `selectedMode`: string
-
-  针对分类类型图例，当 clickable 为 true 时该配置项生效，用于设置图例的选中交互模式，可配置的属性:
-
-  * `selectedMode: 'single'`：表示开启单选模式；
-  * `selectedMode: 'multiple'`：表示开启多选模式，默认为 `multiple`。
-
-  19. `onHover`: function
-
-  针对分类类型的图例，用于自定义鼠标 hover 图例项的交互，当 `hoverable` 为 false 不生效。
-  
-  ```js
-  /**
-   * 自定义图例项鼠标 hover 事件，hoverable 为 false 不生效
-   * @param  {object} ev 事件对象
-   * @return {null}    
-   */
-  onHover: ev => {}
-  ```
-
-  20. `onClick`: function
-
-  针对分类类型的图例，用于自定义鼠标点击图例项的交互，当 `clickable` 为 false 不生效。
-  
-  ```js
-  /**
-   * 自定义图例项点击事件， clickable 为 false 不生效
-   * @param  {object} ev 事件对象
-   * @return {null}
-   */
-  onClick: ev => {}
-  ```
-
-  21. `useHtml`: boolean
-
-  针对分类类型图例，用于开启是否使用 html 渲染图例，默认为 false，true 表示使用 html 渲染图例。
-
-  22. `container`: string
-
-  **当 `useHtml` 为 true 时生效**，用于指定生成图例的 dom 容器，那么该值必须为 dom 容器的 id 值为分类类型的话，则支持传入索引值。
-
-  23. `containerTpl`: string
-
-  **当 `useHtml` 为 true 时生效**，用于指定图例容器的模板，默认值如下：
-
-  ```js
-  containerTpl: '<div class="g2-legend" style="position:absolute;top:20px;right:60px;width:auto;">'
-    + '<h4 class="g2-legend-title"></h4>' 
-    + '<ul class="g2-legend-list" style="list-style-type:none;margin:0;padding:0;"></ul>'
-    + '</div>';
-  ```
-
-  如默认结构不满足需求，可以自定义该模板，但是**自定义模板时必须包含各个 dom 节点的 class**，样式可以自定义。
-
-  24. `itemTpl`: string
-
-  **当 `useHtml` 为 true 时生效**，用于指定生成图例的图例项 html 模板，默认值如下：
-  
-  ```js
-  itemTpl: '<li class="g2-legend-list-item item-{index} {checked}" data-color="{originColor}" data-value="{originValue}" style="cursor: pointer;font-size: 14px;">'
-    + '<i class="g2-legend-marker" style="width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:10px;background-color: {color};"></i>'
-    + '<span class="g2-legend-text">{value}</span>'
-    + '</li>';
-  ```
-
-  !注意：自定义模板时必须包含各个 dom 节点的 class，样式可以自定义。
-
-  25. `slidable`: boolean
-
-  **针对连续图例**，用于设置连续图例是否允许滑动，默认为 true，即开启滑动操作。
-
-  26. `width`: number
-
-  **针对连续图例**，用于设置图例的宽度。
-
-  27. `height`: number
-
-  **针对连续图例**，用于设置图例的高度。
-
-  28. `custom`: boolean
-
-  默认为 false，当 `custom` 为 true，表示不使用默认生成的图例，允许用户自定义图例，包括具体的图例项以及 click、hover 交互。
-
-  自定义图例时需要用户自己声明具体的图例项 `items`(该属性是一个对象数组，数组中每一项为一个对象类型，结构为：
-  `{ value: '', marker:{fill: 'red'}}`)以及图例项的 hover 和 click 事件。
-  
-  具体使用如下：
-
-  ```js
-  // 自定义图例
-  chart.legend({
-    custom: true,
-    items: [
-      { 
-        value: 'waiting', // 图例项的文本内容
-        marker: {
-          symbol: 'circle',  // 该图例项 marker 的形状，参见 marker 参数的说明
-          fill: '#3182bd'  // 该图例项 marker 的填充颜色
-        }
-      },
-      { 
-        value: 'call', 
-        marker: {
-          symbol: 'square',  // 该图例项 marker 的形状，参见 marker 参数的说明
-          fill: '#99d8c9'  // 该图例项 marker 的填充颜色
-        }
-      },
-      { 
-        value: 'people',
-        fill: '#fdae6b', 
-        marker: {
-          symbol: 'line',  // 该图例项 marker 的形状，参见 marker 参数的说明
-          stroke: '#fdae6b',  // 该图例项 marker 的填充颜色
-          radius: 6
-        }
-      }
-    ],
-    onHover: ev => {}, // 自定义 hover 事件  
-    onClick: ev => {}, // 自定义 click 事件
-  });
-  // 为特定的字段自定义图例
-  chart.legend('field', {
-    custom: true,
-    items: [
-      { 
-        value: 'waiting', // 图例项的文本内容
-        marker: {
-          symbol: 'circle',  // 该图例项 marker 的形状，参见 marker 参数的说明
-          fill: '#3182bd'  // 该图例项 marker 的填充颜色
-        }
-      },
-      { 
-        value: 'call', 
-        marker: {
-          symbol: 'square',  // 该图例项 marker 的形状，参见 marker 参数的说明
-          fill: '#99d8c9'  // 该图例项 marker 的填充颜色
-        }
-      },
-      { 
-        value: 'people',
-        fill: '#fdae6b', 
-        marker: {
-          symbol: 'line',  // 该图例项 marker 的形状，参见 marker 参数的说明
-          stroke: '#fdae6b',  // 该图例项 marker 的填充颜色
-          radius: 6
-        }
-      }
-    ],
-    onHover: ev => {}, // 自定义 hover 事件  
-    onClick: ev => {}, // 自定义 click 事件
-  });
-  ```
-
-  具体示例：
-
-  <div id="c2"></div>
-
-  ```js+
-  const data = [
-    { time: '10:10', call: 4, waiting: 2, people: 2 },
-    { time: '10:15', call: 2, waiting: 6, people: 3 },
-    { time: '10:20', call: 13, waiting: 2, people: 5 },
-    { time: '10:25', call: 9, waiting: 9, people: 1 },
-    { time: '10:30', call: 5, waiting: 2, people: 3 },
-    { time: '10:35', call: 8, waiting: 2, people: 1 },
-    { time: '10:40', call: 13, waiting: 1, people: 2 }
+```js
+marker(x, y, r) {
+  return [
+    [ 'M', x - r, y ],
+    [ 'L', x + r, y ]
   ];
-  const chart = new G2.Chart({
-    container: 'c2',
-    forceFit: true,
-    height: 400
-  });
-  chart.source(data, {
-    call: {
-      min: 0
+}
+```
+
+14. `textStyle`: object
+
+用于设置图例项的文本样式。
+
+```js
+textStyle: {
+  textAlign: 'center', // 文本对齐方向，可取值为： start middle end
+  fill: '#404040', // 文本的颜色
+  fontSize: '12', // 文本大小
+  fontWeight: 'bold', // 文本粗细
+  rotate: 30, // 文本旋转角度，以角度为单位，仅当 autoRotate 为 false 时生效
+  textBaseline: 'top' // 文本基准线，可取 top middle bottom，默认为middle
+}
+```
+
+15. `attachLast`:boolean
+
+是否启用尾部跟随图例(tail-legend)，尾部跟随图例自动跟随geom的最后一个数据点，适用的图表类型为`line`、`stackLine`、`area`、`stackArea`。 默认为false，即不启用。
+
+16. `clickable`: boolean
+
+对分类类型的图例生效，设置图例项是否允许点击，默认为 true，即允许点击。
+
+17. `hoverable`: boolean
+
+对分类类型的图例生效，设置是否开启鼠标 hover 至图例的交互效果，默认为 true，即开启动画。
+
+18.  `selectedMode`: string
+
+针对分类类型图例，当 clickable 为 true 时该配置项生效，用于设置图例的选中交互模式，可配置的属性:
+
+* `selectedMode: 'single'`：表示开启单选模式；
+* `selectedMode: 'multiple'`：表示开启多选模式，默认为 `multiple`。
+
+19. `onHover`: function
+
+针对分类类型的图例，用于自定义鼠标 hover 图例项的交互，当 `hoverable` 为 false 不生效。
+
+```js
+/**
+ * 自定义图例项鼠标 hover 事件，hoverable 为 false 不生效
+ * @param  {object} ev 事件对象
+ * @return {null}    
+ */
+onHover: ev => {}
+```
+
+20. `onClick`: function
+
+针对分类类型的图例，用于自定义鼠标点击图例项的交互，当 `clickable` 为 false 不生效。
+
+```js
+/**
+ * 自定义图例项点击事件， clickable 为 false 不生效
+ * @param  {object} ev 事件对象
+ * @return {null}
+ */
+onClick: ev => {}
+```
+
+21. `useHtml`: boolean
+
+针对分类类型图例，用于开启是否使用 html 渲染图例，默认为 false，true 表示使用 html 渲染图例。
+
+22. `container`: string
+
+**当 `useHtml` 为 true 时生效**，用于指定生成图例的 dom 容器，那么该值必须为 dom 容器的 id 值为分类类型的话，则支持传入索引值。
+
+23. `containerTpl`: string
+
+**当 `useHtml` 为 true 时生效**，用于指定图例容器的模板，默认值如下：
+
+```js
+containerTpl: '<div class="g2-legend" style="position:absolute;top:20px;right:60px;width:auto;">'
+  + '<h4 class="g2-legend-title"></h4>' 
+  + '<ul class="g2-legend-list" style="list-style-type:none;margin:0;padding:0;"></ul>'
+  + '</div>';
+```
+
+如默认结构不满足需求，可以自定义该模板，但是**自定义模板时必须包含各个 dom 节点的 class**，样式可以自定义。
+
+24. `itemTpl`: string
+
+**当 `useHtml` 为 true 时生效**，用于指定生成图例的图例项 html 模板，默认值如下：
+
+```js
+itemTpl: '<li class="g2-legend-list-item item-{index} {checked}" data-color="{originColor}" data-value="{originValue}" style="cursor: pointer;font-size: 14px;">'
+  + '<i class="g2-legend-marker" style="width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:10px;background-color: {color};"></i>'
+  + '<span class="g2-legend-text">{value}</span>'
+  + '</li>';
+```
+
+!注意：自定义模板时必须包含各个 dom 节点的 class，样式可以自定义。
+
+25. `slidable`: boolean
+
+**针对连续图例**，用于设置连续图例是否允许滑动，默认为 true，即开启滑动操作。
+
+26. `width`: number
+
+**针对连续图例**，用于设置图例的宽度。
+
+27. `height`: number
+
+**针对连续图例**，用于设置图例的高度。
+
+28. `custom`: boolean
+
+默认为 false，当 `custom` 为 true，表示不使用默认生成的图例，允许用户自定义图例，包括具体的图例项以及 click、hover 交互。
+
+自定义图例时需要用户自己声明具体的图例项 `items`(该属性是一个对象数组，数组中每一项为一个对象类型，结构为：
+`{ value: '', marker:{fill: 'red'}}`)以及图例项的 hover 和 click 事件。
+
+具体使用如下：
+
+```js
+// 自定义图例
+chart.legend({
+  custom: true,
+  items: [
+    { 
+      value: 'waiting', // 图例项的文本内容
+      marker: {
+        symbol: 'circle',  // 该图例项 marker 的形状，参见 marker 参数的说明
+        fill: '#3182bd'  // 该图例项 marker 的填充颜色
+      }
     },
-    people: {
-      min: 0
+    { 
+      value: 'call', 
+      marker: {
+        symbol: 'square',  // 该图例项 marker 的形状，参见 marker 参数的说明
+        fill: '#99d8c9'  // 该图例项 marker 的填充颜色
+      }
     },
-    waiting: {
-      min: 0
+    { 
+      value: 'people',
+      fill: '#fdae6b', 
+      marker: {
+        symbol: 'line',  // 该图例项 marker 的形状，参见 marker 参数的说明
+        stroke: '#fdae6b',  // 该图例项 marker 的填充颜色
+        radius: 6
+      }
     }
-  });
-  chart.legend({
-    custom: true,
-    allowAllCanceled: true,
-    items: [
-      { value: 'waiting', marker: {symbol: 'square', fill: '#3182bd', radius: 5} }, 
-      { value: 'call', marker: {symbol: 'hyphen', stroke: '#99d8c9', radius: 5, lineWidth: 3} }, 
-      { value: 'people', marker: {symbol: 'hyphen', stroke: '#fdae6b', radius: 5, lineWidth: 3} }
-    ],
-    onClick: ev => {
-      const item = ev.item;
-      const value = item.value;
-      const checked = ev.checked;
-      const geoms = chart.getAllGeoms();
-      for (let i = 0; i < geoms.length; i++) {
-        const geom = geoms[i];
-        if (geom.getYScale().field === value) {
-          if (checked) {
-            geom.show();
-          } else {
-            geom.hide();
-          }
+  ],
+  onHover: ev => {}, // 自定义 hover 事件  
+  onClick: ev => {}, // 自定义 click 事件
+});
+// 为特定的字段自定义图例
+chart.legend('field', {
+  custom: true,
+  items: [
+    { 
+      value: 'waiting', // 图例项的文本内容
+      marker: {
+        symbol: 'circle',  // 该图例项 marker 的形状，参见 marker 参数的说明
+        fill: '#3182bd'  // 该图例项 marker 的填充颜色
+      }
+    },
+    { 
+      value: 'call', 
+      marker: {
+        symbol: 'square',  // 该图例项 marker 的形状，参见 marker 参数的说明
+        fill: '#99d8c9'  // 该图例项 marker 的填充颜色
+      }
+    },
+    { 
+      value: 'people',
+      fill: '#fdae6b', 
+      marker: {
+        symbol: 'line',  // 该图例项 marker 的形状，参见 marker 参数的说明
+        stroke: '#fdae6b',  // 该图例项 marker 的填充颜色
+        radius: 6
+      }
+    }
+  ],
+  onHover: ev => {}, // 自定义 hover 事件  
+  onClick: ev => {}, // 自定义 click 事件
+});
+```
+
+具体示例：
+
+<div id="c2"></div>
+
+```js+
+const data = [
+  { time: '10:10', call: 4, waiting: 2, people: 2 },
+  { time: '10:15', call: 2, waiting: 6, people: 3 },
+  { time: '10:20', call: 13, waiting: 2, people: 5 },
+  { time: '10:25', call: 9, waiting: 9, people: 1 },
+  { time: '10:30', call: 5, waiting: 2, people: 3 },
+  { time: '10:35', call: 8, waiting: 2, people: 1 },
+  { time: '10:40', call: 13, waiting: 1, people: 2 }
+];
+const chart = new G2.Chart({
+  container: 'c2',
+  forceFit: true,
+  height: 400
+});
+chart.source(data, {
+  call: {
+    min: 0
+  },
+  people: {
+    min: 0
+  },
+  waiting: {
+    min: 0
+  }
+});
+chart.legend({
+  custom: true,
+  allowAllCanceled: true,
+  items: [
+    { value: 'waiting', marker: {symbol: 'square', fill: '#3182bd', radius: 5} }, 
+    { value: 'call', marker: {symbol: 'hyphen', stroke: '#99d8c9', radius: 5, lineWidth: 3} }, 
+    { value: 'people', marker: {symbol: 'hyphen', stroke: '#fdae6b', radius: 5, lineWidth: 3} }
+  ],
+  onClick: ev => {
+    const item = ev.item;
+    const value = item.value;
+    const checked = ev.checked;
+    const geoms = chart.getAllGeoms();
+    for (let i = 0; i < geoms.length; i++) {
+      const geom = geoms[i];
+      if (geom.getYScale().field === value) {
+        if (checked) {
+          geom.show();
+        } else {
+          geom.hide();
         }
       }
     }
-  });
-  chart.axis('waiting', false);
-  chart.axis('call', false);
-  chart.axis('people', false);
-  chart.interval()
-    .position('time*waiting')
-    .color('#3182bd');
-  chart.line()
-    .position('time*call')
-    .color('#99d8c9')
-    .size(3)
-    .shape('smooth');
-  chart.line()
-    .position('time*people')
-    .color('#fdae6b')
-    .size(3)
-    .shape('smooth');
-  chart.point()
-    .position('time*people')
-    .color('#fdae6b')
-    .size(3)
-    .shape('circle');
-  chart.render();
-  ```
+  }
+});
+chart.axis('waiting', false);
+chart.axis('call', false);
+chart.axis('people', false);
+chart.interval()
+  .position('time*waiting')
+  .color('#3182bd');
+chart.line()
+  .position('time*call')
+  .color('#99d8c9')
+  .size(3)
+  .shape('smooth');
+chart.line()
+  .position('time*people')
+  .color('#fdae6b')
+  .size(3)
+  .shape('smooth');
+chart.point()
+  .position('time*people')
+  .color('#fdae6b')
+  .size(3)
+  .shape('circle');
+chart.render();
+```
 
 ### tooltip
 
@@ -1036,181 +1033,180 @@ chart.tooltip(true, {
 
 是一个对象类型，支持的属性如下：
 
-  1. `triggerOn`: string
+1. `triggerOn`: string
 
-  tooltip 的触发方式，可配置的值为：'mousemove'、'click'、'none'，默认为 `mousemove`。 
+tooltip 的触发方式，可配置的值为：'mousemove'、'click'、'none'，默认为 `mousemove`。 
 
-  * 'mousemove': 鼠标移动触发；
-  * 'click': 鼠标点击出发；
-  * 'none': 不触发 tooltip，用户通过 `chart.showTooltip()` 和 `chart.hideTooltip()` 来控制 tooltip 的显示和隐藏。
+* 'mousemove': 鼠标移动触发；
+* 'click': 鼠标点击出发；
+* 'none': 不触发 tooltip，用户通过 `chart.showTooltip()` 和 `chart.hideTooltip()` 来控制 tooltip 的显示和隐藏。
 
-  2. `showTitle`: boolean
+2. `showTitle`: boolean
 
-  是否展示提示信息的标题，默认为 true，即展示，通过设置为 false 来隐藏标题。
+是否展示提示信息的标题，默认为 true，即展示，通过设置为 false 来隐藏标题。
 
-  3. `title`: string
+3. `title`: string
 
-  设置 tooltip 的标题展示的数据字段，设置该字段后，该标题即会展示该字段对应的数值。`showTitle` 为 false 时，该设置不生效。
+设置 tooltip 的标题展示的数据字段，设置该字段后，该标题即会展示该字段对应的数值。`showTitle` 为 false 时，该设置不生效。
 
-  4. `crosshairs`: object
+4. `crosshairs`: object
 
-  是一个对象类型，用于设置 tooltip 的辅助线或者辅助框。
+是一个对象类型，用于设置 tooltip 的辅助线或者辅助框。
 
-  默认我们为 geom 为 ‘line’, ‘area’, ‘path’, ‘areaStack’ 开启了垂直辅助线；geom 为‘interval’ 默认会展示矩形背景框。如下图所示：
+默认我们为 geom 为 ‘line’, ‘area’, ‘path’, ‘areaStack’ 开启了垂直辅助线；geom 为‘interval’ 默认会展示矩形背景框。如下图所示：
 
-  <img src="https://gw.alipayobjects.com/zos/rmsportal/rCwHiXNfIVepGgMWKqdf.png" style="width: 100%;max-width:600px;">
+<img src="https://gw.alipayobjects.com/zos/rmsportal/rCwHiXNfIVepGgMWKqdf.png" style="width: 100%;max-width:600px;">
 
-  该属性可支持的配置如下：
+该属性可支持的配置如下：
 
-  ```js
-  crosshairs: {
-    type: 'rect' | 'x' | 'y' | 'cross',
-    style: {
-      // 图形样式
-      fill: {string}, // 填充的颜色
-      stroke: {string}, // 边框的颜色
-      strokeOpacity: {number}, // 边框颜色的透明度，数值为 0 - 1 范围
-      fillOpacity: {number}, // 填充的颜色透明度，数值为 0 - 1 范围
-      lineWidth: {number}, // 边框的粗细
-      lineDash: {number} | {array} // 线的虚线样式
-    }
+```js
+crosshairs: {
+  type: 'rect' | 'x' | 'y' | 'cross',
+  style: {
+    // 图形样式
+    fill: {string}, // 填充的颜色
+    stroke: {string}, // 边框的颜色
+    strokeOpacity: {number}, // 边框颜色的透明度，数值为 0 - 1 范围
+    fillOpacity: {number}, // 填充的颜色透明度，数值为 0 - 1 范围
+    lineWidth: {number}, // 边框的粗细
+    lineDash: {number} | {array} // 线的虚线样式
   }
-  ```
-  * style 的更详细的配置项 [绘图属性](graphic.html)
+}
+```
+* style 的更详细的配置项 [绘图属性](graphic.html)
 
-  > crosshairs.type 说明： `rect` 表示矩形框，`x` 表示水平辅助线，`y` 表示垂直辅助线，`cross` 表示十字辅助线。
+> crosshairs.type 说明： `rect` 表示矩形框，`x` 表示水平辅助线，`y` 表示垂直辅助线，`cross` 表示十字辅助线。
 
-  5. `offset`: number
+5. `offset`: number
 
-  设置 tooltip 距离鼠标的偏移量。
+设置 tooltip 距离鼠标的偏移量。
 
-  6. `inPlot`: boolean
+6. `inPlot`: boolean
 
-  设置是否将 tooltip 限定在绘图区域内，默认为 true，即限定在绘图区域内。
+设置是否将 tooltip 限定在绘图区域内，默认为 true，即限定在绘图区域内。
 
-  7. `follow`: boolean
+7. `follow`: boolean
 
-  设置 tooltip 是否跟随鼠标移动。默认为 true，即跟随。
+设置 tooltip 是否跟随鼠标移动。默认为 true，即跟随。
 
-  8. `shared`: boolean
-  
-  设置 tooltip 只展示单条数据。
+8. `shared`: boolean
 
-  9. `enterable`: boolean
+设置 tooltip 只展示单条数据。
 
-  用于控制是否允许鼠标进入 tooltip，默认为 false，即不允许进入。
+9. `enterable`: boolean
 
-  10. `position`: string
+用于控制是否允许鼠标进入 tooltip，默认为 false，即不允许进入。
 
-  该属性设置之后，就会在固定位置展示 tooltip，可设置的值为：`left`、`right`、`top`、`bottom`。
+10. `position`: string
 
-  11. `hideMarkers`: boolean
+该属性设置之后，就会在固定位置展示 tooltip，可设置的值为：`left`、`right`、`top`、`bottom`。
 
-  对于 line、area、path 这三种几何图形，我们在渲染 tooltip 时会自动渲染 tooltipMarker <img src="https://gw.alipayobjects.com/zos/rmsportal/BlTPaZMgrTjZINmXExtm.png" style="width: 20px;">，通过声明该属性值为 `true` 来关闭 tooltipMarker。
+11. `hideMarkers`: boolean
 
-  12. `containerTpl`: string
+对于 line、area、path 这三种几何图形，我们在渲染 tooltip 时会自动渲染 tooltipMarker <img src="https://gw.alipayobjects.com/zos/rmsportal/BlTPaZMgrTjZINmXExtm.png" style="width: 20px;">，通过声明该属性值为 `true` 来关闭 tooltipMarker。
 
-  tooltip 默认的容器模板，默认值如下：
+12. `containerTpl`: string
 
-  ```js
+tooltip 默认的容器模板，默认值如下：
+
+```js
+containerTpl: '<div class="g2-tooltip">'
+  + '<div class="g2-tooltip-title" style="margin-bottom: 4px;"></div>'
+  + '<ul class="g2-tooltip-list"></ul>'
+  + '</div>',
+```
+
+如默认结构不满足需求，可以自定义该模板，但是**自定义模板时必须包含各个 dom 节点的 class**，样式可以自定义。
+
+13. `itemTpl`: string
+
+tooltip 每项记录的默认模板，默认值如下：
+
+```js
+itemTpl: '<li data-index={index}>'
+  + '<span style="background-color:{color};width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:8px;"></span>'
+  + '{name}: {value}'
+  + '</li>'
+```
+
+如默认结构不满足需求，可以自定义该模板，但是**自定义模板时必须包含各个 dom 节点的 class**，样式可以自定义。
+
+14. `g2-tooltip`: object
+
+设置 tooltip 容器的 CSS 样式。
+
+15. `g2-tooltip-title`: object
+
+设置 tooltip 标题的 CSS 样式。
+
+16. `g2-tooltip-list`: object
+
+设置 tooltip 列表容器的 CSS 样式。
+
+17. `g2-tooltip-list-item`: object
+
+设置 tooltip 列表容器中每一项的 CSS 样式。
+
+18. `g2-tooltip-marker`: object
+
+设置tooltip 列表容器中每一项 marker 的 CSS 样式。
+
+除了使用配置上述属性来自定义 tooltip 的样式外，用户也可以直接为 html 定义 CSS 样式。
+
+[自定义 html 模板示例](/zh-cn/gallery/g2/cutomize-tooltip.html)
+
+<div id="c3"></div>
+<style type="text/css">
+  .g2-tooltip-list td{
+    border: 1px solid #cdcdcd;
+    padding: 5px 8px;
+  }
+</style>
+
+```js-
+const data = [
+  { month: '一月', tem: 7, city: "tokyo" },
+  { month: '二月', tem: 6.9, city: "tokyo" },
+  { month: '三月', tem: 9.5, city: "tokyo" },
+  { month: '四月', tem: 14.5, city: "tokyo" },
+  { month: '五月', tem: 18.2, city: "tokyo" },
+  { month: '六月', tem: 21.5, city: "tokyo" },
+  { month: '七月', tem: 25.2, city: "tokyo" },
+  { month: '八月', tem: 26.5, city: "tokyo" },
+  { month: '九月' , tem: 23.3, city: "tokyo" },
+  { month: '十月', tem: 18.3, city: "tokyo" },
+  { month: '十一月', tem: 13.9, city: "tokyo" }
+];
+const chart = new G2.Chart({
+  container: 'c3',
+  forceFit: true,
+  height: 300
+});
+chart.source(data);
+chart.tooltip({
   containerTpl: '<div class="g2-tooltip">'
-    + '<div class="g2-tooltip-title" style="margin-bottom: 4px;"></div>'
-    + '<ul class="g2-tooltip-list"></ul>'
-    + '</div>',
-  ```
-
-  如默认结构不满足需求，可以自定义该模板，但是**自定义模板时必须包含各个 dom 节点的 class**，样式可以自定义。
-
-  13. `itemTpl`: string
-
-  tooltip 每项记录的默认模板，默认值如下：
-
-  ```js
-  itemTpl: '<li data-index={index}>'
-    + '<span style="background-color:{color};width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:8px;"></span>'
-    + '{name}: {value}'
-    + '</li>'
-  ```
-
-  如默认结构不满足需求，可以自定义该模板，但是**自定义模板时必须包含各个 dom 节点的 class**，样式可以自定义。
-
-  14. `g2-tooltip`: object
-
-  设置 tooltip 容器的 CSS 样式。
-
-  15. `g2-tooltip-title`: object
-
-  设置 tooltip 标题的 CSS 样式。
-
-  16. `g2-tooltip-list`: object
-
-  设置 tooltip 列表容器的 CSS 样式。
-
-  17. `g2-tooltip-list-item`: object
-
-  设置 tooltip 列表容器中每一项的 CSS 样式。
-
-  18. `g2-tooltip-marker`: object
-
-  设置tooltip 列表容器中每一项 marker 的 CSS 样式。
-
-  除了使用配置上述属性来自定义 tooltip 的样式外，用户也可以直接为 html 定义 CSS 样式。
-
-  [自定义 html 模板示例](/zh-cn/gallery/g2/cutomize-tooltip.html)
-  
-  <div id="c3"></div>
-  <style type="text/css">
-    .g2-tooltip-list td{
-      border: 1px solid #cdcdcd;
-      padding: 5px 8px;
-    }
-  </style>
-
-  ```js-
-  const data = [
-    { month: '一月', tem: 7, city: "tokyo" },
-    { month: '二月', tem: 6.9, city: "tokyo" },
-    { month: '三月', tem: 9.5, city: "tokyo" },
-    { month: '四月', tem: 14.5, city: "tokyo" },
-    { month: '五月', tem: 18.2, city: "tokyo" },
-    { month: '六月', tem: 21.5, city: "tokyo" },
-    { month: '七月', tem: 25.2, city: "tokyo" },
-    { month: '八月', tem: 26.5, city: "tokyo" },
-    { month: '九月' , tem: 23.3, city: "tokyo" },
-    { month: '十月', tem: 18.3, city: "tokyo" },
-    { month: '十一月', tem: 13.9, city: "tokyo" }
-  ];
-  const chart = new G2.Chart({
-    container: 'c3',
-    forceFit: true,
-    height: 300
-  });
-  chart.source(data);
-  chart.tooltip({
-    containerTpl: '<div class="g2-tooltip">'
-      + '<p class="g2-tooltip-title"></p>'
-      + '<table class="g2-tooltip-list"></table>'
-      + '</div>', // tooltip的外层模板
-    itemTpl: '<tr class="g2-tooltip-list-item"><td style="color:{color}">{name}</td><td>{value}</td></tr>', // 支持的字段 index,color,name,value
-    offset: 50,
-    'g2-tooltip': {
-      position: 'absolute',
-      visibility: 'hidden',
-      border : '1px solid #efefef',
-      backgroundColor: 'white',
-      color: '#000',
-      opacity: '0.8',
-      padding: '5px 15px',
-      'transition': 'top 200ms,left 200ms'
-    }, // 设置 tooltip 的 css 样式
-    'g2-tooltip-list': {
-      margin: '10px'
-    }
-  });
-  chart.line().position('month*tem');
-  chart.render();
-  ```
-  
+    + '<p class="g2-tooltip-title"></p>'
+    + '<table class="g2-tooltip-list"></table>'
+    + '</div>', // tooltip的外层模板
+  itemTpl: '<tr class="g2-tooltip-list-item"><td style="color:{color}">{name}</td><td>{value}</td></tr>', // 支持的字段 index,color,name,value
+  offset: 50,
+  'g2-tooltip': {
+    position: 'absolute',
+    visibility: 'hidden',
+    border : '1px solid #efefef',
+    backgroundColor: 'white',
+    color: '#000',
+    opacity: '0.8',
+    padding: '5px 15px',
+    'transition': 'top 200ms,left 200ms'
+  }, // 设置 tooltip 的 css 样式
+  'g2-tooltip-list': {
+    margin: '10px'
+  }
+});
+chart.line().position('month*tem');
+chart.render();
+```
 
 ### guide
 
@@ -1512,21 +1508,21 @@ chart.guide().html({
 
 设置 html 的显示位置，该值的类型如下：
 
-  * object: 使用图表 x,y 对应的原始数据例如： { time: '2010-01-01', value: 200 }
-  * array: 数组来配置位置 [ x, y ]，根据数组中的值的存在以下几种形式：
-    + x，y 都是原始数据 [ '2010-01-01', 200 ];
-    + x，y 可以使用原始数据的替代字符串 'min', 'max', 'median' , 例如：[ 'median', 200 ]
-    + x, y 都是用百分比的形式，在绘图区域定位，字符串中存在 '%', 例如 [ '50%', '50%' ] 使得辅助元素居中
-  * function: 回调函数，可以动态的确定辅助元素的位置，应用于数据动态更新，辅助元素的位置根据数据变化的场景
-    
-    ```js
-    chart.guide().text({
-      position(xScale, yScale) {
-        return []; // 位置信息
-      },
-      content: '最大值'
-    });
-    ```
+* object: 使用图表 x,y 对应的原始数据例如： { time: '2010-01-01', value: 200 }
+* array: 数组来配置位置 [ x, y ]，根据数组中的值的存在以下几种形式：
+  + x，y 都是原始数据 [ '2010-01-01', 200 ];
+  + x，y 可以使用原始数据的替代字符串 'min', 'max', 'median' , 例如：[ 'median', 200 ]
+  + x, y 都是用百分比的形式，在绘图区域定位，字符串中存在 '%', 例如 [ '50%', '50%' ] 使得辅助元素居中
+* function: 回调函数，可以动态的确定辅助元素的位置，应用于数据动态更新，辅助元素的位置根据数据变化的场景
+  
+```js
+chart.guide().text({
+  position(xScale, yScale) {
+    return []; // 位置信息
+  },
+  content: '最大值'
+});
+```
 
 - `alignX`: string
 
@@ -1712,7 +1708,6 @@ line的长度，default为30。
 - `direction`: string
 
 标注点朝向：'upward' | 'downward', default为'upward'，即向上
-
 
 #### chart.guide().dataRegion(cfg)
 
