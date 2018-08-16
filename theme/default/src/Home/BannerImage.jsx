@@ -319,45 +319,8 @@ export default function BannerImage() {
               <TweenOne component="path" attr="attr" animation={{ delay: delay + 300, ...animate.draw }} d="M84.4411765,17.4390244 L158.558824,52.5609756" id="Line-3" strokeOpacity="0.7" stroke="#DDDEF0" strokeLinecap="square" />
             </TweenOne>
           </g>
-          <g id="i0" transform="translate(50.000000, 276.000000)">
-            <TweenOne component="g" animation={[{ delay: setAddDelay() + 200, ...animate.alpha }, { ...animate.loop, scale: 1.05 }]} style={{ transformOrigin: '50%' }}>
-              <polygon id="Mask" fillOpacity="0.5" fill="#EDEFF4" points="254.649163 28 0 173.547621 197.249405 266 452 118.848173" />
-            </TweenOne>
-            <TweenOne component="g" animation={{ ...animate.loop, y: -15, delay: delay + duration + 200 }}>
-              <TweenOne component="g" animation={{ delay: delay, ...animate.yBig }} id="Group-16">
-                <polygon id="Mask" fill="#FFFFFF" points="254.649163 0 0 145.547621 197.249405 238 452 90.8481731" />
-                <polygon id="Path-28" fill="#E0E1E8" points="0.122802734 145.555664 0.122802734 150.526367 197.268311 243.09656 197.268311 238.031738" />
-                <polygon id="Path-28" fill="#F0F1F6" points="451.993408 90.8466492 451.993408 95.8173523 197.145508 243.540896 197.145508 238.476074" />
-              </TweenOne>
-              <TweenOne component="g" animation={{ delay: delay + 300, ...animate.alpha }} id="Path-15" opacity="0.5" transform="translate(167.000000, 20.000000)">
-                <mask id="mask-12" fill="white">
-                  <use xlinkHref="#path-11" />
-                </mask>
-                <use id="Mask" fill="#F0F1F6" xlinkHref="#path-11" />
-                <polygon fillOpacity="0.699999988" fill="#DBDEF0" mask="url(#mask-12)" points="-10 45.6177205 91 40 86.6119791 99" />
-                <polygon fillOpacity="0.699999988" fill="#DBDEF0" mask="url(#mask-12)" points="27 63.9507389 152 57 146.569281 130" />
-              </TweenOne>
-              <g id="Group-14" opacity="0.5" transform="translate(131.000000, 88.000000)">
-                <TweenOne component="path" attr="attr" animation={{ delay: delay + 300, ...animate.draw }} d="M49.5,17.5 L113.5,47.5" id="Line-3" stroke="#DDDEF0" strokeWidth="3" strokeLinecap="round" />
-                <TweenOne component="path" attr="attr" animation={{ delay: delay + 350, ...animate.draw }} d="M41.5,23.5 L125.5,63.5" id="Line-3" stroke="#DDDEF0" strokeLinecap="square" />
-                <TweenOne component="path" attr="attr" animation={{ delay: delay + 400, ...animate.draw }} d="M35.5,27.5 L119.5,67.5" id="Line-3" stroke="#DDDEF0" strokeLinecap="square" />
-                <TweenOne component="path" attr="attr" animation={{ delay: delay + 450, ...animate.draw }} d="M28.5,31.5 L112.5,71.5" id="Line-3" stroke="#DDDEF0" strokeLinecap="square" />
-                <TweenOne component="g" animation={{ delay: delay + 250, ...animate.alpha }}>
-                  <ellipse id="Oval-3" fill="#D5D6E2" cx="20" cy="10.5" rx="20" ry="10.5" />
-                </TweenOne>
-              </g>
-              <g id="Group-35" transform="translate(92.000000, 109.000000)">
-                <TweenOne component="path" attr="attr" animation={{ delay: delay + 400, ...animate.draw }} d="M49.5,17.5 L113.5,47.5" id="Line-3" stroke="#DDDEF0" strokeWidth="3" opacity="0.5" strokeLinecap="round" />
-                <TweenOne component="path" attr="attr" animation={{ delay: delay + 450, ...animate.draw }} d="M41.5,23.5 L125.5,63.5" id="Line-3" stroke="#DDDEF0" strokeLinecap="square" />
-                <TweenOne component="path" attr="attr" animation={{ delay: delay + 500, ...animate.draw }} d="M35.5,27.5 L119.5,67.5" id="Line-3" stroke="#DDDEF0" strokeLinecap="square" />
-                <TweenOne component="path" attr="attr" animation={{ delay: delay + 550, ...animate.draw }} d="M28.5,31.5 L112.5,71.5" id="Line-3" stroke="#DDDEF0" strokeLinecap="square" />
-                <TweenOne component="g" animation={{ delay: delay + 300, ...animate.alpha }}>
-                  <ellipse id="Oval-3" fill="#D5D6E2" opacity="0.5" cx="20" cy="10.5" rx="20" ry="10.5" />
-                </TweenOne>
-              </g>
-            </TweenOne>
-          </g>
-          <g id="bin" transform="translate(350.000000, 355.000000)">
+          {/* <g id="bin" transform="translate(350.000000, 355.000000)"> */}
+          <g id="bin" transform="translate(240.000000, 290.000000)">
             <TweenOne component="g" animation={[{ delay: setAddDelay() + 200, ...animate.alpha }, { ...animate.loop, scale: .9 }]} style={{ transformOrigin: '50%' }}>
               <path d="M64,137 C29.2060608,137 1,122.225397 1,104 C1,85.7746033 29.2060608,71 64,71 C98.7939392,71 127,85.7746033 127,104 C127,122.225397 98.7939392,137 64,137 Z M64.5,119 C81.8969696,119 96,111.612698 96,102.5 C96,93.3873016 81.8969696,86 64.5,86 C47.1030304,86 33,93.3873016 33,102.5 C33,111.612698 47.1030304,119 64.5,119 Z" id="Combined-Shape" fillOpacity="0.800000012" fill="#F0F1F6"></path>
             </TweenOne>
