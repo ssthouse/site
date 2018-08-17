@@ -55,13 +55,14 @@ chart.guide().html({
     + '<p id="name" style="font-size: 12px;margin: 0;"></p>'
     + '</div>'
 });
+chart.render();
 
 chart.interaction('pie-select', {
-  startEvent: 'tap',
   animate: {
     duration: 300,
     easing: 'backOut'
   },
+  defaultSelected: { name: '机器之血', percent: 0.18, a: '1' },
   onEnd(ev) {
     const { shape, data, shapeInfo, selected } = ev;
     if (shape) {
@@ -76,6 +77,4 @@ chart.interaction('pie-select', {
     }
   }
 });
-
-chart.render();
 </script>

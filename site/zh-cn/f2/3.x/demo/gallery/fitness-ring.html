@@ -1,9 +1,10 @@
 <!--
-index: 9
+index: 6
 title: Apple Watch 健身记录
-screenshot: https://gw.alipayobjects.com/zos/rmsportal/ibhKJTyeLsYTYTsYqADK.gif
-version: 'f2-all'
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/neWvhxDYSxbNVSoZIgMN.gif
 -->
+
+<p class="tip">Refer to https://codepen.io/adeveloperdiary/pen/qOgpKK</p>
 
 <style>
   .chart-wrapper {
@@ -103,7 +104,8 @@ chart.source(data, {
 chart.legend(false);
 chart.coord('polar', {
   transposed: true,
-  innerRadius: 0.382
+  innerRadius: 0.382,
+  radius: 0.8
 });
 chart.axis(false);
 chart.interval()
@@ -112,7 +114,7 @@ chart.interval()
     return val;
   })
   .shape('tick')
-  .size(24)
+  .size(18)
   .animate({
     appear: {
       animation: 'waveIn',
@@ -132,14 +134,14 @@ data.map((obj) => {
     end: [obj.name, 99.98],
     top: false,
     style: {
-      lineWidth: 24,
+      lineWidth: 18,
       stroke: obj.bgColor
     }
   });
   chart.guide().html({
     position: [ obj.name, 0 ],
-    html: '<div style="width: 20px;height: 20px;">'
-           + '<img style="width: 20px;height: 20px;display: block;" src="http://www.adeveloperdiary.com/wp-content/uploads/2015/11/'+  obj.icon + '" />'
+    html: '<div style="width: 16px;height: 16px;">'
+           + '<img style="width: 16px;height: 16px;display: block;" src="http://www.adeveloperdiary.com/wp-content/uploads/2015/11/'+  obj.icon + '" />'
            + '</div>'
   });
 });

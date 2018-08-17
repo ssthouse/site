@@ -26,30 +26,29 @@ version: 'f2-all'
   });
   chart.interval().position('x*y');
 
-  chart.guide()
-    .regionFilter({ // 绘制区域过滤
-      start: [ 'min', 95 ],
-      end: [ 'max', 'max' ],
-      color: '#FF4D4F'
-    })
-    .line({ // 绘制辅助线
-      start: [ 'min', 95 ],
-      end: [ 'max', 95 ],
-      style: {
-        stroke: '#FF4D4F',
-        lineDash: [ 2 ]
-      }
-    })
-    .text({ // 绘制辅助文本
-      position: [ 'max', 95 ],
-      content: '预警值： 95',
-      offsetY: -5,
-      style: {
-        fill: '#FF4D4F',
-        textAlign: 'end',
-        textBaseline: 'bottom'
-      }
-    });
+  chart.guide().regionFilter({ // 绘制区域过滤
+    start: [ 'min', 95 ],
+    end: [ 'max', 'max' ],
+    color: '#FF4D4F'
+  });
+  chart.guide().line({ // 绘制辅助线
+    start: [ 'min', 95 ],
+    end: [ 'max', 95 ],
+    style: {
+      stroke: '#FF4D4F',
+      lineDash: [ 2 ]
+    }
+  });
+  chart.guide().text({ // 绘制辅助文本
+    position: [ 'max', 95 ],
+    content: '预警值： 95',
+    offsetY: -5,
+    style: {
+      fill: '#FF4D4F',
+      textAlign: 'end',
+      textBaseline: 'bottom'
+    }
+  });
 
   chart.render();
 </script>

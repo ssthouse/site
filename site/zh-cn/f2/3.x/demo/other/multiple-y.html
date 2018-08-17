@@ -17,27 +17,30 @@ resource:
   ];
   var chart = new F2.Chart({
     id: 'mountNode',
+    syncY: true,
     pixelRatio: window.devicePixelRatio
   });
 
-  chart.source(data, {
-    tem: {
-      min: 0,
-      max: 30,
-      tickInterval: 10,
-      nice: false
+  chart.source(data);
+  chart.tooltip({
+    showCrosshairs: true,
+    crosshairsStyle: {
+      stroke: '#1890ff'
     },
-    rain: {
-      min: 0,
-      max: 30,
-      tickInterval: 10,
-      nice: false
+    background: {
+      fill: '#1890ff'
+    },
+    nameStyle: {
+      fill: '#fff'
+    },
+    onShow(ev) {
+      ev.items.pop(); // 将重复的去除
     }
   });
-
   chart.axis('time', {
     grid: null
   });
+  chart.axis('rain', false);
 
   chart.interval().position('time*tem');
   chart.line().position('time*rain')
@@ -51,45 +54,46 @@ resource:
 
   // 绘制辅助线
   chart.guide().line({
-    start: function(xScale, yScales) {
+    start: function start(xScale, yScales) {
       var sum = 0;
       var yScale = yScales[1];
       yScale.values.forEach(function(v) {
         sum += v;
       });
-      return [ 'min', sum / yScale.values.length ];
+      return ['min', sum / yScale.values.length];
     },
-    end: function(xScale, yScales) {
+    end: function end(xScale, yScales) {
       var sum = 0;
       var yScale = yScales[1];
       yScale.values.forEach(function(v) {
         sum += v;
       });
 
-      return [ 'max', sum / yScale.values.length ];
+      return ['max', sum / yScale.values.length];
     },
     style: {
-      stroke: '#5ed470', // 线的颜色
-      lineDash: [ 0, 2, 2 ], // 虚线的设置
+      stroke: '#808080', // 线的颜色
+      lineDash: [0, 2, 2], // 虚线的设置
       lineWidth: 1 // 线的宽度
-    } // 图形样式配置
+      // 图形样式配置
+    }
   });
   chart.guide().text({
-    position: function(xScale, yScales) {
+    position: function position(xScale, yScales) {
       var sum = 0;
       var yScale = yScales[1];
       yScale.values.forEach(function(v) {
         sum += v;
       });
-      return [ 'max', sum / yScale.values.length ];
+      return ['min', sum / yScale.values.length];
     },
     content: '平均降雨量',
     style: {
-      textAlign: 'end',
-      textBaseline: 'top',
-      fill: '#5ed470'
+      textAlign: 'start',
+      textBaseline: 'bottom',
+      fill: '#808080'
     },
-    offsetY: 5
+    offsetY: -5
   });
   chart.render();
 </script>

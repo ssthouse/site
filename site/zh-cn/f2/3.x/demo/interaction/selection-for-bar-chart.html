@@ -59,6 +59,7 @@ version: 'f2-all'
       fontWeight: 'bold'
     },
     mode: 'range',
+    defaultSelected: { year: '1962 年', sales: 38 },
     onEnd(ev) {
       const { data, selected } = ev;
       lastTextShape && lastTextShape.attr({

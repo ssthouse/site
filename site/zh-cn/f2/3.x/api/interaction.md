@@ -87,7 +87,8 @@ chart.interaction('pie-select', {
   style: {Object}, // 光环的样式配置
   cancelable: {Boolean}, // 是否允许取消选中，默认值为 true，表示允许
   onStart: {Function}, // 事件触发后的回调
-  onEnd: {Function} // 事件结束后的回调
+  onEnd: {Function}, // 事件结束后的回调
+  defaultSelected: {Object} // 设置默认选中的数据
 });
 ```
 
@@ -167,6 +168,18 @@ onEnd(ev) {
 }
 ```
 
+##### `defaultSelected`
+* 类型：Object
+* 默认值：null
+
+```js
+chart.interaction('pie-select', {
+  defaultSelected: { name: '机器之血', percent: 0.18, a: '1' }
+});
+```
+
+用于设置初始化默认选中的数据，只要传入对应的数据即可，详见 [demo](../demo/interaction/selection-for-pie-chart.html)。
+
 ### 实例
 
 [饼图选中](../demo/interaction/selection-for-pie-chart.html)
@@ -199,7 +212,8 @@ chart.interaction('interval-select', {
   cancelable: {Boolean}, // 是否允许取消选中，默认值为 true，表示允许
   onStart: {Function}, // 事件触发后的回调
   onEnd: {Function}, // 事件结束后的回调
-  mode: {String} // 选中策略，默认为 'shape', 即击中柱子才会触发交互
+  mode: {String}, // 选中策略，默认为 'shape', 即击中柱子才会触发交互
+  defaultSelected: {Object} // 设置默认选中的数据
 });
 ```
 
@@ -280,6 +294,19 @@ onEnd(ev) {
 * 默认值：'shape'
 
 选中策略，默认为 'shape', 即击中柱子才会触发交互。另一个可选值为 'range'，即只要集中点落在该柱子的一定 x 方向范围内都会触发选中交互。
+
+##### `defaultSelected`
+* 类型：Object
+* 默认值：null
+
+```js
+chart.interaction('ingterval-select', {
+  defaultSelected: { name: '机器之血', percent: 0.18, a: '1' }
+});
+```
+
+用于设置初始化默认选中的数据，只要传入对应的数据即可，详见 [demo](../demo/interaction/selection-for-bar-chart.html)。
+
 
 ### 实例
 

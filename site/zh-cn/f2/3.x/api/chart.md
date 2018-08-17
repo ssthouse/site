@@ -158,11 +158,15 @@ const chart = new F2.Chart({
 
 ### `limitInPlot`
 
-
 - 参数类型: Boolean
 - 描述：是否将图形限制在绘图区域内，在进行图表交互时经常用到，参见 [demo](../demo/interaction/x-pan.html)
 - 默认值：false
 
+### `syncY`
+
+- 参数类型: Boolean
+- 描述：用于多 Y 轴的情况下，统一 Y 轴的数值范围。
+- 默认值：false
 
 ## 方法
 

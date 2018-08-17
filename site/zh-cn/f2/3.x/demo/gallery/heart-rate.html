@@ -1,15 +1,22 @@
 <!--
-index: 9
+index: 7
 title: 心率
 version: 'f2-all'
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/aZAUrfZvTcEmLjfyFode.png
 -->
+
+<style>
+  .chart-wrapper {
+    background-color: #0290A8;
+  }
+</style>
 
 <script>
 const data = [
   { date: '9/14/2015', rate: 85 },
   { date: '9/15/2015', rate: 60 },
   { date: '9/16/2015', rate: 59 },
-  { date: '9/17/2015', rate: 55 },
+  { date: '9/17/2015', rate: 35 },
   { date: '9/18/2015', rate: 80 },
   { date: '9/21/2015', rate: 98 },
   { date: '9/22/2015', rate: 96 },
@@ -56,7 +63,7 @@ const data = [
 const chart = new F2.Chart({
   id: 'mountNode',
   pixelRatio: window.devicePixelRatio,
-  padding: [ 'auto', 'auto', 60 ]
+  padding: 50
 });
 
 chart.source(data, {
@@ -66,63 +73,59 @@ chart.source(data, {
 });
 chart.axis('date', {
   label: {
-    textAlign: 'start'
+    textAlign: 'start',
+    fill: 'rgba(255, 255, 255, 0.5)'
   },
   tickLine: {
     length: 5,
-    stroke: '#E8E8E8'
+    stroke: 'rgba(255, 255, 255, 0.5)'
+  },
+  line: {
+    stroke: 'rgba(255, 255, 255, 0.5)'
   }
 });
-chart.line().position('date*rate');
+chart.axis('rate', {
+  label: {
+    fill: 'rgba(255, 255, 255, 0.5)'
+  },
+  grid: {
+    lineDash: null,
+    stroke: 'rgba(255, 255, 255, 0.1)',
+    // strokeOpacity: 0.4
+  }
+});
+chart.line().position('date*rate').color('#FFEE31');
 
 // 标域，心率过低
-chart.guide()
-  .regionFilter({
-    start: [ 'min', 'min' ],
-    end: [ 'max', 60 ],
-    color: '#1AC44D'
-  })
-  .rect({
-    start: [ 'min', 'min' ],
-    end: [ 'max', 60 ],
-    style: {
-      fill: '#e8e8e8',
-      opacity: 0.2
-    }
-  })
-  .text({
-    position: [ 'max', 50 ],
-    content: '心率过低',
-    offsetX: -5,
-    style: {
-      fill: '#1AC44D',
-      textAlign: 'end'
-    }
-  });
+chart.guide().regionFilter({
+  start: [ 'min', 'min' ],
+  end: [ 'max', 60 ],
+  color: '#4BC1C2'
+});
+chart.guide().text({
+  position: [ 'max', 50 ],
+  content: '心率过低',
+  offsetX: -5,
+  style: {
+    fill: '#4BC1C2',
+    textAlign: 'end'
+  }
+});
 
   // 标域，心率过高
-chart.guide()
-  .regionFilter({
-    start: [ 'min', 100 ],
-    end: [ 'max', 'max' ],
-    color: '#FF7875'
-  })
-  .rect({
-    start: [ 'min', 100 ],
-    end: [ 'max', 'max' ],
-    style: {
-      fill: '#e8e8e8',
-      opacity: 0.2
-    }
-  })
-  .text({
-    position: [ 'max', 130 ],
-    content: '心率过高',
-    offsetX: -5,
-    style: {
-      fill: '#FF7875',
-      textAlign: 'end'
-    }
-  });
+chart.guide().regionFilter({
+  start: [ 'min', 100 ],
+  end: [ 'max', 'max' ],
+  color: '#F95727'
+});
+chart.guide().text({
+  position: [ 'max', 130 ],
+  content: '心率过高',
+  offsetX: -5,
+  style: {
+    fill: '#F95727',
+    textAlign: 'end'
+  }
+});
 chart.render();
 </script>
