@@ -33,20 +33,11 @@ resource:
     }
   });
 
-  // 创建渐变色
-  // 获取 canvas 上下文对像
-  const ctx = chart.get('canvas').get('context');
-  const height = chart.get('height'); // 获取图表的高度
-  // 具体 gradient 接口参见：https://developers.weixin.qq.com/miniprogram/dev/api/canvas/gradient.html
-  const grd = ctx.createLinearGradient(0, 0, 0, height);
-  grd.addColorStop(0, '#1890ff');
-  grd.addColorStop(1, '#fff');
-
   // 让柱状图的宽度适配不同的屏幕尺寸
   const barWidth = 36 * (window.innerWidth / 375);
 
   chart.interval().position('year*sales')
-    .color(grd) // 定义柱状图颜色
+    .color('l(90) 0:#1890ff 1:#70cdd0') // 定义柱状图渐变色
     .size(barWidth);
   chart.render();
 </script>

@@ -168,14 +168,17 @@ chart.line().color('type*value', (type, value) => { //多个参数，通过回�
   只支持接收一个参数，value 可以是：
 
   - 映射至颜色属性的数据源字段名，如果数据源中不存在这个字段名的话，则按照常量进行解析，这个时候会使用 F2 默认提供的颜色。
-  - 也可以直接指定某一个具体的颜色值 color，如 '#fff', 'white' 等。
+  - 也可以直接指定某一个具体的颜色值 color，如 '#fff', 'white', 'l(0) 0:#ffffff 0.5:#7ec2f3 1:#1890ff' 等。
 
 ##### 代码示例
 
 ```js
 chart.point().position('x*y').color('x'); // 对 x 字段进行映射，使用内置的颜色
 chart.point().position('x*y').color('red'); // 所有点用红色渲染
+chart.point().position('x*y').color('l(0) 0:#ffffff 0.5:#7ec2f3 1:#1890ff'); // 定义渐变色
 ```
+
+具体的渐变色使用规则，详见 [渐变色使用](./canvas.html#_渐变色)。
 
 #### color(field, colors)
 

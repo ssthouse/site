@@ -25,6 +25,39 @@ title: 绘图属性
 | `opacity` | 同 `globalOpacity` |
 | `globalCompositionOperation` | 该属性设置要在绘制新形状时应用的合成操作的类型，其中type是用于标识要使用的合成或混合模式操作的字符串，参见 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation) |
 
+## 渐变色
+
+为了方便用户使用，F2 中默认提供对线性渐变、放射状/环形渐变两种渐变色的支持，定义方式如下：
+
+* **线性渐变**
+
+<img src="https://gw.alipayobjects.com/zos/rmsportal/ElBYXdsTZKFflacOBNtp.png" style="width: 50%;">
+
+
+> 说明：`l` 表示使用线性渐变，绿色的字体为可变量，由用户自己填写，由一个空格进行间隔。
+
+```js
+// example
+// 使用渐变色描边，渐变角度为 0，渐变的起始点颜色 #ffffff，中点的渐变色为 #7ec2f3，结束的渐变色为 #1890ff
+stroke: 'l(0) 0:#ffffff 0.5:#7ec2f3 1:#1890ff'
+```
+
+* **放射状/环形渐变**
+
+<img src="https://gw.alipayobjects.com/zos/rmsportal/fBFocveoeRaeaCCPTaFo.png" style="width: 50%;">
+
+> 说明：`r` 表示使用放射状渐变，绿色的字体为可变量，由用户自己填写，开始圆的 x y r 值均为相对值，0 至 1 范围，'r(x,y,r)' 内不可留有空格，颜色之间由一个空格进行间隔。
+
+```js
+// example
+// 使用渐变色填充，渐变起始圆的圆心坐标为被填充物体的包围盒中心点，半径为(包围盒对角线长度 / 2) 的 0.1 倍，渐变的起始点颜色 #ffffff，中点的渐变色为 #7ec2f3，结束的渐变色为 #1890ff
+fill: 'r(0.5,0.5,0.1) 0:#ffffff 1:#1890ff'
+```
+
+**注意**
+
+> 为了提升性能，未使用正则表达式解析渐变色字符串，请严格按照要求填写，除去色值区域，其余不要留有空格。
+
 
 ## 线条样式
 

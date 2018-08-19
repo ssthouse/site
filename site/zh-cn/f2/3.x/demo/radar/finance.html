@@ -4,15 +4,6 @@ title: 投资能力评估
 -->
 
 <script>
-  var canvas = document.getElementById('mountNode');
-  var ctx = canvas.getContext('2d');
-  //使用径向渐变
-  var grd = ctx.createRadialGradient(187.5, 195, 0, 187.5, 195, 92.5625);
-  grd.addColorStop(0, '#fff');
-  grd.addColorStop(0.35, '#DEF5F5');
-  grd.addColorStop(0.75, '#C8EEEF');
-  grd.addColorStop(1, '#A8E5E6');
-
   var data = [
     { item: '投资经验', score: 90, img: 'https://gw.alipayobjects.com/zos/rmsportal/txPVjdlnLANzxmwZcchu.png' },
     { item: '财务状况', score: 80, img: 'https://gw.alipayobjects.com/zos/rmsportal/UMqgEqZdEcPhRekNGAdc.png' },
@@ -57,8 +48,9 @@ title: 投资能力评估
     },
     line: null
   });
+
   chart.area().position('item*score').style({
-    fill: grd,
+    fill: 'r(0.45,0.55,0.15) 0:#fff 0.35:#DEF5F5 0.75:#C8EEEF 1:#A8E5E6',
     fillOpacity: 100
   });
 

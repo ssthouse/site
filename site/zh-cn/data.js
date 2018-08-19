@@ -36,11 +36,11 @@ const data = {
             icon: '${assets}/image/icon/f2.svg',
             qrCode: { text: '${resource.translate.scanCode}', href: '${base}zh-cn/f2/3.x/demo/mobile-index.html' },
             links: {
-                English: { text: 'English', href: 'https://antv.gitbook.io/f2' },
                 demo: { text: '${resource.translate.demo}', href: '${base}zh-cn/f2/3.x/demo/index.html' },
                 api: { text: '${resource.translate.api}', href: '${base}zh-cn/f2/3.x/api/index.html' },
                 tutorial: { text: '${resource.translate.tutorial}', href: '${base}zh-cn/f2/3.x/tutorial/index.html' },
                 history: { text: '${resource.translate.history}', href: '${base}zh-cn/f2/3.x/tutorial/history.html' },
+                English: { text: 'English', href: 'https://antv.gitbook.io/f2' },
                 // changelog: { hideFromNav: true, text: '${resource.translate.changelog}', href: '${base}zh-cn/f2/3.x/tutorial/changelog.html' },
             }
         },

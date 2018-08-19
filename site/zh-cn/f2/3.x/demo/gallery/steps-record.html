@@ -122,12 +122,6 @@ canvas#mountNode {
   ];
 
   $('.chart-header').text('步数：' + data[data.length - 1].steps);
-  // 创建区域图的渐变色
-  const canvas = document.getElementById('mountNode');
-  const ctx = canvas.getContext('2d');
-  const grd = ctx.createLinearGradient(0, canvas.offsetHeight, 0, 0);
-  grd.addColorStop(0.03, "rgba(216,216,216,0.10)");
-  grd.addColorStop(1, "#6E6CD8");
 
   const chart = new F2.Chart({
     id: 'mountNode',
@@ -217,7 +211,7 @@ canvas#mountNode {
     }
   });
   chart.area().position('date*steps').style({
-    fill: grd,
+    fill: 'l(-90) 0.03:rgba(216,216,216,0.10) 1:#6E6CD8',
     fillOpacity: 1
   });
   chart.line().position('date*steps').color('#EFDBFF').size(1.5);
