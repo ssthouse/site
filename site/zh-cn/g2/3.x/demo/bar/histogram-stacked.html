@@ -29,15 +29,10 @@ chartDetail: ${base}zh-cn/vis/chart/histogram.html
       height: window.innerHeight
     });
     chart.source(dv);
-    chart.axis('depth', {
-      grid: {
-      }
-    });
     chart.tooltip({
-          crosshairs: false,
-          position: 'top',
-          inPlot: false
-        });
+      crosshairs: false,
+      position: 'top',
+    });
     chart.intervalStack()
       .position('depth*count')
       .color('cut');

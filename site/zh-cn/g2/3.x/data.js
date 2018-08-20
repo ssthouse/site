@@ -2,6 +2,7 @@ const plotByName = {
     area:        { icon: 'icon-area', index: 4,  url: '${base}zh-cn/g2/3.x/demo/area/basic.html', name: '面积图', },
     bar:         { icon: 'icon-bar', index: 1,  url: '${base}zh-cn/g2/3.x/demo/bar/basic.html', name: '柱状图', },
     box:         { icon: 'icon-box', index: 5,  url: '${base}zh-cn/g2/3.x/demo/box/basic.html', name: '箱形图', },
+    component:   { icon: 'icon-component', index: 0,  url: '${base}zh-cn/g2/3.x/demo/component/legend-position.html', name: '组件使用', },
     candlestick: { icon: 'icon-candlestick', index: 6,  url: '${base}zh-cn/g2/3.x/demo/candlestick/basic.html', name: '烛形图', },
     relation:    { icon: 'icon-relation', index: 13, url: '${base}zh-cn/g2/3.x/demo/index.html#_关系图', name: '关系图', },
     facet:       { icon: 'icon-facet', index: 12, url: '${base}zh-cn/g2/3.x/demo/index.html#_分面', name: '分面', },

@@ -2,8 +2,35 @@ import meta from 'meta';
 import $ from 'jquery';
 import _ from 'lodash';
 import './common.less';
+import hotKeywords from './hot-keywords';
+
+const linksByKeyword = {};
+const _keywords = [];
+_.each(hotKeywords, keywords => {
+    _.each(keywords, item => {
+        linksByKeyword[item.keyword] = linksByKeyword[item.keyword] || [];
+        linksByKeyword[item.keyword].push(item);
+        _keywords.push(item.keyword);
+    });
+});
 
 const $query = $('#query');
+
+let counter = 0;
+function updatePlaceholder() {
+    const index = counter % _keywords.length;
+    $query.attr('placeholder', _keywords[index]);
+    counter += 1;
+}
+setInterval(updatePlaceholder, 3000);
+updatePlaceholder();
+
+$query.click(() => {
+    if (!$query.val()) {
+        $query.val($query.attr('placeholder'));
+        $query.autocomplete('onValueChange');
+    }
+});
 
 // search
 function buildFlattenIndices(docs, invertedList) {
@@ -64,6 +91,8 @@ $.getJSON(`${meta.dist}/_indexing.${meta.locale}.json`, data => {
         docs,
         invertedList
     } = data;
+    const autocompleteContainerWidth = window.innerWidth > 720 ? 720 : 'auto';
+    const autocompleteContainerMaxHeight = 320;
 
     const docById = {};
     docs.forEach(doc => {
@@ -102,16 +131,40 @@ $.getJSON(`${meta.dist}/_indexing.${meta.locale}.json`, data => {
             .replace(/&lt;(\/?strong)&gt;/g, '<$1>');
         return wrapResult(suggestion, value);
     }
+    function beforeRender(container) {
+        const keyword = $query.val();
+        if (linksByKeyword[keyword]) {
+            container.html(`${linksByKeyword[keyword].map((link, index) => `<div class="autocomplete-suggestion" data-index="${index}"><div class="keyword"><strong>${link.keyword}</strong></div><div class="doc-title">${link.title}</div></div>`).join('')}
+<hr>
+<div class="container">
+  <div class="row">
+  ${_.map(hotKeywords, (keywords, product) =>`
+      <div class="col-sm">
+        <p class="keyword-title">${product} 热搜</p>
+        <ul class="keyword-links">
+        ${_.map(keywords, item => `
+          <li><a href="${item.href}">${item.keyword}</a></li>
+        `).join('')}
+        </ul>
+      </div>
+  `).join('')}
+  </div>
+</div>
+            `);
+        }
+    }
 
     const flattenIndices = buildFlattenIndices(docs, invertedList);
     $query.autocomplete({
         lookupLimit: 20,
         // groupBy: 'title',
-        // width: 278,
+        width: autocompleteContainerWidth,
+        maxHeight: autocompleteContainerMaxHeight,
         lookup: flattenIndices,
-        triggerSelectOnValidInput: false,
+        triggerSelectOnValidInput: true,
         onSelect,
         formatResult,
+        beforeRender,
     });
 
     // for doc filtering
@@ -141,17 +194,18 @@ $.getJSON(`${meta.dist}/_indexing.${meta.locale}.json`, data => {
         $docFilteringQuery.autocomplete({
             lookupLimit: 20,
             // groupBy: 'title',
-            // width: 278,
+            width: autocompleteContainerWidth,
+            maxHeight: autocompleteContainerMaxHeight,
             lookup: docIndices,
-            triggerSelectOnValidInput: false,
+            triggerSelectOnValidInput: true,
             onSelect,
             formatResult,
+            beforeRender,
         });
     }
 });
 
 // FIXME doc filtering is in ./common.js
-
 // FIXME promote banner(AD)
 // const localStorage = window.localStorage;
 // const promoteStatusKey = 'hide-yuque-20180428';

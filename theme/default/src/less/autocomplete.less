@@ -2,18 +2,37 @@
 
 .autocomplete-suggestions {
   //border: 1px solid #999;
+  padding: 16px;
   min-width: 340px;
+  width: 720px;
   overflow: auto;
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,.15);
   border-radius: 4px;
-  padding: 8px 0;
-  //display: block!important; // for dev
+  // display: block!important; // for dev
+  .keyword-title {
+    color: rgba(0, 0, 0, 0.25);
+    margin: .5em 0;
+  }
+  .keyword-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    a {
+      color: rgba(0, 0, 0, 0.65);
+    }
+    li {
+      margin: .25em 0;
+    }
+  }
+}
+hr {
+  margin: .5em 0;
 }
 .autocomplete-suggestion {
   cursor: pointer;
   line-height: 1;
-  padding: 12px 16px;
+  padding: 12px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -48,5 +67,6 @@
 @media only screen and (max-width: @screen-xs) {
   .autocomplete-suggestions {
     left: 16px !important;
+    width: 100%;
   }
 }

@@ -14,7 +14,9 @@ export default function Page1() {
           <span className="description text-secondary">{card.description}</span>
         </div>
         <div className="card-footer">
-          <small className="text-muted">Last updated 3 mins ago</small>
+          <a className="btn btn-light" href={card.links[0].href}>{card.links[0].text}</a>
+          <span className="btn-separator">|</span>
+          <a className="btn btn-light" href={card.links[1].href}>{card.links[1].text}</a>
         </div>
       </a>
     </Col>

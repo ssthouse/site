@@ -37,7 +37,7 @@ Canvas 提供的绘图能力更底层，适合做到像素级的图形处理，�
 
 ## G2 如何使用不同的渲染方案
 
-从 `3.2.7-beta.2` 版本开始，G2 正式支持 Chart 级别切换 SVG 渲染。目前默认使用 Canvas 渲染，使用 SVG 版本可以给 Chart 实例指定 renderer 为 svg 如下：
+从 `3.2.7` 版本开始，G2 正式支持 Chart 级别切换 SVG 渲染。目前默认使用 Canvas 渲染，使用 SVG 版本可以给 Chart 实例指定 renderer 为 svg 如下：
 
 ```js
 const chart = new G2.Chart({
