@@ -7,8 +7,8 @@ export const page1 = [
     title: 'G2',
     description: ' 是以数据驱动，具有高度的易用性和扩展性的可视化图形语法。',
     links: [
-      { text: '图表示例', href: '${base}zh-cn/g2/3.x/demo/index.html' },
-      { text: 'API 文档', href: '${base}zh-cn/g2/3.x/api/index.html' },
+      { text: '图表示例', href: '/zh-cn/g2/3.x/demo/index.html' },
+      { text: 'API 文档', href: '/zh-cn/g2/3.x/api/index.html' },
     ],
   },
   {
@@ -17,8 +17,8 @@ export const page1 = [
     href: `${base}zh-cn/g6/1.x/index.html`,
     description: ' 是一套便捷、动态和富有交互的流程图和关系分析的图表库。',
     links: [
-      { text: '图表示例', href: '${base}zh-cn/g6/1.x/demo/index.html' },
-      { text: 'API 文档', href: '${base}zh-cn/g6/1.x/api/index.html' },
+      { text: '图表示例', href: '/zh-cn/g6/1.x/demo/index.html' },
+      { text: 'API 文档', href: '/zh-cn/g6/1.x/api/index.html' },
     ],
   },
   {
@@ -27,8 +27,8 @@ export const page1 = [
     href: `${base}zh-cn/f2/3.x/index.html`,
     description: ' 是一套精简、高性能、易扩展的移动端可视化解决方案。',
     links: [
-      { text: '图表示例', href: '${base}zh-cn/f2/3.x/demo/index.html' },
-      { text: 'API 文档', href: '${base}zh-cn/f2/3.x/api/index.html' },
+      { text: '图表示例', href: '/zh-cn/f2/3.x/demo/index.html' },
+      { text: 'API 文档', href: '/zh-cn/f2/3.x/api/index.html' },
     ],
   }
 ];
