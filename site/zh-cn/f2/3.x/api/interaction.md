@@ -71,7 +71,7 @@ require('@antv/f2/lib/interaction/pie-select'); // 引入饼图选中交互
 
 // ... 创建饼图
 
-// 调用，需要在 chart.render() 方法之前调用
+// 调用
 chart.interaction('pie-select');
 
 ```
@@ -88,7 +88,7 @@ chart.interaction('pie-select', {
   cancelable: {Boolean}, // 是否允许取消选中，默认值为 true，表示允许
   onStart: {Function}, // 事件触发后的回调
   onEnd: {Function}, // 事件结束后的回调
-  defaultSelected: {Object} // 设置默认选中的数据
+  defaultSelected: {Object} // 设置默认选中的数据，该属性需要在 chart.render() 之后调用方可生效
 });
 ```
 
@@ -180,6 +180,8 @@ chart.interaction('pie-select', {
 
 用于设置初始化默认选中的数据，只要传入对应的数据即可，详见 [demo](../demo/interaction/selection-for-pie-chart.html)。
 
+**注意：** 如果需要使用该功能，请在 `chart.render()` 方法之后调用该交互方法。
+
 ### 实例
 
 [饼图选中](../demo/interaction/selection-for-pie-chart.html)
@@ -196,7 +198,7 @@ chart.interaction('pie-select', {
 const F2 = require('@antv/f2/lib/index'); // 引入 F2
 require('@antv/f2/lib/interaction/interval-select');
 
-// 调用
+// 调用，尽量在 chart.render() 方法之后调用
 chart.interaction('interval-select', {});
 ```
 
@@ -213,7 +215,7 @@ chart.interaction('interval-select', {
   onStart: {Function}, // 事件触发后的回调
   onEnd: {Function}, // 事件结束后的回调
   mode: {String}, // 选中策略，默认为 'shape', 即击中柱子才会触发交互
-  defaultSelected: {Object} // 设置默认选中的数据
+  defaultSelected: {Object} // 设置默认选中的数据，该属性需要在 chart.render() 之后调用方可生效
 });
 ```
 
@@ -306,6 +308,8 @@ chart.interaction('ingterval-select', {
 ```
 
 用于设置初始化默认选中的数据，只要传入对应的数据即可，详见 [demo](../demo/interaction/selection-for-bar-chart.html)。
+
+**注意：** 如果需要使用该功能，请在 `chart.render()` 方法之后调用该交互方法。
 
 
 ### 实例
