@@ -16,18 +16,33 @@ _.each(hotKeywords, keywords => {
 
 const $query = $('#query');
 
+const duration = 800;
+function animatingPlaceholder(text) {
+    const length = text.length;
+    const timeout = duration / length;
+    for (let i = 0; i < length + 1; i += 1) {
+        setTimeout(() => {
+            $query.attr('placeholder', text.substring(0, i));
+        }, i * timeout);
+    }
+}
+
 let counter = 0;
 function updatePlaceholder() {
     const index = counter % _keywords.length;
-    $query.attr('placeholder', _keywords[index]);
+    const str = _keywords[index];
+    $query.data('placeholder', str);
+    // $.a
+    animatingPlaceholder(str);
+    // $query.attr('placeholder', str);
     counter += 1;
 }
-setInterval(updatePlaceholder, 3000);
+setInterval(updatePlaceholder, 4000);
 updatePlaceholder();
 
 $query.click(() => {
     if (!$query.val()) {
-        $query.val($query.attr('placeholder'));
+        $query.val($query.data('placeholder'));
         $query.autocomplete('onValueChange');
     }
 });

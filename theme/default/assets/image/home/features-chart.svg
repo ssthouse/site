@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 36</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="109.159655%" y1="50%" x2="13.1360176%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#70BAFF" offset="0%"></stop>
+            <stop stop-color="#1890FF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="188.376646%" y1="50%" x2="-185.230977%" y2="50%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#70DCFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="109.273457%" y1="50%" x2="-51.1207295%" y2="50%" id="linearGradient-3">
+            <stop stop-color="#4D8DFF" offset="0%"></stop>
+            <stop stop-color="#004FDA" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页" transform="translate(-244.000000, -994.000000)">
+            <g id="Group-36" transform="translate(244.000000, 994.000000)">
+                <path d="M50,100 C77.6142375,100 100,77.6142375 100,50 C100,22.3857625 77.6142375,0 50,0 C22.3857625,0 0,22.3857625 0,50 C0,77.6142375 22.3857625,100 50,100 Z" id="Oval-8" fill="#FCFCFF"></path>
+                <g id="Group-6" transform="translate(22.000000, 22.000000)">
+                    <path d="M17,0 L52,0 C54.209139,-4.05812251e-16 56,1.790861 56,4 L56,21 C56,23.209139 54.209139,25 52,25 L17,25 L17,0 Z" id="Rectangle-80" fill="url(#linearGradient-1)"></path>
+                    <path d="M18.1199823,0.152235957 L18.1199823,4.10639087e-13 L27.9402004,12.652236 L18.1199823,25.3044719 L18.1199823,25.0725879 L4,25.0725879 C1.790861,25.0725879 2.04689834e-15,23.2817269 1.77635684e-15,21.0725879 L0,4.15223596 C-2.705415e-16,1.94309696 1.790861,0.152235957 4,0.152235957 L18.1199823,0.152235957 Z" id="Combined-Shape" fill="url(#linearGradient-2)"></path>
+                    <g id="Group-114" transform="translate(28.000000, 44.000000) scale(-1, 1) translate(-28.000000, -44.000000) translate(0.000000, 31.000000)">
+                        <path d="M26.5714286,24.9721475 L36.374026,12.6545455 L26.5714286,0.336943414 L26.5714286,0 L52,0 C54.209139,1.55629733e-15 56,1.790861 56,4 L56,21.3090909 C56,23.5182299 54.209139,25.3090909 52,25.3090909 L26.5714286,25.3090909 L26.5714286,24.9721475 Z" id="Combined-Shape" fill="url(#linearGradient-1)"></path>
+                        <path d="M18,0.336943414 L27.8025974,12.6545455 L18,24.9721475 L18,25.3090909 L4,25.3090909 C1.790861,25.3090909 2.705415e-16,23.5182299 0,21.3090909 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 L18,0 L18,0.336943414 Z" id="Combined-Shape" fill="url(#linearGradient-3)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
