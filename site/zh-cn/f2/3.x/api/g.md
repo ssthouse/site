@@ -1036,6 +1036,10 @@ new G.Shape.Rect({
 })
 ```
 
+`radius` 圆角的设置如下图所示：
+
+<img src="https://gw.alipayobjects.com/zos/rmsportal/zXQmpeqIBJQmCJoOiIpl.png" style="width: 25%;" />
+
 #### Sector 扇形
 
 ```js
