@@ -180,6 +180,9 @@ $.getJSON(`${meta.dist}/_indexing.${meta.locale}.json`, data => {
         onSelect,
         formatResult,
         beforeRender,
+        onHide() {
+            $query.val('');
+        }
     });
 
     // for doc filtering
