@@ -181,7 +181,9 @@ $.getJSON(`${meta.dist}/_indexing.${meta.locale}.json`, data => {
         formatResult,
         beforeRender,
         onHide() {
-            $query.val('');
+            if (linksByKeyword[$query.val()]) {
+                $query.val('');
+            }
         }
     });
 
