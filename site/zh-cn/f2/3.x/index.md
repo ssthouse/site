@@ -8,17 +8,17 @@ keywords:
   - 移动端
   - Mobile
   - H5
-description: F2 是专为移动端定制的一套开箱即用的可视化解决方案，基于图形语法理论，具有精简、高性能、易扩展的特性，适用于对性能、大小、扩展性要求严苛的场景。
+description: F2 是一个专注于移动，开箱即用的可视化解决方案，完美支持 H5 环境同时兼容多种环境（node, 小程序，weex），完备的图形语法理论，满足你的各种可视化需求。专业的移动设计指引为你带来最佳的移动端图表体验。
 featuresCards:
-  - img: ${assets}/image/home/features-simple.svg
-    title: 极小
-    description: 在支持丰富（45+）图表的基础上保持代码量的小巧。
   - img: ${assets}/image/home/features-professional.svg
-    title: 高性能
-    description: 性能极致追求，针对移动设备做了大量的优化。
+    title: 专注移动，体验优雅
+    description: 围绕设计、性能以及多端异构，为用户提供移动端图表的最佳实践
+  - img: ${assets}/image/home/features-simple.svg
+    title: 图表丰富，组件完备
+    description: 基于图形语法，可灵活构建各类图表（50+），组件完备，覆盖各类场景
   - img: ${assets}/image/home/features-powerful.svg
-    title: 强大扩展能力
-    description: 任何图表，都可以基于图形语法灵活绘制，满足你无限的创意。
+    title: 扩展灵活，创意无限
+    description: 插件机制，图形、动画、交互灵活扩展，创意无限
 resource:
   jsFiles:
     - ${url.f2}
@@ -29,7 +29,7 @@ resource:
         <div class="header row">
             <div class="col-md-5">
                 <h1>F2 移动端可视化解决方案</h1>
-                <p class="main-info">F2 是专为移动端定制的一套开箱即用的可视化解决方案，具有精简、高性能、易扩展的特性。适用于对性能、大小、扩展性要求严苛的场景。</p>
+                <p class="main-info">F2 是一个专注于移动，开箱即用的可视化解决方案，完美支持 H5 环境同时兼容多种环境（node, 小程序，weex），完备的图形语法理论，满足你的各种可视化需求。专业的移动设计指引为你带来最佳的移动端图表体验。</p>
                 <a href="{{ products.f2.links.tutorial.href }}" class="btn btn-primary btn-lg btn-round-link">{{ resource.translate.getStarted }}</a>
                   <button class="btn btn-light border btn-lg btn-round-link" id="scanCodeBtn">{{ resource.translate.scanCode }}</button>
                 <iframe class="btn-round-link btn btn-light btn-lg github-btn" src="https://ghbtns.com/github-btn.html?user=antvis&repo=f2&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
