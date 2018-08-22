@@ -37,17 +37,20 @@ export const page1_1 = [
   {
     img: `${assets}/image/home/features-chart.svg`,
     title: '图表用法',
-    description: '从数据出发，从功能角度对常见图表进行分类，提供规范使用指引。'
+    description: '从数据出发，从功能角度对常见图表进行分类，提供规范使用指引。',
+    href: '/zh-cn/vis/chart/index.html',
   },
   {
     img: `${assets}/image/home/features-design.svg`,
     title: '设计原则',
-    description: '对数据图形进行拆解、提炼，抽象出一套数据图形可视化交互视觉规范。'
+    description: '对数据图形进行拆解、提炼，抽象出一套数据图形可视化交互视觉规范。',
+    href: '/zh-cn/vis/design/index.html',
   },
   {
     img: `${assets}/image/home/features-resource.svg`,
     title: '资源',
-    description: '研究、设计与开发过程中发现、整理的优秀书籍和资源。'
+    description: '研究、设计与开发过程中发现、整理的优秀书籍和资源。',
+    href: '/zh-cn/vis/resource/index.html'
   },
 ];
 

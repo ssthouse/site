@@ -12,11 +12,13 @@ export default function Page1_1() {
       md={8}
       xs={24}
     >
-      <img src={card.img} alt="" width="100" height="100" style={{
-        borderRadius: 50
-      }}/>
-      <h5>{card.title}</h5>
-      <div className="detail">{card.description}</div>
+      <a href={card.href}>
+        <img src={card.img} alt="" width="100" height="100" style={{
+          borderRadius: 50
+        }}/>
+        <h5>{card.title}</h5>
+        <div className="detail">{card.description}</div>
+      </a>
     </Col>
   ));
   return (<OverPack component="section" className="page-wrapper features page3 text-center">
