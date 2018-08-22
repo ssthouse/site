@@ -15,10 +15,10 @@ resource:
         // 1 ---- 2
         // |      |
         // 0 ---- 3
-        var style = {
+        var style = Util.mix({
           fill: cfg.color,
           z: true // 需要闭合
-        };
+        }, cfg.style);
         const intervalShape = container.addShape('rect', {
           attrs: Util.mix({
             x: points[1].x,
@@ -77,6 +77,9 @@ resource:
       .adjust({
         type: 'dodge',
         marginRatio: 0.2
+      })
+      .style({
+        radius: [ 4, 4, 0, 0 ]
       });
 
     chart.render();
