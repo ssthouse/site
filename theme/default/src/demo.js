@@ -109,6 +109,35 @@ $(window).resize(resizePreview);
 const $detail = $('.detail');
 const $codePanel = $('.code-panel');
 const $menu = $('.menu');
+
+/**
+ * 设置代码编辑区的宽度
+ * @param codePanelWidth
+ */
+function setCodePanelWidth(codePanelWidth) {
+    $codePanel.css('flex', `0 0 ${codePanelWidth < 300 ? 300 : codePanelWidth}px`);
+}
+
+/**
+ * 缓存代码编辑区的宽度到本地存储中，方便下次刷新页面后复用，以提升体验
+ * @param codePanelWidth
+ */
+function cacheCodePanelWidth(codePanelWidth) {
+    localStorage.setItem('codePanelWidth', codePanelWidth);
+}
+
+/**
+ * 获取本地存储中的代码编辑区的宽度
+ * @returns {string | null | number}
+ */
+function getCacheCodePanelWidth() {
+    const defaultWidth = 432;
+    return localStorage.getItem('codePanelWidth') || defaultWidth;
+}
+
+const codePanelWidthFromCache = getCacheCodePanelWidth();
+setCodePanelWidth(codePanelWidthFromCache);
+
 $detail.resizable({
     handleSelector: '#resize-handler',
     resizeWidthFrom: 'right',
@@ -124,6 +153,8 @@ $detail.resizable({
             newWidth = 486;
         }
         const codePanelWidth = winWidth - $menu.width() - newWidth;
+        setCodePanelWidth(codePanelWidth);
+        cacheCodePanelWidth(codePanelWidth);
         $codePanel.css('flex', `0 0 ${codePanelWidth < 300 ? 300 : codePanelWidth}px`);
     },
     onDragEnd() {
