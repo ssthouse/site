@@ -71,8 +71,7 @@ demoDirs.forEach(function (dir) {
             category: category,
             title: title,
             version: meta.version || 'f2',
-            needIcon: meta.needIcon || false,
-            selfContainer: meta.selfContainer || false
+            needIcon: meta.needIcon || false
         };
         demoByHref[href] = demo;
         demosByCategory[category].demos.push(demo);

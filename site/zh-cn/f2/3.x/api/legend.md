@@ -1,6 +1,6 @@
 <!--
 index: 7
-title: Legend
+title: Legend 图例
 -->
 
 # Legend
@@ -310,11 +310,4 @@ chart.legend({
 
 ## DEMO
 
-| 场景描述 | demo |
-| -------- | -------- |
-| [水平居中布局](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/legend-align.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/GeegjFfFxXHMWnbPBGJz.png" style="width: 50%;" /> |
-| [自定义文本样式](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/legend-custom-text-style.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/aqzSeuHSkITDSNazLptD.png" style="width: 50%;" /> |
-| [自定义带交互的图例](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/legend-custom.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/jyCzuJAUavxZEyeLXohP.png" style="width: 50%;" /> |
-| [marker 定制](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/legend-marker.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/lzGYAheYCrbbgeXFVNqQ.png" style="width: 50%;" /> |
-| [图例单选模式](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/legend-single-selected.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/jmLNmcJDUIGoExwlRLob.png" style="width: 50%;" /> |
-| [右上角图例](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/legend-vertical-align.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/iAhLZupiXHwGsHzvyKBH.png" style="width: 50%;" /> |
+详见 [Legend 使用](../demo/index.html#_Legend-使用)。

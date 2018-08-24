@@ -102,7 +102,6 @@ chart.line().position('x*y');
 chart.render();
 
 chart.clear(); // 清理所有
-chart.souce(newData); // 重新加载数据
 chart.interval().position('x*y').color('z');
 chart.render();
 ```

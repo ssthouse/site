@@ -1,0 +1,44 @@
+<!--
+index: 6
+title: 图标坐标轴
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/yemAvFtBapMsbNZPDIAH.png
+needIcon: true
+-->
+
+<script>
+  var iconfontMap = {
+    '苹果': 'e60d', // unicode
+    '梨子': 'e60e',
+    '香蕉': 'e60f',
+    '葡萄': 'e610',
+    '西瓜': 'e60c'
+  };
+  var data = [
+    { fruit: '苹果', value: 26 },
+    { fruit: '梨子', value: 40 },
+    { fruit: '香蕉', value: 30 },
+    { fruit: '葡萄', value: 24 },
+    { fruit: '西瓜', value: 15 }
+  ];
+  var chart = new F2.Chart({
+    id: 'mountNode',
+    pixelRatio: window.devicePixelRatio
+  });
+
+  chart.source(data);
+  chart.legend(false);
+
+  // 使用 iconfont 显示 X 轴坐标轴文本
+  chart.axis('fruit', {
+    label(text) {
+      return {
+        fontSize: 20,
+        fontFamily: 'charts-icon',
+        text: String.fromCharCode(parseInt(iconfontMap[text], 16))
+      };
+    }
+  });
+
+  chart.interval().position('fruit*value').color('fruit');
+  chart.render();
+</script>

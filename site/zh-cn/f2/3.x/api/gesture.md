@@ -1,6 +1,6 @@
 <!--
-index: 13
-title: Gesture
+index: 14
+title: Gesture 手势插件
 resource:
   jsFiles:
     - ${url.f2}

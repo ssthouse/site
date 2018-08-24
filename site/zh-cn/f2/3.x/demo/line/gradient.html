@@ -4,6 +4,14 @@ title: 某国女性结婚年龄走势
 -->
 
 <script>
+  // 使用 html5 canvas api 创建渐变色对象
+  var canvas = document.getElementById('mountNode');
+  var ctx = canvas.getContext('2d');
+  var gradient = ctx.createLinearGradient(0, 0, window.innerWidth, 0);
+  gradient.addColorStop(0., '#F2C587');
+  gradient.addColorStop(0.5, '#ED7973');
+  gradient.addColorStop(1, '#8659AF');
+
   var data = [
     { year: 2000, age: 27.2 },
     { year: 2001, age: 27.5 },
@@ -69,9 +77,9 @@ title: 某国女性结婚年龄走势
   });
   chart.line().position('year*age')
     .shape('smooth')
-    .color('l(0) 0:#F2C587 0.5:#ED7973 1:#8659AF');
+    .color(gradient);
   chart.area().position('year*age')
     .shape('smooth')
-    .color('l(0) 0:#F2C587 0.5:#ED7973 1:#8659AF');
+    .color(gradient);
   chart.render();
 </script>

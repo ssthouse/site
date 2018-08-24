@@ -1,5 +1,5 @@
 <!--
-index: 7
+index: 11
 title: 每日打卡记录
 resource:
   jsFiles:
@@ -110,8 +110,7 @@ data.map(obj => {
       },
       side: 6,
       withPoint: null
-    });
-    chart.guide().line({
+    }).line({
       start: [ obj.date, 'min' ],
       end: [ obj.date, 'max' ],
       top: false

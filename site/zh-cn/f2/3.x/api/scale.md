@@ -1,6 +1,6 @@
 <!--
 index: 4
-title: Scale
+title: Scale 度量
 resource:
   jsFiles:
     - ${url.f2}
@@ -42,24 +42,45 @@ chart.source(data, defs);
 
 ## 通用属性
 
-```js
-chart.scale('fieldName', {
-  // 各个属性配置
-});
-```
-
 下面列出的是通用的属性：
 
-属性名| 类型 | 说明
-----|----|----
-`type` | String | 指定不同的度量类型，支持的 type 为 `identity`、`linear`、`cat`、`timeCat`。
-`formatter` | Function | 回调函数，用于格式化坐标轴刻度点的文本显示，会影响数据在坐标轴 axis、图例 legend、提示信息 tooltip 上的显示。
-`range` | Array | 输出数据的范围，默认[0, 1]，格式为 [min, max]，min 和 max 均为 0 至 1 范围的数据。
-`alias` | String | 该数据字段的显示别名，一般用于将字段的英文名称转换成中文名。
-`tickCount` | Number | 坐标轴上刻度点的个数，不同的度量类型对应不同的默认值。
-`ticks` | Array | 用于指定坐标轴上刻度点的文本信息，当用户设置了 ticks 就会按照 ticks 的个数和文本来显示。
+### type
 
-代码示例:
+类型：String
+
+指定不同的度量类型，支持的 type 为 `identity`、`linear`、`cat`、`timeCat`。
+
+### formatter
+
+类型：Function
+
+回调函数，用于格式化坐标轴刻度点的文本显示，会影响数据在坐标轴 axis、图例 legend、提示信息 tooltip 上的显示。
+
+### range
+
+类型：Array
+
+输出数据的范围，默认[0, 1]，格式为 [min, max]，min 和 max 均为 0 至 1 范围的数据。
+
+### alias
+
+类型：String
+
+该数据字段的显示别名，一般用于将字段的英文名称转换成中文名。
+
+### tickCount
+
+类型：Number
+
+坐标轴上刻度点的个数，不同的度量类型对应不同的默认值。
+
+### ticks
+
+类型：Array
+
+用于指定坐标轴上刻度点的文本信息，当用户设置了 ticks 就会按照 ticks 的个数和文本来显示。
+
+#### 代码示例
 
 ```js
 chart.scale('aqi',  {
@@ -69,33 +90,33 @@ chart.scale('aqi',  {
 });
 ```
 
+
 ## 各个 Scale 类型对应的属性
 
 ### linear
 
-属性名| 类型 | 说明
-----|----|----
-`alias` | String | 别名。
-`nice` | Boolean | 默认为 true，用于优化数值范围，使绘制的坐标轴刻度线均匀分布。例如原始数据的范围为 [3, 97]，如果 nice 为 true，那么就会将数值范围调整为 [0, 100]。
-`min` | Number | 定义数值范围的最小值。
-`max` | Number |定义数值范围的最大值。
-`range` | Array | 输出数据的范围，默认[0, 1]，格式为 [min, max]，min 和 max 均为 0 至 1 范围的数据。
-`formatter` | Function | 回调函数，用于格式化坐标轴刻度点的文本显示，会影响数据在坐标轴 axis、图例 legend、tooltip 上的显示。
-`ticks` | Array | 用于指定坐标轴上刻度点的文本信息，当用户设置了 ticks 就会按照 ticks 的个数和文本来显示。
-`tickCount` | Number | 定义坐标轴刻度线的条数，默认为 5。
-`tickInterval` | Number | 用于指定坐标轴各个标度点的间距，是原始数据之间的间距差值，**tickCount 和 tickInterval 不可以同时声明。**
+属性名| 说明
+----|----
+alias | 别名
+nice | 默认为 true，用于优化数值范围，使绘制的坐标轴刻度线均匀分布。例如原始数据的范围为 [3, 97]，如果 nice 为 true，那么就会将数值范围调整为 [0, 100]
+min | 定义数值范围的最小值
+max | 定义数值范围的最大值
+range | 输出数据的范围，默认[0, 1]，格式为 [min, max]，min 和 max 均为 0 至 1 范围的数据。
+formatter | 回调函数，用于格式化坐标轴刻度点的文本显示，会影响数据在坐标轴 axis、图例 legend、tooltip 上的显示。
+ticks | 用于指定坐标轴上刻度点的文本信息，当用户设置了 ticks 就会按照 ticks 的个数和文本来显示。
+tickCount| 定义坐标轴刻度线的条数，默认为 5
+tickInterval | 用于指定坐标轴各个标度点的间距，是原始数据之间的间距差值，**tickCount 和 tickInterval 不可以同时声明。**
 
 ### cat
 
-属性名| 类型 | 说明
-----|----|----
-`alias` | String | 别名。
-`range` | Array | 输出数据的范围，默认[0, 1]，格式为 [min, max]，min 和 max 均为 0 至 1 范围的数据。
-`formatter` | Function | 回调函数，用于格式化坐标轴刻度点的文本显示，会影响数据在坐标轴 axis、图例 legend、tooltip 上的显示。
-`ticks` | Array | 用于指定坐标轴上刻度点的文本信息，当用户设置了 ticks 就会按照 ticks 的个数和文本来显示。
-`tickCount`| Number | 定义坐标轴刻度线的条数，默认为 5。
-`values` | Array | 具体的分类的值，一般用于指定具体的顺序和枚举的对应关系。
-`isRounding` | Boolean | 默认值为 `false`, 在计算 ticks 的时候是否允许取整以满足刻度之间的均匀分布，取整后可能会和用户设置的 tickCount 不符合。
+属性名| 说明
+----|----
+alias | 别名
+range | 输出数据的范围，默认[0, 1]，格式为 [min, max]，min 和 max 均为 0 至 1 范围的数据。
+formatter | 回调函数，用于格式化坐标轴刻度点的文本显示，会影响数据在坐标轴 axis、图例 legend、tooltip 上的显示。
+ticks | 用于指定坐标轴上刻度点的文本信息，当用户设置了 ticks 就会按照 ticks 的个数和文本来显示。
+tickCount| 定义坐标轴刻度线的条数，默认为 5
+values | 具体的分类的值，一般用于指定具体的顺序和枚举的对应关系
 
 `values` 属性常用于 2 个场景：
 
@@ -142,7 +163,7 @@ chart.legend({
   align: 'center',
   itemWidth: null
 });
-chart.interval().position('month*tem');
+chart.interval().position('month*tem').color('month');
 chart.render();
 ```
 
@@ -151,18 +172,16 @@ chart.render();
 
 时间分类类型，**默认会对数据做排序**。
 
-属性名|类型 |说明
-----|----|----
-`nice` | Boolean | 是否将 ticks 进行优化，变更数据的最小值、最大值，使得每个 tick 都是用户易于理解的数据。
-`mask`| String| 数据的格式化格式 默认：'YYYY-MM-DD'。
-`tickCount`| Number | 坐标点的个数，默认是 5。但不一定是准确值。
-`values` | Array | 具体的分类的值，一般用于指定具体的顺序和枚举的对应关系。
-`alias` | String | 别名。
-`range` | Array |输出数据的范围，默认[0, 1]，格式为 [min, max]，min 和 max 均为 0 至 1 范围的数据。
-`formatter`| Function | 回调函数，用于格式化坐标轴刻度点的文本显示，会影响数据在坐标轴 axis、图例 legend、tooltip 上的显示。
-`ticks`| Array | 用于指定坐标轴上刻度点的文本信息，当用户设置了 ticks 就会按照 ticks 的个数和文本来显示。
-`isRounding` | Boolean | 默认值为 `false`, 在计算 ticks 的时候是否允许取整以满足刻度之间的均匀分布，取整后可能会和用户设置的 tickCount 不符合。
-
+属性名|说明
+----|----
+nice | 是否将 ticks 进行优化，变更数据的最小值、最大值，使得每个 tick 都是用户易于理解的数据
+mask| 数据的格式化格式 默认：'YYYY-MM-DD'
+tickCount| 坐标点的个数，默认是5。但不一定是准确值
+values | 具体的分类的值，一般用于指定具体的顺序和枚举的对应关系
+alias | 别名
+range |输出数据的范围，默认[0, 1]，格式为 [min, max]，min 和 max 均为 0 至 1 范围的数据。
+formatter | 回调函数，用于格式化坐标轴刻度点的文本显示，会影响数据在坐标轴 axis、图例 legend、tooltip 上的显示。
+ticks | 用于指定坐标轴上刻度点的文本信息，当用户设置了 ticks 就会按照 ticks 的个数和文本来显示。
 
 **注意：`mask` 和 `formatter` 这两个属性不可共用，如果同时设置了，会根据 `formatter` 进行格式化，`mask` 属性将不生效。**
 
@@ -172,7 +191,6 @@ chart.render();
 
 ```js
 chart.scale('fieldName', {
-  type: 'timeCat',
   sortable: false
 })
 ```

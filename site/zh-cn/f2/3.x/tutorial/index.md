@@ -1,139 +1,148 @@
 <!--
-index: 0
-title: F2 简介
+index: 1
+title: 快速上手
 resource:
   jsFiles:
     - ${url.f2}
 -->
 
-更好的阅读体验，请移步[语雀](https://www.yuque.com/antv/blog/introducing-f2)。
+# F2 快速上手
 
-![F2 banner 中文.png | center | 747x205](https://cdn.nlark.com/lark/0/2018/png/514/1535008708711-5b627e8b-979d-46d0-8f84-b2bc73dd3b91.png "")
+F2（Fast & Flexible），是专为移动端定制的一套开箱即用的可视化解决方案，基于图形语法理论，具有精简、高性能、易扩展的特性，适用于对性能、大小、扩展性要求严苛的场景。
+
+**在此衷心感谢[《The Grammar of Graphics》](https://www.cs.uic.edu/~wilkinson/TheGrammarOfGraphics/GOG.html)的作者 [Leland Wilkinson](https://en.wikipedia.org/wiki/Leland_Wilkinson)，为 F2 的图形语法提供了理论基础！**
+
+## 特性
+
+- 体验优雅：基于 AntV 完整的移动端可视化设计体系
+- 扩展灵活：可自定义 Shape、动画，图表组件灵活可配，满足无限创意
+- 绘制迅速：性能极致追求，针对移动设备做了大量的优化
+- 体积小巧：在支持丰富（45+）图表的基础上保持代码量的小巧
+
+## 安装
+
+### 浏览器引入
+
+既可以通过将脚本下载到本地也可以直接引入在线资源。
+
+```html
+<!-- 引入在线资源 -->
+<script src="{{ url.f2 }}"></script>
+```
+
+```html
+<!-- 引入本地脚本 -->
+<script src="./f2.js"></script>
+```
+
+你也可以直接通过 [unpkg](https://unpkg.com/@antv/f2) 下载。
+
+### 通过 npm 安装
+
+[![npm](https://img.shields.io/npm/v/@antv/f2.svg?style=flat-square&maxAge=600)](https://npmjs.com/package/@antv/f2)
+[![npm](https://img.shields.io/npm/dm/@antv/f2.svg?style=flat-square&maxAge=600)](https://npmjs.com/package/@antv/f2)
+
+```bash
+npm install @antv/f2 --save
+```
+
+成功安装完成之后，即可使用 `import` 或 `require` 进行引用。
+
+```js
+const F2 = require('@antv/f2');
+```
+
+## 一分钟上手
+
+在 F2 引入页面后，我们就已经做好了创建第一个图表的准备了。
+
+下面是以一个基础的柱状图为例开始我们的第一个图表创建。
+
+### 浏览器引入方式
+
+#### 1. 创建 `<canvas>` 标签
+
+在页面上创建一个 `<canvas>` 并指定 `id`：
+
+```html
+<canvas id="myChart" width="400" height="260"></canvas>
+```
+
+#### 2. 编写图表绘制代码
+
+创建 `<canvas>` 标签后，我们就可以进行简单的图表绘制:
+
+1. 创建 Chart 图表对象，指定图表 ID、指定图表的宽高、边距等信息；
+2. 载入图表数据源；
+3. 使用图形语法进行图表的绘制；
+4. 渲染图表。
+
+```js
+// F2 对数据源格式的要求，仅仅是 JSON 数组，数组的每个元素是一个标准 JSON 对象。
+const data = [
+  { genre: 'Sports', sold: 275 },
+  { genre: 'Strategy', sold: 115 },
+  { genre: 'Action', sold: 120 },
+  { genre: 'Shooter', sold: 350 },
+  { genre: 'Other', sold: 150 },
+];
+
+// Step 1: 创建 Chart 对象
+const chart = new F2.Chart({
+  id: 'myChart',
+  pixelRatio: window.devicePixelRatio // 指定分辨率
+});
+
+// Step 2: 载入数据源
+chart.source(data);
+
+// Step 3：创建图形语法，绘制柱状图，由 genre 和 sold 两个属性决定图形位置，genre 映射至 x 轴，sold 映射至 y 轴
+chart.interval().position('genre*sold').color('genre');
+
+// Step 4: 渲染图表
+chart.render();
+```
+
+完成上述两步之后，保存文件并用浏览器打开，一张柱状图就绘制成功了：
+
+<canvas id="myChart" width="400" height="260"></canvas>
+
+```js-
+const data = [
+  { genre: 'Sports', sold: 275 },
+  { genre: 'Strategy', sold: 115 },
+  { genre: 'Action', sold: 120 },
+  { genre: 'Shooter', sold: 350 },
+  { genre: 'Other', sold: 150 },
+];
+
+const chart = new F2.Chart({
+  id: 'myChart',
+  pixelRatio: window.devicePixelRatio // 指定分辨率
+});
+// load the data
+chart.source(data);
+// draw a column chart
+chart.interval().position('genre*sold').color('genre');
+chart.render();
+```
+
+### 更多示例
+
+更多的示例直接查看 [Demo](../demo/index.html)
 
 
-[F2](https://github.com/antvis/f2)，一个专注于移动，开箱即用的可视化解决方案，完美支持 H5 环境同时兼容多种环境（node, 小程序，weex）。完备的图形语法理论，满足你的各种可视化需求。专业的移动设计指引为你带来最佳的移动端图表体验。
+## 体验改进计划说明
 
+为了更好服务用户，F2 会将 URL 和版本信息发送回 AntV 服务器（H5 环境下）：
 
-![Snip20180823_55.png | center | 752x299.7973333333333](https://cdn.nlark.com/lark/0/2018/png/514/1535011187502-53c5bcc7-b05f-4876-8cae-f799b08e4b92.png "")
+```html
+https://kcart.alipay.com/web/bi.do
+```
 
+除了 URL 与 F2 版本信息外，不会收集任何其他信息，一切为了能对 F2 的运行情况有更多了解，以更好服务于用户。如有担心，可以通过下面的代码关闭：
 
-
-# 特性
-## 专注移动，体验优雅
-
-在“准确、有效、清晰、美”的可视化原则的基础之上，结合移动设备特性（规格不一，计算能力不足和触摸界面）以及人们对移动设备的使用习惯，我们从设计、性能以及多端异构三个角度出发，为用户提供移动端图表的最佳实践。
-
-* **轻量化呈现，自然反馈**：在设计上我们以人为本，追求自然简单易懂，有吸引力的表达效果，让用户在碎片化的时间里更快更高效得获取图表信息。同时在可视化的操作我们追求内容和操作有机融合，符合人的自然行为反应，让交互操作更自然。
-
-![英文动图.gif | left | 747x172](https://cdn.nlark.com/lark/0/2018/gif/514/1535088926433-f537b63b-6c98-4160-9d44-e24526e7a220.gif "")
-
-
-<div data-type="alignment" data-value="center" style="text-align:center">
-  <div data-type="p">
-    <span data-type="color" style="color:#8C8C8C">常见图表：从左到右分别为折线图、柱状图和饼图</span>
-  </div>
-</div>
-
-<img src="https://cdn.nlark.com/yuque/0/2018/gif/98090/1535090684798-b202005c-bb82-4b89-a4e1-15d79d1897d6.gif" width="747" />
-
-
-* **轻巧流畅**：性能我相信是移动端长期关注的问题，虽然移动设备硬件以及计算能力一直在不断提升，但是可以肯定地说，大多数用户并没有使用最新和最强大的移动设备。因此，F2 一直致力于追求极致的性能，针对移动设备做了大量的优化，在支持丰富（50+）图表的基础上同时保持代码量的小巧（不带交互版本 Gzip 压缩后 44k，带所有交互版本 56k），同时提供模块化的设计以支持动态加载，提供更优的大小。
-
-* **多端异构**：在完美支持 H5 环境的同时，同时兼容 [Node.js](https://antv.alipay.com/zh-cn/f2/3.x/tutorial/node-env.html)，[支付宝小程序](https://github.com/antvis/my-f2)、[微信小程序](https://github.com/antvis/wx-f2)、[React Native](https://github.com/chenshuai2144/f2-demo) 以及 [Weex 端](https://github.com/weex-plugins/weex-chart)的渲染，一份代码，多设备多环境渲染。
-
-
-![多端异构.png | left | 747x80](https://cdn.nlark.com/lark/0/2018/png/514/1535089894910-9d77736e-7b74-4043-b68c-69d8c7a44e78.png "")
-
-
-## 图表丰富，组件完备
-与传统的图表库不同，抛弃了特图特做的封装思路，基于强大的图形语法理论，以数据驱动，通过图形语法的组合灵活构建各类图表，目前可绘制 [50+ 图表类型](https://antv.alipay.com/zh-cn/f2/3.x/demo/index.html)（当然，还可以更多），覆盖各类场景。在提供基础的图表可视化能力外，我们还提供了丰富图表功能组件，满足各种功能需求。
-
-
-![Group.png | center | 747x676](https://cdn.nlark.com/lark/0/2018/png/514/1534652854390-0b44280e-4655-4b09-86ed-d7046b7ed309.png "")
-
-
-## 扩展灵活，创意无限
-我们在提供最佳实践的同时，还为开发者提供了灵活的扩展机制，包括 Shape、动画以及交互的自定义能力，当然还有图表样式的个性化定制，满足各种个性化的图表要求。
-
-<div class="bi-table">
-  <table>
-    <colgroup>
-      <col width="auto" />
-      <col width="auto" />
-      <col width="auto" />
-    </colgroup>
-    <tbody>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">
-            <div id="gm6fzx" data-type="image" data-display="block" data-align="left" data-src="https://cdn.nlark.com/lark/0/2018/gif/514/1534655012578-72eba48e-23d4-4054-853a-82a10fbec5b0.gif" data-width="228">
-              <img src="https://cdn.nlark.com/lark/0/2018/gif/514/1534655012578-72eba48e-23d4-4054-853a-82a10fbec5b0.gif" width="228" />
-            </div>
-          </div>
-          <div data-type="p">
-            <div id="ztlyzn" data-type="image" data-display="block" data-align="left" data-src="https://cdn.nlark.com/lark/0/2018/png/514/1534655175645-7049314d-e379-480b-a5b8-97292766ad97.png" data-width="228">
-              <img src="https://cdn.nlark.com/lark/0/2018/png/514/1534655175645-7049314d-e379-480b-a5b8-97292766ad97.png" width="228" />
-            </div>
-          </div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">
-            <div id="zp54tw" data-type="image" data-display="block" data-align="left" data-src="https://cdn.nlark.com/lark/0/2018/gif/514/1534655028385-6c902504-bcdf-482c-b734-09202d9ba93d.gif" data-width="228">
-              <img src="https://cdn.nlark.com/lark/0/2018/gif/514/1534655028385-6c902504-bcdf-482c-b734-09202d9ba93d.gif" width="228" />
-            </div>
-            <div id="xqfhgf" data-type="image" data-display="block" data-align="left" data-src="https://cdn.nlark.com/lark/0/2018/png/514/1534655236972-7b492ae4-2eb6-4c4c-b8dd-578cdec28e15.png" data-width="228">
-              <img src="https://cdn.nlark.com/lark/0/2018/png/514/1534655236972-7b492ae4-2eb6-4c4c-b8dd-578cdec28e15.png" width="228" />
-            </div>
-          </div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">
-            <div id="b0xwtc" data-type="image" data-display="block" data-align="left" data-src="https://cdn.nlark.com/lark/0/2018/gif/514/1534655037639-1fc102f5-d673-4782-918f-dd27a37e361e.gif" data-width="229">
-              <img src="https://cdn.nlark.com/lark/0/2018/gif/514/1534655037639-1fc102f5-d673-4782-918f-dd27a37e361e.gif" width="229" />
-            </div>
-          </div>
-          <div data-type="p">
-            <div id="l7fepu" data-type="image" data-display="block" data-align="left" data-src="https://cdn.nlark.com/lark/0/2018/gif/514/1534655160934-c674afa3-0ce8-475d-b53f-243c7eb41bf9.gif" data-width="229">
-              <img src="https://cdn.nlark.com/lark/0/2018/gif/514/1534655160934-c674afa3-0ce8-475d-b53f-243c7eb41bf9.gif" width="229" />
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-# 拥抱开源
-自 F2 开源以来，收到了很多有价值的意见和反馈，同时开源社区也基于 F2 进行了各种封装，非常感谢大家的支持信任，也欢迎更多的有志之士一起加入我们。
-
-* [ant-design-mobile-chart](https://github.com/ant-design/ant-design-mobile-chart)：基于 F2 封装的 ant-mobile 图表组件。
-* [BizCoblin](https://github.com/alibaba/BizGoblin)：基于 F2，React 移动端可视化图表库。
-* [VChart](https://doc.vux.li/zh-CN/components/v-chart.html)：[VUX](https://vux.li/)(Vue.js 移动端 UI 组件库)基于 F2 封装的图表组件。
-* [weex-chart](https://github.com/weex-plugins/weex-chart)：Weex 上的图表组件。
-* [eapp-dd-charts](https://github.com/opendingtalk/eapp-dd-charts-demo)：钉钉 E 应用图表。
-* <span data-type="color" style="color:#8C8C8C">虚席以待</span>
-
-# 实例赏析
-F2 现已服务于阿里系各大 app：蚂蚁财富、支付宝、淘票票（专业版）等，每日经受着千万级 pv 的考验。
-
-
-
-![实例赏析.png | left | 747x180](https://cdn.nlark.com/lark/0/2018/png/514/1535076361946-40855b53-6897-4558-8444-2c3c1d4e7b83.png "")
-
-
-# 感谢
-
-![image.png | left | 747x160](https://cdn.nlark.com/lark/0/2018/png/514/1534311975812-cdb0113a-8c7b-40c1-bfc8-1989fc0cf354.png "")
-
-<div data-type="alignment" data-value="center" style="text-align:center">
-  <div data-type="p"><span data-type="color" style="color:#8C8C8C">感谢并期待与你一起同行</span></div>
-</div>
-
-
-# 最后
-感兴趣的小伙伴们欢迎通过以下途径**关注我们！联系我们！！加入我们！！！**
-
-* GitHub：[https://github.com/antvis/f2](https://github.com/antvis/f2)
-* 官网：[https://antv.alipay.com/zh-cn/f2/3.x](https://antv.alipay.com/zh-cn/f2/3.x)
-* 邮件：[antv@antfin.com](https://lark.alipay.com/antv/g2-3.x/g2-3.2-release)
-
+```js
+// 关闭 F2 的体验改进计划打点请求
+F2.track(false)
+```

@@ -1,0 +1,48 @@
+<!--
+index: 7
+title: 带 iconfont 的辅助文本
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/fgMlJBPjAcnOWfCtgQEa.png
+needIcon: true
+-->
+
+<script>
+  var iconfontMap = {
+    '苹果': 'e60d', // iconfont 对应的 unicode 编码
+    '梨子': 'e60e',
+    '香蕉': 'e60f',
+    '葡萄': 'e610',
+    '西瓜': 'e60c'
+  };
+  var data = [
+    { fruit: '苹果', value: 26 },
+    { fruit: '梨子', value: 40 },
+    { fruit: '香蕉', value: 30 },
+    { fruit: '葡萄', value: 24 },
+    { fruit: '西瓜', value: 15 }
+  ];
+  var chart = new F2.Chart({
+    id: 'mountNode',
+    pixelRatio: window.devicePixelRatio
+  });
+
+  chart.source(data);
+  chart.legend(false);
+  chart.axis('value', false);
+
+  // 绘制带 iconfont 的 Guide.Text
+  data.map(obj => {
+    chart.guide().text({
+      position: [ obj.fruit, obj.value ],
+      content: String.fromCharCode(parseInt(iconfontMap[obj.fruit], 16)) + obj.value,
+      style: {
+        fontFamily: 'charts-icon',
+        textBaseline: 'bottom',
+        fontSize: 14
+      },
+      offsetY: -5
+    });
+  });
+
+  chart.interval().position('fruit*value').color('fruit');
+  chart.render();
+</script>

@@ -131,7 +131,7 @@ resource:
     }
 
     function antiCollision(half, isRight) {
-      const startY = center.y - r - OFFSET - LINEHEIGHT;
+      const startY = center.y - r - OFFSET - LINEHEIGHT / 2;
       let overlapping = true;
       let totalH = canvasHeight;
       let i;

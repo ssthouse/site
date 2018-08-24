@@ -1,6 +1,6 @@
 <!--
-index: 19
-title: 自定义 Interaction
+index: 13
+title: 自定义交互
 resource:
   jsFiles:
     - ${url.f2}
@@ -36,12 +36,12 @@ const Interaction = require('@antv/f2/lib/interaction/base');
 ```
 
 **Interaction 基类类图**
-![image.png | left | 373x292.53258426966295](https://gw.alipayobjects.com/zos/rmsportal/xNcQrbxFUhrrtNbnDams.png "")
+![image.png | left | 373x292.53258426966295](https://cdn.yuque.com/lark/0/2018/png/514/1528884080667-1f0ae7ee-df62-4dd6-94e3-f56525be3d62.png "")
 
 
 #### 支持的事件
 
-该基类基于 [Hammer.js](http://hammerjs.github.io/) 手势库，支持手势事件以及 H5 的 touchstart、touchmove、touchend 事件。
+该基类基于 [Hammer.js](http://hammerjs.github.io/) 手势库，支123ewio012的手势事件以及 H5 的 touchstart、touchmove、touchend 事件。
 
 #### 公有属性
 
@@ -87,7 +87,7 @@ const MyInteraction extends Interaction {
   getDefaultCfg() {
     return {
       startEvent: 'touchstart',
-      processEvent: 'touchmove',
+      processingEvent: 'touchmove',
       endEvent: 'touchend',
       resetEvent: 'touchstart'
     }

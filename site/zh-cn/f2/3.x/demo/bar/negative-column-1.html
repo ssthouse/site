@@ -11,9 +11,9 @@ resource:
   }
   var data = [
     { value: -37099, season: '第一季' },
-    { value: -49959.4, season: '第二季' },
-    { value: -51926.5, season: '第三季' },
-    { value: -139255.5, season: '第四季' }
+  { value: -49959.4, season: '第二季' },
+  { value: -51926.5, season: '第三季' },
+  { value: -139255.5, season: '第四季' }
   ];
   var chart = new F2.Chart({
     id: 'mountNode',
@@ -43,27 +43,28 @@ resource:
   // 辅助元素
   data.forEach(function(obj) {
     // 文字部分
-    chart.guide().text({
-      position: [ obj.season, 'max' ],
-      content:  obj.season,
-      style: {
-        fill: '#808080',
-        textBaseline: 'bottom'
-      },
-      offsetY: -5
-    });
-    chart.guide().text({
-      position: [ obj.season, obj.value ],
-      content: numberToMoney(obj.value),
-      style: {
-        fill: '#fff',
-        textBaseline: 'middle',
-        textAlign: 'start',
-        rotate: - Math.PI / 2,
-        fontSize: 11
-      },
-      offsetY: -5
-    });
+    chart.guide()
+      .text({
+        position: [ obj.season, 'max' ],
+        content:  obj.season,
+        style: {
+          fill: '#808080',
+          textBaseline: 'bottom'
+        },
+        offsetY: -5
+      })
+      .text({
+        position: [ obj.season, obj.value ],
+        content: numberToMoney(obj.value),
+        style: {
+          fill: '#fff',
+          textBaseline: 'middle',
+          textAlign: 'start',
+          rotate: - Math.PI / 2,
+          fontSize: 11
+        },
+        offsetY: -5
+      });
   });
 
   chart.guide().text({

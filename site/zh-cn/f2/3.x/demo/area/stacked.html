@@ -9,27 +9,7 @@ plotUsage: 层叠面积图上的最大的面积代表了所有的数据量的总
 relativePlots:
   - ${plotByName.line}
 chartDetail: ${base}zh-cn/vis/chart/stacked-area.html
-selfContainer: true
 -->
-
-<style>
-  #date {
-    visibility: hidden;
-    position: absolute;
-    width: 10vw;
-    font-size: 3.2vw;
-    color: #fff;
-    margin-left: -5vw;
-    margin-top: 1vw;
-    background-color: #808080;
-    padding: 0 2px;
-  }
-</style>
-
-<div class="chart-wrapper">
-  <canvas id="mountNode"></canvas>
-  <div id="date"></div>
-</div>
 
 <script>
   var data = [
@@ -168,21 +148,10 @@ selfContainer: true
         }
       });
       legend.setItems(_.values(map));
-      const coord = chart.get('coord');
-      const title = tooltipItems[0].title;
-      $('#date').text(title);
-      $('#date').css({
-        visibility: 'visible',
-        left: obj.x,
-        top: coord.start.y
-      });
     },
     onHide: function() {
       var legend = chart.get('legendController').legends.top[0];
       legend.setItems(chart.getLegendItems().country);
-      $('#date').css({
-        visibility: 'hidden'
-      });
     }
   });
   chart.axis('date', {

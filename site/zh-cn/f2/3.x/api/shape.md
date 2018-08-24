@@ -1,5 +1,5 @@
 <!--
-index: 17
+index: 14
 title: 自定义 Shape
 resource:
   jsFiles:

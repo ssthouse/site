@@ -36,7 +36,7 @@
 </html>
 {% endmacro %}
 
-{% macro f2demo(title, content, resource, dist, url, version, needIcon, selfContainer) %}
+{% macro f2demo(title, content, resource, dist, url, version, needIcon) %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +45,7 @@
     <meta name="chart-name" content="{{title}}">
     <title>F2 图表组件库 - AntV</title>{% for css in resource.cssFiles %}
     <link rel="stylesheet" href="{{ css }}" />{% endfor %}
-    <link rel="stylesheet" href="https://gw.alipayobjects.com/os/rmsportal/YmDAMEQVbLJpVbKiRQVX.css" />
+    <link rel="stylesheet" href="https://gw.alipayobjects.com/os/rmsportal/XQbQUStlgGlnVrWMZhrb.css" />
     {% if needIcon == true %}
     <style>
       @font-face {
@@ -60,6 +60,9 @@
     {% endif %}
 </head>
 <body>
+  <div class="chart-wrapper">
+    <canvas id="mountNode"></canvas>
+  </div>
 <script>/*Fixing iframe window.innerHeight 0 issue in Safari*/document.body.clientHeight;</script>
 {% if version == 'f2-all' %}
 <script src="{{ url['f2-all'] }}"></script>
@@ -69,14 +72,6 @@
 <script src="{{ js }}"></script>{% endfor %}
 <script src="{{ url.jquery }}"></script>
 <script src="https://gw.alipayobjects.com/os/rmsportal/NjNldKHIVQRozfbAOJUW.js"></script>
-{% if selfContainer == true %}
-  {{ content | safe }}
-{% else %}
-  <div class="chart-wrapper">
-    <canvas id="mountNode"></canvas>
-  </div>
-  {{ content | safe }}
-{% endif %}
-</body>
+{{ content | safe }}</body>
 </html>
 {% endmacro %}

@@ -50,11 +50,18 @@ relativePlots:
     showCrosshairs: true
   });
 
+  // 创建渐变色
+  var canvas = document.getElementById('mountNode');
+  var ctx = canvas.getContext('2d');
+  var grd = ctx.createLinearGradient(0,0,window.innerWidth,0);
+  grd.addColorStop(0,"#FE6384");
+  grd.addColorStop(1,"#f7f7f7");
+
   chart.area().position('time*tem')
-    .color('l(90) 0:#1890FF 1:#f7f7f7')
+    .color(grd)
     .shape('smooth');
   chart.line().position('time*tem')
-    .color('l(90) 0:#1890FF 1:#f7f7f7')
+    .color(grd)
     .shape('smooth');
   chart.render();
 </script>
