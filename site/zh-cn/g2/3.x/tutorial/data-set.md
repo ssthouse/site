@@ -316,6 +316,7 @@ $.getJSON('/assets/data/population-by-age.json', function(data) {
         id: 'c1',
         forceFit: true,
         height: 400,
+        padding: [40, 'auto', 'auto', 'auto']
     });
     c1.source(dvForAll);
     c1.legend({
