@@ -15,14 +15,14 @@ resource:
 ## 常量 Constants
 
 ```js
-F2.version // F2 的版本
+F2.version // 当前 F2 的版本号
 ```
 
 ## 类 Classes
 
 * [F2.Chart](./chart.html)：图表的入口类
+* [F2.G](./g.html)：底层绘图引擎（基于原生的 Html5 Canvas 接口封装）
 * [F2.Shape](./shape.html)：F2 Shape 图形扩展接口，用于自定义各种几何标记的 shape
-* [F2.G](./g.html)：底层绘图引擎，基于原生的 Html5 Canvas 接口封装，引入容器、分层以及 Shape 等概念，使用更加便利
 * [F2.Global](./global.html)：F2 的全局配置，包含图表的皮肤样式
 * [F2.Util](./util.html)：辅助类工具函数
 
@@ -47,7 +47,16 @@ F2.track(false);     // 关闭打点监控
 * [Legend](./legend.html)
 * [Tooltip](./tooltip.html)
 * [Guide](./guide.html)
-* [Animation](./animation.html)
-* [Plugin](./plugin.html)
+* [Animate](./animation.html)
+* [Interaction](./interaction.html)
+* [ScrollBar](./scroll-bar.html)
+* [Gesture](./gesture.html)
+* [Global](./global.html)
+* [Util](./util.html)
+* [G](./g.html)
+* [自定义 Shape](./shape.html)
+* [自定义 Animate](./custom-animate.html)
+* [自定义 Interaction](./custom-interaction.html)
+* [Plugin 机制](./plugin.html)
 * [绘图属性](./canvas.html)
 

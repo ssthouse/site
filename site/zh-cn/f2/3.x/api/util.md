@@ -1,6 +1,6 @@
 <!--
-index: 18
-title: Util 辅助函数
+index: 15
+title: Util
 -->
 
 # Util
@@ -131,6 +131,12 @@ const Util = F2.Util;
 Util.each([ 1, 2, 3 ], (val, index) => {
   console.log('每项的值', val);
   console.log('索引', index);
+});
+
+Util.each([ 1, 2, 3, 4, 5 ], (val, index) => {
+ if (val === 4) {
+   return false; // 跳出循环
+ }
 });
 ```
 

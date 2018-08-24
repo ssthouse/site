@@ -25,7 +25,7 @@ export const page1 = [
     img: `${assets}/image/home/intro-f2.svg`,
     title: 'F2',
     href: `${base}zh-cn/f2/3.x/index.html`,
-    description: ' 是一套精简、高性能、易扩展的移动端可视化解决方案。',
+    description: ' 是一套为移动而生，开箱即用的可视化解决方案。',
     links: [
       { text: '图表示例', href: '/zh-cn/f2/3.x/demo/index.html' },
       { text: 'API 文档', href: '/zh-cn/f2/3.x/api/index.html' },

@@ -156,14 +156,11 @@ const chart = new F2.Chart({
 - 描述：是否关闭 chart 的动画
 - 默认值：null
 
-### `limitInPlot`
-
-> F2 3.2 版本提供该属性，目前请使用 3.2.0-beta.12 版本
+### `syncY`
 
 - 参数类型: Boolean
-- 描述：是否将图形限制在绘图区域内，在进行图表交互时经常用到，参见 [demo](../demo/interaction/x-pan.html)
+- 描述：用于多 Y 轴的情况下，统一 Y 轴的数值范围。
 - 默认值：false
-
 
 ## 方法
 
@@ -211,7 +208,7 @@ chart.source(data, {
 
 图表数据的列定义用于对数据字段进行定义，如数据的类型，显示别名，数值的格式化等，不同的数字类型的配置项不同，支持的数据类型有：
 
-* `linear`: 数字类型
+* `linear`: 数值类型
 * `cat`: 分类类型
 * `timeCat`：时间类型
 
@@ -298,7 +295,7 @@ chart.scale({
 
 `chart.legend()`
 
-* 描述： 配置图例
+* 描述：配置图例
 * 返回：当前 chart 实例
 
 详见 [Legend](./legend.html)。
@@ -378,7 +375,8 @@ chart.render();
 
 `chart.changeData(data)`
 
-* 参数：`data`: Array，数据源
+* 参数
+  - `data`: Array，数据源
 * 描述：改变数据，同时图表刷新
 * 返回：当前 chart 实例
 
@@ -386,11 +384,15 @@ chart.render();
 
 `chart.changeSize(width, height)`
 
-* 参数：`width`: Number/null, 如果为 null，表示宽度不变， `height`: Number/null, 如果为 null，表示高度不变
+* 参数
+  - `width`: Number/null, 如果为 null，表示宽度不变
+  - `height`: Number/null, 如果为 null，表示高度不变
 * 描述：改变数据，同时图表刷新
 * 返回：当前 chart 实例
 
-`chart.changeSize(300)` 只改变宽度；`chart.changeSize(300, 500)` 宽度高度同时改变；`chart.changeSize(, 300)` 只改变高度。
+`chart.changeSize(300)` 只改变宽度；
+`chart.changeSize(300, 500)` 宽度高度同时改变；
+`chart.changeSize(, 300)` 只改变高度。
 
 ### `destroy`
 
@@ -402,7 +404,8 @@ chart.render();
 
 `chart.getPosition(record)`
 
-* 参数：`record`，Object 类型，原始数据对象
+* 参数
+  - `record`: Object 类型，原始数据对象
 * 描述：获取原始数据对应在画布上的坐标
 * 返回：Object 类型，record 对应的画布坐标，格式为 `{ x: , y: }`
 
@@ -414,7 +417,8 @@ const point = chart.getPosition({ time: '2010-02-02', value: 20 });
 
 `chart.getRecord(point)`
 
-* 参数：`point`，Object 类型，画布坐标，格式为 `{x: ,y: }`
+* 参数
+  - `point`: Object 类型，画布坐标，格式为 `{x: ,y: }`
 * 描述：根据画布上的坐标获取对应的原始数据
 * 返回：Object 类型，point 对应的原始数据
 
@@ -426,7 +430,8 @@ const obj = chart.getRecord({ x: 100, y: 100 });
 
 `chart.getSnapRecords(point)`
 
-* 参数：`point`，Object 类型，画布坐标，格式为 `{x: ,y: }`
+* 参数
+  - `point`: Object 类型，画布坐标，格式为 `{x: ,y: }`
 * 描述：根据画布上的坐标获取附近的数据集
 * 返回：Array 类型，返回数据集，该数据集中的每一项记录包含映射后的数据以及对应的原始数据集，结构如下
 
@@ -461,7 +466,6 @@ const obj = chart.getSnapRecords({x: 100, y: 100});
 * 描述：获取图例的 items，用于图例相关的操作
 * 返回：Array 类型
 
-
 ### `getXScale`
 
 `chart.getXScale()`
@@ -480,7 +484,8 @@ const obj = chart.getSnapRecords({x: 100, y: 100});
 
 `chart.showTooltip(point)`
 
-* 参数：`point`，Object 类型，画布坐标，格式为 `{x: ,y: }`
+* 参数
+  - `point`: Object 类型，画布坐标，格式为 `{x: ,y: }`
 * 描述：在该点显示 tooltip
 * 返回：当前 chart 实例
 

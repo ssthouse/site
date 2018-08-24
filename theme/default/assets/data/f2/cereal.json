@@ -713,23 +713,6 @@
     "Cups per Serving": 1
   },
   {
-    "Cereal Name": "Maypo",
-    "Manufacturer": "American Home Food Products",
-    "Type": "H",
-    "Calories": 100,
-    "Protein (g)": 4,
-    "Fat": 1,
-    "Sodium": 0,
-    "Dietary Fiber": 0,
-    "Carbs": 16,
-    "Sugars": 3,
-    "Display Shelf": 2,
-    "Potassium": 95,
-    "Vitamins and Minerals": 25,
-    "Serving Size Weight": 1,
-    "Cups per Serving": -1
-  },
-  {
     "Cereal Name": "Mueslix_Crispy_Blend",
     "Manufacturer": "Kelloggs",
     "Type": "C",

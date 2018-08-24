@@ -1,0 +1,102 @@
+<!--
+index: 4
+title: 金字塔形柱状图
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/BwSAUseGzSogpWaXfFKz.png
+-->
+
+<p class="tip">Refering to <a href="https://codepen.io/jdniki/pen/eWwYLK" target="blank">https://codepen.io/jdniki/pen/eWwYLK</a></p>
+
+<style>
+.chart-wrapper {
+	background: #59a07d;
+  text-align: center;
+}
+
+#mountNode {
+  background: linear-gradient(0deg, #F4F1DF 10%, #59a07d 40%);
+	vertical-align: bottom;
+}
+</style>
+
+<script>
+  var Shape = F2.Shape;
+  Shape.registerShape('interval', 'triangle', {
+    getPoints: function getPoints(cfg) {
+      var x = cfg.x;
+      var y = cfg.y;
+      var y0 = cfg.y0;
+      var width = cfg.size;
+      var offset = (width / 2) * Math.atan(Math.PI / 5);
+      return [{ x: x - width / 2, y: y0 + offset }, { x: x, y: y + offset  }, { x: x + width / 2, y: y0 + offset }, { x: x, y: y0 }];
+    },
+    draw: function draw(cfg, group) {
+      var points = this.parsePoints(cfg.points); // 将0-1空间的坐标转换为画布坐标
+      var leftPoints = [{ x: points[0].x, y: points[0].y }, { x: points[1].x, y: points[1].y }, { x: points[3].x, y: points[3].y }];
+      var rightPoints = [{ x: points[1].x, y: points[1].y }, { x: points[2].x, y: points[2].y }, { x: points[3].x, y: points[3].y }];
+      var left = group.addShape('polygon', {
+        attrs: {
+          points: leftPoints,
+          fill: '#4c5767'
+        }
+      });
+      var right = group.addShape('polygon', {
+        attrs: {
+          points: rightPoints,
+          fill: cfg.color
+        }
+      });
+      return [left, right]; // 将自定义Shape返回
+    }
+  });
+
+  F2.Global.widthRatio.column = 1 / 1.25;
+  const data = [
+    { x: '100', y: 100, name: '1991\nksmdni Ipsum'  },
+    { x: '75', y: 75, name: '1993\nSwerd Dermdx'  },
+    { x: '60', y: 60, name: '1995\nEeemd sed'  },
+    { x: '40', y: 40, name: '1996\nLorem Neo'  },
+    { x: '120', y: 120, name: '1998\nLorem Ipsum'  },
+  ];
+
+  const chart = new F2.Chart({
+    id: 'mountNode',
+    pixelRatio: window.devicePixelRatio
+  });
+
+  chart.source(data, {
+    y: {
+      max: 150
+    }
+  });
+  chart.axis('x', {
+    line: null,
+    label: {
+      fontSize: 12,
+      fontWeight: 'bold'
+    }
+  });
+  chart.axis('y', {
+    label: null,
+    grid: null
+  });
+  chart.tooltip(false);
+  chart.interval().position('x*y').color('#F2CC90').shape('triangle').animate({
+    appear: {
+      duration: 800
+    }
+  });
+
+  data.map(obj => {
+    chart.guide().text({
+      position: [ obj.x, obj.y ],
+      content: obj.name,
+      style: {
+        fill: '#fff',
+        textBaseline: 'bottom'
+      },
+      offsetY: -20
+    });
+  });
+
+  chart.render();
+</script>

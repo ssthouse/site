@@ -1,6 +1,6 @@
 <!--
 index: 8
-title: Tooltip 提示信息
+title: Tooltip
 resource:
   jsFiles:
     - ${url.f2}
@@ -89,7 +89,7 @@ chart.tooltip({
 });
 ```
 
-## 实例
+**示例：**
 
 在移动端，我们经常会将 tooltip 同 legend 一起使用，这个时候我们就可以通过配置 `custom` 属性来实现。(手机端观看)
 
@@ -156,4 +156,10 @@ chart.tooltip({
 
 ## DEMO
 
-详见 [Tooltip 使用](../demo/index.html#_Tooltip-使用)。
+| 场景描述 | demo |
+| -------- | -------- |
+| [自定义 HTML tooltip](https://gw.alipayobjects.com/zos/rmsportal/GXqFyFmzhrVvJeWNSHDL.png) | <img src="https://gw.alipayobjects.com/zos/rmsportal/GXqFyFmzhrVvJeWNSHDL.png" style="width: 50%;" /> |
+| [初始化显示 tooltip](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/tooltip-showTooltip.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/xxBHLpazEZJgfEkSrdZj.png" style="width: 50%;" /> |
+| [自定义样式](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/tooltip-style.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/oLwGTmcnQLqzvfigSwoO.png" style="width: 50%;" /> |
+| [带标题的 tooltip](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/tooltip-showTitle.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/AdLPFtRaMxXIATwBAKKx.png" style="width: 50%;" /> |
+| [内容项垂直布局](https://antv.alipay.com/zh-cn/f2/3.x/demo/component/tooltip-layout.html) | <img src="https://gw.alipayobjects.com/zos/rmsportal/tKpCnCjXUrfMaYTPLLnO.png" style="width: 50%;" /> |

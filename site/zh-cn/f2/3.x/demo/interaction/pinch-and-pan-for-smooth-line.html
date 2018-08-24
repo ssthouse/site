@@ -1,0 +1,58 @@
+<!--
+index: 5
+title: 曲线图的横向平移缩放
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/oBEWTgvzsUsrfguzUSAj.gif
+version: 'f2-all'
+-->
+
+<p style="text-align: center;">请使用手机扫码观看</p>
+<p style="text-align: center;">Please scan the QR code</p>
+
+<script>
+    // Generate sample data
+    const data = [];
+    const step = Math.PI / 4;
+    for (let x = -25; x < 25; x += step) {
+      data.push({ x: x, y: Math.sin(x) });
+    }
+
+    const chart = new F2.Chart({
+      id: 'mountNode',
+      pixelRatio: window.devicePixelRatio
+    });
+
+    chart.source(data);
+    chart.axis('x', {
+      grid(text) {
+        if (text == 0) {
+          return {
+            lineDash: null
+          };
+        }
+      }
+    });
+    chart.axis('y', {
+      grid(text) {
+        if (text == 0) {
+          return {
+            lineDash: null
+          };
+        }
+      }
+    });
+    chart.tooltip(false);
+    chart.interaction('pan', {
+      limitRange: {
+        x: {
+          min: -100,
+          max: 100
+        }
+      }
+    });
+    chart.interaction('pinch', {
+      maxScale: 5,
+      minScale: 1
+    });
+    chart.line().position('x*y').shape('smooth');
+    chart.render();
+</script>

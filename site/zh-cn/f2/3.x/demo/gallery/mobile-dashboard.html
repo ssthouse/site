@@ -1,0 +1,359 @@
+<!--
+index: 3
+title: Dashboard
+screenshot: https://gw.alipayobjects.com/zos/rmsportal/onQBaPplGatlQnoygHTL.gif
+selfContainer: true
+-->
+<style>
+body {
+  background: linear-gradient(90deg, #312b47 0%, #4e4d5d 100%);
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 3.2vw;
+  line-height: 3.2vw;
+  color: #3c3256;
+  font-weight: 700;
+}
+
+h3 {
+  margin: 4px 0 0 0;
+  padding: 0;
+  font-size: 3.7333vw;
+  line-height: 3.7333vw;
+  color: #7affec;
+  font-weight: 700;
+}
+
+h4 {
+  margin: 4px 0 0 0;
+  padding: 0;
+  font-size: 4vw;
+  line-height: 4vw;
+  color: #3c3256;
+  font-weight: 700;
+}
+
+.screen {
+  background-color: #160e23;
+  height: 146vw;
+  width: 100vw;
+  position: absolute;
+  left: 50%;
+  top: 0px;
+  transform: translate(-50%, 0);
+  box-shadow: 0px 4px 4vw rgba(0, 0, 0, 0.4);
+}
+
+.header {
+  padding: 0;
+  text-align: center;
+  color: #8c7dab;
+  width: 100vw;
+  text-align: center;
+  font-size: 5.867vw;
+  line-height: 5.867vw;
+}
+
+.header2 {
+  display: inline-flex;
+  width: 100vw;
+}
+
+.section {
+  color: #5d506c;
+  width: 33.3333vw;
+  font-weight: 600;
+  text-align: center;
+  font-size: 3.2vw;
+  line-height: 3.2vw;
+  border-bottom: 2px solid #5d506c;
+  padding-bottom: 8px;
+  margin-bottom: 4vw;
+}
+
+.active.section {
+  color: #7affec;
+  border-bottom: 2px solid #7affec;
+}
+
+.bodychart {
+  padding: 0;
+  /* margin-left: -17px; */
+  height: 64vw;
+  width: 100vw;
+}
+
+.chart {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.pies {
+  display: inline-table;
+  margin: 4vw 0 0 0;
+  padding: 20px 0 0 0;
+  border-top: 1px solid #201531;
+  border-bottom: 1px solid #201531;
+}
+
+.pie1,
+.pie2,
+.pie3,
+.pie4 {
+  height: 28.8vw;
+  width: 25vw;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  display: inline-block;
+}
+
+#doug3,
+#doug1,
+#doug2,
+#doug4 {
+  padding: 0;
+  margin: 0 0 3.2vw 0;
+  height: 10.67vw;
+  display: inline-block;
+  width: 12.5vw;
+  height: 12.5vw;
+}
+</style>
+
+<article class="screen">
+  <div class="header">
+    <p class="title">Insights</p>
+  </div>
+
+  <div class="header2">
+    <div class="active section">NEW</div>
+    <div class="section">5H AGO</div>
+    <div class="section">MORNING</div>
+  </div>
+
+  <div class="bodychart">
+    <canvas class="chart" id="chart"></canvas>
+  </div>
+
+  <div class="pies">
+    <div class="pie1">
+      <canvas id="doug1"></canvas>
+      <h2>ORGANIC</h2>
+      <h3 id="doug1Text"></h3>
+    </div>
+    <div class="pie2">
+      <canvas id="doug2"></canvas>
+      <h2>SOCIAL</h2>
+      <h3 id="doug2Text">43%</h3>
+    </div>
+    <div class="pie3">
+      <canvas id="doug3"></canvas>
+      <h2>RETURN</h2>
+      <h3 id="doug3Text">24%</h3>
+    </div>
+    <div class="pie4">
+      <canvas id="doug4"></canvas>
+      <h2>KEYWORD</h2>
+      <h3 id="doug4Text">68%</h3>
+    </div>
+  </div>
+  <p class="tip" style="color: #fff;">Refering to
+    <a style="color: #ccc;" href="https://codepen.io/nerios/pen/MKNgQO" target="blank">https://codepen.io/nerios/pen/MKNgQO</a>
+  </p>
+</article>
+
+<script>
+  function randomScalingFactor() {
+    return Math.round(Math.random() * 100);
+  }
+
+  const lineData = [
+    { time: '1PM', value: randomScalingFactor(), type: 'A' },
+    { time: '1:30PM', value: randomScalingFactor(), type: 'A' },
+    { time: '2PM', value: randomScalingFactor(), type: 'A' },
+    { time: '2:30PM', value: randomScalingFactor(), type: 'A' },
+    { time: '3PM', value: randomScalingFactor(), type: 'A' },
+    { time: '3:30PM', value: randomScalingFactor(), type: 'A' },
+    { time: '4PM', value: randomScalingFactor(), type: 'A' },
+    { time: '4:30PM', value: randomScalingFactor(), type: 'A' },
+    { time: '5PM', value: randomScalingFactor(), type: 'A' },
+    { time: '5:30PM', value: randomScalingFactor(), type: 'A' },
+    { time: '6PM', value: randomScalingFactor(), type: 'A' },
+    { time: '6:30PM', value: randomScalingFactor(), type: 'A' },
+    { time: '7PM', value: randomScalingFactor(), type: 'A' },
+    { time: '1PM', value: randomScalingFactor(), type: 'B' },
+    { time: '1:30PM', value: randomScalingFactor(), type: 'B' },
+    { time: '2PM', value: randomScalingFactor(), type: 'B' },
+    { time: '2:30PM', value: randomScalingFactor(), type: 'B' },
+    { time: '3PM', value: randomScalingFactor(), type: 'B' },
+    { time: '3:30PM', value: randomScalingFactor(), type: 'B' },
+    { time: '4PM', value: randomScalingFactor(), type: 'B' },
+    { time: '4:30PM', value: randomScalingFactor(), type: 'B' },
+    { time: '5PM', value: randomScalingFactor(), type: 'B' },
+    { time: '5:30PM', value: randomScalingFactor(), type: 'B' },
+    { time: '6PM', value: randomScalingFactor(), type: 'B' },
+    { time: '6:30PM', value: randomScalingFactor(), type: 'B' },
+    { time: '7PM', value: randomScalingFactor(), type: 'B' }
+  ];
+
+  const lineChart = new F2.Chart({
+    id: 'chart',
+    pixelRatio: window.devicePixelRatio,
+    padding: [30, 'auto', 'auto']
+  });
+
+  lineChart.source(lineData, {
+    value: {
+      max: 150
+    }
+  });
+  lineChart.legend({
+    itemWidth: 50,
+    offsetY: -10,
+    valueStyle: {
+      fill: '#808080'
+    }
+  });
+  lineChart.axis('value', false);
+  lineChart.axis('time', {
+    line: {
+      stroke: '#1b1929'
+    },
+    grid: {
+      lineDash: null,
+      stroke: '#1b1929',
+      lineWidth: 1
+    },
+    label(text, index) {
+      if (index % 2 === 0) {
+        return {
+          fill: '#35274b',
+          fontWeight: 'bold'
+        };
+      }
+      return null;
+    }
+  });
+  lineChart.tooltip({
+    showCrosshairs: true,
+    crosshairsStyle: {
+      stroke: '#808080',
+      lineWidth: 1
+    },
+    custom: true, // 自定义 tooltip 内容框
+    onChange: function onChange(obj) {
+      var legend = lineChart.get('legendController').legends.top[0];
+      var tooltipItems = obj.items;
+      var legendItems = legend.items;
+      var map = {};
+      legendItems.map(function (item) {
+        map[item.name] = Object.assign({}, item);
+      });
+      tooltipItems.map(function (item) {
+        var name = item.name;
+        var value = item.value;
+        if (map[name]) {
+          map[name].value = value;
+        }
+      });
+      legend.setItems(Object.values(map));
+    },
+    onHide: function onHide() {
+      var legend = lineChart.get('legendController').legends.top[0];
+      legend.setItems(lineChart.getLegendItems().country);
+    }
+  });
+  lineChart.line().position('time*value')
+    .color('type', ['#503e7a', '#7affec'])
+    .size('type', val => {
+      if (val === 'B') {
+        return 2;
+      }
+      return 1;
+    })
+    .animate({
+      appear: {
+        duration: 1200
+      }
+    });
+  lineChart.point().position('time*value')
+    .color('type', ['#503e7a', '#7affec'])
+    .size(5)
+    .animate({
+      appear: {
+        duration: 1200
+      }
+    });
+  lineChart.render();
+
+  // start draw pie chart
+  const pieInfo = [
+    {
+      id: 'doug1',
+      data: [
+        { value: randomScalingFactor(), color: '#f95084', const: '1' },
+        { value: randomScalingFactor(), color: '#342652', const: '1' }
+      ]
+    },
+    {
+      id: 'doug2',
+      data: [
+        { value: randomScalingFactor(), color: '#7affec', const: '1' },
+        { value: randomScalingFactor(), color: '#342652', const: '1' }
+      ]
+    },
+    {
+      id: 'doug3',
+      data: [
+        { value: randomScalingFactor(), color: "#7affec", const: '1' },
+        { value: randomScalingFactor(), color: "#342652", const: '1' }
+      ]
+    },
+    {
+      id: 'doug4',
+      data: [
+        { value: randomScalingFactor(), color: "#f95084", const: '1' },
+        { value: randomScalingFactor(), color: "#342652", const: '1' }
+      ]
+    },
+  ];
+
+  pieInfo.map(info => {
+    const chart = new F2.Chart({
+      id: info.id,
+      pixelRatio: window.devicePixelRatio,
+      padding: 0
+    });
+    chart.source(info.data);
+    chart.axis(false);
+    chart.legend(false);
+    chart.tooltip(false);
+    chart.coord('polar', {
+      transposed: true,
+      innerRadius: 0.5
+    });
+    chart
+      .interval()
+      .adjust('stack')
+      .position('const*value')
+      .color('color', val => {
+        return val;
+      })
+      .animate({
+        appear: {
+          duration: 1200,
+          easing: 'bounceOut'
+        }
+      });
+    chart.render();
+
+    const percent = info.data[0].value * 100 / (info.data[0].value + info.data[1].value);
+    $('#' + info.id + 'Text').text(percent.toFixed(0) + '%');
+  });
+</script>

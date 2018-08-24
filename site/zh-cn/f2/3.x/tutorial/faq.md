@@ -234,35 +234,27 @@ canvas.onclick=function(event){
 
 #### 解决方案
 
-F2 中没有集成渐变色快捷方式，需要用户自己生成渐变对象，参考：[canvas 渐变](http://www.w3school.com.cn/jsref/dom_obj_canvasgradient.asp)
-
-F2 的图表定义时有多种方式可以设置渐变色
+F2 **3.2.1** 版本开始支持使用渐变色的声明方式：
 
 ```js
-  // 创建渐变对象
-  const canvas = document.getElementById('mountNode');
-  const ctx = canvas.getContext('2d');
-  const grd = ctx.createLinearGradient(0,0,500,0);
-  grd.addColorStop(0,"#293c55");
-  grd.addColorStop(1,"#f7f7f7");
+chart.area().position('year*age').color('l(0) 0:#F2C587 0.5:#ED7973 1:#8659AF');
+```
+
+详见 [demo](../demo/area/gradient.html)。渐变色声明使用方式详见：[渐变色](../api/canvas.html#_渐变色)。
+
+3.2.1 版本之前，需要用户自己获取 `context` 生成渐变对象，参考：[canvas 渐变](http://www.w3school.com.cn/jsref/dom_obj_canvasgradient.asp)，如下：
 
 
-  // 直接设置渐变颜色
-  chart.area().position('x*y').color(grd);
+```js
+// 创建渐变对象
+const canvas = document.getElementById('mountNode');
+const ctx = canvas.getContext('2d');
+const grd = ctx.createLinearGradient(0,0,500,0);
+grd.addColorStop(0,"#293c55");
+grd.addColorStop(1,"#f7f7f7");
 
-  // 在 style 中设置
-  chart.area().position('x*y').style({
-    fill: grd
-  });
-
-  // 如果有多种颜色
-  chart.area().position('x*y').color('type', function(type) {
-    if (type === '1') {
-      return grd;
-    }
-    return grd1;
-  });
-
+// 直接设置渐变颜色
+chart.area().position('x*y').color(grd);
 ```
 
 [示例](../demo/area/gradient.html)

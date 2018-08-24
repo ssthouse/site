@@ -1,13 +1,13 @@
 <!--
 index: 9
-title: Guide 辅助元素
+title: Guide
 -->
 
 # Guide
 
 ---
 
-用于绘制图表的辅助元素，该方法的返回值不为 chart 对象，而是一个 guide 对应的控制类 guideController。 包括辅助线、辅助文本、辅助框、辅助弧线（只在极坐标下适用）、辅助 html。
+用于绘制图表的辅助元素，该方法的返回值不为 chart 对象，而是一个 guide 对应的控制类 guideController。 包括辅助线、辅助文本、辅助框、辅助弧线（只在极坐标下适用）、辅助 html 等。
 
 ## 如何引入 Guide
 
@@ -24,6 +24,9 @@ require('@antv/f2/lib/component/guide/html'); // 只加载 Guide.Html 组件
 require('@antv/f2/lib/component/guide/text'); // 只加载 Guide.Text 组件
 require('@antv/f2/lib/component/guide/rect'); // 只加载 Guide.Rect 组件
 require('@antv/f2/lib/component/guide/line'); // 只加载 Guide.Line 组件
+require('@antv/f2/lib/component/guide/tag'); // 只加载 Guide.Tag 组件
+require('@antv/f2/lib/component/guide/point'); // 只加载 Guide.Point 组件
+require('@antv/f2/lib/component/guide/regionFilter'); // 只加载 Guide.RegionFilter 组件
 
 // 第二步：加载插件 Guide
 const Guide = require('@antv/f2/lib/plugin/guide');
@@ -31,7 +34,7 @@ const Guide = require('@antv/f2/lib/plugin/guide');
 // 第三步：注册插件 Guide
 F2.Chart.plugins.register(Guide); // 这里进行全局注册，也可以给 chart 的实例注册
 
-// 给具体的 chart 实例注册
+// 或者给具体的 chart 实例注册
 const chart = new F2.Chart({
   id: 'canvas',
   plugins: Guide
@@ -61,7 +64,7 @@ chart.guide().line({
 
 #### 示例
 
-[Guide.Line](../demo/guide/line.html)。
+[Guide.Line](../demo/component/guide-line.html)。
 
 #### 参数
 
@@ -132,10 +135,9 @@ chart.guide().text({
 });
 ```
 
-
 #### 示例
 
-[Guide.Text](../demo/guide/text.html)。
+[Guide.Text](../demo/component/guide-text.html)。
 
 #### 参数
 
@@ -185,6 +187,71 @@ chart.guide().text({
 
 设置辅助文本 y 方向的偏移量。
 
+### Point
+
+`chart.guide().point({})`
+
+绘制辅助点。
+
+```js
+chart.guide().point({
+  top: {Boolean}, // 指定 guide 是否绘制在 canvas 最上层，默认为 true, 即绘制在最上层
+  position: {Function} | {Array}, // 文本的起始位置，值为原始数据值，支持 callback
+  style: {
+    fill: '#666', // 点的填充颜色
+  }, // 文本的图形样式属性
+  offsetX: {Number}, // x 方向的偏移量
+  offsetY: {Number} // y 方向偏移量
+});
+```
+
+#### 示例
+
+[Guide.Point](../demo/component/guide-point.html)。
+
+#### 参数
+
+- `top`: Boolean
+
+指定 guide 是否绘制在 canvas 最上层，默认为 true, 即绘制在最上层。
+
+- `position`: Array/Function
+
+指定辅助文本的显示位置，该值的类型如下：
+
+  + Array: 数组来配置位置 [ x, y ]，根据数组中的值的存在以下几种形式：
+    * x，y 都是原始数据 [ '2010-01-01', 200 ];
+    * x，y 可以使用原始数据的替代字符串 'min', 'max', 'median' , 例如：[ 'median', 200 ]
+    * x, y 都是用百分比的形式，在绘图区域定位，字符串中存在 '%', 例如 [ '50%', '50%'] 使得辅助元素居中
+    * 如果 x 或者 y 对应的数据类型为 `cat`（分类）或者 `timeCat`（时间分类），还可以直接使用索引值
+  + Function: 回调函数，可以动态的确定辅助元素的位置，应用于数据动态更新，辅助元素的位置根据数据变化的场景
+
+```js
+chart.guide().point({
+  /**
+   * 设置辅助点的显示位置
+   * @param  {Scale} xScale x 轴对应的度量
+   * @param {Array} yScales y 轴对应的度量的数组集合
+   * @return {Array} 返回值必须为数组格式
+   */
+  position(xScale, yScales) {
+    return []; // 位置信息
+  }
+});
+```
+
+- `style`: Object
+
+用于设置辅助点的显示样式，详见绘图属性。
+
+- `offsetX`: Number
+
+设置辅助点 x 方向的偏移量。
+
+- `offsetY`: Number
+
+设置辅助点 y 方向的偏移量。
+
 ### Tag
 
 `chart.guide().tag({})`
@@ -224,7 +291,7 @@ chart.guide().tag({
 
 #### 示例
 
-[Guide.Tag](../demo/guide/tag.html)。
+[Guide.Tag](../demo/component/guide-tag.html)。
 
 #### 参数
 
@@ -334,7 +401,7 @@ chart.guide().rect({
 
 #### 示例
 
-[Guide.Rect](../demo/guide/rect.html)。
+[Guide.Rect](../demo/component/guide-rect.html)。
 
 #### 参数
 
@@ -403,7 +470,7 @@ chart.guide().html({
 
 #### 示例
 
-[Guide.Html](../demo/guide/html.html)。
+[Guide.Html](../demo/component/guide-html.html)。
 
 #### 参数
 
@@ -470,7 +537,7 @@ chart.arc({
 
 #### 示例
 
-[Guide.Arc](../demo/guide/arc.html)。
+[Guide.Arc](../demo/component/guide-arc.html)。
 
 #### 参数
 
@@ -522,8 +589,6 @@ chart.guide().arc({
 
 ### RegionFilter
 
-> F2 3.2 版本提供该组件，目前请使用 3.2.0-beta.12 版本
-
 `chart.guide.regionFilter({})`
 
 辅助过滤区域。
@@ -540,7 +605,7 @@ chart.guide().regionFilter({
 
 #### 示例
 
-[Guide.RegionFilter](../demo/guide/regionFilter.html)。
+[Guide.RegionFilter](../demo/component/guide-regionFilter.html)。
 
 #### 参数
 
@@ -595,8 +660,27 @@ chart.guide().regionFilter({
 用于设置过滤区域 shape 附加的样式设置，详见[绘图属性](./canvas.md)。
 
 
+### Guide 重绘
+
+`guide.repaint();`
+
+```js
+const guide = chart.guide().text({
+  position: [ 'min', 'median' ],
+  content: '12345'
+});
+
+chart.render();
+
+// update guide configuration
+guide.position = [ '50%', '50%' ];
+guide.content = 12;
+guide.repaint();
+```
+
 ### 清空 guides
 
 ```js
 chart.guide().clear();
 ```
+
